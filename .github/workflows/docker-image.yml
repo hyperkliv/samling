@@ -98,10 +98,11 @@ jobs:
         run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\/v/}
         shell: bash
       - uses: jacobsvante/version-tag-docker-image@v0.4.0
-        if: ${{ steps.version.outputs.version !== '' }}
+        if: ${{ steps.version.outputs.version != '' }}
         with:
           version: ${{ steps.version.outputs.version }}
-          image: ${{ secrets.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}
+          image: ${{ env.IMAGE_NAME }}
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          add-pr-label: 'false'
+          token: ${{ secrets.EVENT_TRIGGERING_GITHUB_TOKEN }}
+          registry: ${{ secrets.DOCKERHUB_USER }}

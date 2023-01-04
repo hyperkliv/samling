@@ -82,6 +82,7 @@ jobs:
         with:
           release-type: rust
           command: github-release
+          token: ${{ secrets.EVENT_TRIGGERING_GITHUB_TOKEN }}
       -
         uses: actions/checkout@v3.0.2
         if: ${{ steps.release.outputs.release_created }}
