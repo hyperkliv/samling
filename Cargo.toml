@@ -1,7 +1,12 @@
 [package]
 name = "samling"
 version = "0.1.0"
+license = "MIT"
 edition = "2021"
+description = "App for managing apparel collections"
+repository = "https://github.com/hyperkliv/samling"
+documentation = "https://docs.rs/samling/"
+homepage = "https://github.com/hyperkliv/samling"
 
 [dependencies]
 argon2 = "0.4.1"
