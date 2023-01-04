@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: samling
+  annotations:
+    "cluster-autoscaler.kubernetes.io/safe-to-evict": "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {}  # NOTE: Needs to exist. kustomize inserts labels here.
+  template:
+    spec:
+      volumes:
+        - name: tmp-volume
+          emptyDir: {}
+      containers:
+        - name: app
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp-volume
+          image: APP_IMAGE  # NOTE: Will be replaced
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: samling
+            - secretRef:
+                name: samling
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            initialDelaySeconds: 2
+            httpGet:
+              path: /api/livez
+              port: http
+          readinessProbe:
+            initialDelaySeconds: 4
+            httpGet:
+              path: /api/readyz
+              port: http
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 200m
+            limits:
+              memory: 300Mi
+              cpu: 1000m

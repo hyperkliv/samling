@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  app:
+    command: [serve]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    env_file: []
+    environment:
+      LOG_LEVEL: info
+      SECRET: abc123
+      DB_NAME: samling
+      DB_HOST: postgres
+      DB_USER: samling
+      DB_PASSWORD: samling
+      DB_AUTO_MIGRATE: "true"
+      CLOUDFLARE_ACCOUNT_ID: abc
+      CLOUDFLARE_TOKEN: "123"
+    build: .
+  postgres:
+    image: postgres:15.1-alpine3.17
+    environment:
+      POSTGRES_DB: samling
+      POSTGRES_USER: samling
+      POSTGRES_PASSWORD: samling
+    ports:
+      - "5432"

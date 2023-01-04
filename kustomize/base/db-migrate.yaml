@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: samling-db-migrate
+  labels:
+    delete-successful-pre-deploy: "true"
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 600
+  template:
+    spec:
+      imagePullSecrets:
+        - name: rg.fr-par.scw.cloud
+      restartPolicy: OnFailure
+      containers:
+        - name: migrate
+          args:
+            - migrate
+          image: APP_IMAGE  # NOTE: Will be replaced
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: samling
+            - secretRef:
+                name: samling
+          resources:
+            requests:
+              memory: 20Mi
+              cpu: 200m
+            limits:
+              memory: 40Mi
+              cpu: 1000m

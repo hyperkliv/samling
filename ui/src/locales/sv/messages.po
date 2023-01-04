@@ -1,0 +1,1297 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-24 21:48+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: src/pages/app/admin/AdminEditUser.tsx:405
+msgid "# collections"
+msgstr "# samlingar"
+
+#: src/components/admin/CollectionsTable.tsx:76
+#: src/pages/app/admin/AdminEditGroup.tsx:524
+msgid "# colors"
+msgstr "# färger"
+
+#: src/pages/app/admin/AdminEditUser.tsx:411
+msgid "# price lists"
+msgstr "# prislistor"
+
+#: src/components/admin/CollectionsTable.tsx:82
+#: src/pages/app/admin/AdminEditGroup.tsx:530
+msgid "# sizes"
+msgstr "# storlekar"
+
+#: src/components/admin/CollectionsTable.tsx:70
+#: src/pages/app/admin/AdminEditGroup.tsx:518
+msgid "# styles"
+msgstr "# stilar"
+
+#: src/pages/public/errors/Unauthorized.tsx:17
+msgid "401 Error"
+msgstr "401-fel"
+
+#: src/pages/app/errors/NotFound.tsx:17
+#: src/pages/public/errors/NotFoundPublic.tsx:17
+msgid "404 Error"
+msgstr "404-fel"
+
+#: src/pages/public/SplashPage.tsx:175
+msgid "<0>Get full insight into</0><1>your product data.</1>"
+msgstr "<0>Få full insikt i</0><1>din produktdata.</1>"
+
+#: src/pages/public/SplashPage.tsx:217
+msgid "<0>We care about the protection of your data. Read our </0><1>Privacy Policy</1>."
+msgstr "<0>Vi bryr oss om att skydda dina uppgifter. Läs vår </0><1>integritetspolicy</1>."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:423 src/roles.ts:14 src/roles.ts:15
+msgid "Active"
+msgstr "Aktiv"
+
+#: src/components/admin/UsersTable.tsx:98
+msgid "Active users"
+msgstr "Aktiva användare"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:210
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:114
+msgid "Add"
+msgstr "Lägg till"
+
+#: src/pages/app/admin/AdminEditGroup.tsx:552
+msgid "Add collection"
+msgstr "Lägg till samling"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:157
+msgid "Add collection items"
+msgstr "Lägg till artiklar"
+
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:78
+msgid "Add collection pricing date"
+msgstr "Lägg till prisdatum för samlingen"
+
+#: src/components/admin/GroupsTable.tsx:55
+#: src/pages/app/admin/AdminEditUser.tsx:300
+#: src/pages/app/admin/AdminEditUser.tsx:430
+msgid "Add group"
+msgstr "Lägg till grupp"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:597
+msgid "Add items"
+msgstr "Lägg till artiklar"
+
+#: src/components/forms/AssociatedPriceListsEditor.tsx:102
+msgid "Add price list"
+msgstr "Lägg till prislista"
+
+#: src/components/admin/UsersTable.tsx:182
+#: src/pages/app/admin/AdminEditGroup.tsx:377
+msgid "Add user"
+msgstr "Lägg till användare"
+
+#: src/pages/app/Style.tsx:254
+msgid "Additional details"
+msgstr "Ytterligare information"
+
+#: src/components/nav/Sidebar.tsx:34
+#: src/pages/app/admin/AdminCollections.tsx:12
+#: src/pages/app/admin/AdminCollections.tsx:45
+#: src/pages/app/admin/AdminCreateCollection.tsx:24
+#: src/pages/app/admin/AdminCreateCollection.tsx:32
+#: src/pages/app/admin/AdminEditCollection.tsx:66
+#: src/pages/app/admin/AdminEditCollection.tsx:77
+#: src/pages/app/admin/AdminEditGroup.tsx:47
+#: src/pages/app/admin/AdminEditGroup.tsx:60
+#: src/pages/app/admin/AdminEditUser.tsx:41
+#: src/pages/app/admin/AdminEditUser.tsx:54
+#: src/pages/app/admin/AdminGroups.tsx:12
+#: src/pages/app/admin/AdminGroups.tsx:40 src/pages/app/admin/AdminHome.tsx:21
+#: src/pages/app/admin/AdminHome.tsx:49 src/pages/app/admin/AdminHome.tsx:56
+#: src/pages/app/admin/AdminUsers.tsx:13 src/pages/app/admin/AdminUsers.tsx:91
+msgid "Admin"
+msgstr "Admin"
+
+#: src/pages/app/admin/AdminHome.tsx:41
+msgid "Administrate collections"
+msgstr "Administrera samlingar"
+
+#: src/pages/app/admin/AdminHome.tsx:34
+msgid "Administrate groups"
+msgstr "Administrera grupper"
+
+#: src/pages/app/admin/AdminHome.tsx:27
+msgid "Administrate users"
+msgstr "Administrera användare"
+
+#: src/roles.ts:41
+msgid "Administrator"
+msgstr "Administratör"
+
+#: src/roles.ts:42
+msgid "Administrators"
+msgstr "Administratörer"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:187
+#: src/pages/app/admin/AdminEditCollection.tsx:289
+msgid "Advanced settings"
+msgstr "Avancerade inställningar"
+
+#: src/pages/app/AlreadySignedInPage.tsx:11
+msgid "Already signed in"
+msgstr "Redan inloggad"
+
+#: src/pages/app/AlreadySignedInPage.tsx:27
+msgid "Already signed in."
+msgstr "Redan inloggad."
+
+#: src/state/slices/user.ts:43
+msgid "An error occurred"
+msgstr "Ett fel uppstod"
+
+#: src/pages/app/errors/ApiError.tsx:26
+msgid "An error occurred."
+msgstr "Ett fel uppstod."
+
+#: src/components/admin/DeleteCollectionModal.tsx:50
+msgid "Are you sure you want to delete the collection <0>{0}</0>? This action cannot be undone."
+msgstr "Är du säker på att du vill ta bort samlingen <0>{0}</0>? Den här åtgärden kan inte ångras."
+
+#: src/components/admin/DeleteGroupModal.tsx:44
+msgid "Are you sure you want to delete the group <0>{0}</0>? This action cannot be undone."
+msgstr "Är du säker på att du vill ta bort gruppen <0>{0}</0>? Den här åtgärden kan inte ångras."
+
+#: src/components/admin/DeleteUserModal.tsx:44
+msgid "Are you sure you want to delete the user <0>{0}</0>? This action cannot be undone."
+msgstr "Är du säker på att du vill ta bort användaren <0>{0}</0>? Den här åtgärden kan inte ångras."
+
+#: src/components/ExportForm.tsx:145
+msgid "Attributes"
+msgstr "Attribut"
+
+#: src/state/slices/user.ts:117
+msgid "Automatic sign out"
+msgstr "Automatisk utloggning"
+
+#: src/state/slices/user.ts:58
+msgid "Backend error"
+msgstr "Backend-fel"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:154
+#: src/pages/app/admin/AdminEditCollection.tsx:235
+#: src/pages/app/admin/AdminEditGroup.tsx:173
+#: src/pages/app/admin/AdminEditUser.tsx:157
+msgid "Basic settings"
+msgstr "Grundläggande inställningar"
+
+#: src/components/ExportForm.tsx:55
+msgid "CSV"
+msgstr "CSV"
+
+#: src/roles.ts:33
+msgid "Can create and edit groups and collections, in addition to viewer level access."
+msgstr "Kan skapa och redigera grupper och samlingar, i tillägg till åtkomst på visningsnivå."
+
+#: src/roles.ts:43
+msgid "Can manage users, in addition to editor level access. Also gets full API access, which is useful when creating integrations."
+msgstr "Kan hantera användare, i tillägg till åtkomst på redigeringsnivå. Får också fullständig API-åtkomst, vilket är användbart när man skapar integrationer."
+
+#: src/roles.ts:16
+msgid "Can sign in."
+msgstr "Kan logga in."
+
+#: src/roles.ts:23
+msgid "Can view and export collections where explicit access has been configured in Groups."
+msgstr "Kan visa och exportera samlingar där explicit åtkomst har konfigurerats i Grupper."
+
+#: src/components/admin/AddCollectionItemsModal.tsx:217
+#: src/components/admin/ModalBase.tsx:280
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:121
+#: src/pages/app/admin/AdminCreateCollection.tsx:224
+#: src/pages/app/admin/AdminEditCollection.tsx:328
+#: src/pages/app/admin/AdminEditGroup.tsx:276
+#: src/pages/app/admin/AdminEditUser.tsx:214
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:177
+#: src/components/filters/CategoryFilter.tsx:54
+#: src/components/filters/ComboboxFilter.tsx:54
+msgid "Categories"
+msgstr "Kategorier"
+
+#: src/components/ExportForm.tsx:73 src/components/filters/ActiveFilters.tsx:63
+msgid "Category"
+msgstr "Kategori"
+
+#: src/components/ExportForm.tsx:142
+msgid "Category name"
+msgstr "Kategorinamn"
+
+#: src/pages/app/Style.tsx:215
+msgid "Choose a color"
+msgstr "Välj en färg"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:642
+msgid "Clear selection"
+msgstr "Rensa urvalet"
+
+#: src/components/UserMessage.tsx:87
+msgid "Close"
+msgstr "Stäng"
+
+#: src/components/nav/SidebarMobile.tsx:64
+msgid "Close sidebar"
+msgstr "Stäng sidofältet"
+
+#: src/components/admin/CollectionsTable.tsx:64
+msgid "Collection"
+msgstr "Samling"
+
+#: src/components/CollectionTable.tsx:46
+#: src/components/admin/CollectionsTable.tsx:35
+#: src/components/admin/GroupsTable.tsx:82 src/components/nav/Sidebar.tsx:22
+#: src/pages/app/HomeScreen.tsx:12 src/pages/app/Style.tsx:82
+#: src/pages/app/admin/AdminCollections.tsx:12
+#: src/pages/app/admin/AdminCollections.tsx:47
+#: src/pages/app/admin/AdminCreateCollection.tsx:34
+#: src/pages/app/admin/AdminEditCollection.tsx:66
+#: src/pages/app/admin/AdminEditCollection.tsx:79
+#: src/pages/app/admin/AdminEditGroup.tsx:491
+#: src/pages/app/admin/AdminHome.tsx:39
+msgid "Collections"
+msgstr "Samlingar"
+
+#: src/components/ExportForm.tsx:69 src/pages/app/Style.tsx:205
+msgid "Color"
+msgstr "Färg"
+
+#: src/components/ExportForm.tsx:167
+msgid "Color external id"
+msgstr "Externt färg-id"
+
+#: src/components/ExportForm.tsx:107
+msgid "Color name"
+msgstr "Färgnamn"
+
+#: src/components/ExportForm.tsx:106
+msgid "Color number"
+msgstr "Färgnummer"
+
+#: src/components/filters/NewFilter.tsx:25 src/types/columns.ts:40
+msgid "Colors"
+msgstr "Färger"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:671
+msgid "Colors / Sizes"
+msgstr "Färger / storlekar"
+
+#: src/pages/public/SplashPage.tsx:14
+msgid "Company"
+msgstr "Företag"
+
+#: src/pages/public/SplashPage.tsx:213
+msgid "Contact me"
+msgstr "Kontakta mig"
+
+#: src/components/ExportForm.tsx:100 src/components/columns/data/Style.tsx:112
+#: src/components/filters/CoreFilter.tsx:20
+msgid "Core"
+msgstr "Core"
+
+#: src/components/columns/data/Style.tsx:97
+msgid "Core style"
+msgstr "Core-stil"
+
+#: src/components/filters/CoreFilter.tsx:31
+msgid "Core styles"
+msgstr "Core-stilar"
+
+#: src/components/filters/ActiveFilters.tsx:72
+msgid "Country"
+msgstr "Land"
+
+#: src/components/ExportForm.tsx:103
+#: src/components/filters/CountryFilter.tsx:46
+msgid "Country of origin"
+msgstr "Ursprungsland"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:175
+#: src/pages/app/admin/AdminEditCollection.tsx:263
+msgid "Cover photo"
+msgstr "Omslagsbild"
+
+#: src/components/admin/CreateGroupModal.tsx:63
+#: src/components/admin/CreateUserModal.tsx:132
+msgid "Create"
+msgstr "Skapa"
+
+#: src/components/admin/CollectionsTable.tsx:49
+msgid "Create collection"
+msgstr "Skapa samling"
+
+#: src/components/admin/CollectionsTable.tsx:88
+msgid "Created at"
+msgstr "Skapad"
+
+#: src/components/admin/CollectionsTable.tsx:109
+#: src/components/admin/DeleteCollectionModal.tsx:58
+#: src/components/admin/DeleteGroupModal.tsx:50
+#: src/components/admin/DeleteUserModal.tsx:50
+#: src/components/admin/GroupsTable.tsx:103
+#: src/components/admin/GroupsTable.tsx:166
+#: src/components/admin/UsersTable.tsx:239
+#: src/components/admin/UsersTable.tsx:304
+msgid "Delete"
+msgstr "Ta bort"
+
+#: src/components/admin/CollectionsTable.tsx:185
+msgid "Delete<0>, {0}</0>"
+msgstr "Ta bort<0>, {0}</0>"
+
+#: src/components/ExportForm.tsx:151 src/types/other.ts:19
+msgid "Delivery period"
+msgstr "Leveransperiod"
+
+#: src/types/other.ts:23
+msgid "Delivery period (descending)"
+msgstr "Leveransperiod (fallande)"
+
+#: src/pages/app/Style.tsx:190 src/pages/app/admin/AdminEditGroup.tsx:193
+#: src/pages/app/admin/AdminEditUser.tsx:281
+msgid "Description"
+msgstr "Beskrivning"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:776
+#: src/pages/app/admin/AdminEditCollection.tsx:837
+msgid "Disable all"
+msgstr "Inaktivera alla"
+
+#: src/components/ExportForm.tsx:459
+msgid "Download"
+msgstr "Ladda ner"
+
+#: src/components/ExportForm.tsx:457
+msgid "Downloading..."
+msgstr "Laddar ner..."
+
+#: src/components/admin/CreateUserModal.tsx:44
+#: src/components/admin/UsersTable.tsx:362
+#: src/pages/app/admin/AdminEditUser.tsx:176
+msgid "E-mail address"
+msgstr "E-postadress"
+
+#: src/components/ExportForm.tsx:159
+msgid "EAN code"
+msgstr "EAN-kod"
+
+#: src/components/admin/CollectionsTable.tsx:101
+#: src/components/admin/GroupsTable.tsx:95
+#: src/components/admin/GroupsTable.tsx:155
+#: src/components/admin/UsersTable.tsx:231
+#: src/components/admin/UsersTable.tsx:293
+msgid "Edit"
+msgstr "Redigera"
+
+#: src/pages/app/admin/AdminEditGroup.tsx:67
+msgid "Edit group"
+msgstr "Redigera grupp"
+
+#: src/pages/app/admin/AdminEditUser.tsx:61
+msgid "Edit {0}"
+msgstr "Redigera {0}"
+
+#: src/components/admin/CollectionsTable.tsx:170
+msgid "Edit<0>, {0}</0>"
+msgstr "Redigera<0>, {0}</0>"
+
+#: src/roles.ts:31
+msgid "Editor"
+msgstr "Redigerare"
+
+#: src/roles.ts:32
+msgid "Editors"
+msgstr "Redigerare"
+
+#: src/components/SignInModal.tsx:73
+msgid "Email address"
+msgstr "E-postadress"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:776
+#: src/pages/app/admin/AdminEditCollection.tsx:837
+msgid "Enable all"
+msgstr "Aktivera alla"
+
+#: src/pages/app/admin/AdminEditUser.tsx:185
+msgid "Enter new password here to change..."
+msgstr "Ange nytt lösenord här för att ändra..."
+
+#: src/pages/public/SplashPage.tsx:207
+msgid "Enter your email"
+msgstr "Ange din e-postadress"
+
+#: src/pages/app/AlreadySignedInPage.tsx:24
+msgid "Error"
+msgstr "Fel"
+
+#: src/components/ExportForm.tsx:49
+msgid "Excel"
+msgstr "Excel"
+
+#: src/components/forms/ImageInput.tsx:92
+msgid "Existing image"
+msgstr "Befintlig bild"
+
+#: src/components/ExportForm.tsx:229 src/components/ExportForm.tsx:247
+msgid "Export"
+msgstr "Exportera"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:206
+#: src/pages/app/admin/AdminEditCollection.tsx:308
+#: src/pages/app/admin/AdminEditGroup.tsx:215
+msgid "External ID"
+msgstr "Externt ID"
+
+#: src/pages/public/SplashPage.tsx:13
+msgid "Features"
+msgstr "Funktioner"
+
+#: src/components/ExportForm.tsx:360
+msgid "Fields"
+msgstr "Fält"
+
+#: src/components/filters/ActiveFilters.tsx:109
+msgid "Filters<0>, active</0>"
+msgstr "Filter<0>, aktiva</0>"
+
+#: src/components/ExportForm.tsx:265
+msgid "Format"
+msgstr "Format"
+
+#: src/pages/app/errors/ApiError.tsx:36 src/pages/app/errors/NotFound.tsx:32
+#: src/pages/public/errors/NotFoundPublic.tsx:32
+msgid "Go back home"
+msgstr "Gå tillbaka till start"
+
+#: src/pages/public/SplashPage.tsx:105
+msgid "Go to app"
+msgstr "Gå till app"
+
+#: src/components/ExportForm.tsx:155
+msgid "Gross weight"
+msgstr "Bruttovikt"
+
+#: src/components/ExportForm.tsx:312
+msgid "Group by"
+msgstr "Gruppera på"
+
+#: src/components/admin/GroupsTable.tsx:35
+#: src/components/admin/UsersTable.tsx:224
+#: src/components/admin/UsersTable.tsx:388
+#: src/pages/app/admin/AdminEditGroup.tsx:62
+#: src/pages/app/admin/AdminEditUser.tsx:381
+#: src/pages/app/admin/AdminGroups.tsx:12
+#: src/pages/app/admin/AdminGroups.tsx:41 src/pages/app/admin/AdminHome.tsx:32
+msgid "Groups"
+msgstr "Grupper"
+
+#: src/components/admin/GroupsTable.tsx:38
+msgid "Groups are used to give access to collections and price lists to a specific set of users. The price lists and collections that a user has been granted to via one or more groups are added together. Groups cannot take away access to price lists or collections."
+msgstr "Grupper används för att ge åtkomst till samlingar och prislistor till en specifik uppsättning användare. De prislistor och samlingar som en användare har beviljats via en eller flera grupper läggs samman. Grupper kan inte ta bort åtkomsten till prislistor eller samlingar."
+
+#: src/components/admin/CreateGroupModal.tsx:59
+msgid "Groups are used to limit user access to collections and price lists."
+msgstr "Grupper används för att begränsa användarnas åtkomst till samlingar och prislistor."
+
+#: src/components/ExportForm.tsx:85
+msgid "Image"
+msgstr "Bild"
+
+#: src/components/columns/data/Style.tsx:16
+msgid "Image for {0}"
+msgstr "Bild för {0}"
+
+#: src/components/columns/data/Colors.tsx:36
+msgid "Image for {0} / {1}"
+msgstr "Bild för {0} / {1}"
+
+#: src/components/forms/ImageInput.tsx:92
+msgid "Image to upload"
+msgstr "Bild att ladda upp"
+
+#: src/components/ExportForm.tsx:158
+msgid "Images"
+msgstr "Bilder"
+
+#: src/components/admin/UsersTable.tsx:92
+msgid "Inactive users"
+msgstr "Inaktiva användare"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:177
+#: src/pages/app/admin/AdminEditCollection.tsx:265
+msgid "It is recommended to give the image a 10:7 ratio and a minimum width and height of 1070 by 750 pixels."
+msgstr "Det rekommenderas att ge bilden ett bildförhållande kring 10:7 och en minsta bredd och höjd på 1070 x 750 pixlar."
+
+#: src/pages/app/admin/AdminEditCollection.tsx:583
+msgid "Items"
+msgstr "Artiklar"
+
+#: src/components/ExportForm.tsx:61
+msgid "JSON"
+msgstr "JSON"
+
+#: src/components/admin/CreateUserModal.tsx:35
+#: src/pages/app/admin/AdminEditUser.tsx:165
+msgid "Jane Doe"
+msgstr "Lena Svensson"
+
+#: src/components/nav/SidebarDesktop.tsx:67
+#: src/components/nav/SidebarMobile.tsx:118
+msgid "Language"
+msgstr "Språk"
+
+#: src/components/admin/UsersTable.tsx:212
+#: src/pages/app/admin/AdminEditGroup.tsx:358
+msgid "Last sign in"
+msgstr "Senaste inloggning"
+
+#: src/components/forms/AssociatedPriceListsEditor.tsx:60
+#: src/pages/app/admin/AdminEditGroup.tsx:336
+#: src/pages/app/admin/AdminEditGroup.tsx:502
+#: src/pages/app/admin/AdminEditUser.tsx:265
+#: src/pages/app/admin/AdminEditUser.tsx:389
+msgid "List is empty."
+msgstr "Listan är tom."
+
+#: src/components/Loading.tsx:22
+msgid "Loading..."
+msgstr "Laddar..."
+
+#: src/pages/public/SplashPage.tsx:112 src/pages/public/SplashPage.tsx:163
+msgid "Log in"
+msgstr "Logga in"
+
+#: src/components/nav/ProfileDropdown.tsx:17
+msgid "Login"
+msgstr "Logga in"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:147
+#: src/pages/app/admin/AdminEditCollection.tsx:228
+#: src/pages/app/admin/AdminEditGroup.tsx:166
+#: src/pages/app/admin/AdminEditUser.tsx:150
+msgid "Make your changes, then hit save when done."
+msgstr "Gör dina ändringar och tryck sedan på spara när du är klar."
+
+#: src/components/admin/AddCollectionItemsModal.tsx:160
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:81
+msgid "Make your selection of items to add here. Manual adjustments can be made once added."
+msgstr "Gör ditt val av artiklar att lägga till här. Manuella justeringar kan göras när de har lagts till."
+
+#: src/pages/app/admin/AdminHome.tsx:28
+msgid "Manage users, associate roles and groups individually."
+msgstr "Hantera användare, associera roller och grupper individuellt."
+
+#: src/components/admin/CreateGroupModal.tsx:27
+#: src/components/admin/CreateUserModal.tsx:34
+#: src/components/admin/GroupsTable.tsx:70
+#: src/components/admin/UsersTable.tsx:361
+#: src/pages/app/admin/AdminCreateCollection.tsx:166
+#: src/pages/app/admin/AdminEditCollection.tsx:247
+#: src/pages/app/admin/AdminEditGroup.tsx:182
+#: src/pages/app/admin/AdminEditGroup.tsx:346
+#: src/pages/app/admin/AdminEditGroup.tsx:512
+#: src/pages/app/admin/AdminEditUser.tsx:166
+#: src/pages/app/admin/AdminEditUser.tsx:275
+#: src/pages/app/admin/AdminEditUser.tsx:399 src/types/other.ts:17
+msgid "Name"
+msgstr "Namn"
+
+#: src/components/columns/data/Colors.tsx:160
+#: src/components/columns/data/Style.tsx:155
+#: src/components/filters/ActiveFilters.tsx:81
+#: src/components/filters/NewFilter.tsx:45
+#: src/pages/app/admin/AdminCreateCollection.tsx:39
+msgid "New"
+msgstr "Ny"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:24
+#: src/pages/app/admin/AdminCreateCollection.tsx:144
+msgid "New collection"
+msgstr "Ny samling"
+
+#: src/components/ExportForm.tsx:108 src/components/columns/data/Colors.tsx:145
+msgid "New color"
+msgstr "Ny färg"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:437
+msgid "New date"
+msgstr "Nytt datum"
+
+#: src/components/ExportForm.tsx:99 src/components/columns/data/Style.tsx:140
+msgid "New style"
+msgstr "Ny stil"
+
+#: src/components/admin/UsersTable.tsx:363
+msgid "Newest sign in"
+msgstr "Senaste inloggning"
+
+#: src/state/slices/user.ts:142
+msgid "No access"
+msgstr "Ingen åtkomst"
+
+#: src/components/CollectionsGridList.tsx:70
+msgid "No collections"
+msgstr "Inga samlingar"
+
+#: src/components/admin/CreateGroupModal.tsx:28
+msgid "North America sales reps"
+msgstr "Nordamerikanska säljare"
+
+#: src/components/nav/ProfileDropdown.tsx:29
+msgid "Notifications"
+msgstr "Aviseringar"
+
+#: src/types/other.ts:16
+msgid "Number"
+msgstr "Nummer"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:242
+msgid "Number of colors"
+msgstr "Antal färger"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:243
+msgid "Number of sizes"
+msgstr "Antal storlekar"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:241
+msgid "Number of styles"
+msgstr "Antal stilar"
+
+#: src/components/ExportForm.tsx:56
+msgid "Often useful for ERP system imports."
+msgstr "Användbart vid import till ERP-system."
+
+#: src/components/admin/UsersTable.tsx:364
+msgid "Oldest sign in"
+msgstr "Äldsta inloggningen"
+
+#: src/components/ExportForm.tsx:146
+msgid "One column per attribute type will be generated."
+msgstr "En kolumn per attributtyp genereras."
+
+#: src/components/PinnedCollections.tsx:72
+msgid "Open options"
+msgstr "Öppna alternativ"
+
+#: src/components/nav/TopbarMobile.tsx:17
+msgid "Open sidebar"
+msgstr "Öppna sidofältet"
+
+#: src/components/nav/ProfileDropdownMobile.tsx:17
+msgid "Open user menu"
+msgstr "Öppna användarmenyn"
+
+#: src/pages/app/errors/NotFound.tsx:20
+#: src/pages/public/errors/NotFoundPublic.tsx:20
+msgid "Page not found."
+msgstr "Sidan kunde inte hittas."
+
+#: src/components/SignInModal.tsx:96 src/pages/app/admin/AdminEditUser.tsx:186
+msgid "Password"
+msgstr "Lösenord"
+
+#: src/components/admin/CreateUserModal.tsx:54
+msgid "Password (optional)"
+msgstr "Lösenord (valfritt)"
+
+#: src/components/PinnedCollections.tsx:19
+msgid "Pinned Collections"
+msgstr "Fästa samlingar"
+
+#: src/components/EnvironmentWarning.tsx:28
+msgid "Please go to <0>Samling.io</0> for the production environment."
+msgstr "Gå till <0>Samling.io</0> för produktionsmiljön."
+
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:30
+msgid "Please select a date."
+msgstr "Välj ett datum."
+
+#: src/components/ExportForm.tsx:79
+msgid "Price list"
+msgstr "Prislista"
+
+#: src/components/CollectionTablePriceListsMenu.tsx:43
+#: src/components/admin/GroupsTable.tsx:88
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:99
+#: src/pages/app/admin/AdminEditGroup.tsx:239
+msgid "Price lists"
+msgstr "Prislistor"
+
+#: src/components/ActivePriceLists.tsx:19
+msgid "Price lists<0>, active</0>"
+msgstr "Prislistor<0>, aktiva</0>"
+
+#: src/pages/public/SplashPage.tsx:15
+msgid "Pricing"
+msgstr "Priser"
+
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:86
+msgid "Pricing date"
+msgstr "Prisdatum"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:400
+msgid "Pricing dates"
+msgstr "Datum för priser"
+
+#: src/components/ExportForm.tsx:157
+msgid "Primary image"
+msgstr "Primär bild"
+
+#: src/pages/public/SplashPage.tsx:12
+msgid "Product"
+msgstr "Produkt"
+
+#: src/pages/app/Style.tsx:158
+msgid "Product information"
+msgstr "Produktinformation"
+
+#: src/pages/public/SplashPage.tsx:194
+msgid "Provide your e-mail below to hear from our team."
+msgstr "Ange din e-postadress nedan för att höra från vårt team."
+
+#: src/components/SignInModal.tsx:126
+msgid "Remember me"
+msgstr "Kom ihåg mig"
+
+#: src/components/admin/MultipleCombobox.tsx:132
+msgid "Remove filter"
+msgstr "Ta bort filter"
+
+#: src/components/filters/ActiveFilters.tsx:151
+msgid "Remove filter for {0}"
+msgstr "Ta bort filter för {0}"
+
+#: src/components/PinnedCollections.tsx:111
+msgid "Remove from pinned"
+msgstr "Ta bort fästmarkering"
+
+#: src/components/forms/AssociatedPriceListsEditor.tsx:80
+msgid "Remove price list"
+msgstr "Ta bort prislista"
+
+#: src/components/ActivePriceLists.tsx:44
+msgid "Remove {0}"
+msgstr "Ta bort {0}"
+
+#: src/pages/app/admin/AdminEditGroup.tsx:434
+#: src/pages/app/admin/AdminEditGroup.tsx:615
+#: src/pages/app/admin/AdminEditUser.tsx:334
+#: src/pages/app/admin/AdminEditUser.tsx:473
+msgid "Remove<0>, {0}</0>"
+msgstr "Ta bort<0>, {0}</0>"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:248
+msgid "Results from current filters"
+msgstr "Resultat från aktuella filter"
+
+#: src/types/columns.ts:46
+msgid "Retail price"
+msgstr "Rek.pris"
+
+#: src/components/ExportForm.tsx:114
+msgid "Retail price amount"
+msgstr "Rek.prisbelopp"
+
+#: src/components/ExportForm.tsx:119
+msgid "Retail price currency"
+msgstr "Rek.prisvaluta"
+
+#: src/components/ExportForm.tsx:124
+msgid "Retail price list"
+msgstr "Rek.prislista"
+
+#: src/components/admin/CreateUserModal.tsx:64
+#: src/components/admin/UsersTable.tsx:218
+#: src/components/admin/UsersTable.tsx:370
+#: src/pages/app/admin/AdminEditUser.tsx:257
+msgid "Roles"
+msgstr "Roller"
+
+#: src/components/nav/SidebarDesktop.tsx:84
+#: src/components/nav/SidebarMobile.tsx:134
+msgid "Samling.io logotype"
+msgstr "Samling.io logotyp"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:239
+#: src/pages/app/admin/AdminEditCollection.tsx:343
+#: src/pages/app/admin/AdminEditGroup.tsx:282
+#: src/pages/app/admin/AdminEditUser.tsx:220
+msgid "Save"
+msgstr "Spara"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:239
+#: src/pages/app/admin/AdminEditCollection.tsx:343
+msgid "Saving..."
+msgstr "Sparar..."
+
+#: src/components/nav/SidebarSearch.tsx:8
+#: src/components/nav/SidebarSearch.tsx:25
+msgid "Search"
+msgstr "Sök"
+
+#: src/components/ExportForm.tsx:111 src/components/columns/data/Colors.tsx:102
+#: src/components/columns/data/Colors.tsx:117
+#: src/components/filters/ServiceItemFilter.tsx:23
+msgid "Service item"
+msgstr "Serviceartikel"
+
+#: src/components/filters/ServiceItemFilter.tsx:34
+msgid "Service items"
+msgstr "Serviceartiklar"
+
+#: src/components/nav/ProfileDropdown.tsx:27
+msgid "Settings"
+msgstr "Inställningar"
+
+#: src/components/PinnedCollections.tsx:124
+msgid "Share"
+msgstr "Dela"
+
+#: src/components/SignInModal.tsx:59 src/components/SignInModal.tsx:142
+#: src/pages/public/SignInPage.tsx:32
+#: src/pages/public/errors/Unauthorized.tsx:30
+msgid "Sign in"
+msgstr "Logga in"
+
+#: src/pages/public/SignInPage.tsx:105
+msgid "Sign in to your account"
+msgstr "Logga in på ditt konto"
+
+#: src/pages/public/SignInPage.tsx:192
+msgid "Sign in with Microsoft"
+msgstr "Logga in med Microsoft"
+
+#: src/components/nav/ProfileDropdown.tsx:34
+#: src/pages/app/AlreadySignedInPage.tsx:39 src/pages/app/SignOutPage.tsx:14
+msgid "Sign out"
+msgstr "Logga ut"
+
+#: src/components/ExportForm.tsx:70
+msgid "Size"
+msgstr "Storlek"
+
+#: src/components/ExportForm.tsx:110
+msgid "Size number"
+msgstr "Storleksnummer"
+
+#: src/components/ExportForm.tsx:109
+msgid "Size type"
+msgstr "Storlekstyp"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:196
+#: src/pages/app/admin/AdminEditCollection.tsx:298
+#: src/pages/app/admin/AdminEditGroup.tsx:204
+msgid "Slug"
+msgstr "Slug"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:205
+#: src/pages/app/admin/AdminEditCollection.tsx:307
+#: src/pages/app/admin/AdminEditGroup.tsx:214
+msgid "Some external ID value..."
+msgstr "Något externt ID-värde..."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:192
+msgid "Some group description..."
+msgstr "Någon gruppbeskrivning..."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:181
+msgid "Some group name..."
+msgstr "Något gruppnamn..."
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:195
+#: src/pages/app/admin/AdminEditCollection.tsx:297
+#: src/pages/app/admin/AdminEditGroup.tsx:203
+msgid "Some slug value..."
+msgstr "Något slug-värde..."
+
+#: src/pages/app/errors/NotFound.tsx:23
+#: src/pages/public/errors/NotFoundPublic.tsx:23
+msgid "Sorry, we couldn’t find the page you’re looking for."
+msgstr "Tyvärr kunde vi inte hitta sidan du letar efter."
+
+#: src/components/CollectionTableSortMenu.tsx:30
+msgid "Sort by"
+msgstr "Sortera efter"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:165
+#: src/pages/app/admin/AdminEditGroup.tsx:352
+msgid "Status"
+msgstr "Status"
+
+#: src/components/ExportForm.tsx:68
+#: src/components/admin/AddCollectionItemsModal.tsx:189
+#: src/components/filters/ActiveFilters.tsx:40
+#: src/components/filters/ActiveFilters.tsx:49
+#: src/pages/app/admin/AdminEditCollection.tsx:665 src/types/columns.ts:34
+msgid "Style"
+msgstr "Stil"
+
+#: src/components/ExportForm.tsx:96
+msgid "Style description"
+msgstr "Stilbeskrivning"
+
+#: src/components/ExportForm.tsx:162
+msgid "Style external id"
+msgstr "Externt ID för stilen"
+
+#: src/components/ExportForm.tsx:93
+msgid "Style name"
+msgstr "Stilnamn"
+
+#: src/components/ExportForm.tsx:92
+msgid "Style number"
+msgstr "Stilnummer"
+
+#: src/components/filters/NewFilter.tsx:24
+#: src/components/filters/StyleFilter.tsx:55
+msgid "Styles"
+msgstr "Stilar"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:586
+msgid "Styles, colors and sizes to associate with this collection."
+msgstr "Stilar, färger och storlekar att associera med denna samling."
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:89
+#: src/pages/app/admin/AdminEditCollection.tsx:161
+#: src/pages/app/admin/AdminEditGroup.tsx:137
+#: src/pages/app/admin/AdminEditUser.tsx:121
+msgid "Success!"
+msgstr "Framgång!"
+
+#: src/state/slices/user.ts:81
+msgid "Successfully signed in"
+msgstr "Framgångsrik inloggning"
+
+#: src/state/slices/user.ts:99
+msgid "Successfully signed out"
+msgstr "Framgångsrik utloggning"
+
+#: src/components/nav/ProfileDropdown.tsx:18
+#: src/components/nav/ProfileDropdown.tsx:33
+msgid "Support"
+msgstr "Support"
+
+#: src/components/ExportForm.tsx:154
+msgid "Tariff no"
+msgstr "Tariffnr"
+
+#: src/pages/public/SignInPage.tsx:56 src/pages/public/SignInPage.tsx:83
+#: src/pages/public/SignInPage.tsx:176
+msgid "Technical error prevents login"
+msgstr "Tekniskt fel förhindrar inloggning"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:90
+msgid "The collection \"{0}\" was successfully created."
+msgstr "Samlingen \"{0}\" skapades framgångsrikt."
+
+#: src/pages/app/admin/AdminEditCollection.tsx:162
+msgid "The collection \"{0}\" was successfully updated."
+msgstr "Samlingen \"{0}\" uppdaterades framgångsrikt."
+
+#: src/state/slices/user.ts:131
+msgid "The given e-mail and password combination does not exist."
+msgstr "Den angivna kombinationen av e-post och lösenord finns inte."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:138
+msgid "The group \"{0}\" was successfully updated."
+msgstr "Gruppen \"{0}\" uppdaterades framgångsrikt."
+
+#: src/pages/app/admin/AdminEditUser.tsx:384
+msgid "The groups that this user belong to."
+msgstr "De grupper som den här användaren tillhör."
+
+#: src/pages/app/admin/AdminEditUser.tsx:260
+msgid "The roles that are assigned to this user."
+msgstr "De roller som tilldelas den här användaren."
+
+#: src/pages/app/admin/AdminEditUser.tsx:122
+msgid "The user \"{0}\" was successfully updated."
+msgstr "Användaren \"{0}\" uppdaterades."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:331
+msgid "The users that belong to this group."
+msgstr "De användare som tillhör den här gruppen."
+
+#: src/components/CollectionsGridList.tsx:73
+msgid "There are no collections available to you. Talk an administrator to get access."
+msgstr "Det finns inga samlingar tillgängliga för dig. Prata med en administratör för att få åtkomst."
+
+#: src/components/admin/CollectionsTable.tsx:38
+msgid "These are all the collections that exist in the system."
+msgstr "Det här är alla samlingar som finns i systemet."
+
+#: src/pages/app/admin/AdminEditCollection.tsx:403
+msgid "These dates decide which item prices should be picked up for each price list. Each item price is associated with a start date and end date, so the date you choose has to fall within those."
+msgstr "Dessa datum avgör vilka artikelpriser som ska hämtas för varje prislista. Varje artikelpris är kopplat till ett startdatum och slutdatum, så det datum du väljer måste falla inom dessa."
+
+#: src/components/admin/CreateUserModal.tsx:65
+msgid "These roles will be assign to the user and determine what they can and cannot do."
+msgstr "Dessa roller tilldelas användaren och avgör vad de kan och inte kan göra."
+
+#: src/components/admin/UsersTable.tsx:143
+msgid "These users have access to the system."
+msgstr "Dessa användare har tillgång till systemet."
+
+#: src/components/columns/data/Colors.tsx:163
+msgid "This color first appears in this collection."
+msgstr "Den här färgen introducerades i den här samlingen."
+
+#: src/components/columns/data/Style.tsx:115
+msgid "This is a Core style, meaning that it represents the brand's core values."
+msgstr "Detta är en Core-stil, vilket innebär att den representerar varumärkets kärnvärden."
+
+#: src/components/columns/data/Colors.tsx:120
+msgid "This is a service item, meaning that it's our intention to never run out of stock with this style."
+msgstr "Detta är en serviceartikel, vilket innebär att det är vår avsikt att alltid ha den på lager."
+
+#: src/pages/app/admin/AdminHome.tsx:42
+msgid "This is where you create collections and associate styles, colors and sizes to them."
+msgstr "Det är här du skapar samlingar och associerar stilar, färger och storlekar till dem."
+
+#: src/components/columns/data/Style.tsx:158
+msgid "This style first appears in this collection."
+msgstr "Den här stilen introducerades i den här samlingen."
+
+#: src/components/ExportForm.tsx:315
+msgid "Tick the data types that you want to appear on their own separate line in the exported file."
+msgstr "Markera de datatyper som du vill ska visas på en egen separat rad i den exporterade filen."
+
+#: src/pages/public/SplashPage.tsx:186
+msgid "Tired of collecting data from multiple different ERP systems and combining them in your Excel sheets? This Software-as-a-Service wants to help you."
+msgstr "Trött på att samla in data från flera olika ERP-system och kombinera dem i dina Excel-ark? Den här SaaS-lösningen vill hjälpa dig."
+
+#: src/components/nav/Sidebar.tsx:41
+msgid "To public page"
+msgstr "Till offentlig sida"
+
+#: src/pages/public/errors/Unauthorized.tsx:20
+msgid "Unauthorized."
+msgstr "Obehörig."
+
+#: src/components/ExportForm.tsx:129
+msgid "Unit price amount"
+msgstr "Enhetsprisbelopp"
+
+#: src/components/ExportForm.tsx:134
+msgid "Unit price currency"
+msgstr "Enhetsprisvaluta"
+
+#: src/components/ExportForm.tsx:139
+msgid "Unit price list"
+msgstr "Enhetsprislista"
+
+#: src/types/columns.ts:52
+msgid "Unit prices"
+msgstr "Enhetspriser"
+
+#: src/components/ExportForm.tsx:156
+msgid "Unit volume"
+msgstr "Enhetsvolym"
+
+#: src/components/forms/ImageInput.tsx:37
+msgid "Up to {maxSizeMegaBytes} MB."
+msgstr "Upp till {maxSizeMegaBytes} MB."
+
+#: src/components/admin/CollectionsTable.tsx:94
+msgid "Updated at"
+msgstr "Uppdaterad den"
+
+#: src/components/forms/ImageInput.tsx:115
+msgid "Upload an image"
+msgstr "Ladda upp en bild"
+
+#: src/pages/app/admin/AdminHome.tsx:35
+msgid "Use groups to specify which collections and price lists users have access to."
+msgstr "Använd grupper för att ange vilka samlingar och prislistor användarna har åtkomst till."
+
+#: src/components/admin/CreateUserModal.tsx:126
+msgid "Use this form to create a new user. All users can sign in via a Google or Microsoft account matching the entered e-mail address. Filling in a password is optional."
+msgstr "Använd det här formuläret för att skapa en ny användare. Alla användare kan logga in via ett Google- eller Microsoft-konto som matchar den angivna e-postadressen. Att fylla i ett lösenord är valfritt."
+
+#: src/components/ExportForm.tsx:250
+msgid "Use this form to export the current selection of items to file."
+msgstr "Använd det här formuläret för att exportera det aktuella artikelurvalet till en fil."
+
+#: src/components/ExportForm.tsx:62
+msgid "Useful for integration with other systems."
+msgstr "Användbar för integration med andra system."
+
+#: src/components/admin/UsersTable.tsx:206
+msgid "User"
+msgstr "Användare"
+
+#: src/components/nav/ProfileDropdownDesktop.tsx:25
+#: src/components/nav/ProfileDropdownDesktop.tsx:30
+msgid "User profile"
+msgstr "Användarprofil"
+
+#: src/components/admin/GroupsTable.tsx:76
+#: src/components/admin/UsersTable.tsx:140
+#: src/pages/app/admin/AdminEditGroup.tsx:328
+#: src/pages/app/admin/AdminEditUser.tsx:56
+#: src/pages/app/admin/AdminHome.tsx:25 src/pages/app/admin/AdminUsers.tsx:13
+#: src/pages/app/admin/AdminUsers.tsx:92
+msgid "Users"
+msgstr "Användare"
+
+#: src/components/ExportForm.tsx:50
+msgid "Uses the newer .xlsx format."
+msgstr "Använder det nyare .xlsx-formatet."
+
+#: src/components/PinnedCollections.tsx:96
+msgid "View"
+msgstr "Visa"
+
+#: src/components/CollectionsGridList.tsx:39
+msgid "View details for {0}"
+msgstr "Visa information för {0}"
+
+#: src/components/nav/ProfileDropdown.tsx:24
+msgid "View profile"
+msgstr "Visa profil"
+
+#: src/roles.ts:21
+msgid "Viewer"
+msgstr "Användare"
+
+#: src/roles.ts:22
+msgid "Viewers"
+msgstr "Användare"
+
+#: src/pages/app/admin/AdminEditGroup.tsx:494
+msgid "Which collections users of this group will have access to."
+msgstr "Vilka samlingar användare av den här gruppen kommer att ha åtkomst till."
+
+#: src/components/ExportForm.tsx:363
+msgid "Which fields you want to include in the exported file."
+msgstr "Vilka fält du vill inkludera i den exporterade filen."
+
+#: src/components/ExportForm.tsx:268
+msgid "Which format you want to export to."
+msgstr "Vilket format du vill exportera till."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:242
+msgid "Which price lists users of this group will have access to."
+msgstr "Vilka prislistor användare i den här gruppen kommer att ha tillgång till."
+
+#: src/state/slices/user.ts:130
+msgid "Wrong credentials"
+msgstr "Felaktiga inloggningsuppgifter"
+
+#: src/pages/app/AlreadySignedInPage.tsx:30
+msgid "You are already signed in as {0} ({1})"
+msgstr "Du är redan inloggad som {0} ({1})"
+
+#: src/state/slices/user.ts:82
+msgid "You are now signed in with account {0}."
+msgstr "Du är nu inloggad med konto {0}."
+
+#: src/state/slices/user.ts:143
+msgid "You don't have access to any organizations. Please contact an administrator."
+msgstr "Du har inte åtkomst till några organisationer. Kontakta en administratör."
+
+#: src/pages/public/errors/Unauthorized.tsx:23
+msgid "You need to sign in to be able to view this page."
+msgstr "Du måste logga in för att kunna visa den här sidan."
+
+#: src/state/slices/user.ts:118
+msgid "You were automatically signed out from account {userEmail} because of an expired token. Please sign in again."
+msgstr "Du loggades automatiskt ut från konto {userEmail} på grund av en token som har upphört att gälla. Logga in igen."
+
+#: src/state/slices/user.ts:100
+msgid "You've signed out from account {userEmail}."
+msgstr "Du har loggat ut från konto {userEmail}."
+
+#: src/components/filters/ActiveFilters.tsx:83
+msgid "colors"
+msgstr "färger"
+
+#: src/pages/app/admin/AdminEditUser.tsx:175
+msgid "jane.doe@example.com"
+msgstr "lena.svensson@exampel.se"
+
+#: src/components/forms/ImageInput.tsx:126
+msgid "or drag and drop."
+msgstr "eller dra och släpp."
+
+#: src/components/filters/ActiveFilters.tsx:83
+msgid "styles"
+msgstr "stilar"
+
+#: src/components/admin/CreateUserModal.tsx:45
+msgid "user@example.com"
+msgstr "användare@exempel.se"
+
+#: src/components/admin/GroupsTable.tsx:134
+#: src/pages/app/admin/AdminEditUser.tsx:455
+msgid "{0, plural, one {# collection} other {# collections}}"
+msgstr "{0, plural, one {# samling} other {# samlingar}}"
+
+#: src/components/admin/GroupsTable.tsx:143
+#: src/pages/app/admin/AdminEditUser.tsx:462
+msgid "{0, plural, one {# price list} other {# price lists}}"
+msgstr "{0, plural, one {# prislista} other {# prislistor}}"
+
+#: src/components/CollectionsGridList.tsx:49
+#: src/components/PinnedCollections.tsx:62
+msgid "{0, plural, one {# style} other {# styles}}"
+msgstr "{0, plural, one {# stil} other {# stilar}}"
+
+#: src/components/admin/GroupsTable.tsx:125
+msgid "{0, plural, one {# user} other {# users}}"
+msgstr "{0, plural, one {# användare} other {# användare}}"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:615
+msgid "{0, plural, one {Disable # style} other {Disable # styles}}"
+msgstr "{0, plural, one {Inaktivera # stil} other {Inaktivera # stilar}}"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:629
+msgid "{0, plural, one {Enable # style} other {Enable # styles}}"
+msgstr "{0, plural, one {Aktivera # stil} other {Aktivera # stilar}}"
+
+#: src/components/columns/data/Colors.tsx:220
+msgid "{0} (+{1} more)"
+msgstr "{0} (+{1} till)"
+
+#: src/components/filters/ActiveFilters.tsx:134
+msgid "{0} filter {1}"
+msgstr "{0} filter {1}"
+
+#: src/components/nav/SidebarDesktop.tsx:24
+#: src/components/nav/SidebarMobile.tsx:78
+msgid "{0} logotype"
+msgstr "{0} logotyp"
+
+#: src/components/ExportForm.tsx:372
+msgid "{0} of {1} fields selected"
+msgstr "{0} av {1} fält valda"
+
+#: src/components/forms/ImageInput.tsx:38
+msgid "{0}, up to {maxSizeMegaBytes} MB."
+msgstr "{0}, upp till {maxSizeMegaBytes} MB."
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "The price lists to add."
+#~ msgstr "Prislistorna att lägga till."
+
+#~ msgid "Use this form to add a new pricing date group."
+#~ msgstr "Använd det här formuläret för att lägga till en ny prisdatumgrupp."

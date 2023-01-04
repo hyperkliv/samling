@@ -1,0 +1,18 @@
+resources:
+- db-migrate.yaml
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+- certificate.yaml
+commonLabels:
+  app: samling
+  app.kubernetes.io/name: samling
+  app.kubernetes.io/instance: samling
+configMapGenerator:
+- name: samling
+  envs:
+  - "config.env"
+images:
+- name: APP_IMAGE
+  newName: samling  # NOTE: Replaced by CI/CD
+  newTag: latest  # NOTE: Replaced by CI/CD

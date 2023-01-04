@@ -1,0 +1,10 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: samling
+spec:
+  secretName: samling-cert
+  dnsNames: []  # NOTE: Replaced by overlay specific patch
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

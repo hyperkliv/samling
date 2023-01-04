@@ -1,0 +1,3176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PublicJsonSchema",
+  "type": "object",
+  "required": [
+    "attribute",
+    "attribute_type",
+    "attribute_type_summary",
+    "auth",
+    "category",
+    "category_summary",
+    "collection",
+    "collection_style_item",
+    "collection_summary",
+    "collection_with_items",
+    "color",
+    "color_summary",
+    "create_collection",
+    "environment",
+    "errors",
+    "export",
+    "filters",
+    "i18n_string",
+    "image",
+    "image_summary",
+    "nested_attribute",
+    "nested_color",
+    "nested_price",
+    "nested_size",
+    "nested_style",
+    "nested_style_summary",
+    "organization",
+    "price",
+    "price_list",
+    "price_list_summary",
+    "size",
+    "sort_by",
+    "style",
+    "style_summary",
+    "update_collection"
+  ],
+  "properties": {
+    "i18n_string": {
+      "$ref": "#/definitions/I18nString"
+    },
+    "auth": {
+      "$ref": "#/definitions/AuthJsonSchema"
+    },
+    "errors": {
+      "$ref": "#/definitions/ErrorsSchema"
+    },
+    "export": {
+      "$ref": "#/definitions/ExportSchema"
+    },
+    "filters": {
+      "$ref": "#/definitions/FiltersSchema"
+    },
+    "sort_by": {
+      "$ref": "#/definitions/SortByJsonSchema"
+    },
+    "environment": {
+      "$ref": "#/definitions/Environment"
+    },
+    "attribute": {
+      "$ref": "#/definitions/Attribute"
+    },
+    "attribute_type": {
+      "$ref": "#/definitions/AttributeType"
+    },
+    "attribute_type_summary": {
+      "$ref": "#/definitions/AttributeTypeSummary"
+    },
+    "category": {
+      "$ref": "#/definitions/Category"
+    },
+    "category_summary": {
+      "$ref": "#/definitions/CategorySummary"
+    },
+    "collection": {
+      "$ref": "#/definitions/Collection"
+    },
+    "collection_style_item": {
+      "$ref": "#/definitions/CollectionItem"
+    },
+    "collection_with_items": {
+      "$ref": "#/definitions/CollectionWithItems"
+    },
+    "collection_summary": {
+      "$ref": "#/definitions/CollectionSummary"
+    },
+    "update_collection": {
+      "$ref": "#/definitions/UpdateCollection"
+    },
+    "create_collection": {
+      "$ref": "#/definitions/CreateCollection"
+    },
+    "color": {
+      "$ref": "#/definitions/Color"
+    },
+    "color_summary": {
+      "$ref": "#/definitions/ColorSummary"
+    },
+    "image": {
+      "$ref": "#/definitions/Image"
+    },
+    "image_summary": {
+      "$ref": "#/definitions/ImageSummary"
+    },
+    "nested_attribute": {
+      "$ref": "#/definitions/AttributeSummary"
+    },
+    "nested_color": {
+      "$ref": "#/definitions/NestedColor"
+    },
+    "nested_price": {
+      "$ref": "#/definitions/NestedPrice"
+    },
+    "nested_size": {
+      "$ref": "#/definitions/NestedSize"
+    },
+    "nested_style": {
+      "$ref": "#/definitions/NestedStyle"
+    },
+    "nested_style_summary": {
+      "$ref": "#/definitions/NestedStyleSummary"
+    },
+    "organization": {
+      "$ref": "#/definitions/Organization"
+    },
+    "price": {
+      "$ref": "#/definitions/Price"
+    },
+    "price_list": {
+      "$ref": "#/definitions/PriceList"
+    },
+    "price_list_summary": {
+      "$ref": "#/definitions/PriceListSummary"
+    },
+    "size": {
+      "$ref": "#/definitions/Size"
+    },
+    "style": {
+      "$ref": "#/definitions/Style"
+    },
+    "style_summary": {
+      "$ref": "#/definitions/StyleSummary"
+    }
+  },
+  "definitions": {
+    "I18nString": {
+      "type": "object",
+      "properties": {
+        "en": {
+          "type": "string"
+        },
+        "sv": {
+          "type": "string"
+        }
+      }
+    },
+    "AuthJsonSchema": {
+      "type": "object",
+      "required": [
+        "authenticated_user",
+        "create_group",
+        "create_user",
+        "google_credentials",
+        "group",
+        "group_summary",
+        "microsoft_credentials",
+        "update_group",
+        "update_own_user",
+        "update_user",
+        "user",
+        "user_summary"
+      ],
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "user_summary": {
+          "$ref": "#/definitions/UserSummary"
+        },
+        "authenticated_user": {
+          "$ref": "#/definitions/AuthenticatedUser"
+        },
+        "google_credentials": {
+          "$ref": "#/definitions/GoogleCredentials"
+        },
+        "microsoft_credentials": {
+          "$ref": "#/definitions/MicrosoftCredentials"
+        },
+        "group": {
+          "$ref": "#/definitions/Group"
+        },
+        "group_summary": {
+          "$ref": "#/definitions/GroupSummary"
+        },
+        "create_group": {
+          "$ref": "#/definitions/CreateGroup"
+        },
+        "update_group": {
+          "$ref": "#/definitions/UpdateGroup"
+        },
+        "create_user": {
+          "$ref": "#/definitions/CreateUser"
+        },
+        "update_user": {
+          "$ref": "#/definitions/UpdateUser"
+        },
+        "update_own_user": {
+          "$ref": "#/definitions/UpdateOwnUser"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": [
+        "created_at",
+        "email",
+        "groups",
+        "id",
+        "last_sign_in",
+        "name",
+        "organizations",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "last_sign_in": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "profile_image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "organizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserOrganization"
+          }
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GroupSummary"
+          }
+        }
+      }
+    },
+    "Id": {
+      "type": "number"
+    },
+    "UserOrganization": {
+      "type": "object",
+      "required": [
+        "organization",
+        "roles"
+      ],
+      "properties": {
+        "organization": {
+          "$ref": "#/definitions/OrganizationSummary"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Role"
+          }
+        }
+      }
+    },
+    "OrganizationSummary": {
+      "description": "Organization",
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "logo_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "Role": {
+      "description": "A role that can be assigned to a user\n\nThe u8 representation is meant for database storage/retrieval",
+      "type": "string",
+      "enum": [
+        "Active",
+        "Viewer",
+        "Editor",
+        "Administrator"
+      ]
+    },
+    "GroupSummary": {
+      "type": "object",
+      "required": [
+        "description",
+        "id",
+        "name",
+        "num_collections",
+        "num_price_lists",
+        "num_users",
+        "slug"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "num_users": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "num_collections": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "num_price_lists": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        }
+      }
+    },
+    "Slug": {
+      "type": "string"
+    },
+    "ExternalId": {
+      "type": "string"
+    },
+    "UserSummary": {
+      "type": "object",
+      "required": [
+        "email",
+        "id",
+        "last_sign_in",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "last_sign_in": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "profile_image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "AuthenticatedUser": {
+      "type": "object",
+      "required": [
+        "environment",
+        "token",
+        "user"
+      ],
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "environment": {
+          "$ref": "#/definitions/Environment"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "Environment": {
+      "type": "string",
+      "enum": [
+        "production",
+        "staging",
+        "development"
+      ]
+    },
+    "GoogleCredentials": {
+      "type": "object",
+      "required": [
+        "idToken"
+      ],
+      "properties": {
+        "idToken": {
+          "type": "string"
+        }
+      }
+    },
+    "MicrosoftCredentials": {
+      "type": "object",
+      "required": [
+        "accessToken",
+        "idToken",
+        "idTokenClaims"
+      ],
+      "properties": {
+        "idTokenClaims": {
+          "$ref": "#/definitions/MicrosoftClaims"
+        },
+        "idToken": {
+          "type": "string"
+        },
+        "accessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "MicrosoftClaims": {
+      "type": "object",
+      "required": [
+        "email",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "Group": {
+      "type": "object",
+      "required": [
+        "collections",
+        "created_at",
+        "description",
+        "id",
+        "name",
+        "price_lists",
+        "slug",
+        "updated_at",
+        "users"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserSummary"
+          }
+        },
+        "collections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CollectionSummary"
+          }
+        },
+        "price_lists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PriceListSummary"
+          }
+        }
+      }
+    },
+    "CollectionSummary": {
+      "description": "Collection",
+      "type": "object",
+      "required": [
+        "acronym",
+        "created_at",
+        "id",
+        "name",
+        "num_colors",
+        "num_sizes",
+        "num_styles",
+        "pricing",
+        "slug",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "acronym": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "pricing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CollectionPricing"
+          }
+        },
+        "image_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "num_styles": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "num_colors": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "num_sizes": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        }
+      }
+    },
+    "CollectionPricing": {
+      "type": "object",
+      "required": [
+        "date",
+        "list"
+      ],
+      "properties": {
+        "list": {
+          "$ref": "#/definitions/PriceListSummary"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "PriceListSummary": {
+      "description": "Price list summary",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "slug"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateGroup": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "slug": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Slug"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "type": "string"
+        },
+        "users": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ref_for_User"
+          }
+        },
+        "collections": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ref_for_Collection"
+          }
+        },
+        "price_lists": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ref_for_PriceList"
+          }
+        }
+      }
+    },
+    "Ref_for_User": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/Id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "external_id"
+          ],
+          "properties": {
+            "external_id": {
+              "$ref": "#/definitions/ExternalId"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "slug"
+          ],
+          "properties": {
+            "slug": {
+              "$ref": "#/definitions/Slug"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Ref_for_Collection": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/Id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "external_id"
+          ],
+          "properties": {
+            "external_id": {
+              "$ref": "#/definitions/ExternalId"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "slug"
+          ],
+          "properties": {
+            "slug": {
+              "$ref": "#/definitions/Slug"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Ref_for_PriceList": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/Id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "external_id"
+          ],
+          "properties": {
+            "external_id": {
+              "$ref": "#/definitions/ExternalId"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "slug"
+          ],
+          "properties": {
+            "slug": {
+              "$ref": "#/definitions/Slug"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "UpdateGroup": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Slug"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "users": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_User"
+          }
+        },
+        "collections": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Collection"
+          }
+        },
+        "price_lists": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_PriceList"
+          }
+        }
+      }
+    },
+    "CreateUser": {
+      "type": "object",
+      "required": [
+        "email",
+        "name"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "profile_image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "roles": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Role"
+          }
+        },
+        "groups": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Group"
+          }
+        }
+      }
+    },
+    "Ref_for_Group": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/Id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "external_id"
+          ],
+          "properties": {
+            "external_id": {
+              "$ref": "#/definitions/ExternalId"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "slug"
+          ],
+          "properties": {
+            "slug": {
+              "$ref": "#/definitions/Slug"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "UpdateUser": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "password": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "profile_image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "roles": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Role"
+          }
+        },
+        "groups": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Group"
+          }
+        }
+      }
+    },
+    "UpdateOwnUser": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "password": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "profile_image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "ErrorsSchema": {
+      "type": "object",
+      "required": [
+        "code",
+        "response"
+      ],
+      "properties": {
+        "response": {
+          "$ref": "#/definitions/ApiErrorResponse"
+        },
+        "code": {
+          "$ref": "#/definitions/ApiErrorCode"
+        }
+      }
+    },
+    "ApiErrorResponse": {
+      "type": "object",
+      "required": [
+        "error_code",
+        "error_message"
+      ],
+      "properties": {
+        "error_code": {
+          "$ref": "#/definitions/ApiErrorCode"
+        },
+        "error_message": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiErrorCode": {
+      "description": "Auto-generated discriminant enum variants",
+      "type": "string",
+      "enum": [
+        "InvalidUserCredentials",
+        "UserEmailAlreadyExists",
+        "UserEmailNotFound",
+        "EmptySlugDisallowed",
+        "FailedPasswordHashing",
+        "FailedPasswordValidation",
+        "InvalidToken",
+        "ExpiredToken",
+        "UnverifiedEmail",
+        "InvalidDbRoleId",
+        "MissingPermissions",
+        "ApplicationNotReady",
+        "ImageUploadsUnavailable",
+        "PathRejection",
+        "QueryParsingError",
+        "QueryRejection",
+        "ExternalRequestError",
+        "JsonError",
+        "PathJsonError",
+        "UrlParseError",
+        "CsvError",
+        "XlsxError",
+        "Base64DecodeError",
+        "InvalidHttpHeaderValue",
+        "DbError",
+        "DbPoolError",
+        "DbCreatePoolError",
+        "DbBuildError",
+        "IdNotFound",
+        "ExternalIdNotFound",
+        "SlugNotFound",
+        "IdAlreadyExists",
+        "SlugAlreadyExists",
+        "ExternalIdAlreadyExists",
+        "InvalidEntityRef",
+        "ExplicitIdCreationDisallowed",
+        "ExternalIdReferenceUnsupported",
+        "SlugReferenceUnsupported",
+        "ImageBackendMisconfigured",
+        "ImageAlreadyExists",
+        "IoError",
+        "MissingEntityRefPathParameter"
+      ]
+    },
+    "ExportSchema": {
+      "type": "object",
+      "required": [
+        "field",
+        "format",
+        "group_by"
+      ],
+      "properties": {
+        "format": {
+          "$ref": "#/definitions/ExportFormat"
+        },
+        "field": {
+          "$ref": "#/definitions/ExportField"
+        },
+        "group_by": {
+          "$ref": "#/definitions/GroupBy"
+        }
+      }
+    },
+    "ExportFormat": {
+      "type": "string",
+      "enum": [
+        "json",
+        "csv",
+        "xlsx"
+      ]
+    },
+    "ExportField": {
+      "type": "string",
+      "enum": [
+        "style_number",
+        "style_name",
+        "style_external_id",
+        "style_description",
+        "new_style",
+        "core",
+        "country_of_origin",
+        "color_number",
+        "color_name",
+        "color_external_id",
+        "new_color",
+        "size_type",
+        "size_number",
+        "service_item",
+        "retail_price_amount",
+        "retail_price_currency",
+        "retail_price_list",
+        "unit_price_amount",
+        "unit_price_currency",
+        "unit_price_list",
+        "category_name",
+        "delivery_period",
+        "tariff_no",
+        "primary_image",
+        "images",
+        "ean_code",
+        "gross_weight",
+        "unit_volume",
+        "attribute"
+      ]
+    },
+    "GroupBy": {
+      "type": "string",
+      "enum": [
+        "style",
+        "color",
+        "size",
+        "category",
+        "image",
+        "price_list"
+      ]
+    },
+    "FiltersSchema": {
+      "type": "object",
+      "required": [
+        "collection",
+        "style",
+        "user"
+      ],
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/UserFilters"
+        },
+        "style": {
+          "$ref": "#/definitions/StyleFilters"
+        },
+        "collection": {
+          "$ref": "#/definitions/CollectionFilters"
+        }
+      }
+    },
+    "UserFilters": {
+      "type": "object",
+      "properties": {
+        "roles": {
+          "default": null,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Role"
+          }
+        },
+        "groups": {
+          "default": null,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Group"
+          }
+        }
+      }
+    },
+    "StyleFilters": {
+      "type": "object",
+      "properties": {
+        "refs": {
+          "default": null,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Style"
+          }
+        },
+        "pricelists": {
+          "default": null,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_PriceList"
+          }
+        },
+        "categories": {
+          "default": null,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Category"
+          }
+        },
+        "numbers": {
+          "default": null,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "service_item": {
+          "default": null,
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "core": {
+          "default": null,
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "new_styles": {
+          "default": null,
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "new_colors": {
+          "default": null,
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "country_of_origin": {
+          "default": null,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "default": null,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Ref_for_Style": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/Id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "external_id"
+          ],
+          "properties": {
+            "external_id": {
+              "$ref": "#/definitions/ExternalId"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "slug"
+          ],
+          "properties": {
+            "slug": {
+              "$ref": "#/definitions/Slug"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Ref_for_Category": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/Id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "external_id"
+          ],
+          "properties": {
+            "external_id": {
+              "$ref": "#/definitions/ExternalId"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "slug"
+          ],
+          "properties": {
+            "slug": {
+              "$ref": "#/definitions/Slug"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "CollectionFilters": {
+      "type": "object",
+      "properties": {
+        "styles": {
+          "$ref": "#/definitions/StyleFilters"
+        }
+      }
+    },
+    "SortByJsonSchema": {
+      "type": "object",
+      "required": [
+        "nested_style",
+        "user"
+      ],
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/UserSortOrder"
+        },
+        "nested_style": {
+          "$ref": "#/definitions/NestedStyleSortOrder"
+        }
+      }
+    },
+    "UserSortOrder": {
+      "type": "string",
+      "enum": [
+        "name:asc",
+        "email:asc",
+        "last_sign_in:asc",
+        "last_sign_in:desc"
+      ]
+    },
+    "NestedStyleSortOrder": {
+      "type": "string",
+      "enum": [
+        "number:asc",
+        "name:asc",
+        "delivery_period:asc",
+        "delivery_period:desc"
+      ]
+    },
+    "Attribute": {
+      "description": "Attribute",
+      "type": "object",
+      "required": [
+        "created_at",
+        "description",
+        "id",
+        "slug",
+        "title",
+        "type",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "type": {
+          "$ref": "#/definitions/AttributeTypeSummary"
+        },
+        "title": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "description": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "AttributeTypeSummary": {
+      "description": "Attribute type summary",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "slug"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "AttributeType": {
+      "description": "Attribute type",
+      "type": "object",
+      "required": [
+        "created_at",
+        "id",
+        "name",
+        "slug",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Category": {
+      "description": "Category",
+      "type": "object",
+      "required": [
+        "created_at",
+        "id",
+        "name",
+        "slug",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "CategorySummary": {
+      "description": "Category summary",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "slug"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "Collection": {
+      "description": "Collection",
+      "type": "object",
+      "required": [
+        "acronym",
+        "created_at",
+        "id",
+        "name",
+        "pricing",
+        "sizes",
+        "slug",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "acronym": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "image_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedSize"
+          }
+        },
+        "pricing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CollectionPricing"
+          }
+        }
+      }
+    },
+    "NestedSize": {
+      "description": "Nested size (well, used by NestedColor, so `color` field isn't needed)",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "number",
+        "position",
+        "slug"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "number": {
+          "type": "string"
+        },
+        "position": {
+          "type": "integer",
+          "format": "uint8",
+          "minimum": 0.0
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "service_item": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "ean_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "delivery_period": {
+          "default": null,
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "CollectionItem": {
+      "description": "Collection",
+      "type": "object",
+      "required": [
+        "style",
+        "user_comment"
+      ],
+      "properties": {
+        "style": {
+          "$ref": "#/definitions/NestedStyle"
+        },
+        "user_comment": {
+          "type": "string"
+        }
+      }
+    },
+    "NestedStyle": {
+      "description": "Style nested with colors and sizes, with some metadata fields excluded",
+      "type": "object",
+      "required": [
+        "attributes",
+        "categories",
+        "colors",
+        "description",
+        "gross_weight",
+        "id",
+        "name",
+        "net_weight",
+        "number",
+        "prices",
+        "slug",
+        "unit_volume"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "number": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "description": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "core": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "country_of_origin": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tariff_no": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "net_weight": {
+          "type": "number"
+        },
+        "gross_weight": {
+          "type": "number"
+        },
+        "unit_volume": {
+          "type": "number"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CategorySummary"
+          }
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "colors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedColor"
+          }
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedPrice"
+          }
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeSummary"
+          }
+        },
+        "is_new": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "NestedColor": {
+      "description": "Color with sizes included",
+      "type": "object",
+      "required": [
+        "id",
+        "images",
+        "name",
+        "number",
+        "sizes",
+        "slug"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "number": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageSummary"
+          }
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedSize"
+          }
+        },
+        "is_new": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "ImageSummary": {
+      "description": "Image summary",
+      "type": "object",
+      "required": [
+        "id",
+        "url"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "NestedPrice": {
+      "description": "Nested price set, for inclusion in a NestedStyle",
+      "type": "object",
+      "required": [
+        "amount",
+        "currency",
+        "end",
+        "id",
+        "list",
+        "start",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        },
+        "type": {
+          "$ref": "#/definitions/PriceType"
+        },
+        "uom": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "currency": {
+          "type": "string"
+        },
+        "list": {
+          "$ref": "#/definitions/PriceListSummary"
+        }
+      }
+    },
+    "PriceType": {
+      "type": "string",
+      "enum": [
+        "Unit",
+        "Retail"
+      ]
+    },
+    "AttributeSummary": {
+      "description": "Nested attribute",
+      "type": "object",
+      "required": [
+        "description",
+        "id",
+        "slug",
+        "title",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "type": {
+          "$ref": "#/definitions/AttributeTypeSummary"
+        },
+        "title": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "description": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "CollectionWithItems": {
+      "description": "Collection",
+      "type": "object",
+      "required": [
+        "acronym",
+        "created_at",
+        "id",
+        "items",
+        "name",
+        "num_colors",
+        "num_sizes",
+        "num_styles",
+        "pricing",
+        "slug",
+        "updated_at"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CollectionItem"
+          }
+        },
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "acronym": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "pricing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CollectionPricing"
+          }
+        },
+        "image_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "num_styles": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "num_colors": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "num_sizes": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        }
+      }
+    },
+    "UpdateCollection": {
+      "description": "Collection, for update",
+      "type": "object",
+      "properties": {
+        "acronym": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/I18nString"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/I18nString"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pricing": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/CollectionPricing"
+          }
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImageSource"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "slug": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Slug"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sizes": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Size"
+          }
+        },
+        "new_styles": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Style"
+          }
+        },
+        "new_colors": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Color"
+          }
+        }
+      }
+    },
+    "ImageSource": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "bytes"
+          ],
+          "properties": {
+            "bytes": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "uint8",
+                "minimum": 0.0
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "base64"
+          ],
+          "properties": {
+            "base64": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Ref_for_Size": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/Id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "external_id"
+          ],
+          "properties": {
+            "external_id": {
+              "$ref": "#/definitions/ExternalId"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "slug"
+          ],
+          "properties": {
+            "slug": {
+              "$ref": "#/definitions/Slug"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Ref_for_Color": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/Id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "external_id"
+          ],
+          "properties": {
+            "external_id": {
+              "$ref": "#/definitions/ExternalId"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "slug"
+          ],
+          "properties": {
+            "slug": {
+              "$ref": "#/definitions/Slug"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "CreateCollection": {
+      "description": "Collection, for creation",
+      "type": "object",
+      "required": [
+        "acronym",
+        "name",
+        "new_colors",
+        "new_styles",
+        "pricing"
+      ],
+      "properties": {
+        "acronym": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "pricing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CollectionPricing"
+          }
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImageSource"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "slug": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Slug"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sizes": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ref_for_Size"
+          }
+        },
+        "new_styles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ref_for_Style"
+          }
+        },
+        "new_colors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ref_for_Color"
+          }
+        }
+      }
+    },
+    "Color": {
+      "description": "Color",
+      "type": "object",
+      "required": [
+        "created_at",
+        "id",
+        "images",
+        "name",
+        "number",
+        "slug",
+        "style",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "style": {
+          "$ref": "#/definitions/StyleSummary"
+        },
+        "number": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImageSummary"
+          }
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "StyleSummary": {
+      "description": "Style summary",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "number",
+        "slug"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "number": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "ColorSummary": {
+      "description": "Color summary",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "number",
+        "slug",
+        "style"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "style": {
+          "$ref": "#/definitions/StyleSummary"
+        },
+        "number": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "Image": {
+      "description": "Image",
+      "type": "object",
+      "required": [
+        "color",
+        "id",
+        "position",
+        "updated_at",
+        "uploaded_at",
+        "url"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "color": {
+          "$ref": "#/definitions/ColorSummary"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "external_checksum": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uploaded_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uploaded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "position": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "NestedStyleSummary": {
+      "description": "Style nested with colors and sizes, with some metadata fields excluded",
+      "type": "object",
+      "required": [
+        "colors",
+        "id",
+        "name",
+        "number"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "number": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "colors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedColorSummary"
+          }
+        }
+      }
+    },
+    "NestedColorSummary": {
+      "description": "Color with sizes included",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "number",
+        "sizes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "number": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "primary_image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImageSummary"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedSizeSummary"
+          }
+        }
+      }
+    },
+    "NestedSizeSummary": {
+      "description": "Nested size (well, used by NestedColor, so `color` field isn't needed)",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "number"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "number": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        }
+      }
+    },
+    "Organization": {
+      "description": "Organization",
+      "type": "object",
+      "required": [
+        "created_at",
+        "id",
+        "name",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "logo_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "Price": {
+      "description": "Price set (belonging to the same list and style, but with different start/end dates)",
+      "type": "object",
+      "required": [
+        "amount",
+        "created_at",
+        "currency",
+        "end",
+        "id",
+        "list",
+        "start",
+        "style",
+        "type",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "type": {
+          "$ref": "#/definitions/PriceType"
+        },
+        "uom": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "style": {
+          "$ref": "#/definitions/StyleSummary"
+        },
+        "list": {
+          "$ref": "#/definitions/PriceListSummary"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "PriceList": {
+      "description": "PriceList",
+      "type": "object",
+      "required": [
+        "created_at",
+        "id",
+        "name",
+        "slug",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Size": {
+      "description": "Size",
+      "type": "object",
+      "required": [
+        "color",
+        "created_at",
+        "delivery_period",
+        "id",
+        "name",
+        "number",
+        "position",
+        "slug",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "color": {
+          "$ref": "#/definitions/ColorSummary"
+        },
+        "number": {
+          "type": "string"
+        },
+        "position": {
+          "type": "integer",
+          "format": "uint8",
+          "minimum": 0.0
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "service_item": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "ean_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "delivery_period": {
+          "type": "string",
+          "format": "date"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Style": {
+      "description": "Style",
+      "type": "object",
+      "required": [
+        "attributes",
+        "categories",
+        "created_at",
+        "description",
+        "gross_weight",
+        "id",
+        "name",
+        "net_weight",
+        "number",
+        "slug",
+        "unit_volume",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "number": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "description": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "core": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "country_of_origin": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tariff_no": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "net_weight": {
+          "type": "number"
+        },
+        "gross_weight": {
+          "type": "number"
+        },
+        "unit_volume": {
+          "type": "number"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Category"
+          }
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeSummary"
+          }
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

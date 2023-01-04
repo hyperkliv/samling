@@ -1,0 +1,14 @@
+## Low priority
+- feat: "Status" filter
+- feat: "Unit of Measurement" filter
+- feat: "Missing product imagery" filter
+- feat: Personal notes (including comments)
+- feat: Attribute filters
+- fix: Long e-mail addresses don't look good in sidebar
+- Add OpenAPI support with UI ([aide](https://docs.rs/aide/latest/aide/) seems interesting!)
+- Cloudflare image size selection should be performed by API, not UI
+- `pricelists` shouldn't belong to StyleFilter. It's a "response data modifier".
+- fix: JSON Schema for crate::Ref gets turned into multiple Ref_for_User, Ref_for_Collection etc. Make sure only one gets created!
+- ci: Ensure that UI lingui translations are updated
+- fix: Country codes should be a proper type
+- fix: Don't hardcode Google / Microsoft OAuth 2 Audience

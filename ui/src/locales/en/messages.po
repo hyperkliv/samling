@@ -1,0 +1,1710 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2022-05-24 21:48+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/pages/app/admin/AdminEditUser.tsx:405
+msgid "# collections"
+msgstr "# collections"
+
+#: src/components/admin/CollectionsTable.tsx:76
+#: src/pages/app/admin/AdminEditGroup.tsx:524
+msgid "# colors"
+msgstr "# colors"
+
+#: src/pages/app/admin/AdminEditUser.tsx:411
+msgid "# price lists"
+msgstr "# price lists"
+
+#: src/components/admin/CollectionsTable.tsx:82
+#: src/pages/app/admin/AdminEditGroup.tsx:530
+msgid "# sizes"
+msgstr "# sizes"
+
+#: src/components/admin/CollectionsTable.tsx:70
+#: src/pages/app/admin/AdminEditGroup.tsx:518
+msgid "# styles"
+msgstr "# styles"
+
+#: src/pages/public/errors/Unauthorized.tsx:17
+msgid "401 Error"
+msgstr "401 Error"
+
+#: src/pages/app/errors/NotFound.tsx:17
+#: src/pages/public/errors/NotFoundPublic.tsx:17
+msgid "404 Error"
+msgstr "404 Error"
+
+#: src/pages/public/SplashPage.tsx:175
+msgid "<0>Get full insight into</0><1>your product data.</1>"
+msgstr "<0>Get full insight into</0><1>your product data.</1>"
+
+#: src/pages/public/SplashPage.tsx:409
+#~ msgid "<0>Share product data</0><1>faster than ever</1>"
+#~ msgstr "<0>Share product data</0><1>faster than ever</1>"
+
+#: src/pages/public/SplashPage.tsx:217
+msgid "<0>We care about the protection of your data. Read our </0><1>Privacy Policy</1>."
+msgstr "<0>We care about the protection of your data. Read our </0><1>Privacy Policy</1>."
+
+#: src/pages/app/admin/AdminHome.tsx:57
+#~ msgid "A list of all the groups in your organization."
+#~ msgstr "A list of all the groups in your organization."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:423
+#: src/roles.ts:14
+#: src/roles.ts:15
+msgid "Active"
+msgstr "Active"
+
+#: src/components/admin/UsersTable.tsx:98
+msgid "Active users"
+msgstr "Active users"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:210
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:114
+msgid "Add"
+msgstr "Add"
+
+#: src/pages/app/admin/AdminEditGroup.tsx:552
+msgid "Add collection"
+msgstr "Add collection"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:157
+msgid "Add collection items"
+msgstr "Add collection items"
+
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:78
+msgid "Add collection pricing date"
+msgstr "Add collection pricing date"
+
+#: src/components/admin/GroupsTable.tsx:55
+#: src/pages/app/admin/AdminEditUser.tsx:300
+#: src/pages/app/admin/AdminEditUser.tsx:430
+msgid "Add group"
+msgstr "Add group"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:597
+msgid "Add items"
+msgstr "Add items"
+
+#: src/components/forms/AssociatedPriceListsEditor.tsx:102
+msgid "Add price list"
+msgstr "Add price list"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:370
+#~ msgid "Add pricing"
+#~ msgstr "Add pricing"
+
+#: src/components/admin/UsersTable.tsx:182
+#: src/pages/app/admin/AdminEditGroup.tsx:377
+msgid "Add user"
+msgstr "Add user"
+
+#: src/pages/app/Style.tsx:254
+msgid "Additional details"
+msgstr "Additional details"
+
+#: src/components/nav/Sidebar.tsx:34
+#: src/pages/app/admin/AdminCollections.tsx:12
+#: src/pages/app/admin/AdminCollections.tsx:45
+#: src/pages/app/admin/AdminCreateCollection.tsx:24
+#: src/pages/app/admin/AdminCreateCollection.tsx:32
+#: src/pages/app/admin/AdminEditCollection.tsx:66
+#: src/pages/app/admin/AdminEditCollection.tsx:77
+#: src/pages/app/admin/AdminEditGroup.tsx:47
+#: src/pages/app/admin/AdminEditGroup.tsx:60
+#: src/pages/app/admin/AdminEditUser.tsx:41
+#: src/pages/app/admin/AdminEditUser.tsx:54
+#: src/pages/app/admin/AdminGroups.tsx:12
+#: src/pages/app/admin/AdminGroups.tsx:40
+#: src/pages/app/admin/AdminHome.tsx:21
+#: src/pages/app/admin/AdminHome.tsx:49
+#: src/pages/app/admin/AdminHome.tsx:56
+#: src/pages/app/admin/AdminUsers.tsx:13
+#: src/pages/app/admin/AdminUsers.tsx:91
+msgid "Admin"
+msgstr "Admin"
+
+#: src/pages/app/admin/AdminHome.tsx:41
+msgid "Administrate collections"
+msgstr "Administrate collections"
+
+#: src/pages/app/admin/AdminHome.tsx:34
+msgid "Administrate groups"
+msgstr "Administrate groups"
+
+#: src/pages/app/admin/AdminHome.tsx:27
+msgid "Administrate users"
+msgstr "Administrate users"
+
+#: src/roles.ts:41
+msgid "Administrator"
+msgstr "Administrator"
+
+#: src/roles.ts:42
+msgid "Administrators"
+msgstr "Administrators"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:187
+#: src/pages/app/admin/AdminEditCollection.tsx:289
+msgid "Advanced settings"
+msgstr "Advanced settings"
+
+#: src/pages/app/AlreadySignedInPage.tsx:11
+msgid "Already signed in"
+msgstr "Already signed in"
+
+#: src/pages/app/AlreadySignedInPage.tsx:27
+msgid "Already signed in."
+msgstr "Already signed in."
+
+#: src/state/slices/user.ts:43
+msgid "An error occurred"
+msgstr "An error occurred"
+
+#: src/pages/app/errors/ApiError.tsx:26
+msgid "An error occurred."
+msgstr "An error occurred."
+
+#: src/components/forms/ImageInput.tsx:37
+#~ msgid "Any image, up to {maxSizeMegaBytes} MB."
+#~ msgstr "Any image, up to {maxSizeMegaBytes} MB."
+
+#: src/components/admin/DeleteCollectionModal.tsx:50
+msgid "Are you sure you want to delete the collection <0>{0}</0>? This action cannot be undone."
+msgstr "Are you sure you want to delete the collection <0>{0}</0>? This action cannot be undone."
+
+#: src/components/admin/DeleteGroupModal.tsx:44
+msgid "Are you sure you want to delete the group <0>{0}</0>? This action cannot be undone."
+msgstr "Are you sure you want to delete the group <0>{0}</0>? This action cannot be undone."
+
+#: src/components/admin/DeleteUserModal.tsx:44
+msgid "Are you sure you want to delete the user <0>{0}</0>? This action cannot be undone."
+msgstr "Are you sure you want to delete the user <0>{0}</0>? This action cannot be undone."
+
+#: src/components/ExportForm.tsx:145
+msgid "Attributes"
+msgstr "Attributes"
+
+#: src/state/slices/user.ts:117
+msgid "Automatic sign out"
+msgstr "Automatic sign out"
+
+#: src/state/slices/user.ts:58
+msgid "Backend error"
+msgstr "Backend error"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:154
+#: src/pages/app/admin/AdminEditCollection.tsx:235
+#: src/pages/app/admin/AdminEditGroup.tsx:173
+#: src/pages/app/admin/AdminEditUser.tsx:157
+msgid "Basic settings"
+msgstr "Basic settings"
+
+#: src/components/ExportForm.tsx:55
+msgid "CSV"
+msgstr "CSV"
+
+#: src/roles.ts:33
+msgid "Can create and edit groups and collections, in addition to viewer level access."
+msgstr "Can create and edit groups and collections, in addition to viewer level access."
+
+#: src/roles.ts:43
+msgid "Can manage users, in addition to editor level access. Also gets full API access, which is useful when creating integrations."
+msgstr "Can manage users, in addition to editor level access. Also gets full API access, which is useful when creating integrations."
+
+#: src/roles.ts:16
+msgid "Can sign in."
+msgstr "Can sign in."
+
+#: src/roles.ts:23
+msgid "Can view and export collections where explicit access has been configured in Groups."
+msgstr "Can view and export collections where explicit access has been configured in Groups."
+
+#: src/components/admin/AddCollectionItemsModal.tsx:217
+#: src/components/admin/ModalBase.tsx:280
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:121
+#: src/pages/app/admin/AdminCreateCollection.tsx:224
+#: src/pages/app/admin/AdminEditCollection.tsx:328
+#: src/pages/app/admin/AdminEditGroup.tsx:276
+#: src/pages/app/admin/AdminEditUser.tsx:214
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:177
+#: src/components/filters/CategoryFilter.tsx:54
+#: src/components/filters/ComboboxFilter.tsx:54
+msgid "Categories"
+msgstr "Categories"
+
+#: src/components/ExportForm.tsx:73
+#: src/components/filters/ActiveFilters.tsx:63
+msgid "Category"
+msgstr "Category"
+
+#: src/components/ExportForm.tsx:142
+msgid "Category name"
+msgstr "Category name"
+
+#: src/pages/app/Style.tsx:215
+msgid "Choose a color"
+msgstr "Choose a color"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:642
+msgid "Clear selection"
+msgstr "Clear selection"
+
+#: src/components/UserMessage.tsx:87
+msgid "Close"
+msgstr "Close"
+
+#: src/components/nav/SidebarMobile.tsx:64
+msgid "Close sidebar"
+msgstr "Close sidebar"
+
+#: src/components/admin/CollectionsTable.tsx:64
+msgid "Collection"
+msgstr "Collection"
+
+#: src/pages/Collection.tsx:21
+#~ msgid "Collection not found"
+#~ msgstr "Collection not found"
+
+#: src/components/CollectionTable.tsx:46
+#: src/components/admin/CollectionsTable.tsx:35
+#: src/components/admin/GroupsTable.tsx:82
+#: src/components/nav/Sidebar.tsx:22
+#: src/pages/app/HomeScreen.tsx:12
+#: src/pages/app/Style.tsx:82
+#: src/pages/app/admin/AdminCollections.tsx:12
+#: src/pages/app/admin/AdminCollections.tsx:47
+#: src/pages/app/admin/AdminCreateCollection.tsx:34
+#: src/pages/app/admin/AdminEditCollection.tsx:66
+#: src/pages/app/admin/AdminEditCollection.tsx:79
+#: src/pages/app/admin/AdminEditGroup.tsx:491
+#: src/pages/app/admin/AdminHome.tsx:39
+msgid "Collections"
+msgstr "Collections"
+
+#: src/components/ExportForm.tsx:69
+#: src/pages/app/Style.tsx:205
+msgid "Color"
+msgstr "Color"
+
+#: src/components/ExportForm.tsx:167
+msgid "Color external id"
+msgstr "Color external id"
+
+#: src/components/ExportMenu.tsx:119
+#: src/components/ExportMenu.tsx:177
+#~ msgid "Color level"
+#~ msgstr "Color level"
+
+#: src/components/ExportForm.tsx:107
+msgid "Color name"
+msgstr "Color name"
+
+#: src/components/ExportForm.tsx:106
+msgid "Color number"
+msgstr "Color number"
+
+#: src/components/filters/NewFilter.tsx:25
+#: src/types/columns.ts:40
+msgid "Colors"
+msgstr "Colors"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:671
+msgid "Colors / Sizes"
+msgstr "Colors / Sizes"
+
+#: src/pages/public/SplashPage.tsx:14
+msgid "Company"
+msgstr "Company"
+
+#: src/pages/public/SplashPage.tsx:213
+msgid "Contact me"
+msgstr "Contact me"
+
+#: src/components/ExportForm.tsx:100
+#: src/components/columns/data/Style.tsx:112
+#: src/components/filters/CoreFilter.tsx:20
+msgid "Core"
+msgstr "Core"
+
+#: src/components/columns/data/Style.tsx:97
+msgid "Core style"
+msgstr "Core style"
+
+#: src/components/filters/CoreFilter.tsx:31
+msgid "Core styles"
+msgstr "Core styles"
+
+#: src/components/filters/ActiveFilters.tsx:72
+msgid "Country"
+msgstr "Country"
+
+#: src/components/ExportForm.tsx:103
+#: src/components/filters/CountryFilter.tsx:46
+msgid "Country of origin"
+msgstr "Country of origin"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:175
+#: src/pages/app/admin/AdminEditCollection.tsx:263
+msgid "Cover photo"
+msgstr "Cover photo"
+
+#: src/components/admin/CreateGroupModal.tsx:63
+#: src/components/admin/CreateUserModal.tsx:132
+msgid "Create"
+msgstr "Create"
+
+#: src/components/admin/CollectionsTable.tsx:49
+msgid "Create collection"
+msgstr "Create collection"
+
+#: src/components/admin/CreateGroupModal.tsx:90
+#~ msgid "Create group"
+#~ msgstr "Create group"
+
+#: src/components/admin/CollectionsTable.tsx:88
+msgid "Created at"
+msgstr "Created at"
+
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:23
+#~ msgid "Date"
+#~ msgstr "Date"
+
+#: src/components/admin/CollectionsTable.tsx:109
+#: src/components/admin/DeleteCollectionModal.tsx:58
+#: src/components/admin/DeleteGroupModal.tsx:50
+#: src/components/admin/DeleteUserModal.tsx:50
+#: src/components/admin/GroupsTable.tsx:103
+#: src/components/admin/GroupsTable.tsx:166
+#: src/components/admin/UsersTable.tsx:239
+#: src/components/admin/UsersTable.tsx:304
+msgid "Delete"
+msgstr "Delete"
+
+#: src/components/admin/DeleteGroupModal.tsx:107
+#~ msgid "Delete group"
+#~ msgstr "Delete group"
+
+#: src/components/admin/CollectionsTable.tsx:185
+msgid "Delete<0>, {0}</0>"
+msgstr "Delete<0>, {0}</0>"
+
+#: src/components/ExportForm.tsx:151
+#: src/types/other.ts:19
+msgid "Delivery period"
+msgstr "Delivery period"
+
+#: src/types/other.ts:23
+msgid "Delivery period (descending)"
+msgstr "Delivery period (descending)"
+
+#: src/pages/app/Style.tsx:190
+#: src/pages/app/admin/AdminEditGroup.tsx:193
+#: src/pages/app/admin/AdminEditUser.tsx:281
+msgid "Description"
+msgstr "Description"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:776
+#: src/pages/app/admin/AdminEditCollection.tsx:837
+msgid "Disable all"
+msgstr "Disable all"
+
+#: src/components/ExportForm.tsx:459
+msgid "Download"
+msgstr "Download"
+
+#: src/components/ExportMenu.tsx:84
+#: src/components/ExportMenu.tsx:142
+#~ msgid "Download as"
+#~ msgstr "Download as"
+
+#: src/components/ExportForm.tsx:457
+msgid "Downloading..."
+msgstr "Downloading..."
+
+#: src/components/admin/CreateUserModal.tsx:44
+#: src/components/admin/UsersTable.tsx:362
+#: src/pages/app/admin/AdminEditUser.tsx:176
+msgid "E-mail address"
+msgstr "E-mail address"
+
+#: src/components/ExportForm.tsx:159
+msgid "EAN code"
+msgstr "EAN code"
+
+#: src/components/admin/CollectionsTable.tsx:101
+#: src/components/admin/GroupsTable.tsx:95
+#: src/components/admin/GroupsTable.tsx:155
+#: src/components/admin/UsersTable.tsx:231
+#: src/components/admin/UsersTable.tsx:293
+msgid "Edit"
+msgstr "Edit"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:47
+#~ msgid "Edit collection"
+#~ msgstr "Edit collection"
+
+#: src/pages/app/admin/AdminEditGroup.tsx:67
+msgid "Edit group"
+msgstr "Edit group"
+
+#: src/pages/app/admin/AdminEditUser.tsx:55
+#~ msgid "Edit user"
+#~ msgstr "Edit user"
+
+#: src/pages/app/admin/AdminEditUser.tsx:61
+msgid "Edit {0}"
+msgstr "Edit {0}"
+
+#: src/components/admin/CollectionsTable.tsx:170
+msgid "Edit<0>, {0}</0>"
+msgstr "Edit<0>, {0}</0>"
+
+#: src/roles.ts:31
+msgid "Editor"
+msgstr "Editor"
+
+#: src/roles.ts:32
+msgid "Editors"
+msgstr "Editors"
+
+#: src/components/SignInModal.tsx:73
+msgid "Email address"
+msgstr "Email address"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:776
+#: src/pages/app/admin/AdminEditCollection.tsx:837
+msgid "Enable all"
+msgstr "Enable all"
+
+#: src/pages/app/admin/AdminEditUser.tsx:185
+msgid "Enter new password here to change..."
+msgstr "Enter new password here to change..."
+
+#: src/pages/public/SplashPage.tsx:207
+msgid "Enter your email"
+msgstr "Enter your email"
+
+#: src/pages/app/AlreadySignedInPage.tsx:24
+msgid "Error"
+msgstr "Error"
+
+#: src/components/ExportForm.tsx:49
+msgid "Excel"
+msgstr "Excel"
+
+#: src/components/forms/ImageInput.tsx:92
+msgid "Existing image"
+msgstr "Existing image"
+
+#: src/components/ExportForm.tsx:229
+#: src/components/ExportForm.tsx:247
+msgid "Export"
+msgstr "Export"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:206
+#: src/pages/app/admin/AdminEditCollection.tsx:308
+#: src/pages/app/admin/AdminEditGroup.tsx:215
+msgid "External ID"
+msgstr "External ID"
+
+#: src/pages/public/SplashPage.tsx:13
+msgid "Features"
+msgstr "Features"
+
+#: src/components/ExportForm.tsx:360
+msgid "Fields"
+msgstr "Fields"
+
+#: src/components/filters/ActiveFilters.tsx:109
+msgid "Filters<0>, active</0>"
+msgstr "Filters<0>, active</0>"
+
+#: src/components/ExportForm.tsx:265
+msgid "Format"
+msgstr "Format"
+
+#: src/pages/app/errors/ApiError.tsx:36
+#: src/pages/app/errors/NotFound.tsx:32
+#: src/pages/public/errors/NotFoundPublic.tsx:32
+msgid "Go back home"
+msgstr "Go back home"
+
+#: src/pages/public/SplashPage.tsx:105
+msgid "Go to app"
+msgstr "Go to app"
+
+#: src/components/CollectionDetailTable.tsx:72
+#~ msgid "Good amount of variants"
+#~ msgstr "Good amount of variants"
+
+#: src/components/ExportForm.tsx:155
+msgid "Gross weight"
+msgstr "Gross weight"
+
+#: src/components/ExportForm.tsx:312
+msgid "Group by"
+msgstr "Group by"
+
+#: src/components/admin/GroupsTable.tsx:35
+#: src/components/admin/UsersTable.tsx:224
+#: src/components/admin/UsersTable.tsx:388
+#: src/pages/app/admin/AdminEditGroup.tsx:62
+#: src/pages/app/admin/AdminEditUser.tsx:381
+#: src/pages/app/admin/AdminGroups.tsx:12
+#: src/pages/app/admin/AdminGroups.tsx:41
+#: src/pages/app/admin/AdminHome.tsx:32
+msgid "Groups"
+msgstr "Groups"
+
+#: src/components/admin/GroupsTable.tsx:38
+msgid "Groups are used to give access to collections and price lists to a specific set of users. The price lists and collections that a user has been granted to via one or more groups are added together. Groups cannot take away access to price lists or collections."
+msgstr "Groups are used to give access to collections and price lists to a specific set of users. The price lists and collections that a user has been granted to via one or more groups are added together. Groups cannot take away access to price lists or collections."
+
+#: src/components/admin/CreateGroupModal.tsx:59
+msgid "Groups are used to limit user access to collections and price lists."
+msgstr "Groups are used to limit user access to collections and price lists."
+
+#: src/components/nav/Sidebar.tsx:18
+#~ msgid "Home"
+#~ msgstr "Home"
+
+#: src/components/ExportForm.tsx:85
+msgid "Image"
+msgstr "Image"
+
+#: src/components/columns/data/Style.tsx:16
+msgid "Image for {0}"
+msgstr "Image for {0}"
+
+#: src/components/columns/data/Colors.tsx:36
+msgid "Image for {0} / {1}"
+msgstr "Image for {0} / {1}"
+
+#: src/components/forms/ImageInput.tsx:92
+msgid "Image to upload"
+msgstr "Image to upload"
+
+#: src/components/ExportForm.tsx:158
+msgid "Images"
+msgstr "Images"
+
+#: src/components/admin/UsersTable.tsx:92
+msgid "Inactive users"
+msgstr "Inactive users"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:177
+#: src/pages/app/admin/AdminEditCollection.tsx:265
+msgid "It is recommended to give the image a 10:7 ratio and a minimum width and height of 1070 by 750 pixels."
+msgstr "It is recommended to give the image a 10:7 ratio and a minimum width and height of 1070 by 750 pixels."
+
+#: src/pages/app/admin/AdminEditCollection.tsx:583
+msgid "Items"
+msgstr "Items"
+
+#: src/components/ExportForm.tsx:61
+msgid "JSON"
+msgstr "JSON"
+
+#: src/components/admin/CreateUserModal.tsx:35
+#: src/pages/app/admin/AdminEditUser.tsx:165
+msgid "Jane Doe"
+msgstr "Jane Doe"
+
+#: src/components/nav/SidebarDesktop.tsx:67
+#: src/components/nav/SidebarMobile.tsx:118
+msgid "Language"
+msgstr "Language"
+
+#: src/components/admin/UsersTable.tsx:212
+#: src/pages/app/admin/AdminEditGroup.tsx:358
+msgid "Last sign in"
+msgstr "Last sign in"
+
+#: src/components/CollectionsTable.tsx:74
+#~ msgid "Last updated"
+#~ msgstr "Last updated"
+
+#: src/components/forms/AssociatedPriceListsEditor.tsx:60
+#: src/pages/app/admin/AdminEditGroup.tsx:336
+#: src/pages/app/admin/AdminEditGroup.tsx:502
+#: src/pages/app/admin/AdminEditUser.tsx:265
+#: src/pages/app/admin/AdminEditUser.tsx:389
+msgid "List is empty."
+msgstr "List is empty."
+
+#: src/components/Loading.tsx:22
+msgid "Loading..."
+msgstr "Loading..."
+
+#: src/pages/public/SplashPage.tsx:112
+#: src/pages/public/SplashPage.tsx:163
+msgid "Log in"
+msgstr "Log in"
+
+#: src/components/nav/ProfileDropdown.tsx:17
+msgid "Login"
+msgstr "Login"
+
+#: src/components/nav/ProfileDropdown.tsx:31
+#~ msgid "Logout"
+#~ msgstr "Logout"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:147
+#: src/pages/app/admin/AdminEditCollection.tsx:228
+#: src/pages/app/admin/AdminEditGroup.tsx:166
+#: src/pages/app/admin/AdminEditUser.tsx:150
+msgid "Make your changes, then hit save when done."
+msgstr "Make your changes, then hit save when done."
+
+#: src/components/admin/AddCollectionItemsModal.tsx:160
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:81
+msgid "Make your selection of items to add here. Manual adjustments can be made once added."
+msgstr "Make your selection of items to add here. Manual adjustments can be made once added."
+
+#: src/pages/app/admin/AdminHome.tsx:28
+msgid "Manage users, associate roles and groups individually."
+msgstr "Manage users, associate roles and groups individually."
+
+#: src/components/admin/CreateGroupModal.tsx:27
+#: src/components/admin/CreateUserModal.tsx:34
+#: src/components/admin/GroupsTable.tsx:70
+#: src/components/admin/UsersTable.tsx:361
+#: src/pages/app/admin/AdminCreateCollection.tsx:166
+#: src/pages/app/admin/AdminEditCollection.tsx:247
+#: src/pages/app/admin/AdminEditGroup.tsx:182
+#: src/pages/app/admin/AdminEditGroup.tsx:346
+#: src/pages/app/admin/AdminEditGroup.tsx:512
+#: src/pages/app/admin/AdminEditUser.tsx:166
+#: src/pages/app/admin/AdminEditUser.tsx:275
+#: src/pages/app/admin/AdminEditUser.tsx:399
+#: src/types/other.ts:17
+msgid "Name"
+msgstr "Name"
+
+#: src/components/columns/data/Colors.tsx:160
+#: src/components/columns/data/Style.tsx:155
+#: src/components/filters/ActiveFilters.tsx:81
+#: src/components/filters/NewFilter.tsx:45
+#: src/pages/app/admin/AdminCreateCollection.tsx:39
+msgid "New"
+msgstr "New"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:24
+#: src/pages/app/admin/AdminCreateCollection.tsx:144
+msgid "New collection"
+msgstr "New collection"
+
+#: src/components/ExportForm.tsx:108
+#: src/components/columns/data/Colors.tsx:145
+msgid "New color"
+msgstr "New color"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:437
+msgid "New date"
+msgstr "New date"
+
+#: src/components/ExportForm.tsx:99
+#: src/components/columns/data/Style.tsx:140
+msgid "New style"
+msgstr "New style"
+
+#: src/components/admin/UsersTable.tsx:363
+msgid "Newest sign in"
+msgstr "Newest sign in"
+
+#: src/state/slices/user.ts:142
+msgid "No access"
+msgstr "No access"
+
+#: src/components/CollectionsGridList.tsx:70
+msgid "No collections"
+msgstr "No collections"
+
+#: src/components/admin/CreateGroupModal.tsx:28
+msgid "North America sales reps"
+msgstr "North America sales reps"
+
+#: src/components/nav/ProfileDropdown.tsx:29
+msgid "Notifications"
+msgstr "Notifications"
+
+#: src/types/other.ts:16
+msgid "Number"
+msgstr "Number"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:242
+msgid "Number of colors"
+msgstr "Number of colors"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:243
+msgid "Number of sizes"
+msgstr "Number of sizes"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:241
+msgid "Number of styles"
+msgstr "Number of styles"
+
+#: src/components/ExportForm.tsx:56
+msgid "Often useful for ERP system imports."
+msgstr "Often useful for ERP system imports."
+
+#: src/components/admin/UsersTable.tsx:364
+msgid "Oldest sign in"
+msgstr "Oldest sign in"
+
+#: src/components/ExportForm.tsx:146
+msgid "One column per attribute type will be generated."
+msgstr "One column per attribute type will be generated."
+
+#: src/components/PinnedCollections.tsx:72
+msgid "Open options"
+msgstr "Open options"
+
+#: src/components/nav/TopbarMobile.tsx:17
+msgid "Open sidebar"
+msgstr "Open sidebar"
+
+#: src/components/nav/ProfileDropdownMobile.tsx:17
+msgid "Open user menu"
+msgstr "Open user menu"
+
+#: src/pages/public/SignInPage.tsx:208
+#~ msgid "Or continue with"
+#~ msgstr "Or continue with"
+
+#: src/pages/app/errors/NotFound.tsx:20
+#: src/pages/public/errors/NotFoundPublic.tsx:20
+msgid "Page not found."
+msgstr "Page not found."
+
+#: src/components/SignInModal.tsx:96
+#: src/pages/app/admin/AdminEditUser.tsx:186
+msgid "Password"
+msgstr "Password"
+
+#: src/components/admin/CreateUserModal.tsx:54
+msgid "Password (optional)"
+msgstr "Password (optional)"
+
+#: src/components/PinnedCollections.tsx:19
+msgid "Pinned Collections"
+msgstr "Pinned Collections"
+
+#: src/components/EnvironmentWarning.tsx:28
+msgid "Please go to <0>Samling.io</0> for the production environment."
+msgstr "Please go to <0>Samling.io</0> for the production environment."
+
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:30
+msgid "Please select a date."
+msgstr "Please select a date."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:569
+#~ msgid "Price dates"
+#~ msgstr "Price dates"
+
+#: src/components/ExportForm.tsx:79
+msgid "Price list"
+msgstr "Price list"
+
+#: src/components/CollectionTablePriceListsMenu.tsx:43
+#: src/components/admin/GroupsTable.tsx:88
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:99
+#: src/pages/app/admin/AdminEditGroup.tsx:239
+msgid "Price lists"
+msgstr "Price lists"
+
+#: src/components/ActivePriceLists.tsx:19
+msgid "Price lists<0>, active</0>"
+msgstr "Price lists<0>, active</0>"
+
+#: src/pages/public/SplashPage.tsx:15
+msgid "Pricing"
+msgstr "Pricing"
+
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:86
+msgid "Pricing date"
+msgstr "Pricing date"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:400
+msgid "Pricing dates"
+msgstr "Pricing dates"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:324
+#~ msgid "Pricing stuff."
+#~ msgstr "Pricing stuff."
+
+#: src/components/ExportForm.tsx:157
+msgid "Primary image"
+msgstr "Primary image"
+
+#: src/pages/public/SplashPage.tsx:12
+msgid "Product"
+msgstr "Product"
+
+#: src/pages/app/Style.tsx:158
+msgid "Product information"
+msgstr "Product information"
+
+#: src/pages/public/SplashPage.tsx:194
+msgid "Provide your e-mail below to hear from our team."
+msgstr "Provide your e-mail below to hear from our team."
+
+#: src/components/nav/SidebarMobile.tsx:107
+#~ msgid "Recent"
+#~ msgstr "Recent"
+
+#: src/components/SignInModal.tsx:126
+msgid "Remember me"
+msgstr "Remember me"
+
+#: src/components/admin/MultipleCombobox.tsx:132
+msgid "Remove filter"
+msgstr "Remove filter"
+
+#: src/components/filters/ActiveFilters.tsx:151
+msgid "Remove filter for {0}"
+msgstr "Remove filter for {0}"
+
+#: src/components/PinnedCollections.tsx:111
+msgid "Remove from pinned"
+msgstr "Remove from pinned"
+
+#: src/components/forms/AssociatedPriceListsEditor.tsx:80
+msgid "Remove price list"
+msgstr "Remove price list"
+
+#: src/components/ActivePriceLists.tsx:44
+msgid "Remove {0}"
+msgstr "Remove {0}"
+
+#: src/pages/app/admin/AdminEditGroup.tsx:434
+#: src/pages/app/admin/AdminEditGroup.tsx:615
+#: src/pages/app/admin/AdminEditUser.tsx:334
+#: src/pages/app/admin/AdminEditUser.tsx:473
+msgid "Remove<0>, {0}</0>"
+msgstr "Remove<0>, {0}</0>"
+
+#: src/components/PinnedCollections.tsx:77
+#~ msgid "Removed from pinned"
+#~ msgstr "Removed from pinned"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:248
+msgid "Results from current filters"
+msgstr "Results from current filters"
+
+#: src/types/columns.ts:46
+msgid "Retail price"
+msgstr "Retail price"
+
+#: src/components/ExportForm.tsx:114
+msgid "Retail price amount"
+msgstr "Retail price amount"
+
+#: src/components/ExportForm.tsx:119
+msgid "Retail price currency"
+msgstr "Retail price currency"
+
+#: src/components/ExportForm.tsx:124
+msgid "Retail price list"
+msgstr "Retail price list"
+
+#: src/components/admin/CreateUserModal.tsx:64
+#: src/components/admin/UsersTable.tsx:218
+#: src/components/admin/UsersTable.tsx:370
+#: src/pages/app/admin/AdminEditUser.tsx:257
+msgid "Roles"
+msgstr "Roles"
+
+#: src/components/nav/SidebarDesktop.tsx:84
+#: src/components/nav/SidebarMobile.tsx:134
+msgid "Samling.io logotype"
+msgstr "Samling.io logotype"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:239
+#: src/pages/app/admin/AdminEditCollection.tsx:343
+#: src/pages/app/admin/AdminEditGroup.tsx:282
+#: src/pages/app/admin/AdminEditUser.tsx:220
+msgid "Save"
+msgstr "Save"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:239
+#: src/pages/app/admin/AdminEditCollection.tsx:343
+msgid "Saving..."
+msgstr "Saving..."
+
+#: src/components/nav/SidebarSearch.tsx:8
+#: src/components/nav/SidebarSearch.tsx:25
+msgid "Search"
+msgstr "Search"
+
+#: src/components/ExportForm.tsx:111
+#: src/components/columns/data/Colors.tsx:102
+#: src/components/columns/data/Colors.tsx:117
+#: src/components/filters/ServiceItemFilter.tsx:23
+msgid "Service item"
+msgstr "Service item"
+
+#: src/components/filters/ServiceItemFilter.tsx:34
+#~ msgid "Service item styles"
+#~ msgstr "Service item styles"
+
+#: src/components/filters/ServiceItemFilter.tsx:34
+msgid "Service items"
+msgstr "Service items"
+
+#: src/components/filters/ServiceItemFilter.tsx:34
+#~ msgid "ServiceItem styles"
+#~ msgstr "ServiceItem styles"
+
+#: src/components/nav/ProfileDropdown.tsx:27
+msgid "Settings"
+msgstr "Settings"
+
+#: src/components/PinnedCollections.tsx:124
+msgid "Share"
+msgstr "Share"
+
+#: src/pages/public/SplashPage.tsx:158
+#~ msgid "Sign In"
+#~ msgstr "Sign In"
+
+#: src/components/SignInModal.tsx:59
+#: src/components/SignInModal.tsx:142
+#: src/pages/public/SignInPage.tsx:32
+#: src/pages/public/errors/Unauthorized.tsx:30
+msgid "Sign in"
+msgstr "Sign in"
+
+#: src/pages/public/SignInPage.tsx:105
+msgid "Sign in to your account"
+msgstr "Sign in to your account"
+
+#: src/pages/public/SignInPage.tsx:192
+msgid "Sign in with Microsoft"
+msgstr "Sign in with Microsoft"
+
+#: src/components/nav/ProfileDropdown.tsx:34
+#: src/pages/app/AlreadySignedInPage.tsx:39
+#: src/pages/app/SignOutPage.tsx:14
+msgid "Sign out"
+msgstr "Sign out"
+
+#: src/components/ExportForm.tsx:70
+msgid "Size"
+msgstr "Size"
+
+#: src/components/ExportMenu.tsx:135
+#: src/components/ExportMenu.tsx:191
+#~ msgid "Size level"
+#~ msgstr "Size level"
+
+#: src/components/ExportForm.tsx:110
+msgid "Size number"
+msgstr "Size number"
+
+#: src/components/ExportForm.tsx:109
+msgid "Size type"
+msgstr "Size type"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:196
+#: src/pages/app/admin/AdminEditCollection.tsx:298
+#: src/pages/app/admin/AdminEditGroup.tsx:204
+msgid "Slug"
+msgstr "Slug"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:142
+#~ msgid "Some collection name..."
+#~ msgstr "Some collection name..."
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:205
+#: src/pages/app/admin/AdminEditCollection.tsx:307
+#: src/pages/app/admin/AdminEditGroup.tsx:214
+msgid "Some external ID value..."
+msgstr "Some external ID value..."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:192
+msgid "Some group description..."
+msgstr "Some group description..."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:181
+msgid "Some group name..."
+msgstr "Some group name..."
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:195
+#: src/pages/app/admin/AdminEditCollection.tsx:297
+#: src/pages/app/admin/AdminEditGroup.tsx:203
+msgid "Some slug value..."
+msgstr "Some slug value..."
+
+#: src/pages/app/errors/NotFound.tsx:23
+#: src/pages/public/errors/NotFoundPublic.tsx:23
+msgid "Sorry, we couldn’t find the page you’re looking for."
+msgstr "Sorry, we couldn’t find the page you’re looking for."
+
+#: src/components/CollectionTableSortMenu.tsx:30
+msgid "Sort by"
+msgstr "Sort by"
+
+#: src/components/admin/AddCollectionItemsModal.tsx:165
+#: src/pages/app/admin/AdminEditGroup.tsx:352
+msgid "Status"
+msgstr "Status"
+
+#: src/components/ExportForm.tsx:68
+#: src/components/admin/AddCollectionItemsModal.tsx:189
+#: src/components/filters/ActiveFilters.tsx:40
+#: src/components/filters/ActiveFilters.tsx:49
+#: src/pages/app/admin/AdminEditCollection.tsx:665
+#: src/types/columns.ts:34
+msgid "Style"
+msgstr "Style"
+
+#: src/components/ExportForm.tsx:96
+msgid "Style description"
+msgstr "Style description"
+
+#: src/components/ExportForm.tsx:162
+msgid "Style external id"
+msgstr "Style external id"
+
+#: src/components/ExportMenu.tsx:103
+#: src/components/ExportMenu.tsx:161
+#~ msgid "Style level"
+#~ msgstr "Style level"
+
+#: src/components/ExportForm.tsx:93
+msgid "Style name"
+msgstr "Style name"
+
+#: src/components/ExportForm.tsx:92
+msgid "Style number"
+msgstr "Style number"
+
+#: src/components/filters/NewFilter.tsx:24
+#: src/components/filters/StyleFilter.tsx:55
+msgid "Styles"
+msgstr "Styles"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:586
+msgid "Styles, colors and sizes to associate with this collection."
+msgstr "Styles, colors and sizes to associate with this collection."
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:89
+#: src/pages/app/admin/AdminEditCollection.tsx:161
+#: src/pages/app/admin/AdminEditGroup.tsx:137
+#: src/pages/app/admin/AdminEditUser.tsx:121
+msgid "Success!"
+msgstr "Success!"
+
+#: src/state/slices/user.ts:81
+msgid "Successfully signed in"
+msgstr "Successfully signed in"
+
+#: src/state/slices/user.ts:99
+msgid "Successfully signed out"
+msgstr "Successfully signed out"
+
+#: src/components/nav/ProfileDropdown.tsx:18
+#: src/components/nav/ProfileDropdown.tsx:33
+msgid "Support"
+msgstr "Support"
+
+#: src/components/ExportForm.tsx:154
+msgid "Tariff no"
+msgstr "Tariff no"
+
+#: src/pages/public/SignInPage.tsx:56
+#: src/pages/public/SignInPage.tsx:83
+#: src/pages/public/SignInPage.tsx:176
+msgid "Technical error prevents login"
+msgstr "Technical error prevents login"
+
+#: src/pages/app/admin/AdminCreateCollection.tsx:90
+msgid "The collection \"{0}\" was successfully created."
+msgstr "The collection \"{0}\" was successfully created."
+
+#: src/pages/app/admin/AdminEditCollection.tsx:162
+msgid "The collection \"{0}\" was successfully updated."
+msgstr "The collection \"{0}\" was successfully updated."
+
+#: src/state/slices/user.ts:131
+msgid "The given e-mail and password combination does not exist."
+msgstr "The given e-mail and password combination does not exist."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:138
+msgid "The group \"{0}\" was successfully updated."
+msgstr "The group \"{0}\" was successfully updated."
+
+#: src/pages/app/admin/AdminEditUser.tsx:384
+msgid "The groups that this user belong to."
+msgstr "The groups that this user belong to."
+
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:32
+#~ msgid "The price lists to add."
+#~ msgstr "The price lists to add."
+
+#: src/pages/app/admin/AdminEditUser.tsx:260
+msgid "The roles that are assigned to this user."
+msgstr "The roles that are assigned to this user."
+
+#: src/pages/app/admin/AdminEditUser.tsx:122
+msgid "The user \"{0}\" was successfully updated."
+msgstr "The user \"{0}\" was successfully updated."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:331
+msgid "The users that belong to this group."
+msgstr "The users that belong to this group."
+
+#: src/components/CollectionsGridList.tsx:73
+msgid "There are no collections available to you. Talk an administrator to get access."
+msgstr "There are no collections available to you. Talk an administrator to get access."
+
+#: src/components/admin/CollectionsTable.tsx:38
+msgid "These are all the collections that exist in the system."
+msgstr "These are all the collections that exist in the system."
+
+#: src/pages/app/admin/AdminEditCollection.tsx:403
+msgid "These dates decide which item prices should be picked up for each price list. Each item price is associated with a start date and end date, so the date you choose has to fall within those."
+msgstr "These dates decide which item prices should be picked up for each price list. Each item price is associated with a start date and end date, so the date you choose has to fall within those."
+
+#: src/components/admin/CreateUserModal.tsx:65
+msgid "These roles will be assign to the user and determine what they can and cannot do."
+msgstr "These roles will be assign to the user and determine what they can and cannot do."
+
+#: src/components/admin/UsersTable.tsx:143
+msgid "These users have access to the system."
+msgstr "These users have access to the system."
+
+#: src/components/columns/data/Colors.tsx:163
+msgid "This color first appears in this collection."
+msgstr "This color first appears in this collection."
+
+#: src/components/columns/data/Style.tsx:115
+msgid "This is a Core style, meaning that it represents the brand's core values."
+msgstr "This is a Core style, meaning that it represents the brand's core values."
+
+#: src/components/columns/data/Colors.tsx:120
+msgid "This is a service item, meaning that it's our intention to never run out of stock with this style."
+msgstr "This is a service item, meaning that it's our intention to never run out of stock with this style."
+
+#: src/pages/app/admin/AdminHome.tsx:42
+msgid "This is where you create collections and associate styles, colors and sizes to them."
+msgstr "This is where you create collections and associate styles, colors and sizes to them."
+
+#: src/components/columns/data/Style.tsx:158
+msgid "This style first appears in this collection."
+msgstr "This style first appears in this collection."
+
+#: src/components/ExportForm.tsx:315
+msgid "Tick the data types that you want to appear on their own separate line in the exported file."
+msgstr "Tick the data types that you want to appear on their own separate line in the exported file."
+
+#: src/pages/public/SplashPage.tsx:181
+#~ msgid "Tired of collecting data from multiple different ERP systems and combining them in your Excel sheets? This Software-as-a-Service is your savior."
+#~ msgstr "Tired of collecting data from multiple different ERP systems and combining them in your Excel sheets? This Software-as-a-Service is your savior."
+
+#: src/pages/public/SplashPage.tsx:186
+msgid "Tired of collecting data from multiple different ERP systems and combining them in your Excel sheets? This Software-as-a-Service wants to help you."
+msgstr "Tired of collecting data from multiple different ERP systems and combining them in your Excel sheets? This Software-as-a-Service wants to help you."
+
+#: src/components/nav/Sidebar.tsx:41
+msgid "To public page"
+msgstr "To public page"
+
+#: src/pages/public/errors/Unauthorized.tsx:20
+msgid "Unauthorized."
+msgstr "Unauthorized."
+
+#: src/components/ExportForm.tsx:129
+msgid "Unit price amount"
+msgstr "Unit price amount"
+
+#: src/components/ExportForm.tsx:134
+msgid "Unit price currency"
+msgstr "Unit price currency"
+
+#: src/components/ExportForm.tsx:139
+msgid "Unit price list"
+msgstr "Unit price list"
+
+#: src/types/columns.ts:52
+msgid "Unit prices"
+msgstr "Unit prices"
+
+#: src/components/ExportForm.tsx:156
+msgid "Unit volume"
+msgstr "Unit volume"
+
+#: src/components/forms/ImageInput.tsx:37
+msgid "Up to {maxSizeMegaBytes} MB."
+msgstr "Up to {maxSizeMegaBytes} MB."
+
+#: src/components/admin/CollectionsTable.tsx:94
+msgid "Updated at"
+msgstr "Updated at"
+
+#: src/components/forms/ImageInput.tsx:115
+msgid "Upload an image"
+msgstr "Upload an image"
+
+#: src/pages/app/admin/AdminHome.tsx:35
+msgid "Use groups to specify which collections and price lists users have access to."
+msgstr "Use groups to specify which collections and price lists users have access to."
+
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:63
+#~ msgid "Use this form to add a new pricing date group."
+#~ msgstr "Use this form to add a new pricing date group."
+
+#: src/components/admin/CreateUserModal.tsx:126
+msgid "Use this form to create a new user. All users can sign in via a Google or Microsoft account matching the entered e-mail address. Filling in a password is optional."
+msgstr "Use this form to create a new user. All users can sign in via a Google or Microsoft account matching the entered e-mail address. Filling in a password is optional."
+
+#: src/components/ExportForm.tsx:250
+msgid "Use this form to export the current selection of items to file."
+msgstr "Use this form to export the current selection of items to file."
+
+#: src/components/ExportForm.tsx:62
+msgid "Useful for integration with other systems."
+msgstr "Useful for integration with other systems."
+
+#: src/components/admin/UsersTable.tsx:206
+msgid "User"
+msgstr "User"
+
+#: src/components/nav/ProfileDropdownDesktop.tsx:25
+#: src/components/nav/ProfileDropdownDesktop.tsx:30
+msgid "User profile"
+msgstr "User profile"
+
+#: src/components/admin/GroupsTable.tsx:76
+#: src/components/admin/UsersTable.tsx:140
+#: src/pages/app/admin/AdminEditGroup.tsx:328
+#: src/pages/app/admin/AdminEditUser.tsx:56
+#: src/pages/app/admin/AdminHome.tsx:25
+#: src/pages/app/admin/AdminUsers.tsx:13
+#: src/pages/app/admin/AdminUsers.tsx:92
+msgid "Users"
+msgstr "Users"
+
+#: src/components/ExportForm.tsx:50
+msgid "Uses the newer .xlsx format."
+msgstr "Uses the newer .xlsx format."
+
+#: src/components/PinnedCollections.tsx:96
+msgid "View"
+msgstr "View"
+
+#: src/components/CollectionsGridList.tsx:39
+msgid "View details for {0}"
+msgstr "View details for {0}"
+
+#: src/components/nav/ProfileDropdown.tsx:24
+msgid "View profile"
+msgstr "View profile"
+
+#: src/roles.ts:21
+msgid "Viewer"
+msgstr "Viewer"
+
+#: src/roles.ts:22
+msgid "Viewers"
+msgstr "Viewers"
+
+#: src/pages/app/admin/AdminEditGroup.tsx:494
+msgid "Which collections users of this group will have access to."
+msgstr "Which collections users of this group will have access to."
+
+#: src/components/ExportForm.tsx:363
+msgid "Which fields you want to include in the exported file."
+msgstr "Which fields you want to include in the exported file."
+
+#: src/components/ExportForm.tsx:268
+msgid "Which format you want to export to."
+msgstr "Which format you want to export to."
+
+#: src/components/ExportForm.tsx:249
+#~ msgid "Which format you want to export to. CSV is often useful for import into ERP system and JSON can be helpful for integration developers."
+#~ msgstr "Which format you want to export to. CSV is often useful for import into ERP system and JSON can be helpful for integration developers."
+
+#: src/pages/app/admin/AdminEditGroup.tsx:242
+msgid "Which price lists users of this group will have access to."
+msgstr "Which price lists users of this group will have access to."
+
+#: src/state/slices/user.ts:130
+msgid "Wrong credentials"
+msgstr "Wrong credentials"
+
+#: src/pages/app/AlreadySignedInPage.tsx:30
+msgid "You are already signed in as {0} ({1})"
+msgstr "You are already signed in as {0} ({1})"
+
+#: src/state/slices/user.ts:82
+msgid "You are now signed in with account {0}."
+msgstr "You are now signed in with account {0}."
+
+#: src/state/slices/user.ts:143
+msgid "You don't have access to any organizations. Please contact an administrator."
+msgstr "You don't have access to any organizations. Please contact an administrator."
+
+#: src/pages/public/errors/Unauthorized.tsx:23
+msgid "You need to sign in to be able to view this page."
+msgstr "You need to sign in to be able to view this page."
+
+#: src/state/slices/user.ts:118
+msgid "You were automatically signed out from account {userEmail} because of an expired token. Please sign in again."
+msgstr "You were automatically signed out from account {userEmail} because of an expired token. Please sign in again."
+
+#: src/state/slices/user.ts:100
+msgid "You've signed out from account {userEmail}."
+msgstr "You've signed out from account {userEmail}."
+
+#: src/components/admin/CreateUserModal.tsx:54
+#~ msgid "YuXQFHDK2OF8Or"
+#~ msgstr "YuXQFHDK2OF8Or"
+
+#: src/components/filters/ActiveFilters.tsx:83
+msgid "colors"
+msgstr "colors"
+
+#: src/pages/app/admin/AdminEditUser.tsx:175
+msgid "jane.doe@example.com"
+msgstr "jane.doe@example.com"
+
+#: src/components/forms/ImageInput.tsx:126
+msgid "or drag and drop."
+msgstr "or drag and drop."
+
+#: src/components/filters/ActiveFilters.tsx:83
+msgid "styles"
+msgstr "styles"
+
+#: src/components/admin/CreateUserModal.tsx:45
+msgid "user@example.com"
+msgstr "user@example.com"
+
+#: src/components/PinnedCollections.tsx:35
+#~ msgid "{0, plural, =0 {No styles} one {One style} other {# styles}}"
+#~ msgstr "{0, plural, =0 {No styles} one {One style} other {# styles}}"
+
+#: src/components/admin/GroupsTable.tsx:134
+#: src/pages/app/admin/AdminEditUser.tsx:455
+msgid "{0, plural, one {# collection} other {# collections}}"
+msgstr "{0, plural, one {# collection} other {# collections}}"
+
+#: src/components/admin/GroupsTable.tsx:143
+#: src/pages/app/admin/AdminEditUser.tsx:462
+msgid "{0, plural, one {# price list} other {# price lists}}"
+msgstr "{0, plural, one {# price list} other {# price lists}}"
+
+#: src/components/CollectionsGridList.tsx:49
+#: src/components/PinnedCollections.tsx:62
+msgid "{0, plural, one {# style} other {# styles}}"
+msgstr "{0, plural, one {# style} other {# styles}}"
+
+#: src/components/admin/GroupsTable.tsx:125
+msgid "{0, plural, one {# user} other {# users}}"
+msgstr "{0, plural, one {# user} other {# users}}"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:615
+msgid "{0, plural, one {Disable # style} other {Disable # styles}}"
+msgstr "{0, plural, one {Disable # style} other {Disable # styles}}"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:629
+msgid "{0, plural, one {Enable # style} other {Enable # styles}}"
+msgstr "{0, plural, one {Enable # style} other {Enable # styles}}"
+
+#: src/components/CollectionDetailTable.tsx:61
+#~ msgid "{0, plural, one {Has one variant} other {Has # variants}}"
+#~ msgstr "{0, plural, one {Has one variant} other {Has # variants}}"
+
+#: src/pages/app/admin/AdminEditCollection.tsx:581
+#~ msgid "{0, plural, one {Remove # style} other {Remove # styles}}"
+#~ msgstr "{0, plural, one {Remove # style} other {Remove # styles}}"
+
+#: src/components/CollectionTable.tsx:46
+#: src/components/ExportForm.tsx:49
+#: src/components/ExportForm.tsx:50
+#: src/components/ExportForm.tsx:55
+#: src/components/ExportForm.tsx:56
+#: src/components/ExportForm.tsx:61
+#: src/components/ExportForm.tsx:62
+#: src/components/ExportForm.tsx:68
+#: src/components/ExportForm.tsx:69
+#: src/components/ExportForm.tsx:70
+#: src/components/ExportForm.tsx:73
+#: src/components/ExportForm.tsx:79
+#: src/components/ExportForm.tsx:85
+#: src/components/ExportForm.tsx:92
+#: src/components/ExportForm.tsx:93
+#: src/components/ExportForm.tsx:96
+#: src/components/ExportForm.tsx:99
+#: src/components/ExportForm.tsx:100
+#: src/components/ExportForm.tsx:103
+#: src/components/ExportForm.tsx:106
+#: src/components/ExportForm.tsx:107
+#: src/components/ExportForm.tsx:108
+#: src/components/ExportForm.tsx:109
+#: src/components/ExportForm.tsx:110
+#: src/components/ExportForm.tsx:111
+#: src/components/ExportForm.tsx:114
+#: src/components/ExportForm.tsx:119
+#: src/components/ExportForm.tsx:124
+#: src/components/ExportForm.tsx:129
+#: src/components/ExportForm.tsx:134
+#: src/components/ExportForm.tsx:139
+#: src/components/ExportForm.tsx:142
+#: src/components/ExportForm.tsx:145
+#: src/components/ExportForm.tsx:146
+#: src/components/ExportForm.tsx:151
+#: src/components/ExportForm.tsx:154
+#: src/components/ExportForm.tsx:155
+#: src/components/ExportForm.tsx:156
+#: src/components/ExportForm.tsx:157
+#: src/components/ExportForm.tsx:158
+#: src/components/ExportForm.tsx:159
+#: src/components/ExportForm.tsx:162
+#: src/components/ExportForm.tsx:167
+#: src/components/admin/AddCollectionItemsModal.tsx:157
+#: src/components/admin/AddCollectionItemsModal.tsx:160
+#: src/components/admin/AddCollectionItemsModal.tsx:165
+#: src/components/admin/AddCollectionItemsModal.tsx:177
+#: src/components/admin/AddCollectionItemsModal.tsx:189
+#: src/components/admin/AddCollectionItemsModal.tsx:210
+#: src/components/admin/AddCollectionItemsModal.tsx:217
+#: src/components/admin/AddCollectionItemsModal.tsx:241
+#: src/components/admin/AddCollectionItemsModal.tsx:242
+#: src/components/admin/AddCollectionItemsModal.tsx:243
+#: src/components/admin/AddCollectionItemsModal.tsx:248
+#: src/components/admin/CreateGroupModal.tsx:27
+#: src/components/admin/CreateGroupModal.tsx:28
+#: src/components/admin/CreateGroupModal.tsx:63
+#: src/components/admin/CreateUserModal.tsx:33
+#: src/components/admin/CreateUserModal.tsx:34
+#: src/components/admin/CreateUserModal.tsx:43
+#: src/components/admin/CreateUserModal.tsx:44
+#: src/components/admin/CreateUserModal.tsx:53
+#: src/components/admin/CreateUserModal.tsx:54
+#: src/components/admin/CreateUserModal.tsx:63
+#: src/components/admin/CreateUserModal.tsx:64
+#: src/components/admin/CreateUserModal.tsx:131
+#: src/components/admin/DeleteCollectionModal.tsx:58
+#: src/components/admin/DeleteGroupModal.tsx:50
+#: src/components/admin/DeleteUserModal.tsx:50
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:23
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:31
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:32
+#: src/components/admin/NewCollectionPricingGroupModal.tsx:65
+#: src/components/admin/UsersTable.tsx:85
+#: src/components/admin/UsersTable.tsx:91
+#: src/components/admin/UsersTable.tsx:354
+#: src/components/admin/UsersTable.tsx:355
+#: src/components/admin/UsersTable.tsx:356
+#: src/components/admin/UsersTable.tsx:357
+#: src/components/admin/UsersTable.tsx:363
+#: src/components/admin/UsersTable.tsx:381
+#: src/components/columns/data/Colors.tsx:35
+#: src/components/columns/data/Colors.tsx:101
+#: src/components/columns/data/Colors.tsx:144
+#: src/components/columns/data/Colors.tsx:227
+#: src/components/columns/data/Style.tsx:16
+#: src/components/columns/data/Style.tsx:97
+#: src/components/columns/data/Style.tsx:140
+#: src/components/filters/ActiveFilters.tsx:40
+#: src/components/filters/ActiveFilters.tsx:49
+#: src/components/filters/ActiveFilters.tsx:63
+#: src/components/filters/ActiveFilters.tsx:72
+#: src/components/filters/ActiveFilters.tsx:81
+#: src/components/filters/ActiveFilters.tsx:83
+#: src/components/filters/ActiveFilters.tsx:83
+#: src/components/filters/ActiveFilters.tsx:134
+#: src/components/filters/NewFilter.tsx:24
+#: src/components/filters/NewFilter.tsx:25
+#: src/components/forms/AssociatedPriceListsEditor.tsx:102
+#: src/components/forms/ImageInput.tsx:37
+#: src/components/forms/ImageInput.tsx:38
+#: src/components/forms/ImageInput.tsx:92
+#: src/components/forms/ImageInput.tsx:92
+#: src/components/nav/ProfileDropdown.tsx:17
+#: src/components/nav/ProfileDropdown.tsx:18
+#: src/components/nav/ProfileDropdown.tsx:24
+#: src/components/nav/ProfileDropdown.tsx:27
+#: src/components/nav/ProfileDropdown.tsx:29
+#: src/components/nav/ProfileDropdown.tsx:33
+#: src/components/nav/ProfileDropdown.tsx:34
+#: src/components/nav/ProfileDropdownDesktop.tsx:25
+#: src/components/nav/ProfileDropdownDesktop.tsx:30
+#: src/components/nav/Sidebar.tsx:22
+#: src/components/nav/Sidebar.tsx:34
+#: src/components/nav/Sidebar.tsx:41
+#: src/components/nav/SidebarDesktop.tsx:24
+#: src/components/nav/SidebarDesktop.tsx:84
+#: src/components/nav/SidebarMobile.tsx:78
+#: src/components/nav/SidebarMobile.tsx:134
+#: src/components/nav/SidebarSearch.tsx:25
+#: src/pages/app/AlreadySignedInPage.tsx:11
+#: src/pages/app/HomeScreen.tsx:12
+#: src/pages/app/SignOutPage.tsx:14
+#: src/pages/app/Style.tsx:82
+#: src/pages/app/admin/AdminCollections.tsx:12
+#: src/pages/app/admin/AdminCollections.tsx:12
+#: src/pages/app/admin/AdminCollections.tsx:45
+#: src/pages/app/admin/AdminCollections.tsx:47
+#: src/pages/app/admin/AdminCreateCollection.tsx:24
+#: src/pages/app/admin/AdminCreateCollection.tsx:24
+#: src/pages/app/admin/AdminCreateCollection.tsx:32
+#: src/pages/app/admin/AdminCreateCollection.tsx:34
+#: src/pages/app/admin/AdminCreateCollection.tsx:39
+#: src/pages/app/admin/AdminCreateCollection.tsx:144
+#: src/pages/app/admin/AdminCreateCollection.tsx:166
+#: src/pages/app/admin/AdminCreateCollection.tsx:175
+#: src/pages/app/admin/AdminCreateCollection.tsx:177
+#: src/pages/app/admin/AdminCreateCollection.tsx:195
+#: src/pages/app/admin/AdminCreateCollection.tsx:196
+#: src/pages/app/admin/AdminCreateCollection.tsx:205
+#: src/pages/app/admin/AdminCreateCollection.tsx:206
+#: src/pages/app/admin/AdminEditCollection.tsx:65
+#: src/pages/app/admin/AdminEditCollection.tsx:65
+#: src/pages/app/admin/AdminEditCollection.tsx:76
+#: src/pages/app/admin/AdminEditCollection.tsx:78
+#: src/pages/app/admin/AdminEditCollection.tsx:160
+#: src/pages/app/admin/AdminEditCollection.tsx:246
+#: src/pages/app/admin/AdminEditCollection.tsx:262
+#: src/pages/app/admin/AdminEditCollection.tsx:264
+#: src/pages/app/admin/AdminEditCollection.tsx:296
+#: src/pages/app/admin/AdminEditCollection.tsx:297
+#: src/pages/app/admin/AdminEditCollection.tsx:306
+#: src/pages/app/admin/AdminEditCollection.tsx:307
+#: src/pages/app/admin/AdminEditCollection.tsx:770
+#: src/pages/app/admin/AdminEditCollection.tsx:770
+#: src/pages/app/admin/AdminEditCollection.tsx:831
+#: src/pages/app/admin/AdminEditCollection.tsx:831
+#: src/pages/app/admin/AdminEditGroup.tsx:47
+#: src/pages/app/admin/AdminEditGroup.tsx:60
+#: src/pages/app/admin/AdminEditGroup.tsx:62
+#: src/pages/app/admin/AdminEditGroup.tsx:67
+#: src/pages/app/admin/AdminEditGroup.tsx:181
+#: src/pages/app/admin/AdminEditGroup.tsx:182
+#: src/pages/app/admin/AdminEditGroup.tsx:192
+#: src/pages/app/admin/AdminEditGroup.tsx:193
+#: src/pages/app/admin/AdminEditGroup.tsx:203
+#: src/pages/app/admin/AdminEditGroup.tsx:204
+#: src/pages/app/admin/AdminEditGroup.tsx:214
+#: src/pages/app/admin/AdminEditGroup.tsx:215
+#: src/pages/app/admin/AdminEditGroup.tsx:377
+#: src/pages/app/admin/AdminEditGroup.tsx:550
+#: src/pages/app/admin/AdminEditUser.tsx:40
+#: src/pages/app/admin/AdminEditUser.tsx:53
+#: src/pages/app/admin/AdminEditUser.tsx:55
+#: src/pages/app/admin/AdminEditUser.tsx:159
+#: src/pages/app/admin/AdminEditUser.tsx:160
+#: src/pages/app/admin/AdminEditUser.tsx:169
+#: src/pages/app/admin/AdminEditUser.tsx:170
+#: src/pages/app/admin/AdminEditUser.tsx:179
+#: src/pages/app/admin/AdminEditUser.tsx:180
+#: src/pages/app/admin/AdminEditUser.tsx:294
+#: src/pages/app/admin/AdminEditUser.tsx:422
+#: src/pages/app/admin/AdminGroups.tsx:12
+#: src/pages/app/admin/AdminGroups.tsx:12
+#: src/pages/app/admin/AdminGroups.tsx:40
+#: src/pages/app/admin/AdminGroups.tsx:41
+#: src/pages/app/admin/AdminHome.tsx:21
+#: src/pages/app/admin/AdminHome.tsx:25
+#: src/pages/app/admin/AdminHome.tsx:27
+#: src/pages/app/admin/AdminHome.tsx:28
+#: src/pages/app/admin/AdminHome.tsx:32
+#: src/pages/app/admin/AdminHome.tsx:34
+#: src/pages/app/admin/AdminHome.tsx:35
+#: src/pages/app/admin/AdminHome.tsx:39
+#: src/pages/app/admin/AdminHome.tsx:41
+#: src/pages/app/admin/AdminHome.tsx:42
+#: src/pages/app/admin/AdminHome.tsx:49
+#: src/pages/app/admin/AdminUsers.tsx:13
+#: src/pages/app/admin/AdminUsers.tsx:13
+#: src/pages/app/admin/AdminUsers.tsx:91
+#: src/pages/app/admin/AdminUsers.tsx:92
+#: src/pages/public/SignInPage.tsx:32
+#: src/pages/public/SignInPage.tsx:56
+#: src/pages/public/SignInPage.tsx:83
+#: src/pages/public/SignInPage.tsx:176
+#: src/pages/public/SignInPage.tsx:192
+#: src/pages/public/SplashPage.tsx:12
+#: src/pages/public/SplashPage.tsx:13
+#: src/pages/public/SplashPage.tsx:14
+#: src/pages/public/SplashPage.tsx:15
+#: src/pages/public/SplashPage.tsx:207
+#: src/roles.ts:14
+#: src/roles.ts:15
+#: src/roles.ts:16
+#: src/roles.ts:21
+#: src/roles.ts:22
+#: src/roles.ts:23
+#: src/roles.ts:28
+#: src/roles.ts:29
+#: src/roles.ts:30
+#: src/roles.ts:35
+#: src/roles.ts:36
+#: src/roles.ts:37
+#: src/state/slices/user.ts:43
+#: src/state/slices/user.ts:58
+#: src/state/slices/user.ts:59
+#: src/state/slices/user.ts:83
+#: src/state/slices/user.ts:84
+#: src/state/slices/user.ts:101
+#: src/state/slices/user.ts:102
+#: src/state/slices/user.ts:119
+#: src/state/slices/user.ts:120
+#: src/state/slices/user.ts:132
+#: src/state/slices/user.ts:133
+#: src/state/slices/user.ts:144
+#: src/state/slices/user.ts:145
+#: src/types/columns.ts:34
+#: src/types/columns.ts:40
+#: src/types/columns.ts:46
+#: src/types/columns.ts:52
+#: src/types/other.ts:16
+#: src/types/other.ts:17
+#: src/types/other.ts:19
+#: src/types/other.ts:23
+#~ msgid "{0}"
+#~ msgstr "{0}"
+
+#: src/components/columns/data/Colors.tsx:220
+msgid "{0} (+{1} more)"
+msgstr "{0} (+{1} more)"
+
+#: src/state/slices/user.ts:59
+#~ msgid "{0} [{1}]"
+#~ msgstr "{0} [{1}]"
+
+#: src/components/filters/ActiveFilters.tsx:134
+msgid "{0} filter {1}"
+msgstr "{0} filter {1}"
+
+#: src/components/nav/SidebarDesktop.tsx:24
+#: src/components/nav/SidebarMobile.tsx:78
+msgid "{0} logotype"
+msgstr "{0} logotype"
+
+#: src/components/ExportForm.tsx:372
+msgid "{0} of {1} fields selected"
+msgstr "{0} of {1} fields selected"
+
+#: src/components/forms/ImageInput.tsx:38
+msgid "{0}, up to {maxSizeMegaBytes} MB."
+msgstr "{0}, up to {maxSizeMegaBytes} MB."
