@@ -98,4 +98,3 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           token: ${{ secrets.EVENT_TRIGGERING_GITHUB_TOKEN }}
-          registry: ${{ secrets.DOCKERHUB_USER }}
