@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/hyperkliv/samling/compare/v0.1.4...v0.1.5) (2023-01-05)
+
+
+### Bug Fixes
+
+* New release ([36e4368](https://github.com/hyperkliv/samling/commit/36e4368c529d455f18e37a92f708e59c64a8a8cd))
+
 ## [0.1.4](https://github.com/hyperkliv/samling/compare/v0.1.3...v0.1.4) (2023-01-05)
 
 
