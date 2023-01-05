@@ -94,7 +94,7 @@ jobs:
         if: ${{ steps.version.outputs.version != '' }}
         with:
           version: ${{ steps.version.outputs.version }}
-          image: ${{ env.IMAGE_NAME }}
+          image: ${{ secrets.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           token: ${{ secrets.EVENT_TRIGGERING_GITHUB_TOKEN }}
