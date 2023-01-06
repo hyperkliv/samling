@@ -63,6 +63,7 @@ COPY Cargo.toml Cargo.lock ./
 
 RUN cargo build \
     --features ui \
+    --features mimalloc \
     --release
 
 

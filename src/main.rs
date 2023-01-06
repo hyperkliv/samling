@@ -1,4 +1,12 @@
 #![forbid(unsafe_code)]
+
+#[cfg(feature = "mimalloc")]
+use mimalloc::MiMalloc;
+
+#[cfg(feature = "mimalloc")]
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
+
 #[cfg(feature = "cli")]
 use std::process::{ExitCode, Termination};
 

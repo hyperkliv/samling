@@ -29,6 +29,7 @@ indexmap = "1.9.2"
 itertools = "0.10.5"
 jsonwebtoken = "8.2.0"
 log = "0.4.17"
+mimalloc = { version = "0.1.32", default-features = false, optional = true }
 mime = "0.3.16"
 mime_guess = "2.0.4"
 num_enum = "0.5.7"
