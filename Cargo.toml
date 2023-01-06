@@ -52,7 +52,7 @@ thiserror = "1.0.38"
 # TODO: Remove `serde-well-known`, it's being deprecated. See this commit:
 #       https://github.com/time-rs/time/commit/110e17bb8461816551f7197a2aa2e34c981fa22d
 time = { version = "0.3.17", features = ["serde", "serde-human-readable", "serde-well-known"] }
-tokio = { version = "1.23.0", features = ["full"] }
+tokio = { version = "1.24.1", features = ["full"] }
 tokio-postgres = "0.7.7"
 tower = "0.4.13"
 tower-http = { version = "0.3.5", default-features = false, features = ["fs", "trace", "cors", "compression-full"] }
