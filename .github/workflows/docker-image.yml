@@ -90,7 +90,7 @@ jobs:
         id: version
         run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\/v/}
         shell: bash
-      - uses: jacobsvante/version-tag-docker-image@v0.5
+      - uses: jacobsvante/version-tag-docker-image@v0.6
         if: ${{ steps.version.outputs.version != '' }}
         with:
           version: ${{ steps.version.outputs.version }}
