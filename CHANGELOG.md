@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0](https://github.com/hyperkliv/samling/compare/v0.1.5...v0.2.0) (2023-01-06)
+
+
+### Features
+
+* New feature to enable Mimalloc allocator ([026cf77](https://github.com/hyperkliv/samling/commit/026cf7729febb649d1a58c1e3f5af29081187d58))
+
+
+### Bug Fixes
+
+* Only enable used tokio features ([a7d1025](https://github.com/hyperkliv/samling/commit/a7d1025481cafc59bb34ab14d7941c10db1524a3))
+* Use tokio 1.24 ([9e50773](https://github.com/hyperkliv/samling/commit/9e50773d99db425d1ad38af87cea6621938815b7))
+
 ## [0.1.5](https://github.com/hyperkliv/samling/compare/v0.1.4...v0.1.5) (2023-01-05)
 
 
