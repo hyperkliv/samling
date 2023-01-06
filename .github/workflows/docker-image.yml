@@ -77,6 +77,14 @@ jobs:
           curl http://127.0.0.1:8080/api/readyz > output.json
           jq . output.json
           [[ $(jq .ok output.json) == true ]]
+      - name: Notify hyperkliv/www-samling-io
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
+          repository: hyperkliv/www-samling-io
+          event-type: new-samling-docker-image
+          client-payload: '{"sha": "${{ github.sha }}"}'
+
 
   version-tag-docker-image:
     name: Add version tags to Docker image
@@ -100,3 +108,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           token: ${{ secrets.EVENT_TRIGGERING_GITHUB_TOKEN }}
+      - name: Notify hyperkliv/www-samling-io
+        uses: peter-evans/repository-dispatch@v2
+        if: ${{ steps.version.outputs.version != '' }}
+        with:
+          token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
+          repository: hyperkliv/www-samling-io
+          event-type: new-samling-docker-image
+          client-payload: '{"sha": "${{ github.sha }}", "version": "${{ steps.version.outputs.version }}" }'
