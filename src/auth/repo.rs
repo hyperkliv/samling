@@ -236,10 +236,13 @@ impl AuthRepo {
         let user = self
             .update_user(&tx, id, user_data.clone(), password_hash)
             .await?;
-        if let Some(roles) = user_data.roles {
-            self.associate_roles(&tx, user.id, organization_id, &roles)
-                .await?;
-        }
+        self.associate_organization_and_roles(
+            &tx,
+            user.id,
+            organization_id,
+            user_data.roles.as_deref(),
+        )
+        .await?;
         if let Some(groups) = user_data.groups {
             self.associate_groups(&tx, user.id, organization_id, &groups)
                 .await?;
@@ -279,10 +282,13 @@ impl AuthRepo {
         let user = self
             .insert_user(&tx, user_data.clone(), password_hash)
             .await?;
-        if let Some(roles) = user_data.roles {
-            self.associate_roles(&tx, user.id, organization_id, &roles)
-                .await?;
-        }
+        self.associate_organization_and_roles(
+            &tx,
+            user.id,
+            organization_id,
+            user_data.roles.as_deref(),
+        )
+        .await?;
         if let Some(groups) = user_data.groups {
             self.associate_groups(&tx, user.id, organization_id, &groups)
                 .await?;
@@ -297,14 +303,14 @@ impl AuthRepo {
         Ok(())
     }
 
-    pub async fn associate_roles(
+    pub async fn associate_organization_and_roles(
         &self,
         client: &impl GenericClient,
         user_id: Id<User>,
         organization_id: Id<Organization>,
-        roles: &[super::rbac::Role],
+        roles: Option<&[super::rbac::Role]>,
     ) -> Result<()> {
-        let role_ids = roles.iter().map(|r| r.into()).collect_vec();
+        let role_ids = roles.map(|r| r.iter().map(|r| r.into()).collect_vec());
         upsert_user_organization()
             .params(
                 client,

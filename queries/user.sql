@@ -154,7 +154,7 @@ DELETE FROM "user"
 WHERE id = :id;
 
 --
---! upsert_user_organization
+--! upsert_user_organization (role_ids?)
 INSERT INTO user_organization (
     user_id,
     organization_id,
@@ -166,7 +166,7 @@ VALUES (
     :role_ids
 )
 ON CONFLICT ON CONSTRAINT user_organization_uq
-DO UPDATE SET role_ids = excluded.role_ids;
+DO UPDATE SET role_ids = coalesce(excluded.role_ids, user_organization.role_ids);
 
 --
 --! get_user_password_hash

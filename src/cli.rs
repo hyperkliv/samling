@@ -401,7 +401,7 @@ pub async fn run() -> CliResult<()> {
                     let user = AuthRepo.get_user(&client, user_id).await?;
                     let org = OrgRepo.get(&client, organization_id).await?;
                     AuthRepo
-                        .associate_roles(&client, user.id, org.id, &roles)
+                        .associate_organization_and_roles(&client, user.id, org.id, Some(&roles))
                         .await?;
                     println!(
                         "Successfully associated roles {} on org {org} to user {user}",

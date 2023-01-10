@@ -5729,275 +5729,6 @@ WHERE organization_id = $1
             }
         }
     }
-    pub mod last_updated {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
-        #[derive(Debug)]
-        pub struct NestedStylesLastModifiedAtParams<T1: cornucopia_async::ArraySql<Item = i32>> {
-            pub organization_id: i32,
-            pub collection_ids: Option<T1>,
-        }
-        pub struct TimeOffsetDateTimeQuery<'a, C: GenericClient, T, const N: usize> {
-            client: &'a C,
-            params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
-            extractor: fn(&tokio_postgres::Row) -> time::OffsetDateTime,
-            mapper: fn(time::OffsetDateTime) -> T,
-        }
-        impl<'a, C, T: 'a, const N: usize> TimeOffsetDateTimeQuery<'a, C, T, N>
-        where
-            C: GenericClient,
-        {
-            pub fn map<R>(
-                self,
-                mapper: fn(time::OffsetDateTime) -> R,
-            ) -> TimeOffsetDateTimeQuery<'a, C, R, N> {
-                TimeOffsetDateTimeQuery {
-                    client: self.client,
-                    params: self.params,
-                    stmt: self.stmt,
-                    extractor: self.extractor,
-                    mapper,
-                }
-            }
-            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
-                let stmt = self.stmt.prepare(self.client).await?;
-                let row = self.client.query_one(stmt, &self.params).await?;
-                Ok((self.mapper)((self.extractor)(&row)))
-            }
-            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
-                self.iter().await?.try_collect().await
-            }
-            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
-                let stmt = self.stmt.prepare(self.client).await?;
-                Ok(self
-                    .client
-                    .query_opt(stmt, &self.params)
-                    .await?
-                    .map(|row| (self.mapper)((self.extractor)(&row))))
-            }
-            pub async fn iter(
-                self,
-            ) -> Result<
-                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
-                tokio_postgres::Error,
-            > {
-                let stmt = self.stmt.prepare(self.client).await?;
-                let it = self
-                    .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
-                    .await?
-                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
-                    .into_stream();
-                Ok(it)
-            }
-        }
-        pub fn nested_styles_last_modified_at() -> NestedStylesLastModifiedAtStmt {
-            NestedStylesLastModifiedAtStmt(cornucopia_async::private::Stmt::new(
-                "SELECT max(t.updated_at) FROM (
-    (
-        SELECT attribute.updated_at
-        FROM
-            attribute
-        WHERE
-            attribute.organization_id = $1
-        ORDER BY attribute.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT attributetype.updated_at
-        FROM
-            attributetype
-        WHERE
-            attributetype.organization_id = $1
-        ORDER BY attributetype.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT category.updated_at
-        FROM
-            category
-        WHERE
-            category.organization_id = $1
-        ORDER BY category.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT collection.updated_at
-        FROM
-            collection
-        WHERE
-            collection.organization_id = $1 AND (
-                $2::int[] IS NULL OR collection.id = any($2)
-            )
-        ORDER BY collection.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT color.updated_at
-        FROM
-            color
-        WHERE
-            color.organization_id = $1
-        ORDER BY color.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT image.updated_at
-        FROM
-            image
-        WHERE
-            image.organization_id = $1
-        ORDER BY image.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT pricelist.updated_at
-        FROM
-            pricelist
-        WHERE
-            pricelist.organization_id = $1
-        ORDER BY pricelist.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT price.updated_at
-        FROM
-            price
-        WHERE
-            price.organization_id = $1
-        ORDER BY price.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT size.updated_at
-        FROM
-            size
-        WHERE
-            size.organization_id = $1
-        ORDER BY size.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT style.updated_at
-        FROM
-            style
-        WHERE
-            style.organization_id = $1
-        ORDER BY style.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT collection_pricelist.updated_at
-        FROM
-            collection_pricelist
-        INNER JOIN
-            collection ON collection.id = collection_pricelist.collection_id
-        WHERE
-            collection.organization_id = $1 AND (
-                $2::int[] IS NULL OR collection.id = any($2)
-            )
-        ORDER BY collection_pricelist.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT new_collection_style.updated_at
-        FROM
-            new_collection_style
-        INNER JOIN
-            collection ON collection.id = new_collection_style.collection_id
-        WHERE
-            collection.organization_id = $1 AND (
-                $2::int[] IS NULL OR collection.id = any($2)
-            )
-        ORDER BY new_collection_style.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT new_collection_color.updated_at
-        FROM
-            new_collection_color
-        INNER JOIN
-            collection ON collection.id = new_collection_color.collection_id
-        WHERE
-            collection.organization_id = $1 AND (
-                $2::int[] IS NULL OR collection.id = any($2)
-            )
-        ORDER BY new_collection_color.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT size_collection.updated_at
-        FROM
-            size_collection
-        INNER JOIN
-            collection ON collection.id = size_collection.collection_id
-        WHERE
-            collection.organization_id = $1 AND (
-                $2::int[] IS NULL OR collection.id = any($2)
-            )
-        ORDER BY size_collection.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT style_attribute.updated_at
-        FROM
-            style_attribute
-        INNER JOIN
-            style ON style.id = style_attribute.style_id
-        WHERE
-            style.organization_id = $1
-        ORDER BY style_attribute.updated_at DESC LIMIT 1
-    )
-    UNION ALL
-    (
-        SELECT style_category.updated_at
-        FROM
-            style_category
-        INNER JOIN
-            style ON style.id = style_category.style_id
-        WHERE
-            style.organization_id = $1
-        ORDER BY style_category.updated_at DESC LIMIT 1
-    )
-) AS t",
-            ))
-        }
-        pub struct NestedStylesLastModifiedAtStmt(cornucopia_async::private::Stmt);
-        impl NestedStylesLastModifiedAtStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
-                &'a mut self,
-                client: &'a C,
-                organization_id: &'a i32,
-                collection_ids: &'a Option<T1>,
-            ) -> TimeOffsetDateTimeQuery<'a, C, time::OffsetDateTime, 2> {
-                TimeOffsetDateTimeQuery {
-                    client,
-                    params: [organization_id, collection_ids],
-                    stmt: &mut self.0,
-                    extractor: |row| row.get(0),
-                    mapper: |it| it,
-                }
-            }
-        }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
-                'a,
-                NestedStylesLastModifiedAtParams<T1>,
-                TimeOffsetDateTimeQuery<'a, C, time::OffsetDateTime, 2>,
-                C,
-            > for NestedStylesLastModifiedAtStmt
-        {
-            fn params(
-                &'a mut self,
-                client: &'a C,
-                params: &'a NestedStylesLastModifiedAtParams<T1>,
-            ) -> TimeOffsetDateTimeQuery<'a, C, time::OffsetDateTime, 2> {
-                self.bind(client, &params.organization_id, &params.collection_ids)
-            }
-        }
-    }
     pub mod misc {
         use cornucopia_async::GenericClient;
         use futures;
@@ -10445,7 +10176,7 @@ id",
         pub struct UpsertUserOrganizationParams<T1: cornucopia_async::ArraySql<Item = i32>> {
             pub user_id: i32,
             pub organization_id: i32,
-            pub role_ids: T1,
+            pub role_ids: Option<T1>,
         }
         #[derive(Debug)]
         pub struct ReplaceUserGroupsParams<T1: cornucopia_async::ArraySql<Item = i32>> {
@@ -11135,7 +10866,7 @@ VALUES (
     $3
 )
 ON CONFLICT ON CONSTRAINT user_organization_uq
-DO UPDATE SET role_ids = excluded.role_ids",
+DO UPDATE SET role_ids = coalesce(excluded.role_ids, user_organization.role_ids)",
             ))
         }
         pub struct UpsertUserOrganizationStmt(cornucopia_async::private::Stmt);
@@ -11145,7 +10876,7 @@ DO UPDATE SET role_ids = excluded.role_ids",
                 client: &'a C,
                 user_id: &'a i32,
                 organization_id: &'a i32,
-                role_ids: &'a T1,
+                role_ids: &'a Option<T1>,
             ) -> Result<u64, tokio_postgres::Error> {
                 let stmt = self.0.prepare(client).await?;
                 client
