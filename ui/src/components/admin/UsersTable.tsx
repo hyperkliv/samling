@@ -24,6 +24,7 @@ import {
   getRoleDetail,
   Viewer,
 } from "../../roles";
+import { cloudflareImageUrl } from "../../images";
 
 interface Props {
   allUsers: User[];
@@ -76,6 +77,8 @@ export default function UsersTable({
       } as OrgUser;
     });
   }, [users, activeOrganization]);
+  let orgUser = orgUsers.find((orgUser) => orgUser.user.id === 138);
+  console.log(orgUser);
   const allOrgUsers = useMemo(() => {
     return allUsers.map((user) => {
       const roles = user.organizations.find(
@@ -246,7 +249,16 @@ export default function UsersTable({
                       <tr key={user.id}>
                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                           <div className="flex items-center">
-                            <div>
+                            <div className="h-8 w-8 mr-4">
+                            {user.profile_image && (
+                              <img
+                                className="h-8 w-auto"
+                                src={cloudflareImageUrl(user.profile_image, "thumbnail")}
+                                alt={t`${user.name} profile`}
+                              />
+                            )}
+                            </div>
+                            <div className="overflow-hidden overflow-ellipsis">
                               <div className="font-medium text-gray-900">
                                 {user.name}
                               </div>
