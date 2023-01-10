@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.2](https://github.com/hyperkliv/samling/compare/v0.2.1...v0.2.2) (2023-01-10)
+
+
+### Bug Fixes
+
+* Add profile image to user admin table ([58fe93d](https://github.com/hyperkliv/samling/commit/58fe93d9b34e2ec6517c49bb1aa62b33ba350f70))
+* **admin:** User wasn't added to organization on create ([214f2b0](https://github.com/hyperkliv/samling/commit/214f2b0f15e44a6c27bf6cc87becb171d6ec4253))
+* **admin:** Users without groups weren't visible ([ae0611b](https://github.com/hyperkliv/samling/commit/ae0611b9c4c14786f27eec108059a9d7d9d16de4))
+
 ## [0.2.1](https://github.com/hyperkliv/samling/compare/v0.2.0...v0.2.1) (2023-01-10)
 
 
