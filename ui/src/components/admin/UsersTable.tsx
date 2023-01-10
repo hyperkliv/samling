@@ -77,8 +77,6 @@ export default function UsersTable({
       } as OrgUser;
     });
   }, [users, activeOrganization]);
-  let orgUser = orgUsers.find((orgUser) => orgUser.user.id === 138);
-  console.log(orgUser);
   const allOrgUsers = useMemo(() => {
     return allUsers.map((user) => {
       const roles = user.organizations.find(

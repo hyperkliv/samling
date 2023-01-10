@@ -22,7 +22,7 @@ export default function AdminUsersPage() {
   const userFilters = useMemo(
     () => ({
       roles: userRolesFilter,
-      groups: userGroupsFilter.map((g) => ({ id: g.id })),
+      groups: userGroupsFilter.length === 0 ? null : userGroupsFilter.map((g) => ({ id: g.id })),
     }),
     [userRolesFilter, userGroupsFilter],
   );
