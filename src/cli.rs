@@ -75,6 +75,7 @@ struct Cli {
 
 #[derive(clap::Subcommand, Debug)]
 enum Subcommand {
+    Version,
     Serve {
         #[arg(long, env = "APP_HOST", default_value_t = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1)))]
         host: IpAddr,
@@ -243,6 +244,10 @@ pub async fn run() -> CliResult<()> {
     )?;
 
     match cli.subcommand {
+        Subcommand::Version => {
+            println!("{}", env!("CARGO_PKG_VERSION"));
+            Ok(())
+        }
         Subcommand::Serve {
             host,
             port,
