@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/hyperkliv/samling/compare/v0.2.2...v0.3.0) (2023-01-16)
+
+
+### Features
+
+* **cli:** Add `version` command ([2d9feca](https://github.com/hyperkliv/samling/commit/2d9fecaa34ac0d5058020099e516fb054c959e76))
+
+
+### Bug Fixes
+
+* **export:** Replace "Yes (0) No (0)" with "No" for New Color field ([4189819](https://github.com/hyperkliv/samling/commit/4189819794082eb25874e78729a05a5c48d2eb7c))
+* Prices weren't showing on lower resolutions in collection table ([3bebd4a](https://github.com/hyperkliv/samling/commit/3bebd4a43eda09dc5364ce2ddbeaae01ffd09980))
+
 ## [0.2.2](https://github.com/hyperkliv/samling/compare/v0.2.1...v0.2.2) (2023-01-10)
 
 
