@@ -414,7 +414,7 @@ impl Value {
                     counts.remove(&false).unwrap_or_default(),
                 ) {
                     (1.., 0) => "Yes".into(),
-                    (0, 1..) => "No".into(),
+                    (0, 0..) => "No".into(),
                     (yes, no) => [format!("Yes ({yes})"), format!("No ({no})")].join(separator),
                 }
             }
