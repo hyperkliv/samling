@@ -82,7 +82,7 @@ export default function CollectionTable({
         <div className="mt-8 flex flex-col">
           <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="block min-w-full print:w-auto py-2 align-middle md:px-6 lg:px-8">
-              <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5">
+              <div className="shadow ring-1 ring-black ring-opacity-5">
                 <table className="min-w-full print:w-auto divide-y divide-gray-300">
                   <thead className="bg-gray-50 print:hidden">
                     <tr key={0}>

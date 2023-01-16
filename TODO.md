@@ -1,5 +1,4 @@
 ## Low priority
-- fix: Unit prices column not visible on iPad in landscape mode
 - feat: "Status" filter
 - feat: "Unit of Measurement" filter
 - feat: "Missing product imagery" filter
