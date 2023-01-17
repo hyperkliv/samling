@@ -44,7 +44,7 @@ jobs:
   cargo-deny:
     runs-on: ubuntu-latest
     steps:
-      - uses: jacobsvante/cargo-deny-action@15da055fe62394091f3e7da8dbd8b5238ec0c883
+      - uses: jacobsvante/cargo-deny-action@v1
 
   create-release-pr:
     name: Conditionally create release PR
