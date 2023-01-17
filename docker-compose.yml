@@ -6,7 +6,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     env_file: []
     environment:
       LOG_LEVEL: info
@@ -25,5 +26,10 @@ services:
       POSTGRES_DB: samling
       POSTGRES_USER: samling
       POSTGRES_PASSWORD: samling
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
     ports:
       - "5432"
