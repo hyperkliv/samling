@@ -52,6 +52,7 @@ jobs:
       - name: Start postgres container
         run: |
           docker run \
+            --name postgres \
             --network test \
             --rm \
             --detach \
@@ -60,6 +61,7 @@ jobs:
             --env POSTGRES_PASSWORD=samling \
             --hostname postgres \
             postgres:14.5-alpine3.16
+          until docker exec postgres pg_isready; do sleep 0.5; done
       - name: Start samling container
         run: |
           docker run \
