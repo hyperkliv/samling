@@ -4,16 +4,22 @@ import { Trans } from "@lingui/macro";
 import { Dispatch, SetStateAction, useMemo, useRef, useState } from "react";
 import { cloudflareImageUrl } from "../../images";
 import { classNames } from "../../utils";
-import { SearchableFilterItem } from "../filters/SearchableFilter";
 
 const DEFAULT_NUM_SELECTED_VISIBLE = 3;
+
+interface FilterItem {
+  id?: number | string | null;
+  title: string;
+  subtitle?: string | null;
+  imageUrl?: string | null;
+}
 
 interface MultipleComboboxProps<T> {
   title?: string;
   allItems: T[];
   selectedItems: T[];
   setSelectedItems: Dispatch<SetStateAction<T[]>>;
-  toFilterItem: (item: T) => SearchableFilterItem;
+  toFilterItem: (item: T) => FilterItem;
   numSelectedVisible?: number;
 }
 
@@ -28,7 +34,7 @@ export default function MultipleCombobox<T>({
   const [query, setQuery] = useState("");
   const comboboxButton = useRef<HTMLButtonElement>(null);
   const allItemsMap = useMemo(() => {
-    const map: Map<T, SearchableFilterItem> = new Map();
+    const map: Map<T, FilterItem> = new Map();
     allItems.forEach((item) => {
       map.set(item, toFilterItem(item));
     });
@@ -50,7 +56,7 @@ export default function MultipleCombobox<T>({
     () =>
       selectedItems
         .map((item) => allItemsMap.get(item))
-        .filter((x) => x !== undefined) as SearchableFilterItem[],
+        .filter((x) => x !== undefined) as FilterItem[],
     [allItemsMap, selectedItems],
   );
 
@@ -75,11 +81,11 @@ export default function MultipleCombobox<T>({
           results.push(item);
         }
         return results;
-      }, [] as SearchableFilterItem[]);
+      }, [] as FilterItem[]);
     }
   }, [query, allFilterItems]);
 
-  function remove(filterItem: SearchableFilterItem) {
+  function remove(filterItem: FilterItem) {
     const item = allFilterItemsMap.get(filterItem);
     if (item !== undefined) {
       setSelectedItems(selectedItems.filter((otherItem) => otherItem !== item));
@@ -118,7 +124,7 @@ export default function MultipleCombobox<T>({
             .filter((_, idx) => idx < numSelectedVisible)
             .map((filterItem) => (
               <span
-                key={filterItem.id}
+                key={filterItem.id || filterItem.title}
                 className="inline-flex items-center rounded-full bg-indigo-100 mx-0.5 px-2 py-0.5 text-xs text-indigo-800"
               >
                 <span
@@ -170,7 +176,7 @@ export default function MultipleCombobox<T>({
           <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
             {filteredResults.map((item) => (
               <Combobox.Option
-                key={item.id}
+                key={item.id || item.title}
                 value={item}
                 className={({ active }) =>
                   classNames(

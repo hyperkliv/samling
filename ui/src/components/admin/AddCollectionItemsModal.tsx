@@ -179,7 +179,6 @@ export default function AddCollectionItemsModal({
                           selectedItems={filteredStatuses}
                           setSelectedItems={setFilteredStatuses}
                           toFilterItem={(status) => ({
-                            id: status,
                             title: status,
                           })}
                         />
