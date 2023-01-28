@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/hyperkliv/samling/compare/v0.3.1...v0.4.0) (2023-01-28)
+
+
+### Features
+
+* **admin:** Item filter choices endpoint ([b385709](https://github.com/hyperkliv/samling/commit/b38570909a5a0a88034d0193b2b922be0318c9f6))
+
+
+### Bug Fixes
+
+* Update dependencies ([448b165](https://github.com/hyperkliv/samling/commit/448b165ce651478c1b94899a7007ae72b887d0f9))
+
 ## [0.3.1](https://github.com/hyperkliv/samling/compare/v0.3.0...v0.3.1) (2023-01-17)
 
 
