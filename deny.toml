@@ -47,11 +47,7 @@ yanked = "warn"
 notice = "warn"
 # A list of advisory IDs to ignore. Note that ignored advisories will still
 # output a note when they are encountered.
-ignore = [
-    # Because of the `chrono` dependency that rust_xlsxwriter brings in.
-    # TODO: https://github.com/jmcnamara/rust_xlsxwriter/issues/6
-    "RUSTSEC-2020-0071",
-]
+ignore = []
 # Threshold for security vulnerabilities, any vulnerability with a CVSS score
 # lower than the range specified will be ignored. Note that ignored advisories
 # will still output a note when they are encountered.
@@ -79,7 +75,6 @@ allow = [
     "BSD-3-Clause",
     "OpenSSL",  # NOTE: For `ring`
     "Unicode-DFS-2016",
-    "CC0-1.0",
 ]
 # List of explicitly disallowed licenses
 # See https://spdx.org/licenses/ for list of possible licenses
@@ -197,6 +192,4 @@ unknown-git = "warn"
 # if not specified. If it is specified but empty, no registries are allowed.
 allow-registry = ["https://github.com/rust-lang/crates.io-index"]
 # List of URLs for allowed Git repositories
-allow-git = [
-    "https://github.com/jacobsvante/cornucopia"
-]
+allow-git = []
