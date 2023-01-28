@@ -7,31 +7,20 @@ import {
   Fragment,
   SetStateAction,
   useEffect,
-  useMemo,
   useState,
 } from "react";
-import { useCategories, useNestedStyles } from "../../api";
+import { useNestedStyles } from "../../api";
 import { useLocalize } from "../../i18n";
+import { cloudflareImageUrl } from "../../images";
 import { EditableStyle, makeEditableStyle } from "../../types/admin";
 import {
-  Category,
+  EntityFilterChoice,
+  ItemFilterChoices,
   NestedStyle,
   NestedStyleSummary,
   StyleFilters,
 } from "../../types/api";
 import MultipleCombobox from "./MultipleCombobox";
-
-// TODO: Make filters available
-const ALL_STATUSES_HARDCODED_TEMP: ItemStatus[] = [
-  "REGULJÄR",
-  "REGULJÄR M",
-  "SPECIAL",
-  "BLIV UTG",
-  "UTGÅENDE M",
-  "PROV",
-  "UTGÅENDE",
-  "SPÄRRAD",
-];
 
 type ItemStatus = string;
 
@@ -41,39 +30,34 @@ export default function AddCollectionItemsModal({
   collectionStylesMap,
   allNestedStylesMap,
   setEditableStyles,
+  itemFilterChoices,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   collectionStylesMap: Map<number, NestedStyle>;
   allNestedStylesMap: Map<number, NestedStyleSummary>;
   setEditableStyles: Dispatch<SetStateAction<EditableStyle[]>>;
+  itemFilterChoices: ItemFilterChoices;
 }) {
   const { i18nDbText } = useLocalize();
-  const allNestedStyles = useMemo(
-    () => Array.from(allNestedStylesMap.values()),
-    [allNestedStylesMap],
-  );
 
   const [filters, setFilters] = useState(() => ({} as StyleFilters));
   const [nestedStylesResult] = useNestedStyles(filters);
   const nestedStyles = nestedStylesResult.unwrapOr([]) || [];
 
   // Status filter
-  const allStatuses = useMemo(() => ALL_STATUSES_HARDCODED_TEMP, []);
   const [filteredStatuses, setFilteredStatuses] = useState(
     () => [] as ItemStatus[],
   );
 
   // Style filter
   const [filteredStyles, setFilteredStyles] = useState(
-    () => [] as NestedStyleSummary[],
+    () => [] as EntityFilterChoice[],
   );
 
   // Category filter
-  const [allCategoriesResult] = useCategories();
-  const allCategories = allCategoriesResult.unwrapOr([]) || [];
   const [filteredCategories, setFilteredCategories] = useState(
-    () => [] as Category[],
+    () => [] as EntityFilterChoice[],
   );
 
   // Apply filters
@@ -175,7 +159,7 @@ export default function AddCollectionItemsModal({
                       <div className="my-5">
                         <MultipleCombobox
                           title={t`Status`}
-                          allItems={allStatuses}
+                          allItems={itemFilterChoices.status}
                           selectedItems={filteredStatuses}
                           setSelectedItems={setFilteredStatuses}
                           toFilterItem={(status) => ({
@@ -186,27 +170,28 @@ export default function AddCollectionItemsModal({
                       <div className="my-5">
                         <MultipleCombobox
                           title={t`Categories`}
-                          allItems={allCategories}
+                          allItems={itemFilterChoices.category}
                           selectedItems={filteredCategories}
                           setSelectedItems={setFilteredCategories}
-                          toFilterItem={(category) => ({
-                            id: category.id,
-                            title: i18nDbText(category.name),
+                          toFilterItem={(choice) => ({
+                            id: choice.id,
+                            title: i18nDbText(choice.title),
+                            subtitle: choice.subtitle ? i18nDbText(choice.subtitle) : '',
+                            imageUrl: choice.image ? cloudflareImageUrl(choice.image.url, "thumbnail") : null,
                           })}
                         />
                       </div>
                       <div className="my-5">
                         <MultipleCombobox
                           title={t`Style`}
-                          allItems={allNestedStyles}
+                          allItems={itemFilterChoices.style}
                           selectedItems={filteredStyles}
                           setSelectedItems={setFilteredStyles}
-                          toFilterItem={(style) => ({
-                            imageUrl: style.colors.find(() => true)
-                              ?.primary_image?.url,
-                            id: style.id,
-                            title: i18nDbText(style.name),
-                            subtitle: style.number,
+                          toFilterItem={(choice) => ({
+                            id: choice.id,
+                            title: i18nDbText(choice.title),
+                            subtitle: choice.subtitle ? i18nDbText(choice.subtitle) : '',
+                            imageUrl: choice.image ? cloudflareImageUrl(choice.image.url, "thumbnail") : null,
                           })}
                         />
                       </div>

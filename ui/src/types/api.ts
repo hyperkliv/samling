@@ -655,9 +655,10 @@ export enum GroupBy {
 }
 
 export interface FiltersSchema {
-    collection: CollectionFilters;
-    style:      StyleFilters;
-    user:       UserFilters;
+    collection:          CollectionFilters;
+    item_filter_choices: ItemFilterChoices;
+    style:               StyleFilters;
+    user:                UserFilters;
 }
 
 export interface CollectionFilters {
@@ -681,6 +682,19 @@ export interface RefForCategory {
     id?:          number;
     external_id?: string;
     slug?:        string;
+}
+
+export interface ItemFilterChoices {
+    category: EntityFilterChoice[];
+    status:   string[];
+    style:    EntityFilterChoice[];
+}
+
+export interface EntityFilterChoice {
+    id:        number;
+    image?:    null | ImageSummary;
+    subtitle?: null | I18NString;
+    title:     I18NString;
 }
 
 export interface UserFilters {
@@ -1287,6 +1301,22 @@ export class Convert {
 
     public static refForCategoryToJson(value: RefForCategory): any {
         return uncast(value, r("RefForCategory"));
+    }
+
+    public static toItemFilterChoices(json: any): ItemFilterChoices {
+        return cast(json, r("ItemFilterChoices"));
+    }
+
+    public static itemFilterChoicesToJson(value: ItemFilterChoices): any {
+        return uncast(value, r("ItemFilterChoices"));
+    }
+
+    public static toEntityFilterChoice(json: any): EntityFilterChoice {
+        return cast(json, r("EntityFilterChoice"));
+    }
+
+    public static entityFilterChoiceToJson(value: EntityFilterChoice): any {
+        return uncast(value, r("EntityFilterChoice"));
     }
 
     public static toUserFilters(json: any): UserFilters {
@@ -1937,6 +1967,7 @@ const typeMap: any = {
     ], "any"),
     "FiltersSchema": o([
         { json: "collection", js: "collection", typ: r("CollectionFilters") },
+        { json: "item_filter_choices", js: "item_filter_choices", typ: r("ItemFilterChoices") },
         { json: "style", js: "style", typ: r("StyleFilters") },
         { json: "user", js: "user", typ: r("UserFilters") },
     ], "any"),
@@ -1960,6 +1991,17 @@ const typeMap: any = {
         { json: "external_id", js: "external_id", typ: u(undefined, "") },
         { json: "slug", js: "slug", typ: u(undefined, "") },
     ], false),
+    "ItemFilterChoices": o([
+        { json: "category", js: "category", typ: a(r("EntityFilterChoice")) },
+        { json: "status", js: "status", typ: a("") },
+        { json: "style", js: "style", typ: a(r("EntityFilterChoice")) },
+    ], "any"),
+    "EntityFilterChoice": o([
+        { json: "id", js: "id", typ: 0 },
+        { json: "image", js: "image", typ: u(undefined, u(null, r("ImageSummary"))) },
+        { json: "subtitle", js: "subtitle", typ: u(undefined, u(null, r("I18NString"))) },
+        { json: "title", js: "title", typ: r("I18NString") },
+    ], "any"),
     "UserFilters": o([
         { json: "groups", js: "groups", typ: u(undefined, u(a(r("RefForGroup")), null)) },
         { json: "roles", js: "roles", typ: u(undefined, u(a(r("Role")), null)) },

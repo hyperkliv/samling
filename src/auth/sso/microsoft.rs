@@ -82,8 +82,7 @@ impl MicrosoftClaims {
                         Ok(decoded.claims)
                     }
                     other => Err(Error::InvalidToken(format!(
-                        "Microsoft only supports RSA but got algorithm: {:?}",
-                        other
+                        "Microsoft only supports RSA but got algorithm: {other:?}",
                     ))),
                 }
             } else {

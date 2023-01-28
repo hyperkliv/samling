@@ -15,7 +15,7 @@ use crate::organizations::Organization;
 use crate::{Error, Result};
 
 #[derive(Clone, Serialize, Deserialize, derive_more::Display)]
-#[display(fmt = "{}", _0)]
+#[display(fmt = "{_0}")]
 #[serde(transparent)]
 pub struct Slug<T: RefTarget>(String, PhantomData<T>);
 

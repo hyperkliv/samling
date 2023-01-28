@@ -368,7 +368,7 @@ pub async fn run() -> CliResult<()> {
                 }
                 UsersSubcommand::Delete { id } => {
                     AuthRepo.delete_user(&client, id).await?;
-                    println!("Deleted user with id={}!", id);
+                    println!("Deleted user with id={id}!");
                     Ok(())
                 }
                 UsersSubcommand::Update {
@@ -430,7 +430,7 @@ pub async fn run() -> CliResult<()> {
             let user = AuthRepo.get_user(&client, user_id).await?;
             let claims = jwt_signer.claims(&user)?;
             let token = jwt_signer.encode(claims)?;
-            println!("{}", token);
+            println!("{token}");
             Ok(())
         }
         Subcommand::GenerateTypes => {
@@ -566,6 +566,6 @@ where
 {
     let pos = s
         .find('=')
-        .ok_or_else(|| format!("invalid KEY=value: no `=` found in `{}`", s))?;
+        .ok_or_else(|| format!("invalid KEY=value: no `=` found in `{s}`"))?;
     Ok((s[..pos].parse()?, s[pos + 1..].parse()?))
 }

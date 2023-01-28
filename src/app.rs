@@ -19,8 +19,8 @@ use crate::errors::{CliResult, Result};
 use crate::routes::AppRouter;
 use crate::state::AppState;
 use crate::{
-    attributes, auth, categories, collections, colors, exports, images, organizations, prices,
-    sizes, styles, Environment, Error,
+    admin, attributes, auth, categories, collections, colors, exports, images, organizations,
+    prices, sizes, styles, Environment, Error,
 };
 
 pub async fn serve(
@@ -60,7 +60,8 @@ pub async fn serve(
             .merge(categories::routes::org_routes())
             .merge(images::routes::org_routes())
             .merge(prices::routes::org_routes())
-            .merge(exports::routes::org_routes()),
+            .merge(exports::routes::org_routes())
+            .merge(admin::routes::org_routes()),
     );
     let api_router = AppRouter::new()
         .merge(auth::routes::global_routes())

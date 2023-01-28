@@ -1,3 +1,4 @@
+mod admin;
 mod app;
 mod attributes;
 mod auth;
@@ -28,6 +29,7 @@ mod state;
 mod styles;
 mod traits;
 
+pub(crate) use admin::*;
 pub use app::*;
 pub use attributes::*;
 pub use auth::*;

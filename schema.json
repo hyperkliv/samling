@@ -1246,6 +1246,7 @@
       "type": "object",
       "required": [
         "collection",
+        "item_filter_choices",
         "style",
         "user"
       ],
@@ -1258,6 +1259,9 @@
         },
         "collection": {
           "$ref": "#/definitions/CollectionFilters"
+        },
+        "item_filter_choices": {
+          "$ref": "#/definitions/ItemFilterChoices"
         }
       }
     },
@@ -1464,6 +1468,100 @@
       "properties": {
         "styles": {
           "$ref": "#/definitions/StyleFilters"
+        }
+      }
+    },
+    "ItemFilterChoices": {
+      "type": "object",
+      "required": [
+        "category",
+        "status",
+        "style"
+      ],
+      "properties": {
+        "status": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StringFilterChoice"
+          }
+        },
+        "category": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EntityFilterChoice"
+          }
+        },
+        "style": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EntityFilterChoice"
+          }
+        }
+      }
+    },
+    "StringFilterChoice": {
+      "type": "string"
+    },
+    "EntityFilterChoice": {
+      "type": "object",
+      "required": [
+        "id",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "$ref": "#/definitions/I18nString"
+        },
+        "subtitle": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/I18nString"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImageSummary"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "ImageSummary": {
+      "description": "Image summary",
+      "type": "object",
+      "required": [
+        "id",
+        "url"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExternalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       }
     },
@@ -2024,33 +2122,6 @@
           "type": [
             "boolean",
             "null"
-          ]
-        }
-      }
-    },
-    "ImageSummary": {
-      "description": "Image summary",
-      "type": "object",
-      "required": [
-        "id",
-        "url"
-      ],
-      "properties": {
-        "id": {
-          "$ref": "#/definitions/Id"
-        },
-        "url": {
-          "type": "string",
-          "format": "uri"
-        },
-        "external_id": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ExternalId"
-            },
-            {
-              "type": "null"
-            }
           ]
         }
       }

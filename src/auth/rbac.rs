@@ -82,6 +82,7 @@ pub enum Permission {
     DeleteGroup,
     GetGroup,
     ListGroups,
+    ListFilterChoices,
 }
 
 use Permission::*;
@@ -224,6 +225,7 @@ impl Role {
             ListCollectionItems,
             ListCollections,
             ListColors,
+            ListFilterChoices,
             ListGroups,
             ListImages,
             ListOrganizations,

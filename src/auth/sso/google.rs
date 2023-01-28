@@ -51,8 +51,7 @@ impl GoogleClaims {
                         }
                     }
                     other => Err(Error::InvalidToken(format!(
-                        "Google only supports RSA but got algorithm: {:?}",
-                        other
+                        "Google only supports RSA but got algorithm: {other:?}"
                     ))),
                 }
             } else {

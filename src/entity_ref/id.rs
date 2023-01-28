@@ -12,7 +12,7 @@ use super::{Ref, RefTarget, RefType};
 use crate::Error;
 
 #[derive(Serialize, Deserialize, derive_more::Display)]
-#[display(fmt = "{}", _0)]
+#[display(fmt = "{_0}")]
 #[serde(transparent)]
 pub struct Id<T: RefTarget>(i32, PhantomData<T>);
 

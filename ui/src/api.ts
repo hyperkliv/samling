@@ -31,6 +31,7 @@ import {
   StyleFilters,
   NestedStyleSummary,
   Category,
+  ItemFilterChoices,
 } from "./types/api";
 import { useAppDispatch, useAppSelector } from "./state/hooks";
 import { useEffect, useState } from "react";
@@ -64,6 +65,10 @@ interface ApiSurface {
     organizationId: number,
     userId: number,
   ) => Promise<Result<User, ApiErrorResponse>>;
+  fetchItemFilterChoices: (
+    token: string,
+    organizationId: number,
+  ) => Promise<Result<ItemFilterChoices, ApiErrorResponse>>;
   fetchColors: (
     token: string,
     organizationId: number,
@@ -380,6 +385,14 @@ function makeApi(baseUrl: string): ApiSurface {
       userId: number,
     ): Promise<Result<User, ApiErrorResponse>> {
       return await getJson<User>(`/${organizationId}/users/${userId}`, {
+        token,
+      });
+    },
+    async fetchItemFilterChoices (
+      token: string,
+      organizationId: number,
+    ): Promise<Result<ItemFilterChoices, ApiErrorResponse>> {
+      return await getJson<ItemFilterChoices>(`/${organizationId}/admin/filters/items`, {
         token,
       });
     },
@@ -912,6 +925,25 @@ export function useCollectionList(): [CollectionListFetchResult, () => void] {
   }, [token, activeOrganization, refreshCount]);
 
   return [fetchResult, refresh];
+}
+
+type ItemFilterChoicesFetchResult = Result<ItemFilterChoices | null, ApiErrorResponse>;
+
+export function useItemFilterChoices(): ItemFilterChoicesFetchResult {
+  const { token, activeOrganization } = useAppSelector((state) => state.user);
+  const [fetchResult, setFetchResult] = useState(Ok(null) as ItemFilterChoicesFetchResult);
+  useLogoutOnExpiredToken(fetchResult);
+  useEffect(() => {
+    if (!!token && !!activeOrganization) {
+      api
+        .fetchItemFilterChoices(token as string, activeOrganization.organization.id)
+        .then((result) => {
+          setFetchResult(result);
+        });
+    }
+  }, [token, activeOrganization]);
+
+  return fetchResult;
 }
 
 type ColorsFetchResult = Result<Color[] | null, ApiErrorResponse>;

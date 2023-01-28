@@ -105,6 +105,7 @@ pub(crate) struct FiltersSchema {
     user: UserFilters,
     style: StyleFilters,
     collection: CollectionFilters,
+    item_filter_choices: crate::ItemFilterChoices,
 }
 
 #[derive(JsonSchema)]

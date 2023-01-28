@@ -3,6 +3,7 @@ import base64 from "base64-js";
 import { Plural, t, Trans } from "@lingui/macro";
 import api, {
   useCollectionWithItems,
+  useItemFilterChoices,
   useNestedStyles,
   usePricelists,
 } from "../../../api";
@@ -517,6 +518,7 @@ function CollectionItemsEditor({
   const [indeterminate, setIndeterminate] = useState(false);
   const [selectedItems, setSelectedItems] = useState([] as EditableStyle[]);
   const [addItemsModalOpen, setAddItemsModalOpen] = useState(false);
+  const itemFilterChoices = useItemFilterChoices().unwrapOr(null);
 
   function setStylesEnabled(styles: EditableStyle[], enabled: boolean) {
     setEditableStyles([
@@ -607,13 +609,14 @@ function CollectionItemsEditor({
 
   return (
     <div>
-      <AddCollectionItemsModal
+      {itemFilterChoices && <AddCollectionItemsModal
         collectionStylesMap={collectionStylesMap}
         open={addItemsModalOpen}
         setOpen={setAddItemsModalOpen}
         allNestedStylesMap={allNestedStylesMap}
         setEditableStyles={setEditableStyles}
-      />
+        itemFilterChoices={itemFilterChoices}
+      />}
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">
