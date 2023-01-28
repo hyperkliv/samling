@@ -1,5 +1,6 @@
 use std::{num::NonZeroU32, time::Duration};
 
+use base64::Engine;
 use governor::{
     clock::DefaultClock,
     state::{InMemoryState, NotKeyed},
@@ -113,9 +114,13 @@ impl CloudflareApi {
             ImageSource::Bytes(data) => multipart::Form::new()
                 .part("file", multipart::Part::bytes(data.to_vec()))
                 .text("id", id.to_owned()),
-            ImageSource::Base64(data) => multipart::Form::new()
-                .part("file", multipart::Part::bytes(base64::decode(data)?))
-                .text("id", id.to_owned()),
+            ImageSource::Base64(data) => {
+                let engine = base64::engine::general_purpose::STANDARD;
+                let decoded = engine.decode(data)?;
+                multipart::Form::new()
+                    .part("file", multipart::Part::bytes(decoded))
+                    .text("id", id.to_owned())
+            }
         };
         let ratelimiter = rate_limiter();
         ratelimiter.until_ready().await;
