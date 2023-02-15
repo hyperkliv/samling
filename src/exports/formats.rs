@@ -75,7 +75,7 @@ impl ExportFormat {
                 let mut workbook = rust_xlsxwriter::Workbook::new();
                 let colfmt = rust_xlsxwriter::Format::new().set_bold();
                 let cellfmt = rust_xlsxwriter::Format::new()
-                    .set_align(rust_xlsxwriter::XlsxAlign::Top)
+                    .set_align(rust_xlsxwriter::FormatAlign::Top)
                     .set_text_wrap();
 
                 // Add a worksheet to the workbook.
@@ -84,7 +84,12 @@ impl ExportFormat {
                 let mut max_column_widths = Vec::from_iter(columns.iter().map(|c| c.name().len()));
 
                 for (col_index, col) in columns.iter().enumerate() {
-                    worksheet.write_string(0, col_index as u16, &col.name(), &colfmt)?;
+                    worksheet.write_string_with_format(
+                        0,
+                        col_index as u16,
+                        &col.name(),
+                        &colfmt,
+                    )?;
                 }
 
                 for (row_index, row) in rows.into_iter().enumerate() {
@@ -94,7 +99,7 @@ impl ExportFormat {
                         let value = row.get(col_index).unwrap();
                         let string_value = value.finalize(cell_separator);
                         let line_count = string_value.lines().count() + 1;
-                        worksheet.write_string(
+                        worksheet.write_string_with_format(
                             row_index,
                             col_index as u16,
                             &string_value,
