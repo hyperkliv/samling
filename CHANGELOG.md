@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/hyperkliv/samling/compare/v0.4.0...v0.4.1) (2023-02-28)
+
+
+### Bug Fixes
+
+* Don't allow collection.organization_id to be null ([602cc56](https://github.com/hyperkliv/samling/commit/602cc563fb3818a74aa8c6d426d8cc568e0bf966))
+* Update dependencies ([dcbf68a](https://github.com/hyperkliv/samling/commit/dcbf68a2a0f4558642b31abc5811cf2124b051da))
+
 ## [0.4.0](https://github.com/hyperkliv/samling/compare/v0.3.1...v0.4.0) (2023-01-28)
 
 
