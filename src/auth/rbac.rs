@@ -83,6 +83,7 @@ pub enum Permission {
     GetGroup,
     ListGroups,
     ListFilterChoices,
+    GetAllOrganizationData,
 }
 
 use Permission::*;
@@ -208,6 +209,7 @@ impl Role {
             DeleteStyle,
             DeleteUser,
             ExportStyles,
+            GetAllOrganizationData,
             GetCategory,
             GetCollection,
             GetCollectionItem,

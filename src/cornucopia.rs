@@ -6,7 +6,84 @@
 #[allow(dead_code)]
 pub mod types {
     pub mod public {
-        #[derive(Debug, postgres_types :: FromSql, Copy, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, Copy, PartialEq, Eq)]
+        #[allow(non_camel_case_types)]
+        pub enum Pricetype {
+            Unit,
+            Retail,
+        }
+        impl<'a> postgres_types::ToSql for Pricetype {
+            fn to_sql(
+                &self,
+                ty: &postgres_types::Type,
+                buf: &mut postgres_types::private::BytesMut,
+            ) -> Result<postgres_types::IsNull, Box<dyn std::error::Error + Sync + Send>>
+            {
+                let s = match *self {
+                    Pricetype::Unit => "Unit",
+                    Pricetype::Retail => "Retail",
+                };
+                buf.extend_from_slice(s.as_bytes());
+                std::result::Result::Ok(postgres_types::IsNull::No)
+            }
+            fn accepts(ty: &postgres_types::Type) -> bool {
+                if ty.name() != "pricetype" {
+                    return false;
+                }
+                match *ty.kind() {
+                    postgres_types::Kind::Enum(ref variants) => {
+                        if variants.len() != 2 {
+                            return false;
+                        }
+                        variants.iter().all(|v| match &**v {
+                            "Unit" => true,
+                            "Retail" => true,
+                            _ => false,
+                        })
+                    }
+                    _ => false,
+                }
+            }
+            fn to_sql_checked(
+                &self,
+                ty: &postgres_types::Type,
+                out: &mut postgres_types::private::BytesMut,
+            ) -> Result<postgres_types::IsNull, Box<dyn std::error::Error + Sync + Send>>
+            {
+                postgres_types::__to_sql_checked(self, ty, out)
+            }
+        }
+        impl<'a> postgres_types::FromSql<'a> for Pricetype {
+            fn from_sql(
+                ty: &postgres_types::Type,
+                buf: &'a [u8],
+            ) -> Result<Pricetype, Box<dyn std::error::Error + Sync + Send>> {
+                match std::str::from_utf8(buf)? {
+                    "Unit" => Ok(Pricetype::Unit),
+                    "Retail" => Ok(Pricetype::Retail),
+                    s => Result::Err(Into::into(format!("invalid variant `{}`", s))),
+                }
+            }
+            fn accepts(ty: &postgres_types::Type) -> bool {
+                if ty.name() != "pricetype" {
+                    return false;
+                }
+                match *ty.kind() {
+                    postgres_types::Kind::Enum(ref variants) => {
+                        if variants.len() != 2 {
+                            return false;
+                        }
+                        variants.iter().all(|v| match &**v {
+                            "Unit" => true,
+                            "Retail" => true,
+                            _ => false,
+                        })
+                    }
+                    _ => false,
+                }
+            }
+        }
+        #[derive(serde::Serialize, Debug, postgres_types :: FromSql, Copy, Clone, PartialEq)]
         #[postgres(name = "collection_pricelist_relation")]
         pub struct CollectionPricelistRelation {
             pub pricelist_id: i32,
@@ -90,83 +167,6 @@ pub mod types {
                 postgres_types::__to_sql_checked(self, ty, out)
             }
         }
-        #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-        #[allow(non_camel_case_types)]
-        pub enum Pricetype {
-            Unit,
-            Retail,
-        }
-        impl<'a> postgres_types::ToSql for Pricetype {
-            fn to_sql(
-                &self,
-                ty: &postgres_types::Type,
-                buf: &mut postgres_types::private::BytesMut,
-            ) -> Result<postgres_types::IsNull, Box<dyn std::error::Error + Sync + Send>>
-            {
-                let s = match *self {
-                    Pricetype::Unit => "Unit",
-                    Pricetype::Retail => "Retail",
-                };
-                buf.extend_from_slice(s.as_bytes());
-                std::result::Result::Ok(postgres_types::IsNull::No)
-            }
-            fn accepts(ty: &postgres_types::Type) -> bool {
-                if ty.name() != "pricetype" {
-                    return false;
-                }
-                match *ty.kind() {
-                    postgres_types::Kind::Enum(ref variants) => {
-                        if variants.len() != 2 {
-                            return false;
-                        }
-                        variants.iter().all(|v| match &**v {
-                            "Unit" => true,
-                            "Retail" => true,
-                            _ => false,
-                        })
-                    }
-                    _ => false,
-                }
-            }
-            fn to_sql_checked(
-                &self,
-                ty: &postgres_types::Type,
-                out: &mut postgres_types::private::BytesMut,
-            ) -> Result<postgres_types::IsNull, Box<dyn std::error::Error + Sync + Send>>
-            {
-                postgres_types::__to_sql_checked(self, ty, out)
-            }
-        }
-        impl<'a> postgres_types::FromSql<'a> for Pricetype {
-            fn from_sql(
-                ty: &postgres_types::Type,
-                buf: &'a [u8],
-            ) -> Result<Pricetype, Box<dyn std::error::Error + Sync + Send>> {
-                match std::str::from_utf8(buf)? {
-                    "Unit" => Ok(Pricetype::Unit),
-                    "Retail" => Ok(Pricetype::Retail),
-                    s => Result::Err(Into::into(format!("invalid variant `{}`", s))),
-                }
-            }
-            fn accepts(ty: &postgres_types::Type) -> bool {
-                if ty.name() != "pricetype" {
-                    return false;
-                }
-                match *ty.kind() {
-                    postgres_types::Kind::Enum(ref variants) => {
-                        if variants.len() != 2 {
-                            return false;
-                        }
-                        variants.iter().all(|v| match &**v {
-                            "Unit" => true,
-                            "Retail" => true,
-                            _ => false,
-                        })
-                    }
-                    _ => false,
-                }
-            }
-        }
     }
 }
 #[allow(clippy::all, clippy::pedantic)]
@@ -178,7 +178,7 @@ pub mod queries {
         use cornucopia_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct EntityFilterChoiceRow {
             pub id: i32,
             pub title: serde_json::Value,
@@ -263,7 +263,7 @@ pub mod queries {
                 Ok(it)
             }
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct StringFilterChoiceRow {
             pub title: String,
         }
@@ -295,6 +295,2142 @@ pub mod queries {
                 mapper: fn(StringFilterChoiceRowBorrowed) -> R,
             ) -> StringFilterChoiceRowQuery<'a, C, R, N> {
                 StringFilterChoiceRowQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct UserTableData {
+            pub id: i32,
+            pub name: String,
+            pub email: String,
+            pub password_hash: Option<String>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub profile_image: Option<String>,
+            pub last_sign_in: Option<time::OffsetDateTime>,
+        }
+        pub struct UserTableDataBorrowed<'a> {
+            pub id: i32,
+            pub name: &'a str,
+            pub email: &'a str,
+            pub password_hash: Option<&'a str>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub profile_image: Option<&'a str>,
+            pub last_sign_in: Option<time::OffsetDateTime>,
+        }
+        impl<'a> From<UserTableDataBorrowed<'a>> for UserTableData {
+            fn from(
+                UserTableDataBorrowed {
+                    id,
+                    name,
+                    email,
+                    password_hash,
+                    created_at,
+                    updated_at,
+                    profile_image,
+                    last_sign_in,
+                }: UserTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    name: name.into(),
+                    email: email.into(),
+                    password_hash: password_hash.map(|v| v.into()),
+                    created_at,
+                    updated_at,
+                    profile_image: profile_image.map(|v| v.into()),
+                    last_sign_in,
+                }
+            }
+        }
+        pub struct UserTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> UserTableDataBorrowed,
+            mapper: fn(UserTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> UserTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(UserTableDataBorrowed) -> R,
+            ) -> UserTableDataQuery<'a, C, R, N> {
+                UserTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct OrganizationTableData {
+            pub id: i32,
+            pub name: String,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub logo_url: Option<String>,
+        }
+        pub struct OrganizationTableDataBorrowed<'a> {
+            pub id: i32,
+            pub name: &'a str,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub logo_url: Option<&'a str>,
+        }
+        impl<'a> From<OrganizationTableDataBorrowed<'a>> for OrganizationTableData {
+            fn from(
+                OrganizationTableDataBorrowed {
+                    id,
+                    name,
+                    created_by,
+                    created_at,
+                    updated_at,
+                    logo_url,
+                }: OrganizationTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    name: name.into(),
+                    created_by,
+                    created_at,
+                    updated_at,
+                    logo_url: logo_url.map(|v| v.into()),
+                }
+            }
+        }
+        pub struct OrganizationTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> OrganizationTableDataBorrowed,
+            mapper: fn(OrganizationTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> OrganizationTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(OrganizationTableDataBorrowed) -> R,
+            ) -> OrganizationTableDataQuery<'a, C, R, N> {
+                OrganizationTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct GroupTableData {
+            pub id: i32,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub organization_id: i32,
+            pub name: String,
+            pub description: String,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct GroupTableDataBorrowed<'a> {
+            pub id: i32,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub organization_id: i32,
+            pub name: &'a str,
+            pub description: &'a str,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        impl<'a> From<GroupTableDataBorrowed<'a>> for GroupTableData {
+            fn from(
+                GroupTableDataBorrowed {
+                    id,
+                    slug,
+                    external_id,
+                    organization_id,
+                    name,
+                    description,
+                    created_by,
+                    created_at,
+                    updated_at,
+                }: GroupTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    organization_id,
+                    name: name.into(),
+                    description: description.into(),
+                    created_by,
+                    created_at,
+                    updated_at,
+                }
+            }
+        }
+        pub struct GroupTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> GroupTableDataBorrowed,
+            mapper: fn(GroupTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> GroupTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(GroupTableDataBorrowed) -> R,
+            ) -> GroupTableDataQuery<'a, C, R, N> {
+                GroupTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct AttributetypeTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub name: serde_json::Value,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct AttributetypeTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        impl<'a> From<AttributetypeTableDataBorrowed<'a>> for AttributetypeTableData {
+            fn from(
+                AttributetypeTableDataBorrowed {
+                    id,
+                    organization_id,
+                    name,
+                    slug,
+                    external_id,
+                    created_by,
+                    created_at,
+                    updated_at,
+                }: AttributetypeTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    name: serde_json::from_str(name.0.get()).unwrap(),
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    created_by,
+                    created_at,
+                    updated_at,
+                }
+            }
+        }
+        pub struct AttributetypeTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> AttributetypeTableDataBorrowed,
+            mapper: fn(AttributetypeTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> AttributetypeTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(AttributetypeTableDataBorrowed) -> R,
+            ) -> AttributetypeTableDataQuery<'a, C, R, N> {
+                AttributetypeTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct AttributeTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub type_id: i32,
+            pub title: serde_json::Value,
+            pub description: serde_json::Value,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct AttributeTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub type_id: i32,
+            pub title: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub description: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        impl<'a> From<AttributeTableDataBorrowed<'a>> for AttributeTableData {
+            fn from(
+                AttributeTableDataBorrowed {
+                    id,
+                    organization_id,
+                    type_id,
+                    title,
+                    description,
+                    slug,
+                    external_id,
+                    created_by,
+                    created_at,
+                    updated_at,
+                }: AttributeTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    type_id,
+                    title: serde_json::from_str(title.0.get()).unwrap(),
+                    description: serde_json::from_str(description.0.get()).unwrap(),
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    created_by,
+                    created_at,
+                    updated_at,
+                }
+            }
+        }
+        pub struct AttributeTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> AttributeTableDataBorrowed,
+            mapper: fn(AttributeTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> AttributeTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(AttributeTableDataBorrowed) -> R,
+            ) -> AttributeTableDataQuery<'a, C, R, N> {
+                AttributeTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct CategoryTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub name: serde_json::Value,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct CategoryTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        impl<'a> From<CategoryTableDataBorrowed<'a>> for CategoryTableData {
+            fn from(
+                CategoryTableDataBorrowed {
+                    id,
+                    organization_id,
+                    slug,
+                    external_id,
+                    name,
+                    created_by,
+                    created_at,
+                    updated_at,
+                }: CategoryTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    name: serde_json::from_str(name.0.get()).unwrap(),
+                    created_by,
+                    created_at,
+                    updated_at,
+                }
+            }
+        }
+        pub struct CategoryTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> CategoryTableDataBorrowed,
+            mapper: fn(CategoryTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> CategoryTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(CategoryTableDataBorrowed) -> R,
+            ) -> CategoryTableDataQuery<'a, C, R, N> {
+                CategoryTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct CollectionTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub name: serde_json::Value,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub image_url: Option<String>,
+            pub acronym: serde_json::Value,
+        }
+        pub struct CollectionTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub image_url: Option<&'a str>,
+            pub acronym: postgres_types::Json<&'a serde_json::value::RawValue>,
+        }
+        impl<'a> From<CollectionTableDataBorrowed<'a>> for CollectionTableData {
+            fn from(
+                CollectionTableDataBorrowed {
+                    id,
+                    organization_id,
+                    slug,
+                    external_id,
+                    name,
+                    created_by,
+                    created_at,
+                    updated_at,
+                    image_url,
+                    acronym,
+                }: CollectionTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    name: serde_json::from_str(name.0.get()).unwrap(),
+                    created_by,
+                    created_at,
+                    updated_at,
+                    image_url: image_url.map(|v| v.into()),
+                    acronym: serde_json::from_str(acronym.0.get()).unwrap(),
+                }
+            }
+        }
+        pub struct CollectionTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> CollectionTableDataBorrowed,
+            mapper: fn(CollectionTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> CollectionTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(CollectionTableDataBorrowed) -> R,
+            ) -> CollectionTableDataQuery<'a, C, R, N> {
+                CollectionTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct StyleTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub number: String,
+            pub name: serde_json::Value,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub description: serde_json::Value,
+            pub core: Option<bool>,
+            pub country_of_origin: Option<String>,
+            pub tariff_no: Option<String>,
+            pub unit_volume: rust_decimal::Decimal,
+            pub gross_weight: rust_decimal::Decimal,
+            pub net_weight: rust_decimal::Decimal,
+        }
+        pub struct StyleTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub number: &'a str,
+            pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub description: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub core: Option<bool>,
+            pub country_of_origin: Option<&'a str>,
+            pub tariff_no: Option<&'a str>,
+            pub unit_volume: rust_decimal::Decimal,
+            pub gross_weight: rust_decimal::Decimal,
+            pub net_weight: rust_decimal::Decimal,
+        }
+        impl<'a> From<StyleTableDataBorrowed<'a>> for StyleTableData {
+            fn from(
+                StyleTableDataBorrowed {
+                    id,
+                    organization_id,
+                    slug,
+                    external_id,
+                    number,
+                    name,
+                    created_by,
+                    created_at,
+                    updated_at,
+                    description,
+                    core,
+                    country_of_origin,
+                    tariff_no,
+                    unit_volume,
+                    gross_weight,
+                    net_weight,
+                }: StyleTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    number: number.into(),
+                    name: serde_json::from_str(name.0.get()).unwrap(),
+                    created_by,
+                    created_at,
+                    updated_at,
+                    description: serde_json::from_str(description.0.get()).unwrap(),
+                    core,
+                    country_of_origin: country_of_origin.map(|v| v.into()),
+                    tariff_no: tariff_no.map(|v| v.into()),
+                    unit_volume,
+                    gross_weight,
+                    net_weight,
+                }
+            }
+        }
+        pub struct StyleTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> StyleTableDataBorrowed,
+            mapper: fn(StyleTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> StyleTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(StyleTableDataBorrowed) -> R,
+            ) -> StyleTableDataQuery<'a, C, R, N> {
+                StyleTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct ColorTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub style_id: i32,
+            pub number: String,
+            pub name: serde_json::Value,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct ColorTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub style_id: i32,
+            pub number: &'a str,
+            pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        impl<'a> From<ColorTableDataBorrowed<'a>> for ColorTableData {
+            fn from(
+                ColorTableDataBorrowed {
+                    id,
+                    organization_id,
+                    slug,
+                    external_id,
+                    style_id,
+                    number,
+                    name,
+                    created_by,
+                    created_at,
+                    updated_at,
+                }: ColorTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    style_id,
+                    number: number.into(),
+                    name: serde_json::from_str(name.0.get()).unwrap(),
+                    created_by,
+                    created_at,
+                    updated_at,
+                }
+            }
+        }
+        pub struct ColorTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> ColorTableDataBorrowed,
+            mapper: fn(ColorTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> ColorTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(ColorTableDataBorrowed) -> R,
+            ) -> ColorTableDataQuery<'a, C, R, N> {
+                ColorTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct SizeTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub color_id: i32,
+            pub number: String,
+            pub name: serde_json::Value,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub service_item: Option<bool>,
+            pub delivery_period: Option<time::Date>,
+            pub ean_code: Option<String>,
+            pub status: Option<String>,
+            pub position: i16,
+        }
+        pub struct SizeTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub color_id: i32,
+            pub number: &'a str,
+            pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub service_item: Option<bool>,
+            pub delivery_period: Option<time::Date>,
+            pub ean_code: Option<&'a str>,
+            pub status: Option<&'a str>,
+            pub position: i16,
+        }
+        impl<'a> From<SizeTableDataBorrowed<'a>> for SizeTableData {
+            fn from(
+                SizeTableDataBorrowed {
+                    id,
+                    organization_id,
+                    slug,
+                    external_id,
+                    color_id,
+                    number,
+                    name,
+                    created_by,
+                    created_at,
+                    updated_at,
+                    service_item,
+                    delivery_period,
+                    ean_code,
+                    status,
+                    position,
+                }: SizeTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    color_id,
+                    number: number.into(),
+                    name: serde_json::from_str(name.0.get()).unwrap(),
+                    created_by,
+                    created_at,
+                    updated_at,
+                    service_item,
+                    delivery_period,
+                    ean_code: ean_code.map(|v| v.into()),
+                    status: status.map(|v| v.into()),
+                    position,
+                }
+            }
+        }
+        pub struct SizeTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> SizeTableDataBorrowed,
+            mapper: fn(SizeTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> SizeTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(SizeTableDataBorrowed) -> R,
+            ) -> SizeTableDataQuery<'a, C, R, N> {
+                SizeTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct ImageTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub url: String,
+            pub external_id: Option<String>,
+            pub external_checksum: Option<String>,
+            pub position: Option<i32>,
+            pub color_id: i32,
+            pub uploaded_by: Option<i32>,
+            pub uploaded_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct ImageTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub url: &'a str,
+            pub external_id: Option<&'a str>,
+            pub external_checksum: Option<&'a str>,
+            pub position: Option<i32>,
+            pub color_id: i32,
+            pub uploaded_by: Option<i32>,
+            pub uploaded_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        impl<'a> From<ImageTableDataBorrowed<'a>> for ImageTableData {
+            fn from(
+                ImageTableDataBorrowed {
+                    id,
+                    organization_id,
+                    url,
+                    external_id,
+                    external_checksum,
+                    position,
+                    color_id,
+                    uploaded_by,
+                    uploaded_at,
+                    updated_at,
+                }: ImageTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    url: url.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    external_checksum: external_checksum.map(|v| v.into()),
+                    position,
+                    color_id,
+                    uploaded_by,
+                    uploaded_at,
+                    updated_at,
+                }
+            }
+        }
+        pub struct ImageTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> ImageTableDataBorrowed,
+            mapper: fn(ImageTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> ImageTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(ImageTableDataBorrowed) -> R,
+            ) -> ImageTableDataQuery<'a, C, R, N> {
+                ImageTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct PricelistTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub name: String,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct PricelistTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub name: &'a str,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        impl<'a> From<PricelistTableDataBorrowed<'a>> for PricelistTableData {
+            fn from(
+                PricelistTableDataBorrowed {
+                    id,
+                    organization_id,
+                    name,
+                    slug,
+                    external_id,
+                    created_by,
+                    created_at,
+                    updated_at,
+                }: PricelistTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    name: name.into(),
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    created_by,
+                    created_at,
+                    updated_at,
+                }
+            }
+        }
+        pub struct PricelistTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> PricelistTableDataBorrowed,
+            mapper: fn(PricelistTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> PricelistTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(PricelistTableDataBorrowed) -> R,
+            ) -> PricelistTableDataQuery<'a, C, R, N> {
+                PricelistTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct PriceTableData {
+            pub id: i32,
+            pub organization_id: i32,
+            pub r#type: super::super::types::public::Pricetype,
+            pub currency: String,
+            pub uom: Option<String>,
+            pub list_id: i32,
+            pub external_id: Option<String>,
+            pub style_id: i32,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub amount: rust_decimal::Decimal,
+            pub start: time::Date,
+            pub end: time::Date,
+        }
+        pub struct PriceTableDataBorrowed<'a> {
+            pub id: i32,
+            pub organization_id: i32,
+            pub r#type: super::super::types::public::Pricetype,
+            pub currency: &'a str,
+            pub uom: Option<&'a str>,
+            pub list_id: i32,
+            pub external_id: Option<&'a str>,
+            pub style_id: i32,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+            pub amount: rust_decimal::Decimal,
+            pub start: time::Date,
+            pub end: time::Date,
+        }
+        impl<'a> From<PriceTableDataBorrowed<'a>> for PriceTableData {
+            fn from(
+                PriceTableDataBorrowed {
+                    id,
+                    organization_id,
+                    r#type,
+                    currency,
+                    uom,
+                    list_id,
+                    external_id,
+                    style_id,
+                    created_by,
+                    created_at,
+                    updated_at,
+                    amount,
+                    start,
+                    end,
+                }: PriceTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    organization_id,
+                    r#type,
+                    currency: currency.into(),
+                    uom: uom.map(|v| v.into()),
+                    list_id,
+                    external_id: external_id.map(|v| v.into()),
+                    style_id,
+                    created_by,
+                    created_at,
+                    updated_at,
+                    amount,
+                    start,
+                    end,
+                }
+            }
+        }
+        pub struct PriceTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> PriceTableDataBorrowed,
+            mapper: fn(PriceTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> PriceTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(PriceTableDataBorrowed) -> R,
+            ) -> PriceTableDataQuery<'a, C, R, N> {
+                PriceTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct UserOrganizationTableData {
+            pub user_id: i32,
+            pub organization_id: i32,
+            pub updated_at: time::OffsetDateTime,
+            pub role_ids: Vec<i32>,
+        }
+        pub struct UserOrganizationTableDataBorrowed<'a> {
+            pub user_id: i32,
+            pub organization_id: i32,
+            pub updated_at: time::OffsetDateTime,
+            pub role_ids: cornucopia_async::ArrayIterator<'a, i32>,
+        }
+        impl<'a> From<UserOrganizationTableDataBorrowed<'a>> for UserOrganizationTableData {
+            fn from(
+                UserOrganizationTableDataBorrowed {
+                    user_id,
+                    organization_id,
+                    updated_at,
+                    role_ids,
+                }: UserOrganizationTableDataBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    user_id,
+                    organization_id,
+                    updated_at,
+                    role_ids: role_ids.map(|v| v).collect(),
+                }
+            }
+        }
+        pub struct UserOrganizationTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> UserOrganizationTableDataBorrowed,
+            mapper: fn(UserOrganizationTableDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> UserOrganizationTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(UserOrganizationTableDataBorrowed) -> R,
+            ) -> UserOrganizationTableDataQuery<'a, C, R, N> {
+                UserOrganizationTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq, Copy)]
+        pub struct CollectionPricelistTableData {
+            pub collection_id: i32,
+            pub pricelist_id: i32,
+            pub price_date: time::Date,
+            pub created_by: Option<i32>,
+            pub created_at: time::OffsetDateTime,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct CollectionPricelistTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> CollectionPricelistTableData,
+            mapper: fn(CollectionPricelistTableData) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> CollectionPricelistTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(CollectionPricelistTableData) -> R,
+            ) -> CollectionPricelistTableDataQuery<'a, C, R, N> {
+                CollectionPricelistTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq, Copy)]
+        pub struct GroupCollectionTableData {
+            pub collection_id: i32,
+            pub group_id: i32,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct GroupCollectionTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> GroupCollectionTableData,
+            mapper: fn(GroupCollectionTableData) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> GroupCollectionTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(GroupCollectionTableData) -> R,
+            ) -> GroupCollectionTableDataQuery<'a, C, R, N> {
+                GroupCollectionTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq, Copy)]
+        pub struct GroupPricelistTableData {
+            pub pricelist_id: i32,
+            pub group_id: i32,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct GroupPricelistTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> GroupPricelistTableData,
+            mapper: fn(GroupPricelistTableData) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> GroupPricelistTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(GroupPricelistTableData) -> R,
+            ) -> GroupPricelistTableDataQuery<'a, C, R, N> {
+                GroupPricelistTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq, Copy)]
+        pub struct GroupUserTableData {
+            pub user_id: i32,
+            pub group_id: i32,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct GroupUserTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> GroupUserTableData,
+            mapper: fn(GroupUserTableData) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> GroupUserTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(GroupUserTableData) -> R,
+            ) -> GroupUserTableDataQuery<'a, C, R, N> {
+                GroupUserTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq, Copy)]
+        pub struct NewCollectionStyleTableData {
+            pub collection_id: i32,
+            pub style_id: i32,
+            pub is_new: bool,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct NewCollectionStyleTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> NewCollectionStyleTableData,
+            mapper: fn(NewCollectionStyleTableData) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> NewCollectionStyleTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(NewCollectionStyleTableData) -> R,
+            ) -> NewCollectionStyleTableDataQuery<'a, C, R, N> {
+                NewCollectionStyleTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq, Copy)]
+        pub struct NewCollectionColorTableData {
+            pub collection_id: i32,
+            pub color_id: i32,
+            pub is_new: bool,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct NewCollectionColorTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> NewCollectionColorTableData,
+            mapper: fn(NewCollectionColorTableData) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> NewCollectionColorTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(NewCollectionColorTableData) -> R,
+            ) -> NewCollectionColorTableDataQuery<'a, C, R, N> {
+                NewCollectionColorTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq, Copy)]
+        pub struct SizeCollectionTableData {
+            pub size_id: i32,
+            pub collection_id: i32,
+            pub position: i32,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct SizeCollectionTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> SizeCollectionTableData,
+            mapper: fn(SizeCollectionTableData) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> SizeCollectionTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(SizeCollectionTableData) -> R,
+            ) -> SizeCollectionTableDataQuery<'a, C, R, N> {
+                SizeCollectionTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq, Copy)]
+        pub struct StyleAttributeTableData {
+            pub style_id: i32,
+            pub attribute_id: i32,
+            pub position: i32,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct StyleAttributeTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> StyleAttributeTableData,
+            mapper: fn(StyleAttributeTableData) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> StyleAttributeTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(StyleAttributeTableData) -> R,
+            ) -> StyleAttributeTableDataQuery<'a, C, R, N> {
+                StyleAttributeTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq, Copy)]
+        pub struct StyleCategoryTableData {
+            pub style_id: i32,
+            pub category_id: i32,
+            pub position: i32,
+            pub updated_at: time::OffsetDateTime,
+        }
+        pub struct StyleCategoryTableDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> StyleCategoryTableData,
+            mapper: fn(StyleCategoryTableData) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> StyleCategoryTableDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(StyleCategoryTableData) -> R,
+            ) -> StyleCategoryTableDataQuery<'a, C, R, N> {
+                StyleCategoryTableDataQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
+        pub struct OrganizationData {
+            pub data: serde_json::Value,
+        }
+        pub struct OrganizationDataBorrowed<'a> {
+            pub data: postgres_types::Json<&'a serde_json::value::RawValue>,
+        }
+        impl<'a> From<OrganizationDataBorrowed<'a>> for OrganizationData {
+            fn from(OrganizationDataBorrowed { data }: OrganizationDataBorrowed<'a>) -> Self {
+                Self {
+                    data: serde_json::from_str(data.0.get()).unwrap(),
+                }
+            }
+        }
+        pub struct OrganizationDataQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> OrganizationDataBorrowed,
+            mapper: fn(OrganizationDataBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> OrganizationDataQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(OrganizationDataBorrowed) -> R,
+            ) -> OrganizationDataQuery<'a, C, R, N> {
+                OrganizationDataQuery {
                     client: self.client,
                     params: self.params,
                     stmt: self.stmt,
@@ -440,6 +2576,865 @@ ORDER BY title",
                 }
             }
         }
+        pub fn select_user_org_data() -> SelectUserOrgDataStmt {
+            SelectUserOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT \"user\".*
+FROM \"user\"
+INNER JOIN user_organization ON user_organization.user_id = \"user\".id
+WHERE user_organization.organization_id = $1",
+            ))
+        }
+        pub struct SelectUserOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectUserOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> UserTableDataQuery<'a, C, UserTableData, 1> {
+                UserTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| UserTableDataBorrowed {
+                        id: row.get(0),
+                        name: row.get(1),
+                        email: row.get(2),
+                        password_hash: row.get(3),
+                        created_at: row.get(4),
+                        updated_at: row.get(5),
+                        profile_image: row.get(6),
+                        last_sign_in: row.get(7),
+                    },
+                    mapper: |it| <UserTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_organization_org_data() -> SelectOrganizationOrgDataStmt {
+            SelectOrganizationOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT organization.*
+FROM organization WHERE organization.id = $1",
+            ))
+        }
+        pub struct SelectOrganizationOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectOrganizationOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> OrganizationTableDataQuery<'a, C, OrganizationTableData, 1> {
+                OrganizationTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| OrganizationTableDataBorrowed {
+                        id: row.get(0),
+                        name: row.get(1),
+                        created_by: row.get(2),
+                        created_at: row.get(3),
+                        updated_at: row.get(4),
+                        logo_url: row.get(5),
+                    },
+                    mapper: |it| <OrganizationTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_group_org_data() -> SelectGroupOrgDataStmt {
+            SelectGroupOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT \"group\".*
+FROM \"group\" WHERE \"group\".organization_id = $1",
+            ))
+        }
+        pub struct SelectGroupOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectGroupOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> GroupTableDataQuery<'a, C, GroupTableData, 1> {
+                GroupTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| GroupTableDataBorrowed {
+                        id: row.get(0),
+                        slug: row.get(1),
+                        external_id: row.get(2),
+                        organization_id: row.get(3),
+                        name: row.get(4),
+                        description: row.get(5),
+                        created_by: row.get(6),
+                        created_at: row.get(7),
+                        updated_at: row.get(8),
+                    },
+                    mapper: |it| <GroupTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_attributetype_org_data() -> SelectAttributetypeOrgDataStmt {
+            SelectAttributetypeOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT attributetype.*
+FROM attributetype WHERE attributetype.organization_id = $1",
+            ))
+        }
+        pub struct SelectAttributetypeOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectAttributetypeOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> AttributetypeTableDataQuery<'a, C, AttributetypeTableData, 1> {
+                AttributetypeTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| AttributetypeTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        name: row.get(2),
+                        slug: row.get(3),
+                        external_id: row.get(4),
+                        created_by: row.get(5),
+                        created_at: row.get(6),
+                        updated_at: row.get(7),
+                    },
+                    mapper: |it| <AttributetypeTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_attribute_org_data() -> SelectAttributeOrgDataStmt {
+            SelectAttributeOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT \"attribute\".*
+FROM \"attribute\" WHERE \"attribute\".organization_id = $1",
+            ))
+        }
+        pub struct SelectAttributeOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectAttributeOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> AttributeTableDataQuery<'a, C, AttributeTableData, 1> {
+                AttributeTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| AttributeTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        type_id: row.get(2),
+                        title: row.get(3),
+                        description: row.get(4),
+                        slug: row.get(5),
+                        external_id: row.get(6),
+                        created_by: row.get(7),
+                        created_at: row.get(8),
+                        updated_at: row.get(9),
+                    },
+                    mapper: |it| <AttributeTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_category_org_data() -> SelectCategoryOrgDataStmt {
+            SelectCategoryOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT category.*
+FROM category WHERE category.organization_id = $1",
+            ))
+        }
+        pub struct SelectCategoryOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectCategoryOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> CategoryTableDataQuery<'a, C, CategoryTableData, 1> {
+                CategoryTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| CategoryTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        slug: row.get(2),
+                        external_id: row.get(3),
+                        name: row.get(4),
+                        created_by: row.get(5),
+                        created_at: row.get(6),
+                        updated_at: row.get(7),
+                    },
+                    mapper: |it| <CategoryTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_collection_org_data() -> SelectCollectionOrgDataStmt {
+            SelectCollectionOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT collection.*
+FROM collection WHERE collection.organization_id = $1",
+            ))
+        }
+        pub struct SelectCollectionOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectCollectionOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> CollectionTableDataQuery<'a, C, CollectionTableData, 1> {
+                CollectionTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| CollectionTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        slug: row.get(2),
+                        external_id: row.get(3),
+                        name: row.get(4),
+                        created_by: row.get(5),
+                        created_at: row.get(6),
+                        updated_at: row.get(7),
+                        image_url: row.get(8),
+                        acronym: row.get(9),
+                    },
+                    mapper: |it| <CollectionTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_style_org_data() -> SelectStyleOrgDataStmt {
+            SelectStyleOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT style.*
+FROM style WHERE style.organization_id = $1",
+            ))
+        }
+        pub struct SelectStyleOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectStyleOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> StyleTableDataQuery<'a, C, StyleTableData, 1> {
+                StyleTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| StyleTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        slug: row.get(2),
+                        external_id: row.get(3),
+                        number: row.get(4),
+                        name: row.get(5),
+                        created_by: row.get(6),
+                        created_at: row.get(7),
+                        updated_at: row.get(8),
+                        description: row.get(9),
+                        core: row.get(10),
+                        country_of_origin: row.get(11),
+                        tariff_no: row.get(12),
+                        unit_volume: row.get(13),
+                        gross_weight: row.get(14),
+                        net_weight: row.get(15),
+                    },
+                    mapper: |it| <StyleTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_color_org_data() -> SelectColorOrgDataStmt {
+            SelectColorOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT color.*
+FROM color WHERE color.organization_id = $1",
+            ))
+        }
+        pub struct SelectColorOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectColorOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> ColorTableDataQuery<'a, C, ColorTableData, 1> {
+                ColorTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| ColorTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        slug: row.get(2),
+                        external_id: row.get(3),
+                        style_id: row.get(4),
+                        number: row.get(5),
+                        name: row.get(6),
+                        created_by: row.get(7),
+                        created_at: row.get(8),
+                        updated_at: row.get(9),
+                    },
+                    mapper: |it| <ColorTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_size_org_data() -> SelectSizeOrgDataStmt {
+            SelectSizeOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT size.*
+FROM size WHERE size.organization_id = $1",
+            ))
+        }
+        pub struct SelectSizeOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectSizeOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> SizeTableDataQuery<'a, C, SizeTableData, 1> {
+                SizeTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| SizeTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        slug: row.get(2),
+                        external_id: row.get(3),
+                        color_id: row.get(4),
+                        number: row.get(5),
+                        name: row.get(6),
+                        created_by: row.get(7),
+                        created_at: row.get(8),
+                        updated_at: row.get(9),
+                        service_item: row.get(10),
+                        delivery_period: row.get(11),
+                        ean_code: row.get(12),
+                        status: row.get(13),
+                        position: row.get(14),
+                    },
+                    mapper: |it| <SizeTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_image_org_data() -> SelectImageOrgDataStmt {
+            SelectImageOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT image.*
+FROM image WHERE image.organization_id = $1",
+            ))
+        }
+        pub struct SelectImageOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectImageOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> ImageTableDataQuery<'a, C, ImageTableData, 1> {
+                ImageTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| ImageTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        url: row.get(2),
+                        external_id: row.get(3),
+                        external_checksum: row.get(4),
+                        position: row.get(5),
+                        color_id: row.get(6),
+                        uploaded_by: row.get(7),
+                        uploaded_at: row.get(8),
+                        updated_at: row.get(9),
+                    },
+                    mapper: |it| <ImageTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_pricelist_org_data() -> SelectPricelistOrgDataStmt {
+            SelectPricelistOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT pricelist.*
+FROM pricelist WHERE pricelist.organization_id = $1",
+            ))
+        }
+        pub struct SelectPricelistOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectPricelistOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> PricelistTableDataQuery<'a, C, PricelistTableData, 1> {
+                PricelistTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| PricelistTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        name: row.get(2),
+                        slug: row.get(3),
+                        external_id: row.get(4),
+                        created_by: row.get(5),
+                        created_at: row.get(6),
+                        updated_at: row.get(7),
+                    },
+                    mapper: |it| <PricelistTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_price_org_data() -> SelectPriceOrgDataStmt {
+            SelectPriceOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT price.*
+FROM price WHERE price.organization_id = $1",
+            ))
+        }
+        pub struct SelectPriceOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectPriceOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> PriceTableDataQuery<'a, C, PriceTableData, 1> {
+                PriceTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| PriceTableDataBorrowed {
+                        id: row.get(0),
+                        organization_id: row.get(1),
+                        r#type: row.get(2),
+                        currency: row.get(3),
+                        uom: row.get(4),
+                        list_id: row.get(5),
+                        external_id: row.get(6),
+                        style_id: row.get(7),
+                        created_by: row.get(8),
+                        created_at: row.get(9),
+                        updated_at: row.get(10),
+                        amount: row.get(11),
+                        start: row.get(12),
+                        end: row.get(13),
+                    },
+                    mapper: |it| <PriceTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_user_organization_org_data() -> SelectUserOrganizationOrgDataStmt {
+            SelectUserOrganizationOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT user_organization.*
+FROM user_organization
+WHERE user_organization.organization_id = $1",
+            ))
+        }
+        pub struct SelectUserOrganizationOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectUserOrganizationOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> UserOrganizationTableDataQuery<'a, C, UserOrganizationTableData, 1> {
+                UserOrganizationTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| UserOrganizationTableDataBorrowed {
+                        user_id: row.get(0),
+                        organization_id: row.get(1),
+                        updated_at: row.get(2),
+                        role_ids: row.get(3),
+                    },
+                    mapper: |it| <UserOrganizationTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_collection_pricelist_org_data() -> SelectCollectionPricelistOrgDataStmt {
+            SelectCollectionPricelistOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT collection_pricelist.*
+FROM collection_pricelist
+INNER JOIN collection ON collection.id = collection_pricelist.collection_id
+WHERE collection.organization_id = $1",
+            ))
+        }
+        pub struct SelectCollectionPricelistOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectCollectionPricelistOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> CollectionPricelistTableDataQuery<'a, C, CollectionPricelistTableData, 1>
+            {
+                CollectionPricelistTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| CollectionPricelistTableData {
+                        collection_id: row.get(0),
+                        pricelist_id: row.get(1),
+                        price_date: row.get(2),
+                        created_by: row.get(3),
+                        created_at: row.get(4),
+                        updated_at: row.get(5),
+                    },
+                    mapper: |it| <CollectionPricelistTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_group_collection_org_data() -> SelectGroupCollectionOrgDataStmt {
+            SelectGroupCollectionOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT group_collection.*
+FROM group_collection
+INNER JOIN \"group\" ON \"group\".id = group_collection.group_id
+WHERE \"group\".organization_id = $1",
+            ))
+        }
+        pub struct SelectGroupCollectionOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectGroupCollectionOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> GroupCollectionTableDataQuery<'a, C, GroupCollectionTableData, 1> {
+                GroupCollectionTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| GroupCollectionTableData {
+                        collection_id: row.get(0),
+                        group_id: row.get(1),
+                        updated_at: row.get(2),
+                    },
+                    mapper: |it| <GroupCollectionTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_group_pricelist_org_data() -> SelectGroupPricelistOrgDataStmt {
+            SelectGroupPricelistOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT group_pricelist.*
+FROM group_pricelist
+INNER JOIN \"group\" ON \"group\".id = group_pricelist.group_id
+WHERE \"group\".organization_id = $1",
+            ))
+        }
+        pub struct SelectGroupPricelistOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectGroupPricelistOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> GroupPricelistTableDataQuery<'a, C, GroupPricelistTableData, 1> {
+                GroupPricelistTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| GroupPricelistTableData {
+                        pricelist_id: row.get(0),
+                        group_id: row.get(1),
+                        updated_at: row.get(2),
+                    },
+                    mapper: |it| <GroupPricelistTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_group_user_org_data() -> SelectGroupUserOrgDataStmt {
+            SelectGroupUserOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT group_user.*
+FROM group_user
+INNER JOIN \"group\" ON \"group\".id = group_user.group_id
+WHERE \"group\".organization_id = $1",
+            ))
+        }
+        pub struct SelectGroupUserOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectGroupUserOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> GroupUserTableDataQuery<'a, C, GroupUserTableData, 1> {
+                GroupUserTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| GroupUserTableData {
+                        user_id: row.get(0),
+                        group_id: row.get(1),
+                        updated_at: row.get(2),
+                    },
+                    mapper: |it| <GroupUserTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_new_collection_style_org_data() -> SelectNewCollectionStyleOrgDataStmt {
+            SelectNewCollectionStyleOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT new_collection_style.*
+FROM new_collection_style
+INNER JOIN collection ON collection.id = new_collection_style.collection_id
+WHERE collection.organization_id = $1",
+            ))
+        }
+        pub struct SelectNewCollectionStyleOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectNewCollectionStyleOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> NewCollectionStyleTableDataQuery<'a, C, NewCollectionStyleTableData, 1>
+            {
+                NewCollectionStyleTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| NewCollectionStyleTableData {
+                        collection_id: row.get(0),
+                        style_id: row.get(1),
+                        is_new: row.get(2),
+                        updated_at: row.get(3),
+                    },
+                    mapper: |it| <NewCollectionStyleTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_new_collection_color_org_data() -> SelectNewCollectionColorOrgDataStmt {
+            SelectNewCollectionColorOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT new_collection_color.*
+FROM new_collection_color
+INNER JOIN collection ON collection.id = new_collection_color.collection_id
+WHERE collection.organization_id = $1",
+            ))
+        }
+        pub struct SelectNewCollectionColorOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectNewCollectionColorOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> NewCollectionColorTableDataQuery<'a, C, NewCollectionColorTableData, 1>
+            {
+                NewCollectionColorTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| NewCollectionColorTableData {
+                        collection_id: row.get(0),
+                        color_id: row.get(1),
+                        is_new: row.get(2),
+                        updated_at: row.get(3),
+                    },
+                    mapper: |it| <NewCollectionColorTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_size_collection_org_data() -> SelectSizeCollectionOrgDataStmt {
+            SelectSizeCollectionOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT size_collection.*
+FROM size_collection
+INNER JOIN collection ON collection.id = size_collection.collection_id
+WHERE collection.organization_id = $1",
+            ))
+        }
+        pub struct SelectSizeCollectionOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectSizeCollectionOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> SizeCollectionTableDataQuery<'a, C, SizeCollectionTableData, 1> {
+                SizeCollectionTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| SizeCollectionTableData {
+                        size_id: row.get(0),
+                        collection_id: row.get(1),
+                        position: row.get(2),
+                        updated_at: row.get(3),
+                    },
+                    mapper: |it| <SizeCollectionTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_style_attribute_org_data() -> SelectStyleAttributeOrgDataStmt {
+            SelectStyleAttributeOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT style_attribute.*
+FROM style_attribute
+INNER JOIN \"attribute\" ON \"attribute\".id = style_attribute.attribute_id
+WHERE \"attribute\".organization_id = $1",
+            ))
+        }
+        pub struct SelectStyleAttributeOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectStyleAttributeOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> StyleAttributeTableDataQuery<'a, C, StyleAttributeTableData, 1> {
+                StyleAttributeTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| StyleAttributeTableData {
+                        style_id: row.get(0),
+                        attribute_id: row.get(1),
+                        position: row.get(2),
+                        updated_at: row.get(3),
+                    },
+                    mapper: |it| <StyleAttributeTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_style_category_org_data() -> SelectStyleCategoryOrgDataStmt {
+            SelectStyleCategoryOrgDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT style_category.*
+FROM style_category
+INNER JOIN category ON category.id = style_category.category_id
+WHERE category.organization_id = $1",
+            ))
+        }
+        pub struct SelectStyleCategoryOrgDataStmt(cornucopia_async::private::Stmt);
+        impl SelectStyleCategoryOrgDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> StyleCategoryTableDataQuery<'a, C, StyleCategoryTableData, 1> {
+                StyleCategoryTableDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| StyleCategoryTableData {
+                        style_id: row.get(0),
+                        category_id: row.get(1),
+                        position: row.get(2),
+                        updated_at: row.get(3),
+                    },
+                    mapper: |it| <StyleCategoryTableData>::from(it),
+                }
+            }
+        }
+        pub fn select_organization_data() -> SelectOrganizationDataStmt {
+            SelectOrganizationDataStmt(cornucopia_async::private::Stmt::new(
+                "SELECT json_build_object(
+    'user', (
+        SELECT json_agg(row_to_json(\"user\".*))
+        FROM \"user\"
+        INNER JOIN user_organization ON user_organization.user_id = \"user\".id
+        WHERE user_organization.organization_id = $1
+    ),
+    'organization', (
+        SELECT json_agg(row_to_json(organization.*))
+        FROM organization WHERE organization.id = $1
+    ),
+    'group', (
+        SELECT json_agg(row_to_json(\"group\".*))
+        FROM \"group\" WHERE \"group\".organization_id = $1
+    ),
+    'attributetype', (
+        SELECT json_agg(row_to_json(attributetype.*))
+        FROM attributetype WHERE attributetype.organization_id = $1
+    ),
+    'attribute', (
+        SELECT json_agg(row_to_json(\"attribute\".*))
+        FROM \"attribute\" WHERE \"attribute\".organization_id = $1
+    ),
+    'category', (
+        SELECT json_agg(row_to_json(category.*))
+        FROM category WHERE category.organization_id = $1
+    ),
+    'collection', (
+        SELECT json_agg(row_to_json(collection.*))
+        FROM collection WHERE collection.organization_id = $1
+    ),
+    'style', (
+        SELECT json_agg(row_to_json(style.*))
+        FROM style WHERE style.organization_id = $1
+    ),
+    'color', (
+        SELECT json_agg(row_to_json(color.*))
+        FROM color WHERE color.organization_id = $1
+    ),
+    'size', (
+        SELECT json_agg(row_to_json(size.*))
+        FROM size WHERE size.organization_id = $1
+    ),
+    'image', (
+        SELECT json_agg(row_to_json(image.*))
+        FROM image WHERE image.organization_id = $1
+    ),
+    'pricelist', (
+        SELECT json_agg(row_to_json(pricelist.*))
+        FROM pricelist WHERE pricelist.organization_id = $1
+    ),
+    'price', (
+        SELECT json_agg(row_to_json(price.*))
+        FROM price WHERE price.organization_id = $1
+    ),
+    'user_organization', (
+        SELECT json_agg(row_to_json(user_organization.*))
+        FROM user_organization
+        WHERE user_organization.organization_id = $1
+    ),
+    'collection_pricelist', (
+        SELECT json_agg(row_to_json(collection_pricelist.*))
+        FROM collection_pricelist
+        INNER JOIN collection ON collection.id = collection_pricelist.collection_id
+        WHERE collection.organization_id = $1
+    ),
+    'group_collection', (
+        SELECT json_agg(row_to_json(group_collection.*))
+        FROM group_collection
+        INNER JOIN \"group\" ON \"group\".id = group_collection.group_id
+        WHERE \"group\".organization_id = $1
+    ),
+    'group_pricelist', (
+        SELECT json_agg(row_to_json(group_pricelist.*))
+        FROM group_pricelist
+        INNER JOIN \"group\" ON \"group\".id = group_pricelist.group_id
+        WHERE \"group\".organization_id = $1
+    ),
+    'group_user', (
+        SELECT json_agg(row_to_json(group_user.*))
+        FROM group_user
+        INNER JOIN \"group\" ON \"group\".id = group_user.group_id
+        WHERE \"group\".organization_id = $1
+    ),
+    'new_collection_style', (
+        SELECT json_agg(row_to_json(new_collection_style.*))
+        FROM new_collection_style
+        INNER JOIN collection ON collection.id = new_collection_style.collection_id
+        WHERE collection.organization_id = $1
+    ),
+    'new_collection_color', (
+        SELECT json_agg(row_to_json(new_collection_color.*))
+        FROM new_collection_color
+        INNER JOIN collection ON collection.id = new_collection_color.collection_id
+        WHERE collection.organization_id = $1
+    ),
+    'size_collection', (
+        SELECT json_agg(row_to_json(size_collection.*))
+        FROM size_collection
+        INNER JOIN collection ON collection.id = size_collection.collection_id
+        WHERE collection.organization_id = $1
+    ),
+    'style_attribute', (
+        SELECT json_agg(row_to_json(style_attribute.*))
+        FROM style_attribute
+        INNER JOIN \"attribute\" ON \"attribute\".id = style_attribute.attribute_id
+        WHERE \"attribute\".organization_id = $1
+    ),
+    'style_category', (
+        SELECT json_agg(row_to_json(style_category.*))
+        FROM style_category
+        INNER JOIN category ON category.id = style_category.category_id
+        WHERE category.organization_id = $1
+    )
+) AS \"data\"",
+            ))
+        }
+        pub struct SelectOrganizationDataStmt(cornucopia_async::private::Stmt);
+        impl SelectOrganizationDataStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> OrganizationDataQuery<'a, C, OrganizationData, 1> {
+                OrganizationDataQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| OrganizationDataBorrowed { data: row.get(0) },
+                    mapper: |it| <OrganizationData>::from(it),
+                }
+            }
+        }
     }
     pub mod attribute {
         use cornucopia_async::GenericClient;
@@ -504,7 +3499,7 @@ ORDER BY title",
             pub style_id: i32,
             pub attribute_ids: T1,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct AttributeRow {
             pub id: i32,
             pub organization_id: i32,
@@ -1159,7 +4154,7 @@ FROM
             pub organization_id: i32,
             pub id: i32,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct AttributeTypeRow {
             pub id: i32,
             pub organization_id: i32,
@@ -1733,7 +4728,7 @@ WHERE organization_id = $1
             pub style_id: i32,
             pub category_ids: T1,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct CategoryRow {
             pub id: i32,
             pub organization_id: i32,
@@ -2376,7 +5371,7 @@ FROM
             pub collection_id: i32,
             pub color_ids: T1,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct CollectionRow {
             pub id: i32,
             pub organization_id: i32,
@@ -2493,7 +5488,7 @@ FROM
                 Ok(it)
             }
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct CollectionSummaryRow {
             pub id: i32,
             pub organization_id: i32,
@@ -3457,7 +6452,7 @@ FROM
             pub organization_id: i32,
             pub id: i32,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct ColorRow {
             pub id: i32,
             pub organization_id: i32,
@@ -3623,7 +6618,7 @@ FROM
                 Ok(it)
             }
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct ColorRefs {
             pub id: i32,
             pub external_id: Option<String>,
@@ -4307,7 +7302,7 @@ WHERE organization_id = $1
             pub group_id: i32,
             pub pricelist_ids: T1,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct GroupRow {
             pub id: i32,
             pub slug: String,
@@ -4421,7 +7416,7 @@ WHERE organization_id = $1
                 Ok(it)
             }
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct GroupSummaryRow {
             pub id: i32,
             pub slug: String,
@@ -5328,7 +8323,7 @@ FROM
             pub organization_id: i32,
             pub id: i32,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct ImageRow {
             pub id: i32,
             pub organization_id: i32,
@@ -6118,7 +9113,7 @@ FROM
             pub logo_url: Option<T2>,
             pub id: i32,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct OrganizationRow {
             pub id: i32,
             pub name: String,
@@ -6568,7 +9563,7 @@ WHERE
             pub organization_id: i32,
             pub id: i32,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct PriceRow {
             pub id: i32,
             pub organization_id: i32,
@@ -7221,7 +10216,7 @@ WHERE organization_id = $1
             pub organization_id: i32,
             pub user_id: i32,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct PriceListRow {
             pub id: i32,
             pub organization_id: i32,
@@ -7322,7 +10317,7 @@ WHERE organization_id = $1
                 Ok(it)
             }
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct PriceListSummaryRow {
             pub id: i32,
             pub name: String,
@@ -8029,7 +11024,7 @@ WHERE
             pub organization_id: i32,
             pub id: i32,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct SizeRow {
             pub id: i32,
             pub organization_id: i32,
@@ -8827,7 +11822,7 @@ WHERE organization_id = $1
             pub organization_id: i32,
             pub id: i32,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct StyleRow {
             pub id: i32,
             pub organization_id: i32,
@@ -8965,7 +11960,7 @@ WHERE organization_id = $1
                 Ok(it)
             }
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct NestedStyleRow {
             pub id: i32,
             pub organization_id: i32,
@@ -9118,7 +12113,7 @@ WHERE organization_id = $1
                 Ok(it)
             }
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct NestedStyleSummaryRow {
             pub id: i32,
             pub name: serde_json::Value,
@@ -9255,7 +12250,7 @@ WHERE organization_id = $1
                 Ok(it)
             }
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct StyleRefs {
             pub id: i32,
             pub external_id: Option<String>,
@@ -10450,7 +13445,7 @@ id",
             pub user_id: i32,
             pub group_ids: T1,
         }
-        #[derive(Debug, Clone, PartialEq)]
+        #[derive(serde::Serialize, Debug, Clone, PartialEq)]
         pub struct UserRow {
             pub id: i32,
             pub name: String,
