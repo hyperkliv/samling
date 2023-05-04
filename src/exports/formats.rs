@@ -87,7 +87,7 @@ impl ExportFormat {
                     worksheet.write_string_with_format(
                         0,
                         col_index as u16,
-                        &col.name(),
+                        col.name().as_ref(),
                         &colfmt,
                     )?;
                 }
