@@ -60,6 +60,13 @@ export default function AddCollectionItemsModal({
     () => [] as EntityFilterChoice[],
   );
 
+  // Attribute filter
+  const [filteredAttributes, setFilteredAttributes] = useState(
+    () => [] as EntityFilterChoice[],
+  );
+
+  console.log(filteredAttributes);
+
   // Apply filters
   useEffect(() => {
     setFilters({
@@ -72,8 +79,12 @@ export default function AddCollectionItemsModal({
         filteredCategories.length > 0
           ? filteredCategories.map((cat) => ({ id: cat.id }))
           : null,
+      attributes:
+        filteredAttributes.length > 0
+          ? filteredAttributes.map((cat) => ({ id: cat.id }))
+          : null,
     });
-  }, [filteredStatuses, filteredCategories, filteredStyles, setFilters]);
+  }, [filteredStatuses, filteredCategories, filteredAttributes, filteredStyles, setFilters]);
 
   function onSubmitForm(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
@@ -178,6 +189,19 @@ export default function AddCollectionItemsModal({
                             title: i18nDbText(choice.title),
                             subtitle: choice.subtitle ? i18nDbText(choice.subtitle) : '',
                             imageUrl: choice.image ? cloudflareImageUrl(choice.image.url, "thumbnail") : null,
+                          })}
+                        />
+                      </div>
+                      <div className="my-5">
+                        <MultipleCombobox
+                          title={t`Attributes`}
+                          allItems={itemFilterChoices.attribute}
+                          selectedItems={filteredAttributes}
+                          setSelectedItems={setFilteredAttributes}
+                          toFilterItem={(choice) => ({
+                            id: choice.id,
+                            title: i18nDbText(choice.title),
+                            subtitle: choice.subtitle ? i18nDbText(choice.subtitle) : '',
                           })}
                         />
                       </div>

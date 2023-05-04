@@ -1323,6 +1323,16 @@
             "$ref": "#/definitions/Ref_for_Category"
           }
         },
+        "attributes": {
+          "default": null,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Ref_for_Attribute"
+          }
+        },
         "numbers": {
           "default": null,
           "type": [
@@ -1463,6 +1473,46 @@
         }
       ]
     },
+    "Ref_for_Attribute": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/Id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "external_id"
+          ],
+          "properties": {
+            "external_id": {
+              "$ref": "#/definitions/ExternalId"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "slug"
+          ],
+          "properties": {
+            "slug": {
+              "$ref": "#/definitions/Slug"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
     "CollectionFilters": {
       "type": "object",
       "properties": {
@@ -1474,6 +1524,7 @@
     "ItemFilterChoices": {
       "type": "object",
       "required": [
+        "attribute",
         "category",
         "status",
         "style"
@@ -1492,6 +1543,12 @@
           }
         },
         "style": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EntityFilterChoice"
+          }
+        },
+        "attribute": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/EntityFilterChoice"

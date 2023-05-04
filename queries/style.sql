@@ -346,7 +346,7 @@ WHERE
 ORDER BY
     style.number;
 
---! select_nested_style_summaries (ids?, categories?, statuses?) : NestedStyleSummaryRow
+--! select_nested_style_summaries (ids?, categories?, attributes?, statuses?) : NestedStyleSummaryRow
 SELECT
     style.id,
     style.name,
@@ -434,10 +434,18 @@ LEFT JOIN (
     FROM style_category
     GROUP BY style_category.style_id
 ) AS style_categories ON style_categories.style_id = style.id
+LEFT JOIN (
+    SELECT
+        style_attribute.style_id,
+        array_agg(style_attribute.attribute_id) AS attribute_ids
+    FROM style_attribute
+    GROUP BY style_attribute.style_id
+) AS style_attributes ON style_attributes.style_id = style.id
 WHERE
     style.organization_id = :organization_id
     AND (:ids::int[] IS NULL OR style.id = any(:ids))
     AND (:categories::int[] IS NULL OR style_categories.category_ids && :categories)
+    AND (:attributes::int[] IS NULL OR style_attributes.attribute_ids && :attributes)
 ORDER BY
     style.number;
 

@@ -666,6 +666,7 @@ export interface CollectionFilters {
 }
 
 export interface StyleFilters {
+    attributes?:        RefForAttribute[] | null;
     categories?:        RefForCategory[] | null;
     core?:              boolean | null;
     country_of_origin?: string[] | null;
@@ -678,6 +679,12 @@ export interface StyleFilters {
     status?:            string[] | null;
 }
 
+export interface RefForAttribute {
+    id?:          number;
+    external_id?: string;
+    slug?:        string;
+}
+
 export interface RefForCategory {
     id?:          number;
     external_id?: string;
@@ -685,9 +692,10 @@ export interface RefForCategory {
 }
 
 export interface ItemFilterChoices {
-    category: EntityFilterChoice[];
-    status:   string[];
-    style:    EntityFilterChoice[];
+    attribute: EntityFilterChoice[];
+    category:  EntityFilterChoice[];
+    status:    string[];
+    style:     EntityFilterChoice[];
 }
 
 export interface EntityFilterChoice {
@@ -1293,6 +1301,14 @@ export class Convert {
 
     public static styleFiltersToJson(value: StyleFilters): any {
         return uncast(value, r("StyleFilters"));
+    }
+
+    public static toRefForAttribute(json: any): RefForAttribute {
+        return cast(json, r("RefForAttribute"));
+    }
+
+    public static refForAttributeToJson(value: RefForAttribute): any {
+        return uncast(value, r("RefForAttribute"));
     }
 
     public static toRefForCategory(json: any): RefForCategory {
@@ -1975,6 +1991,7 @@ const typeMap: any = {
         { json: "styles", js: "styles", typ: u(undefined, r("StyleFilters")) },
     ], "any"),
     "StyleFilters": o([
+        { json: "attributes", js: "attributes", typ: u(undefined, u(a(r("RefForAttribute")), null)) },
         { json: "categories", js: "categories", typ: u(undefined, u(a(r("RefForCategory")), null)) },
         { json: "core", js: "core", typ: u(undefined, u(true, null)) },
         { json: "country_of_origin", js: "country_of_origin", typ: u(undefined, u(a(""), null)) },
@@ -1986,12 +2003,18 @@ const typeMap: any = {
         { json: "service_item", js: "service_item", typ: u(undefined, u(true, null)) },
         { json: "status", js: "status", typ: u(undefined, u(a(""), null)) },
     ], "any"),
+    "RefForAttribute": o([
+        { json: "id", js: "id", typ: u(undefined, 3.14) },
+        { json: "external_id", js: "external_id", typ: u(undefined, "") },
+        { json: "slug", js: "slug", typ: u(undefined, "") },
+    ], false),
     "RefForCategory": o([
         { json: "id", js: "id", typ: u(undefined, 3.14) },
         { json: "external_id", js: "external_id", typ: u(undefined, "") },
         { json: "slug", js: "slug", typ: u(undefined, "") },
     ], false),
     "ItemFilterChoices": o([
+        { json: "attribute", js: "attribute", typ: a(r("EntityFilterChoice")) },
         { json: "category", js: "category", typ: a(r("EntityFilterChoice")) },
         { json: "status", js: "status", typ: a("") },
         { json: "style", js: "style", typ: a(r("EntityFilterChoice")) },

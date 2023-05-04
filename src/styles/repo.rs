@@ -134,9 +134,13 @@ impl StylesRepo {
             .category_ids
             .clone()
             .map(|vec| vec.iter().map(|id| id.take()).collect_vec());
+        let attributes = filters
+            .attribute_ids
+            .clone()
+            .map(|vec| vec.iter().map(|id| id.take()).collect_vec());
 
+        // TODO: Support all filters, not just status, ids, categories and attributes!
         let styles = select_nested_style_summaries()
-            // TODO: Support all filters, not just status!
             .params(
                 client,
                 &SelectNestedStyleSummariesParams {
@@ -144,6 +148,7 @@ impl StylesRepo {
                     statuses: filters.status,
                     ids,
                     categories,
+                    attributes,
                 },
             )
             .map(handle_nested_summary_row)

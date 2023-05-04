@@ -8,6 +8,7 @@ pub struct ItemFilterChoices {
     pub status: Vec<StringFilterChoice>,
     pub category: Vec<EntityFilterChoice>,
     pub style: Vec<EntityFilterChoice>,
+    pub attribute: Vec<EntityFilterChoice>,
 }
 
 #[derive(Debug, Serialize, Clone, JsonSchema, derive_more::From)]

@@ -4,13 +4,13 @@ use axum::{
     RequestPartsExt,
 };
 use cornucopia_async::GenericClient;
-use futures::future::try_join3;
+use futures::future::try_join4;
 use http::request::Parts;
 use schemars::JsonSchema;
 use serde::Deserialize;
 
 use crate::{
-    Category, Error, Filters, Id, NestedStyle, Organization, PriceList, Ref, RefTarget,
+    Attribute, Category, Error, Filters, Id, NestedStyle, Organization, PriceList, Ref, RefTarget,
     ResolvedFilters, Result, Style,
 };
 
@@ -20,6 +20,7 @@ pub struct StyleFilters {
     pub refs: Option<Vec<Ref<Style>>>,
     pub pricelists: Option<Vec<Ref<PriceList>>>, // TODO: Not a filter! It's a data return modifier!
     pub categories: Option<Vec<Ref<Category>>>,
+    pub attributes: Option<Vec<Ref<Attribute>>>,
     pub numbers: Option<Vec<String>>,
     pub service_item: Option<bool>,
     pub core: Option<bool>,
@@ -41,10 +42,12 @@ impl Filters for StyleFilters {
         let refs = self.refs.unwrap_or_default();
         let pricelist_refs = self.pricelists.clone().unwrap_or_default();
         let category_refs = self.categories.unwrap_or_default();
-        let (ids, pricelist_ids, category_ids) = try_join3(
+        let attribute_refs = self.attributes.unwrap_or_default();
+        let (ids, pricelist_ids, category_ids, attribute_ids) = try_join4(
             Style::lookup_ids_with_default(client, organization_id, &refs),
             PriceList::lookup_ids_with_default(client, organization_id, &pricelist_refs),
             Category::lookup_ids_with_default(client, organization_id, &category_refs),
+            Attribute::lookup_ids_with_default(client, organization_id, &attribute_refs),
         )
         .await?;
         let ids = if ids.is_empty() { None } else { Some(ids) };
@@ -54,10 +57,12 @@ impl Filters for StyleFilters {
             None
         };
         let category_ids = (!category_ids.is_empty()).then_some(category_ids);
+        let attribute_ids = (!attribute_ids.is_empty()).then_some(attribute_ids);
         Ok(ResolvedStyleFilters {
             ids,
             pricelist_ids, // TODO: This is not used as a filter!
             category_ids,
+            attribute_ids,
             numbers: self.numbers,
             service_item: self.service_item,
             core: self.core,
@@ -83,6 +88,7 @@ pub struct ResolvedStyleFilters {
     pub ids: Option<Vec<Id<Style>>>,
     pub pricelist_ids: Option<Vec<Id<PriceList>>>,
     pub category_ids: Option<Vec<Id<Category>>>,
+    pub attribute_ids: Option<Vec<Id<Attribute>>>,
     pub numbers: Option<Vec<String>>,
     pub service_item: Option<bool>,
     pub core: Option<bool>,

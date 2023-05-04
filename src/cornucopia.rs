@@ -9,8 +9,11 @@ pub mod types {
         #[derive(Debug, postgres_types :: FromSql, Copy, Clone, PartialEq)]
         #[postgres(name = "collection_pricelist_relation")]
         pub struct CollectionPricelistRelation {
+            #[postgres(name = "pricelist_id")]
             pub pricelist_id: i32,
+            #[postgres(name = "price_date")]
             pub price_date: time::Date,
+            #[postgres(name = "created_by")]
             pub created_by: i32,
         }
         impl<'a> postgres_types::ToSql for CollectionPricelistRelation {
@@ -175,9 +178,6 @@ pub mod types {
 #[allow(dead_code)]
 pub mod queries {
     pub mod admin {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug, Clone, PartialEq)]
         pub struct EntityFilterChoiceRow {
             pub id: i32,
@@ -208,6 +208,25 @@ pub mod queries {
                 }
             }
         }
+        #[derive(Debug, Clone, PartialEq)]
+        pub struct StringFilterChoiceRow {
+            pub title: String,
+        }
+        pub struct StringFilterChoiceRowBorrowed<'a> {
+            pub title: &'a str,
+        }
+        impl<'a> From<StringFilterChoiceRowBorrowed<'a>> for StringFilterChoiceRow {
+            fn from(
+                StringFilterChoiceRowBorrowed { title }: StringFilterChoiceRowBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    title: title.into(),
+                }
+            }
+        }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct EntityFilterChoiceRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -261,22 +280,6 @@ pub mod queries {
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
                 Ok(it)
-            }
-        }
-        #[derive(Debug, Clone, PartialEq)]
-        pub struct StringFilterChoiceRow {
-            pub title: String,
-        }
-        pub struct StringFilterChoiceRowBorrowed<'a> {
-            pub title: &'a str,
-        }
-        impl<'a> From<StringFilterChoiceRowBorrowed<'a>> for StringFilterChoiceRow {
-            fn from(
-                StringFilterChoiceRowBorrowed { title }: StringFilterChoiceRowBorrowed<'a>,
-            ) -> Self {
-                Self {
-                    title: title.into(),
-                }
             }
         }
         pub struct StringFilterChoiceRowQuery<'a, C: GenericClient, T, const N: usize> {
@@ -339,8 +342,8 @@ pub mod queries {
                 "SELECT
     style.id,
     style.\"name\" AS title,
-    json_build_object('en', style.\"number\") AS subtitle,
-    to_json(main_image.json_data) AS image
+    jsonb_build_object('en', style.\"number\") AS subtitle,
+    to_jsonb(main_image.json_data) AS image
 FROM style
 LEFT JOIN (
     SELECT
@@ -390,14 +393,48 @@ ORDER BY title",
                 "SELECT
     category.id,
     category.\"name\" AS title,
-    NULL::json AS subtitle,
-    NULL::json AS image
+    NULL::jsonb AS subtitle,
+    NULL::jsonb AS image
 FROM category WHERE category.organization_id = $1
 ORDER BY title",
             ))
         }
         pub struct SelectCategoryFilterChoicesStmt(cornucopia_async::private::Stmt);
         impl SelectCategoryFilterChoicesStmt {
+            pub fn bind<'a, C: GenericClient>(
+                &'a mut self,
+                client: &'a C,
+                organization_id: &'a i32,
+            ) -> EntityFilterChoiceRowQuery<'a, C, EntityFilterChoiceRow, 1> {
+                EntityFilterChoiceRowQuery {
+                    client,
+                    params: [organization_id],
+                    stmt: &mut self.0,
+                    extractor: |row| EntityFilterChoiceRowBorrowed {
+                        id: row.get(0),
+                        title: row.get(1),
+                        subtitle: row.get(2),
+                        image: row.get(3),
+                    },
+                    mapper: |it| <EntityFilterChoiceRow>::from(it),
+                }
+            }
+        }
+        pub fn select_attribute_filter_choices() -> SelectAttributeFilterChoicesStmt {
+            SelectAttributeFilterChoicesStmt(cornucopia_async::private::Stmt::new(
+                "SELECT
+    \"attribute\".id,
+    \"attribute\".title,
+    attributetype.\"name\" AS subtitle,
+    NULL::jsonb AS image
+FROM \"attribute\"
+INNER JOIN attributetype ON attributetype.id = \"attribute\".type_id
+WHERE \"attribute\".organization_id = $1
+ORDER BY \"attribute\".title",
+            ))
+        }
+        pub struct SelectAttributeFilterChoicesStmt(cornucopia_async::private::Stmt);
+        impl SelectAttributeFilterChoicesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
                 client: &'a C,
@@ -442,9 +479,6 @@ ORDER BY title",
         }
     }
     pub mod attribute {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct GetAttributeParams<
             T1: cornucopia_async::StringSql,
@@ -562,6 +596,9 @@ ORDER BY title",
                 }
             }
         }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct AttributeRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -1108,9 +1145,6 @@ FROM
         }
     }
     pub mod attributetype {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct GetAttributeTypeParams<
             T1: cornucopia_async::StringSql,
@@ -1205,6 +1239,9 @@ FROM
                 }
             }
         }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct AttributeTypeRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -1677,9 +1714,6 @@ WHERE organization_id = $1
         }
     }
     pub mod category {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct GetCategoryIdParams<
             T1: cornucopia_async::StringSql,
@@ -1779,6 +1813,9 @@ WHERE organization_id = $1
                 }
             }
         }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct CategoryRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -2281,9 +2318,6 @@ FROM
         }
     }
     pub mod collection {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct SelectCollectionsParams<
             T1: cornucopia_async::StringSql,
@@ -2438,61 +2472,6 @@ FROM
                 }
             }
         }
-        pub struct CollectionRowQuery<'a, C: GenericClient, T, const N: usize> {
-            client: &'a C,
-            params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
-            extractor: fn(&tokio_postgres::Row) -> CollectionRowBorrowed,
-            mapper: fn(CollectionRowBorrowed) -> T,
-        }
-        impl<'a, C, T: 'a, const N: usize> CollectionRowQuery<'a, C, T, N>
-        where
-            C: GenericClient,
-        {
-            pub fn map<R>(
-                self,
-                mapper: fn(CollectionRowBorrowed) -> R,
-            ) -> CollectionRowQuery<'a, C, R, N> {
-                CollectionRowQuery {
-                    client: self.client,
-                    params: self.params,
-                    stmt: self.stmt,
-                    extractor: self.extractor,
-                    mapper,
-                }
-            }
-            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
-                let stmt = self.stmt.prepare(self.client).await?;
-                let row = self.client.query_one(stmt, &self.params).await?;
-                Ok((self.mapper)((self.extractor)(&row)))
-            }
-            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
-                self.iter().await?.try_collect().await
-            }
-            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
-                let stmt = self.stmt.prepare(self.client).await?;
-                Ok(self
-                    .client
-                    .query_opt(stmt, &self.params)
-                    .await?
-                    .map(|row| (self.mapper)((self.extractor)(&row))))
-            }
-            pub async fn iter(
-                self,
-            ) -> Result<
-                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
-                tokio_postgres::Error,
-            > {
-                let stmt = self.stmt.prepare(self.client).await?;
-                let it = self
-                    .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
-                    .await?
-                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
-                    .into_stream();
-                Ok(it)
-            }
-        }
         #[derive(Debug, Clone, PartialEq)]
         pub struct CollectionSummaryRow {
             pub id: i32,
@@ -2561,6 +2540,64 @@ FROM
                     num_styles,
                     pricing: serde_json::from_str(pricing.0.get()).unwrap(),
                 }
+            }
+        }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
+        pub struct CollectionRowQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> CollectionRowBorrowed,
+            mapper: fn(CollectionRowBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> CollectionRowQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(
+                self,
+                mapper: fn(CollectionRowBorrowed) -> R,
+            ) -> CollectionRowQuery<'a, C, R, N> {
+                CollectionRowQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
             }
         }
         pub struct CollectionSummaryRowQuery<'a, C: GenericClient, T, const N: usize> {
@@ -3393,9 +3430,6 @@ FROM
         }
     }
     pub mod color {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct GetColorParams<T1: cornucopia_async::StringSql, T2: cornucopia_async::StringSql> {
             pub organization_id: i32,
@@ -3519,6 +3553,35 @@ FROM
                 }
             }
         }
+        #[derive(Debug, Clone, PartialEq)]
+        pub struct ColorRefs {
+            pub id: i32,
+            pub external_id: Option<String>,
+            pub slug: String,
+        }
+        pub struct ColorRefsBorrowed<'a> {
+            pub id: i32,
+            pub external_id: Option<&'a str>,
+            pub slug: &'a str,
+        }
+        impl<'a> From<ColorRefsBorrowed<'a>> for ColorRefs {
+            fn from(
+                ColorRefsBorrowed {
+                    id,
+                    external_id,
+                    slug,
+                }: ColorRefsBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    external_id: external_id.map(|v| v.into()),
+                    slug: slug.into(),
+                }
+            }
+        }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct ColorRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -3621,32 +3684,6 @@ FROM
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
                 Ok(it)
-            }
-        }
-        #[derive(Debug, Clone, PartialEq)]
-        pub struct ColorRefs {
-            pub id: i32,
-            pub external_id: Option<String>,
-            pub slug: String,
-        }
-        pub struct ColorRefsBorrowed<'a> {
-            pub id: i32,
-            pub external_id: Option<&'a str>,
-            pub slug: &'a str,
-        }
-        impl<'a> From<ColorRefsBorrowed<'a>> for ColorRefs {
-            fn from(
-                ColorRefsBorrowed {
-                    id,
-                    external_id,
-                    slug,
-                }: ColorRefsBorrowed<'a>,
-            ) -> Self {
-                Self {
-                    id,
-                    external_id: external_id.map(|v| v.into()),
-                    slug: slug.into(),
-                }
             }
         }
         pub struct ColorRefsQuery<'a, C: GenericClient, T, const N: usize> {
@@ -4227,9 +4264,6 @@ WHERE organization_id = $1
         }
     }
     pub mod group {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct SelectGroupsParams<
             T1: cornucopia_async::StringSql,
@@ -4369,6 +4403,55 @@ WHERE organization_id = $1
                 }
             }
         }
+        #[derive(Debug, Clone, PartialEq)]
+        pub struct GroupSummaryRow {
+            pub id: i32,
+            pub slug: String,
+            pub external_id: Option<String>,
+            pub name: String,
+            pub description: String,
+            pub num_users: i64,
+            pub num_collections: i64,
+            pub num_price_lists: i64,
+        }
+        pub struct GroupSummaryRowBorrowed<'a> {
+            pub id: i32,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+            pub name: &'a str,
+            pub description: &'a str,
+            pub num_users: i64,
+            pub num_collections: i64,
+            pub num_price_lists: i64,
+        }
+        impl<'a> From<GroupSummaryRowBorrowed<'a>> for GroupSummaryRow {
+            fn from(
+                GroupSummaryRowBorrowed {
+                    id,
+                    slug,
+                    external_id,
+                    name,
+                    description,
+                    num_users,
+                    num_collections,
+                    num_price_lists,
+                }: GroupSummaryRowBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                    name: name.into(),
+                    description: description.into(),
+                    num_users,
+                    num_collections,
+                    num_price_lists,
+                }
+            }
+        }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct GroupRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -4419,52 +4502,6 @@ WHERE organization_id = $1
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
                 Ok(it)
-            }
-        }
-        #[derive(Debug, Clone, PartialEq)]
-        pub struct GroupSummaryRow {
-            pub id: i32,
-            pub slug: String,
-            pub external_id: Option<String>,
-            pub name: String,
-            pub description: String,
-            pub num_users: i64,
-            pub num_collections: i64,
-            pub num_price_lists: i64,
-        }
-        pub struct GroupSummaryRowBorrowed<'a> {
-            pub id: i32,
-            pub slug: &'a str,
-            pub external_id: Option<&'a str>,
-            pub name: &'a str,
-            pub description: &'a str,
-            pub num_users: i64,
-            pub num_collections: i64,
-            pub num_price_lists: i64,
-        }
-        impl<'a> From<GroupSummaryRowBorrowed<'a>> for GroupSummaryRow {
-            fn from(
-                GroupSummaryRowBorrowed {
-                    id,
-                    slug,
-                    external_id,
-                    name,
-                    description,
-                    num_users,
-                    num_collections,
-                    num_price_lists,
-                }: GroupSummaryRowBorrowed<'a>,
-            ) -> Self {
-                Self {
-                    id,
-                    slug: slug.into(),
-                    external_id: external_id.map(|v| v.into()),
-                    name: name.into(),
-                    description: description.into(),
-                    num_users,
-                    num_collections,
-                    num_price_lists,
-                }
             }
         }
         pub struct GroupSummaryRowQuery<'a, C: GenericClient, T, const N: usize> {
@@ -5276,9 +5313,6 @@ FROM
         }
     }
     pub mod image {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct GetImageIdParams<T1: cornucopia_async::StringSql> {
             pub organization_id: i32,
@@ -5386,6 +5420,9 @@ FROM
                 }
             }
         }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct ImageRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -6097,9 +6134,6 @@ FROM
         }
     }
     pub mod organization {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct InsertOrganizationParams<
             T1: cornucopia_async::StringSql,
@@ -6156,6 +6190,9 @@ FROM
                 }
             }
         }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct OrganizationRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -6509,9 +6546,6 @@ WHERE
         }
     }
     pub mod price {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct SelectPricesParams<
             T1: cornucopia_async::ArraySql<Item = i32>,
@@ -6646,6 +6680,9 @@ WHERE
                 }
             }
         }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct PriceRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -7154,9 +7191,6 @@ WHERE organization_id = $1
         }
     }
     pub mod pricelist {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Clone, Copy, Debug)]
         pub struct ListPricelistsParams {
             pub requester_id: i32,
@@ -7267,6 +7301,39 @@ WHERE organization_id = $1
                 }
             }
         }
+        #[derive(Debug, Clone, PartialEq)]
+        pub struct PriceListSummaryRow {
+            pub id: i32,
+            pub name: String,
+            pub slug: String,
+            pub external_id: Option<String>,
+        }
+        pub struct PriceListSummaryRowBorrowed<'a> {
+            pub id: i32,
+            pub name: &'a str,
+            pub slug: &'a str,
+            pub external_id: Option<&'a str>,
+        }
+        impl<'a> From<PriceListSummaryRowBorrowed<'a>> for PriceListSummaryRow {
+            fn from(
+                PriceListSummaryRowBorrowed {
+                    id,
+                    name,
+                    slug,
+                    external_id,
+                }: PriceListSummaryRowBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    name: name.into(),
+                    slug: slug.into(),
+                    external_id: external_id.map(|v| v.into()),
+                }
+            }
+        }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct PriceListRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -7320,36 +7387,6 @@ WHERE organization_id = $1
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
                 Ok(it)
-            }
-        }
-        #[derive(Debug, Clone, PartialEq)]
-        pub struct PriceListSummaryRow {
-            pub id: i32,
-            pub name: String,
-            pub slug: String,
-            pub external_id: Option<String>,
-        }
-        pub struct PriceListSummaryRowBorrowed<'a> {
-            pub id: i32,
-            pub name: &'a str,
-            pub slug: &'a str,
-            pub external_id: Option<&'a str>,
-        }
-        impl<'a> From<PriceListSummaryRowBorrowed<'a>> for PriceListSummaryRow {
-            fn from(
-                PriceListSummaryRowBorrowed {
-                    id,
-                    name,
-                    slug,
-                    external_id,
-                }: PriceListSummaryRowBorrowed<'a>,
-            ) -> Self {
-                Self {
-                    id,
-                    name: name.into(),
-                    slug: slug.into(),
-                    external_id: external_id.map(|v| v.into()),
-                }
             }
         }
         pub struct PriceListSummaryRowQuery<'a, C: GenericClient, T, const N: usize> {
@@ -7965,9 +8002,6 @@ WHERE
         }
     }
     pub mod size {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct GetSizeIdParams<T1: cornucopia_async::StringSql, T2: cornucopia_async::StringSql> {
             pub organization_id: i32,
@@ -8107,6 +8141,9 @@ WHERE
                 }
             }
         }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct SizeRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -8722,9 +8759,6 @@ WHERE organization_id = $1
         }
     }
     pub mod style {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct SelectStylesParams<T1: cornucopia_async::ArraySql<Item = i32>> {
             pub organization_id: i32,
@@ -8749,11 +8783,13 @@ WHERE organization_id = $1
             T2: cornucopia_async::ArraySql<Item = T1>,
             T3: cornucopia_async::ArraySql<Item = i32>,
             T4: cornucopia_async::ArraySql<Item = i32>,
+            T5: cornucopia_async::ArraySql<Item = i32>,
         > {
             pub organization_id: i32,
             pub statuses: Option<T2>,
             pub ids: Option<T3>,
             pub categories: Option<T4>,
+            pub attributes: Option<T5>,
         }
         #[derive(Debug)]
         pub struct GetStyleIdParams<
@@ -8913,58 +8949,6 @@ WHERE organization_id = $1
                 }
             }
         }
-        pub struct StyleRowQuery<'a, C: GenericClient, T, const N: usize> {
-            client: &'a C,
-            params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
-            extractor: fn(&tokio_postgres::Row) -> StyleRowBorrowed,
-            mapper: fn(StyleRowBorrowed) -> T,
-        }
-        impl<'a, C, T: 'a, const N: usize> StyleRowQuery<'a, C, T, N>
-        where
-            C: GenericClient,
-        {
-            pub fn map<R>(self, mapper: fn(StyleRowBorrowed) -> R) -> StyleRowQuery<'a, C, R, N> {
-                StyleRowQuery {
-                    client: self.client,
-                    params: self.params,
-                    stmt: self.stmt,
-                    extractor: self.extractor,
-                    mapper,
-                }
-            }
-            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
-                let stmt = self.stmt.prepare(self.client).await?;
-                let row = self.client.query_one(stmt, &self.params).await?;
-                Ok((self.mapper)((self.extractor)(&row)))
-            }
-            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
-                self.iter().await?.try_collect().await
-            }
-            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
-                let stmt = self.stmt.prepare(self.client).await?;
-                Ok(self
-                    .client
-                    .query_opt(stmt, &self.params)
-                    .await?
-                    .map(|row| (self.mapper)((self.extractor)(&row))))
-            }
-            pub async fn iter(
-                self,
-            ) -> Result<
-                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
-                tokio_postgres::Error,
-            > {
-                let stmt = self.stmt.prepare(self.client).await?;
-                let it = self
-                    .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
-                    .await?
-                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
-                    .into_stream();
-                Ok(it)
-            }
-        }
         #[derive(Debug, Clone, PartialEq)]
         pub struct NestedStyleRow {
             pub id: i32,
@@ -9063,6 +9047,117 @@ WHERE organization_id = $1
                 }
             }
         }
+        #[derive(Debug, Clone, PartialEq)]
+        pub struct NestedStyleSummaryRow {
+            pub id: i32,
+            pub name: serde_json::Value,
+            pub number: String,
+            pub colors: serde_json::Value,
+        }
+        pub struct NestedStyleSummaryRowBorrowed<'a> {
+            pub id: i32,
+            pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
+            pub number: &'a str,
+            pub colors: postgres_types::Json<&'a serde_json::value::RawValue>,
+        }
+        impl<'a> From<NestedStyleSummaryRowBorrowed<'a>> for NestedStyleSummaryRow {
+            fn from(
+                NestedStyleSummaryRowBorrowed {
+                    id,
+                    name,
+                    number,
+                    colors,
+                }: NestedStyleSummaryRowBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    name: serde_json::from_str(name.0.get()).unwrap(),
+                    number: number.into(),
+                    colors: serde_json::from_str(colors.0.get()).unwrap(),
+                }
+            }
+        }
+        #[derive(Debug, Clone, PartialEq)]
+        pub struct StyleRefs {
+            pub id: i32,
+            pub external_id: Option<String>,
+            pub slug: String,
+        }
+        pub struct StyleRefsBorrowed<'a> {
+            pub id: i32,
+            pub external_id: Option<&'a str>,
+            pub slug: &'a str,
+        }
+        impl<'a> From<StyleRefsBorrowed<'a>> for StyleRefs {
+            fn from(
+                StyleRefsBorrowed {
+                    id,
+                    external_id,
+                    slug,
+                }: StyleRefsBorrowed<'a>,
+            ) -> Self {
+                Self {
+                    id,
+                    external_id: external_id.map(|v| v.into()),
+                    slug: slug.into(),
+                }
+            }
+        }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
+        pub struct StyleRowQuery<'a, C: GenericClient, T, const N: usize> {
+            client: &'a C,
+            params: [&'a (dyn postgres_types::ToSql + Sync); N],
+            stmt: &'a mut cornucopia_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> StyleRowBorrowed,
+            mapper: fn(StyleRowBorrowed) -> T,
+        }
+        impl<'a, C, T: 'a, const N: usize> StyleRowQuery<'a, C, T, N>
+        where
+            C: GenericClient,
+        {
+            pub fn map<R>(self, mapper: fn(StyleRowBorrowed) -> R) -> StyleRowQuery<'a, C, R, N> {
+                StyleRowQuery {
+                    client: self.client,
+                    params: self.params,
+                    stmt: self.stmt,
+                    extractor: self.extractor,
+                    mapper,
+                }
+            }
+            pub async fn one(self) -> Result<T, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let row = self.client.query_one(stmt, &self.params).await?;
+                Ok((self.mapper)((self.extractor)(&row)))
+            }
+            pub async fn all(self) -> Result<Vec<T>, tokio_postgres::Error> {
+                self.iter().await?.try_collect().await
+            }
+            pub async fn opt(self) -> Result<Option<T>, tokio_postgres::Error> {
+                let stmt = self.stmt.prepare(self.client).await?;
+                Ok(self
+                    .client
+                    .query_opt(stmt, &self.params)
+                    .await?
+                    .map(|row| (self.mapper)((self.extractor)(&row))))
+            }
+            pub async fn iter(
+                self,
+            ) -> Result<
+                impl futures::Stream<Item = Result<T, tokio_postgres::Error>> + 'a,
+                tokio_postgres::Error,
+            > {
+                let stmt = self.stmt.prepare(self.client).await?;
+                let it = self
+                    .client
+                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .await?
+                    .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
+                    .into_stream();
+                Ok(it)
+            }
+        }
         pub struct NestedStyleRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
@@ -9116,36 +9211,6 @@ WHERE organization_id = $1
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
                 Ok(it)
-            }
-        }
-        #[derive(Debug, Clone, PartialEq)]
-        pub struct NestedStyleSummaryRow {
-            pub id: i32,
-            pub name: serde_json::Value,
-            pub number: String,
-            pub colors: serde_json::Value,
-        }
-        pub struct NestedStyleSummaryRowBorrowed<'a> {
-            pub id: i32,
-            pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
-            pub number: &'a str,
-            pub colors: postgres_types::Json<&'a serde_json::value::RawValue>,
-        }
-        impl<'a> From<NestedStyleSummaryRowBorrowed<'a>> for NestedStyleSummaryRow {
-            fn from(
-                NestedStyleSummaryRowBorrowed {
-                    id,
-                    name,
-                    number,
-                    colors,
-                }: NestedStyleSummaryRowBorrowed<'a>,
-            ) -> Self {
-                Self {
-                    id,
-                    name: serde_json::from_str(name.0.get()).unwrap(),
-                    number: number.into(),
-                    colors: serde_json::from_str(colors.0.get()).unwrap(),
-                }
             }
         }
         pub struct NestedStyleSummaryRowQuery<'a, C: GenericClient, T, const N: usize> {
@@ -9253,32 +9318,6 @@ WHERE organization_id = $1
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
                 Ok(it)
-            }
-        }
-        #[derive(Debug, Clone, PartialEq)]
-        pub struct StyleRefs {
-            pub id: i32,
-            pub external_id: Option<String>,
-            pub slug: String,
-        }
-        pub struct StyleRefsBorrowed<'a> {
-            pub id: i32,
-            pub external_id: Option<&'a str>,
-            pub slug: &'a str,
-        }
-        impl<'a> From<StyleRefsBorrowed<'a>> for StyleRefs {
-            fn from(
-                StyleRefsBorrowed {
-                    id,
-                    external_id,
-                    slug,
-                }: StyleRefsBorrowed<'a>,
-            ) -> Self {
-                Self {
-                    id,
-                    external_id: external_id.map(|v| v.into()),
-                    slug: slug.into(),
-                }
             }
         }
         pub struct StyleRefsQuery<'a, C: GenericClient, T, const N: usize> {
@@ -9899,10 +9938,18 @@ LEFT JOIN (
     FROM style_category
     GROUP BY style_category.style_id
 ) AS style_categories ON style_categories.style_id = style.id
+LEFT JOIN (
+    SELECT
+        style_attribute.style_id,
+        array_agg(style_attribute.attribute_id) AS attribute_ids
+    FROM style_attribute
+    GROUP BY style_attribute.style_id
+) AS style_attributes ON style_attributes.style_id = style.id
 WHERE
     style.organization_id = $1
     AND ($3::int[] IS NULL OR style.id = any($3))
     AND ($4::int[] IS NULL OR style_categories.category_ids && $4)
+    AND ($5::int[] IS NULL OR style_attributes.attribute_ids && $5)
 ORDER BY
     style.number",
             ))
@@ -9916,6 +9963,7 @@ ORDER BY
                 T2: cornucopia_async::ArraySql<Item = T1>,
                 T3: cornucopia_async::ArraySql<Item = i32>,
                 T4: cornucopia_async::ArraySql<Item = i32>,
+                T5: cornucopia_async::ArraySql<Item = i32>,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -9923,10 +9971,11 @@ ORDER BY
                 statuses: &'a Option<T2>,
                 ids: &'a Option<T3>,
                 categories: &'a Option<T4>,
-            ) -> NestedStyleSummaryRowQuery<'a, C, NestedStyleSummaryRow, 4> {
+                attributes: &'a Option<T5>,
+            ) -> NestedStyleSummaryRowQuery<'a, C, NestedStyleSummaryRow, 5> {
                 NestedStyleSummaryRowQuery {
                     client,
-                    params: [organization_id, statuses, ids, categories],
+                    params: [organization_id, statuses, ids, categories, attributes],
                     stmt: &mut self.0,
                     extractor: |row| NestedStyleSummaryRowBorrowed {
                         id: row.get(0),
@@ -9945,25 +9994,27 @@ ORDER BY
                 T2: cornucopia_async::ArraySql<Item = T1>,
                 T3: cornucopia_async::ArraySql<Item = i32>,
                 T4: cornucopia_async::ArraySql<Item = i32>,
+                T5: cornucopia_async::ArraySql<Item = i32>,
             >
             cornucopia_async::Params<
                 'a,
-                SelectNestedStyleSummariesParams<T1, T2, T3, T4>,
-                NestedStyleSummaryRowQuery<'a, C, NestedStyleSummaryRow, 4>,
+                SelectNestedStyleSummariesParams<T1, T2, T3, T4, T5>,
+                NestedStyleSummaryRowQuery<'a, C, NestedStyleSummaryRow, 5>,
                 C,
             > for SelectNestedStyleSummariesStmt
         {
             fn params(
                 &'a mut self,
                 client: &'a C,
-                params: &'a SelectNestedStyleSummariesParams<T1, T2, T3, T4>,
-            ) -> NestedStyleSummaryRowQuery<'a, C, NestedStyleSummaryRow, 4> {
+                params: &'a SelectNestedStyleSummariesParams<T1, T2, T3, T4, T5>,
+            ) -> NestedStyleSummaryRowQuery<'a, C, NestedStyleSummaryRow, 5> {
                 self.bind(
                     client,
                     &params.organization_id,
                     &params.statuses,
                     &params.ids,
                     &params.categories,
+                    &params.attributes,
                 )
             }
         }
@@ -10389,9 +10440,6 @@ id",
         }
     }
     pub mod user {
-        use cornucopia_async::GenericClient;
-        use futures;
-        use futures::{StreamExt, TryStreamExt};
         #[derive(Debug)]
         pub struct SelectUsersParams<
             T1: cornucopia_async::StringSql,
@@ -10504,6 +10552,9 @@ id",
                 }
             }
         }
+        use cornucopia_async::GenericClient;
+        use futures;
+        use futures::{StreamExt, TryStreamExt};
         pub struct UserRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],

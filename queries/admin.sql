@@ -13,8 +13,8 @@
 SELECT
     style.id,
     style."name" AS title,
-    json_build_object('en', style."number") AS subtitle,
-    to_json(main_image.json_data) AS image
+    jsonb_build_object('en', style."number") AS subtitle,
+    to_jsonb(main_image.json_data) AS image
 FROM style
 LEFT JOIN (
     SELECT
@@ -41,10 +41,21 @@ ORDER BY title;
 SELECT
     category.id,
     category."name" AS title,
-    NULL::json AS subtitle,
-    NULL::json AS image
+    NULL::jsonb AS subtitle,
+    NULL::jsonb AS image
 FROM category WHERE category.organization_id = :organization_id
 ORDER BY title;
+
+--! select_attribute_filter_choices : EntityFilterChoiceRow
+SELECT
+    "attribute".id,
+    "attribute".title,
+    attributetype."name" AS subtitle,
+    NULL::jsonb AS image
+FROM "attribute"
+INNER JOIN attributetype ON attributetype.id = "attribute".type_id
+WHERE "attribute".organization_id = :organization_id
+ORDER BY "attribute".title;
 
 
 --! select_status_filter_choices : StringFilterChoiceRow
