@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.0](https://github.com/hyperkliv/samling/compare/v0.4.1...v0.5.0) (2023-05-08)
+
+
+### Features
+
+* Ability to filter by attributes in collection admin ([2717c1a](https://github.com/hyperkliv/samling/commit/2717c1a0972613cdfefbbd997bfdcd61f009eaf6))
+
+
+### Bug Fixes
+
+* **admin:** Attribute filtering of different types are now AND:ed together ([4832344](https://github.com/hyperkliv/samling/commit/48323441357c928b23879539943e3b50a6e75a04))
+* Update dependencies ([dc2d42e](https://github.com/hyperkliv/samling/commit/dc2d42e18595a0063bd254a008753d096f8b7a5a))
+
 ## [0.4.1](https://github.com/hyperkliv/samling/compare/v0.4.0...v0.4.1) (2023-02-28)
 
 
