@@ -195,14 +195,17 @@ export default function AddCollectionItemsModal({
                       <div className="my-5">
                         <MultipleCombobox
                           title={t`Attributes`}
+                          description={`Different types of attributes must all get matched. Within the same type any may match.`}
                           allItems={itemFilterChoices.attribute}
                           selectedItems={filteredAttributes}
                           setSelectedItems={setFilteredAttributes}
                           toFilterItem={(choice) => ({
                             id: choice.id,
                             title: i18nDbText(choice.title),
+                            bubblePrefix: choice.subtitle ? i18nDbText(choice.subtitle) : '',
                             subtitle: choice.subtitle ? i18nDbText(choice.subtitle) : '',
                           })}
+                          numSelectedVisible={2}
                         />
                       </div>
                       <div className="my-5">

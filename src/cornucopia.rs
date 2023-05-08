@@ -8779,17 +8779,17 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct SelectNestedStyleSummariesParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::ArraySql<Item = T1>,
-            T3: cornucopia_async::ArraySql<Item = i32>,
+            T1: cornucopia_async::ArraySql<Item = i32>,
+            T2: cornucopia_async::StringSql,
+            T3: cornucopia_async::ArraySql<Item = T2>,
             T4: cornucopia_async::ArraySql<Item = i32>,
             T5: cornucopia_async::ArraySql<Item = i32>,
         > {
+            pub attributes: Option<T1>,
             pub organization_id: i32,
-            pub statuses: Option<T2>,
-            pub ids: Option<T3>,
-            pub categories: Option<T4>,
-            pub attributes: Option<T5>,
+            pub statuses: Option<T3>,
+            pub ids: Option<T4>,
+            pub categories: Option<T5>,
         }
         #[derive(Debug)]
         pub struct GetStyleIdParams<
@@ -9851,7 +9851,10 @@ ORDER BY
         }
         pub fn select_nested_style_summaries() -> SelectNestedStyleSummariesStmt {
             SelectNestedStyleSummariesStmt(cornucopia_async::private::Stmt::new(
-                "SELECT
+                "WITH attribute_matches AS (
+    SELECT styles_matching_attributes($1)
+)
+SELECT
     style.id,
     style.name,
     style.number,
@@ -9902,8 +9905,8 @@ INNER JOIN (
                 size
             INNER JOIN color ON size.color_id = color.id
             WHERE
-                size.organization_id = $1
-                AND ($2::text[] IS NULL OR size.status = any($2))
+                size.organization_id = $2
+                AND ($3::text[] IS NULL OR size.status = any($3))
             GROUP BY
                 size.color_id
             ) AS joined_sizes ON joined_sizes.color_id = color.id
@@ -9923,11 +9926,11 @@ INNER JOIN (
             FROM
                 image
             WHERE
-                image.organization_id = $1
+                image.organization_id = $2
                 AND image.position = 1
             ) AS primary_image ON primary_image.color_id = color.id
         WHERE
-            color.organization_id = $1
+            color.organization_id = $2
         GROUP BY
             color.style_id
     ) AS joined_colors ON joined_colors.style_id = style.id
@@ -9938,18 +9941,11 @@ LEFT JOIN (
     FROM style_category
     GROUP BY style_category.style_id
 ) AS style_categories ON style_categories.style_id = style.id
-LEFT JOIN (
-    SELECT
-        style_attribute.style_id,
-        array_agg(style_attribute.attribute_id) AS attribute_ids
-    FROM style_attribute
-    GROUP BY style_attribute.style_id
-) AS style_attributes ON style_attributes.style_id = style.id
 WHERE
-    style.organization_id = $1
-    AND ($3::int[] IS NULL OR style.id = any($3))
-    AND ($4::int[] IS NULL OR style_categories.category_ids && $4)
-    AND ($5::int[] IS NULL OR style_attributes.attribute_ids && $5)
+    style.organization_id = $2
+    AND ($4::int[] IS NULL OR style.id = any($4))
+    AND ($5::int[] IS NULL OR style_categories.category_ids && $5)
+    AND ($1::int[] IS NULL OR style.id IN (SELECT * FROM attribute_matches))
 ORDER BY
     style.number",
             ))
@@ -9959,23 +9955,23 @@ ORDER BY
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::ArraySql<Item = T1>,
-                T3: cornucopia_async::ArraySql<Item = i32>,
+                T1: cornucopia_async::ArraySql<Item = i32>,
+                T2: cornucopia_async::StringSql,
+                T3: cornucopia_async::ArraySql<Item = T2>,
                 T4: cornucopia_async::ArraySql<Item = i32>,
                 T5: cornucopia_async::ArraySql<Item = i32>,
             >(
                 &'a mut self,
                 client: &'a C,
+                attributes: &'a Option<T1>,
                 organization_id: &'a i32,
-                statuses: &'a Option<T2>,
-                ids: &'a Option<T3>,
-                categories: &'a Option<T4>,
-                attributes: &'a Option<T5>,
+                statuses: &'a Option<T3>,
+                ids: &'a Option<T4>,
+                categories: &'a Option<T5>,
             ) -> NestedStyleSummaryRowQuery<'a, C, NestedStyleSummaryRow, 5> {
                 NestedStyleSummaryRowQuery {
                     client,
-                    params: [organization_id, statuses, ids, categories, attributes],
+                    params: [attributes, organization_id, statuses, ids, categories],
                     stmt: &mut self.0,
                     extractor: |row| NestedStyleSummaryRowBorrowed {
                         id: row.get(0),
@@ -9990,9 +9986,9 @@ ORDER BY
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::ArraySql<Item = T1>,
-                T3: cornucopia_async::ArraySql<Item = i32>,
+                T1: cornucopia_async::ArraySql<Item = i32>,
+                T2: cornucopia_async::StringSql,
+                T3: cornucopia_async::ArraySql<Item = T2>,
                 T4: cornucopia_async::ArraySql<Item = i32>,
                 T5: cornucopia_async::ArraySql<Item = i32>,
             >
@@ -10010,11 +10006,11 @@ ORDER BY
             ) -> NestedStyleSummaryRowQuery<'a, C, NestedStyleSummaryRow, 5> {
                 self.bind(
                     client,
+                    &params.attributes,
                     &params.organization_id,
                     &params.statuses,
                     &params.ids,
                     &params.categories,
-                    &params.attributes,
                 )
             }
         }

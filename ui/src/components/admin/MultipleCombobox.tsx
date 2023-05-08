@@ -11,11 +11,13 @@ interface FilterItem {
   id?: number | string | null;
   title: string;
   subtitle?: string | null;
+  bubblePrefix?: string | null;
   imageUrl?: string | null;
 }
 
 interface MultipleComboboxProps<T> {
   title?: string;
+  description?: string;
   allItems: T[];
   selectedItems: T[];
   setSelectedItems: Dispatch<SetStateAction<T[]>>;
@@ -25,6 +27,7 @@ interface MultipleComboboxProps<T> {
 
 export default function MultipleCombobox<T>({
   title,
+  description,
   allItems,
   selectedItems,
   setSelectedItems,
@@ -113,6 +116,11 @@ export default function MultipleCombobox<T>({
           {title}
         </Combobox.Label>
       )}
+      {description && (
+        <p className="block text-xs text-gray-700">
+          {description}
+        </p>
+      )}
       <div className="relative mt-1">
         <Combobox.Input
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
@@ -127,6 +135,9 @@ export default function MultipleCombobox<T>({
                 key={filterItem.id || filterItem.title}
                 className="inline-flex items-center rounded-full bg-indigo-100 mx-0.5 px-2 py-0.5 text-xs text-indigo-800"
               >
+                {filterItem.bubblePrefix && (
+                <span className="overflow-hidden whitespace-nowrap text-indigo-400 pr-1.5">{filterItem.bubblePrefix}</span>
+                )}
                 <span
                   style={{ maxWidth: 150 }}
                   className="overflow-hidden whitespace-nowrap"
