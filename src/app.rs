@@ -63,6 +63,13 @@ pub async fn serve(
             .merge(exports::routes::org_routes())
             .merge(admin::routes::org_routes()),
     );
+
+    // NOTE: Disabling brotli compression due to very slow HTTP responses (10x slower and more)
+    //       See these links for more info:
+    //       - https://github.com/tower-rs/tower-http/pull/356
+    //       - https://github.com/dropbox/rust-brotli/issues/93
+    let compression_layer = CompressionLayer::new().br(false);
+
     let api_router = AppRouter::new()
         .merge(auth::routes::global_routes())
         .merge(organizations::routes::global_routes())
@@ -71,7 +78,7 @@ pub async fn serve(
         .route("/readyz", axum::routing::get(readyz))
         .layer(TraceLayer::new_for_http())
         .layer(cors_layer)
-        .layer(CompressionLayer::new());
+        .layer(compression_layer);
 
     let app = make_app(api_router)
         .with_state(app_state)
