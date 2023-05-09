@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.1](https://github.com/hyperkliv/samling/compare/v0.5.0...v0.5.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* Resolve extremely slow response compression ([6b85c96](https://github.com/hyperkliv/samling/commit/6b85c96e973b6ab99cf3356336740b7887218f19))
+* Update dependencies ([b3014bf](https://github.com/hyperkliv/samling/commit/b3014bf71e0918fe1df48032225742da9acd08ca))
+
 ## [0.5.0](https://github.com/hyperkliv/samling/compare/v0.4.1...v0.5.0) (2023-05-08)
 
 
