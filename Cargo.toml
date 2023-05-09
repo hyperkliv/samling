@@ -39,10 +39,10 @@ postgres-types = { version = "0.2.5", features = ["derive", "with-time-0_3", "wi
 rand = "0.8.5"
 reqwest = { version = "0.11.17", features = ["rustls-tls", "json", "stream", "multipart"], default-features = false }
 rust_decimal = { version = "1.29.1", features = ["db-tokio-postgres", "db-postgres", "serde-with-float"] }
-rust_xlsxwriter = "0.37.0"
+rust_xlsxwriter = "0.38.0"
 schemars = { version = "0.8.12", features = ["derive", "preserve_order", "bytes", "url", "rust_decimal"] }
 sentry = { version = "0.31.0", default-features = false, features = ["rustls", "tracing", "backtrace", "contexts", "panic", "tokio", "reqwest", "tower"] }
-serde = { version = "1.0.160", features = ["derive"] }
+serde = { version = "1.0.162", features = ["derive"] }
 serde_json = { version = "1.0.96", features = ["preserve_order"] }
 serde_path_to_error = "0.1.11"
 slug = "0.1.4"
@@ -51,7 +51,7 @@ strum = { version = "0.24.1", features = ["derive"] }
 thiserror = "1.0.40"
 # TODO: Remove `serde-well-known`, it's being deprecated. See this commit:
 #       https://github.com/time-rs/time/commit/110e17bb8461816551f7197a2aa2e34c981fa22d
-time = { version = "0.3.20", features = ["serde", "serde-human-readable", "serde-well-known"] }
+time = { version = "0.3.21", features = ["serde", "serde-human-readable", "serde-well-known"] }
 tokio = { version = "1.28.0", default-features = false, features = ["signal", "macros", "rt-multi-thread"] }
 tokio-postgres = "0.7.8"
 tower = "0.4.13"
