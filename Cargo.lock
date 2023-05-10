@@ -2019,7 +2019,7 @@ checksum = "f91339c0467de62360649f8d3e185ca8de4224ff281f66000de5eb2a77a79041"
 
 [[package]]
 name = "samling"
-version = "0.5.1"
+version = "0.5.2"
 dependencies = [
  "argon2",
  "async-trait",
