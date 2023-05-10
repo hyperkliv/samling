@@ -1,11 +1,7 @@
 use cornucopia_async::{GenericClient, Params};
 use deadpool_postgres::Object;
-use itertools::Itertools;
 
-use super::{
-    filters::PriceListFilters, CreatePrice, CreatePriceList, Price, PriceList, UpdatePrice,
-    UpdatePriceList,
-};
+use super::{CreatePrice, CreatePriceList, Price, PriceList, UpdatePrice, UpdatePriceList};
 use crate::{
     auth::User,
     cornucopia::{
@@ -280,17 +276,11 @@ impl PriceListsRepo {
         &self,
         client: &impl GenericClient,
         metadata: RequestMetaData,
-        filters: &PriceListFilters,
     ) -> Result<Vec<PriceListSummary>> {
-        let collection_ids = filters
-            .collection_ids(client, metadata.organization_id())
-            .await?
-            .map(|vec| vec.into_iter().map(|id| id.into()).collect_vec());
         list_pricelist_summaries()
             .params(
                 client,
                 &ListPricelistSummariesParams {
-                    collection_ids,
                     organization_id: metadata.organization_id().into(),
                     requester_id: metadata.user_id().into(),
                 },

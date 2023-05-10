@@ -1,7 +1,6 @@
 use axum::{http::StatusCode, routing, Json};
 
 use super::entities::{CreatePrice, Price, UpdatePrice};
-use super::filters::PriceListFilters;
 use super::repo::{PriceListsRepo, PricesRepo};
 use super::{CreatePriceList, PriceList, UpdatePriceList};
 use crate::auth::signing::Claims;
@@ -152,12 +151,9 @@ async fn list_pricelist_summaries(
     claims: Claims,
     PathOrganizationId(organization_id): PathOrganizationId,
     PoolClient(client): PoolClient,
-    filters: PriceListFilters,
 ) -> Result<Json<Vec<PriceListSummary>>> {
     let metadata = claims.ensure(organization_id, &[Permission::ListPriceLists])?;
-    let pricelists = PriceListsRepo
-        .list_summaries(&client, metadata, &filters)
-        .await?;
+    let pricelists = PriceListsRepo.list_summaries(&client, metadata).await?;
 
     Ok(Json(pricelists))
 }

@@ -26,20 +26,7 @@ WHERE
 ORDER BY
     pricelist.name;
 
---! list_pricelist_summaries (collection_ids?) : PriceListSummaryRow
-WITH collection_pricelist AS (
-    SELECT pricelist.id
-    FROM pricelist
-    INNER JOIN price ON price.list_id = pricelist.id
-    INNER JOIN color ON color.style_id = price.style_id
-    INNER JOIN size ON size.color_id = color.id
-    INNER JOIN size_collection ON size_collection.size_id = size.id
-    WHERE
-        :collection_ids::int[] IS NULL OR size_collection.collection_id = any(
-            :collection_ids
-        )
-    GROUP BY pricelist.id
-)
+--! list_pricelist_summaries : PriceListSummaryRow
 
 SELECT
     pricelist.id,
@@ -48,8 +35,6 @@ SELECT
     pricelist.external_id
 FROM
     pricelist
-INNER JOIN collection_pricelist
-    ON collection_pricelist.id = pricelist.id
 INNER JOIN (
     SELECT group_pricelist.pricelist_id
     FROM group_pricelist

@@ -7196,9 +7196,8 @@ WHERE organization_id = $1
             pub requester_id: i32,
             pub organization_id: i32,
         }
-        #[derive(Debug)]
-        pub struct ListPricelistSummariesParams<T1: cornucopia_async::ArraySql<Item = i32>> {
-            pub collection_ids: Option<T1>,
+        #[derive(Clone, Copy, Debug)]
+        pub struct ListPricelistSummariesParams {
             pub requester_id: i32,
             pub organization_id: i32,
         }
@@ -7560,20 +7559,7 @@ ORDER BY
         }
         pub fn list_pricelist_summaries() -> ListPricelistSummariesStmt {
             ListPricelistSummariesStmt(cornucopia_async::private::Stmt::new(
-                "WITH collection_pricelist AS (
-    SELECT pricelist.id
-    FROM pricelist
-    INNER JOIN price ON price.list_id = pricelist.id
-    INNER JOIN color ON color.style_id = price.style_id
-    INNER JOIN size ON size.color_id = color.id
-    INNER JOIN size_collection ON size_collection.size_id = size.id
-    WHERE
-        $1::int[] IS NULL OR size_collection.collection_id = any(
-            $1
-        )
-    GROUP BY pricelist.id
-)
-
+                "
 SELECT
     pricelist.id,
     pricelist.name,
@@ -7581,35 +7567,32 @@ SELECT
     pricelist.external_id
 FROM
     pricelist
-INNER JOIN collection_pricelist
-    ON collection_pricelist.id = pricelist.id
 INNER JOIN (
     SELECT group_pricelist.pricelist_id
     FROM group_pricelist
     INNER JOIN group_user
         ON group_user.group_id = group_pricelist.group_id
     WHERE
-        group_user.user_id = $2
+        group_user.user_id = $1
     GROUP BY group_pricelist.pricelist_id
 ) AS requester_pricelists ON requester_pricelists.pricelist_id = pricelist.id
 WHERE
-    pricelist.organization_id = $3
+    pricelist.organization_id = $2
 ORDER BY
     pricelist.name",
             ))
         }
         pub struct ListPricelistSummariesStmt(cornucopia_async::private::Stmt);
         impl ListPricelistSummariesStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
                 client: &'a C,
-                collection_ids: &'a Option<T1>,
                 requester_id: &'a i32,
                 organization_id: &'a i32,
-            ) -> PriceListSummaryRowQuery<'a, C, PriceListSummaryRow, 3> {
+            ) -> PriceListSummaryRowQuery<'a, C, PriceListSummaryRow, 2> {
                 PriceListSummaryRowQuery {
                     client,
-                    params: [collection_ids, requester_id, organization_id],
+                    params: [requester_id, organization_id],
                     stmt: &mut self.0,
                     extractor: |row| PriceListSummaryRowBorrowed {
                         id: row.get(0),
@@ -7621,25 +7604,20 @@ ORDER BY
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
+        impl<'a, C: GenericClient>
             cornucopia_async::Params<
                 'a,
-                ListPricelistSummariesParams<T1>,
-                PriceListSummaryRowQuery<'a, C, PriceListSummaryRow, 3>,
+                ListPricelistSummariesParams,
+                PriceListSummaryRowQuery<'a, C, PriceListSummaryRow, 2>,
                 C,
             > for ListPricelistSummariesStmt
         {
             fn params(
                 &'a mut self,
                 client: &'a C,
-                params: &'a ListPricelistSummariesParams<T1>,
-            ) -> PriceListSummaryRowQuery<'a, C, PriceListSummaryRow, 3> {
-                self.bind(
-                    client,
-                    &params.collection_ids,
-                    &params.requester_id,
-                    &params.organization_id,
-                )
+                params: &'a ListPricelistSummariesParams,
+            ) -> PriceListSummaryRowQuery<'a, C, PriceListSummaryRow, 2> {
+                self.bind(client, &params.requester_id, &params.organization_id)
             }
         }
         pub fn get_pricelist() -> GetPricelistStmt {
