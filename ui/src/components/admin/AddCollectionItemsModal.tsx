@@ -65,8 +65,6 @@ export default function AddCollectionItemsModal({
     () => [] as EntityFilterChoice[],
   );
 
-  console.log(filteredAttributes);
-
   // Apply filters
   useEffect(() => {
     setFilters({

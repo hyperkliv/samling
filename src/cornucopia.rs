@@ -9854,6 +9854,7 @@ ORDER BY
                 "WITH attribute_matches AS (
     SELECT styles_matching_attributes($1)
 )
+
 SELECT
     style.id,
     style.name,
