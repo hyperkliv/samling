@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/hyperkliv/samling/compare/v0.5.1...v0.5.2) (2023-05-10)
+
+
+### Bug Fixes
+
+* Don't remove style attribute associations unnecessarily ([ff01211](https://github.com/hyperkliv/samling/commit/ff01211c46272d1fa92e9176edd108afc32422f4))
+
 ## [0.5.1](https://github.com/hyperkliv/samling/compare/v0.5.0...v0.5.1) (2023-05-09)
 
 
