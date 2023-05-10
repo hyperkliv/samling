@@ -16,7 +16,6 @@ import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import {
   CollectionPricing,
   CollectionWithItems,
-  NestedStyle,
   NestedStyleSortOrder,
   NestedStyleSummary,
   PriceListSummary,
@@ -147,10 +146,6 @@ function CollectionEditForm({
   const collectionStyles = useMemo(
     () => collection.items.map((i) => i.style),
     [collection],
-  );
-  const collectionStylesMap = useMemo(
-    () => new Map(collectionStyles.map((cs) => [cs.id, cs])),
-    [collectionStyles],
   );
   const nestedStylesMap = useMemo(() => {
     const map: Map<number, NestedStyleSummary> = new Map();
@@ -310,7 +305,6 @@ function CollectionEditForm({
             </div>
             <div>
               <CollectionItemsEditor
-                collectionStylesMap={collectionStylesMap}
                 allNestedStylesMap={nestedStylesMap}
                 editableStyles={editableStyles}
                 setEditableStyles={setEditableStyles}
@@ -503,12 +497,10 @@ function CollectionPricingGroup({
   );
 }
 function CollectionItemsEditor({
-  collectionStylesMap,
   allNestedStylesMap,
   editableStyles,
   setEditableStyles,
 }: {
-  collectionStylesMap: Map<number, NestedStyle>;
   allNestedStylesMap: Map<number, NestedStyleSummary>;
   editableStyles: EditableStyle[];
   setEditableStyles: Dispatch<SetStateAction<EditableStyle[]>>;
@@ -543,7 +535,6 @@ function CollectionItemsEditor({
           ? {
               ...style,
               isNew,
-              colors: style.colors.map((color) => ({ ...color, isNew })),
             }
           : otherStyle,
       ),
@@ -609,14 +600,15 @@ function CollectionItemsEditor({
 
   return (
     <div>
-      {itemFilterChoices && <AddCollectionItemsModal
-        collectionStylesMap={collectionStylesMap}
-        open={addItemsModalOpen}
-        setOpen={setAddItemsModalOpen}
-        allNestedStylesMap={allNestedStylesMap}
-        setEditableStyles={setEditableStyles}
-        itemFilterChoices={itemFilterChoices}
-      />}
+      {itemFilterChoices && (
+        <AddCollectionItemsModal
+          open={addItemsModalOpen}
+          setOpen={setAddItemsModalOpen}
+          allNestedStylesMap={allNestedStylesMap}
+          setEditableStyles={setEditableStyles}
+          itemFilterChoices={itemFilterChoices}
+        />
+      )}
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">
@@ -785,18 +777,22 @@ function EditableCollectionItemRow({
           selected ? "text-indigo-600" : "text-gray-900",
         )}
       >
-        <div className="font-medium text-gray-900">
-          {i18nDbText(style.name)}
+        <div className="mx-4 flex items-center">
+          <div>
+            <div className="font-medium text-gray-900">
+              {i18nDbText(style.name)}
+            </div>
+            <div className="text-gray-500">{style.number}</div>
+          </div>
+          <div className="mx-4">
+            <NewIconSelectBox
+              checked={style.isNew}
+              onChange={(evt) => setStyleIsNew(style, evt.target.checked)}
+            />
+            <span className="mx-1" />
+            {t`New`}
+          </div>
         </div>
-        <div className="text-gray-500">{style.number}</div>
-      </td>
-      <td className="text-sm font-normal text-gray-500">
-        <NewIconSelectBox
-          checked={style.isNew}
-          onChange={(evt) => setStyleIsNew(style, evt.target.checked)}
-        />
-        <span className="mx-1" />
-        {t`New`}
       </td>
       <td className="whitespace-nowrap py-2 text-sm text-gray-500">
         {style.colors.map((color) => (
@@ -873,12 +869,16 @@ function ColorCell({
           </button>
         </div>
         <div className="inline-block text-gray-500 mx-2 text-sm">
-          <NewIconSelectBox
-            checked={color.isNew}
-            onChange={(evt) => setColorIsNew(color, evt.target.checked)}
-          />
-          <span className="mx-1" />
-          {t`New`}
+          {anyEnabled && (
+            <>
+              <NewIconSelectBox
+                checked={color.isNew}
+                onChange={(evt) => setColorIsNew(color, evt.target.checked)}
+              />
+              <span className="mx-1" />
+              {t`New`}
+            </>
+          )}
         </div>
       </div>
     </div>

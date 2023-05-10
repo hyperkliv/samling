@@ -12,11 +12,10 @@ import {
 import { useNestedStyles } from "../../api";
 import { useLocalize } from "../../i18n";
 import { cloudflareImageUrl } from "../../images";
-import { EditableStyle, makeEditableStyle } from "../../types/admin";
+import { EditableStyle, makeEditableStyle, transferIsNew } from "../../types/admin";
 import {
   EntityFilterChoice,
   ItemFilterChoices,
-  NestedStyle,
   NestedStyleSummary,
   StyleFilters,
 } from "../../types/api";
@@ -27,14 +26,12 @@ type ItemStatus = string;
 export default function AddCollectionItemsModal({
   open,
   setOpen,
-  collectionStylesMap,
   allNestedStylesMap,
   setEditableStyles,
   itemFilterChoices,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  collectionStylesMap: Map<number, NestedStyle>;
   allNestedStylesMap: Map<number, NestedStyleSummary>;
   setEditableStyles: Dispatch<SetStateAction<EditableStyle[]>>;
   itemFilterChoices: ItemFilterChoices;
@@ -44,7 +41,6 @@ export default function AddCollectionItemsModal({
   const [filters, setFilters] = useState(() => ({} as StyleFilters));
   const [nestedStylesResult] = useNestedStyles(filters);
   const nestedStyles = nestedStylesResult.unwrapOr([]) || [];
-
   // Status filter
   const [filteredStatuses, setFilteredStatuses] = useState(
     () => [] as ItemStatus[],
@@ -93,15 +89,15 @@ export default function AddCollectionItemsModal({
         prevEditableStyles.map((style, idx) => [style.id, idx]),
       );
       const newEditableStyles = nestedStyles.flatMap((nestedStyle) => {
-        const style = collectionStylesMap.get(nestedStyle.id);
         const fullStyle = allNestedStylesMap.get(nestedStyle.id);
         if (fullStyle) {
-          const newStyle = makeEditableStyle(style || fullStyle, fullStyle);
+          const newStyle = makeEditableStyle(nestedStyle || fullStyle, fullStyle);
           const prevIdx = prevMapIndexes.get(nestedStyle.id);
           if (prevIdx === undefined) {
             return [newStyle];
           } else {
-            prevEditableStyles[prevIdx] = newStyle;
+            const prevStyle = prevEditableStyles[prevIdx];
+            prevEditableStyles[prevIdx] = transferIsNew(prevStyle, newStyle);
             return [];
           }
         } else {
@@ -168,6 +164,7 @@ export default function AddCollectionItemsModal({
                       <div className="my-5">
                         <MultipleCombobox
                           title={t`Status`}
+                          description={t`This filter is applied at the size level which means that it will affect which colors/sizes are selected for each style.`}
                           allItems={itemFilterChoices.status}
                           selectedItems={filteredStatuses}
                           setSelectedItems={setFilteredStatuses}
@@ -193,7 +190,7 @@ export default function AddCollectionItemsModal({
                       <div className="my-5">
                         <MultipleCombobox
                           title={t`Attributes`}
-                          description={`Different types of attributes must all get matched. Within the same type any may match.`}
+                          description={t`Different types of attributes must all get matched. Within the same type any may match.`}
                           allItems={itemFilterChoices.attribute}
                           selectedItems={filteredAttributes}
                           setSelectedItems={setFilteredAttributes}

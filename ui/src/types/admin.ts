@@ -65,3 +65,15 @@ export interface EditableStyle {
   colors: EditableColor[];
   isNew: boolean;
 }
+
+export function transferIsNew(prev: EditableStyle, current: EditableStyle): EditableStyle {
+  current.isNew = prev.isNew;
+  prev.colors.forEach((prevColor) => {
+    current.colors.forEach((currColor) => {
+      if (currColor.id === prevColor.id) {
+        currColor.isNew = prevColor.isNew;
+      }
+    })
+  })
+  return current;
+}

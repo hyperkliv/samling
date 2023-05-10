@@ -129,7 +129,6 @@ interface ApiSurface {
   fetchPriceLists: (
     token: string,
     organizationId: number,
-    collectionSlug?: string | null,
   ) => Promise<Result<PriceListSummary[], ApiErrorResponse>>;
   fetchCategories: (
     token: string,
@@ -417,15 +416,10 @@ function makeApi(baseUrl: string): ApiSurface {
     async fetchPriceLists(
       token: string,
       organizationId: number,
-      collectionSlug?: string | null,
     ): Promise<Result<PriceListSummary[], ApiErrorResponse>> {
-      let filters = {};
-      if (!!collectionSlug) {
-        Object.assign(filters, { collection: { slug: collectionSlug } });
-      }
       return await getJson<PriceListSummary[]>(
         `/${organizationId}/pricelists/summary`,
-        { token, filters },
+        { token },
       );
     },
     async fetchCategories(
@@ -852,9 +846,7 @@ type PricelistsFetchResult = Result<
   ApiErrorResponse
 >;
 
-export function usePricelists(
-  collectionSlug?: string | null,
-): PricelistsFetchResult {
+export function usePricelists(): PricelistsFetchResult {
   const { token, activeOrganization } = useAppSelector((state) => state.user);
   const [fetchResult, setFetchResult] = useState(
     Ok(null) as PricelistsFetchResult,
@@ -866,13 +858,12 @@ export function usePricelists(
         .fetchPriceLists(
           token as string,
           activeOrganization.organization.id,
-          collectionSlug,
         )
         .then((result) => {
           setFetchResult(result);
         });
     }
-  }, [token, activeOrganization, collectionSlug]);
+  }, [token, activeOrganization]);
 
   return fetchResult;
 }

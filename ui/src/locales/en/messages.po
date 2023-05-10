@@ -67,11 +67,11 @@ msgstr "<0>We care about the protection of your data. Read our </0><1>Privacy Po
 msgid "Active"
 msgstr "Active"
 
-#: src/components/admin/UsersTable.tsx:101
+#: src/components/admin/UsersTable.tsx:99
 msgid "Active users"
 msgstr "Active users"
 
-#: src/components/admin/AddCollectionItemsModal.tsx:222
+#: src/components/admin/AddCollectionItemsModal.tsx:228
 #: src/components/admin/NewCollectionPricingGroupModal.tsx:114
 msgid "Add"
 msgstr "Add"
@@ -80,7 +80,7 @@ msgstr "Add"
 msgid "Add collection"
 msgstr "Add collection"
 
-#: src/components/admin/AddCollectionItemsModal.tsx:169
+#: src/components/admin/AddCollectionItemsModal.tsx:158
 msgid "Add collection items"
 msgstr "Add collection items"
 
@@ -94,7 +94,7 @@ msgstr "Add collection pricing date"
 msgid "Add group"
 msgstr "Add group"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:634
+#: src/pages/app/admin/AdminEditCollection.tsx:633
 msgid "Add items"
 msgstr "Add items"
 
@@ -106,7 +106,7 @@ msgstr "Add items"
 #~ msgid "Add pricing"
 #~ msgstr "Add pricing"
 
-#: src/components/admin/UsersTable.tsx:185
+#: src/components/admin/UsersTable.tsx:183
 #: src/pages/app/admin/AdminEditGroup.tsx:379
 msgid "Add user"
 msgstr "Add user"
@@ -157,7 +157,7 @@ msgid "Administrators"
 msgstr "Administrators"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:187
-#: src/pages/app/admin/AdminEditCollection.tsx:322
+#: src/pages/app/admin/AdminEditCollection.tsx:321
 msgid "Advanced settings"
 msgstr "Advanced settings"
 
@@ -194,6 +194,7 @@ msgid "Are you sure you want to delete the user <0>{0}</0>? This action cannot b
 msgstr "Are you sure you want to delete the user <0>{0}</0>? This action cannot be undone."
 
 #: src/components/ExportForm.tsx:145
+#: src/components/admin/AddCollectionItemsModal.tsx:192
 msgid "Attributes"
 msgstr "Attributes"
 
@@ -232,17 +233,17 @@ msgstr "Can sign in."
 msgid "Can view and export collections where explicit access has been configured in Groups."
 msgstr "Can view and export collections where explicit access has been configured in Groups."
 
-#: src/components/admin/AddCollectionItemsModal.tsx:229
+#: src/components/admin/AddCollectionItemsModal.tsx:235
 #: src/components/admin/ModalBase.tsx:242
 #: src/components/admin/NewCollectionPricingGroupModal.tsx:121
 #: src/pages/app/admin/AdminCreateCollection.tsx:224
-#: src/pages/app/admin/AdminEditCollection.tsx:361
+#: src/pages/app/admin/AdminEditCollection.tsx:360
 #: src/pages/app/admin/AdminEditGroup.tsx:278
 #: src/pages/app/admin/AdminEditUser.tsx:214
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/components/admin/AddCollectionItemsModal.tsx:189
+#: src/components/admin/AddCollectionItemsModal.tsx:178
 #: src/components/filters/CategoryFilter.tsx:54
 msgid "Categories"
 msgstr "Categories"
@@ -260,7 +261,7 @@ msgstr "Category name"
 msgid "Choose a color"
 msgstr "Choose a color"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:679
+#: src/pages/app/admin/AdminEditCollection.tsx:678
 msgid "Clear selection"
 msgstr "Clear selection"
 
@@ -323,7 +324,7 @@ msgstr "Color number"
 msgid "Colors"
 msgstr "Colors"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:708
+#: src/pages/app/admin/AdminEditCollection.tsx:707
 msgid "Colors / Sizes"
 msgstr "Colors / Sizes"
 
@@ -390,8 +391,8 @@ msgstr "Created at"
 #: src/components/admin/DeleteUserModal.tsx:50
 #: src/components/admin/GroupsTable.tsx:103
 #: src/components/admin/GroupsTable.tsx:166
-#: src/components/admin/UsersTable.tsx:242
-#: src/components/admin/UsersTable.tsx:319
+#: src/components/admin/UsersTable.tsx:240
+#: src/components/admin/UsersTable.tsx:317
 msgid "Delete"
 msgstr "Delete"
 
@@ -418,7 +419,11 @@ msgstr "Delivery period (descending)"
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:868
+#: src/components/admin/AddCollectionItemsModal.tsx:193
+msgid "Different types of attributes must all get matched. Within the same type any may match."
+msgstr "Different types of attributes must all get matched. Within the same type any may match."
+
+#: src/pages/app/admin/AdminEditCollection.tsx:871
 msgid "Disable all"
 msgstr "Disable all"
 
@@ -436,7 +441,7 @@ msgid "Downloading..."
 msgstr "Downloading..."
 
 #: src/components/admin/CreateUserModal.tsx:44
-#: src/components/admin/UsersTable.tsx:377
+#: src/components/admin/UsersTable.tsx:375
 #: src/pages/app/admin/AdminEditUser.tsx:176
 msgid "E-mail address"
 msgstr "E-mail address"
@@ -448,8 +453,8 @@ msgstr "EAN code"
 #: src/components/admin/CollectionsTable.tsx:101
 #: src/components/admin/GroupsTable.tsx:95
 #: src/components/admin/GroupsTable.tsx:155
-#: src/components/admin/UsersTable.tsx:234
-#: src/components/admin/UsersTable.tsx:308
+#: src/components/admin/UsersTable.tsx:232
+#: src/components/admin/UsersTable.tsx:306
 msgid "Edit"
 msgstr "Edit"
 
@@ -485,7 +490,7 @@ msgstr "Editors"
 msgid "Email address"
 msgstr "Email address"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:868
+#: src/pages/app/admin/AdminEditCollection.tsx:871
 msgid "Enable all"
 msgstr "Enable all"
 
@@ -515,7 +520,7 @@ msgid "Export"
 msgstr "Export"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:206
-#: src/pages/app/admin/AdminEditCollection.tsx:341
+#: src/pages/app/admin/AdminEditCollection.tsx:340
 #: src/pages/app/admin/AdminEditGroup.tsx:219
 msgid "External ID"
 msgstr "External ID"
@@ -559,8 +564,8 @@ msgid "Group by"
 msgstr "Group by"
 
 #: src/components/admin/GroupsTable.tsx:35
-#: src/components/admin/UsersTable.tsx:227
-#: src/components/admin/UsersTable.tsx:403
+#: src/components/admin/UsersTable.tsx:225
+#: src/components/admin/UsersTable.tsx:401
 #: src/pages/app/admin/AdminEditGroup.tsx:64
 #: src/pages/app/admin/AdminEditUser.tsx:381
 #: src/pages/app/admin/AdminGroups.tsx:12
@@ -601,7 +606,7 @@ msgstr "Image to upload"
 msgid "Images"
 msgstr "Images"
 
-#: src/components/admin/UsersTable.tsx:95
+#: src/components/admin/UsersTable.tsx:93
 msgid "Inactive users"
 msgstr "Inactive users"
 
@@ -610,7 +615,7 @@ msgstr "Inactive users"
 msgid "It is recommended to give the image a 10:7 ratio and a minimum width and height of 1070 by 750 pixels."
 msgstr "It is recommended to give the image a 10:7 ratio and a minimum width and height of 1070 by 750 pixels."
 
-#: src/pages/app/admin/AdminEditCollection.tsx:620
+#: src/pages/app/admin/AdminEditCollection.tsx:619
 msgid "Items"
 msgstr "Items"
 
@@ -628,7 +633,7 @@ msgstr "Jane Doe"
 msgid "Language"
 msgstr "Language"
 
-#: src/components/admin/UsersTable.tsx:215
+#: src/components/admin/UsersTable.tsx:213
 #: src/pages/app/admin/AdminEditGroup.tsx:360
 msgid "Last sign in"
 msgstr "Last sign in"
@@ -668,7 +673,7 @@ msgstr "Login"
 msgid "Make your changes, then hit save when done."
 msgstr "Make your changes, then hit save when done."
 
-#: src/components/admin/AddCollectionItemsModal.tsx:172
+#: src/components/admin/AddCollectionItemsModal.tsx:161
 #: src/components/admin/NewCollectionPricingGroupModal.tsx:81
 msgid "Make your selection of items to add here. Manual adjustments can be made once added."
 msgstr "Make your selection of items to add here. Manual adjustments can be made once added."
@@ -680,7 +685,7 @@ msgstr "Manage users, associate roles and groups individually."
 #: src/components/admin/CreateGroupModal.tsx:27
 #: src/components/admin/CreateUserModal.tsx:34
 #: src/components/admin/GroupsTable.tsx:70
-#: src/components/admin/UsersTable.tsx:376
+#: src/components/admin/UsersTable.tsx:374
 #: src/pages/app/admin/AdminCreateCollection.tsx:166
 #: src/pages/app/admin/AdminEditCollection.tsx:279
 #: src/pages/app/admin/AdminEditGroup.tsx:186
@@ -698,8 +703,8 @@ msgstr "Name"
 #: src/components/filters/ActiveFilters.tsx:81
 #: src/components/filters/NewFilter.tsx:45
 #: src/pages/app/admin/AdminCreateCollection.tsx:39
-#: src/pages/app/admin/AdminEditCollection.tsx:796
-#: src/pages/app/admin/AdminEditCollection.tsx:878
+#: src/pages/app/admin/AdminEditCollection.tsx:797
+#: src/pages/app/admin/AdminEditCollection.tsx:883
 msgid "New"
 msgstr "New"
 
@@ -713,7 +718,7 @@ msgstr "New collection"
 msgid "New color"
 msgstr "New color"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:464
+#: src/pages/app/admin/AdminEditCollection.tsx:463
 msgid "New date"
 msgstr "New date"
 
@@ -722,7 +727,7 @@ msgstr "New date"
 msgid "New style"
 msgstr "New style"
 
-#: src/components/admin/UsersTable.tsx:378
+#: src/components/admin/UsersTable.tsx:376
 msgid "Newest sign in"
 msgstr "Newest sign in"
 
@@ -746,15 +751,15 @@ msgstr "Notifications"
 msgid "Number"
 msgstr "Number"
 
-#: src/components/admin/AddCollectionItemsModal.tsx:254
+#: src/components/admin/AddCollectionItemsModal.tsx:260
 msgid "Number of colors"
 msgstr "Number of colors"
 
-#: src/components/admin/AddCollectionItemsModal.tsx:255
+#: src/components/admin/AddCollectionItemsModal.tsx:261
 msgid "Number of sizes"
 msgstr "Number of sizes"
 
-#: src/components/admin/AddCollectionItemsModal.tsx:253
+#: src/components/admin/AddCollectionItemsModal.tsx:259
 msgid "Number of styles"
 msgstr "Number of styles"
 
@@ -762,7 +767,7 @@ msgstr "Number of styles"
 msgid "Often useful for ERP system imports."
 msgstr "Often useful for ERP system imports."
 
-#: src/components/admin/UsersTable.tsx:379
+#: src/components/admin/UsersTable.tsx:377
 msgid "Oldest sign in"
 msgstr "Oldest sign in"
 
@@ -839,7 +844,7 @@ msgstr "Pricing"
 msgid "Pricing date"
 msgstr "Pricing date"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:430
+#: src/pages/app/admin/AdminEditCollection.tsx:429
 msgid "Pricing dates"
 msgstr "Pricing dates"
 
@@ -871,7 +876,7 @@ msgstr "Provide your e-mail below to hear from our team."
 msgid "Remember me"
 msgstr "Remember me"
 
-#: src/components/admin/MultipleCombobox.tsx:136
+#: src/components/admin/MultipleCombobox.tsx:153
 msgid "Remove filter"
 msgstr "Remove filter"
 
@@ -902,7 +907,7 @@ msgstr "Remove<0>, {0}</0>"
 #~ msgid "Removed from pinned"
 #~ msgstr "Removed from pinned"
 
-#: src/components/admin/AddCollectionItemsModal.tsx:260
+#: src/components/admin/AddCollectionItemsModal.tsx:266
 msgid "Results from current filters"
 msgstr "Results from current filters"
 
@@ -923,8 +928,8 @@ msgid "Retail price list"
 msgstr "Retail price list"
 
 #: src/components/admin/CreateUserModal.tsx:64
-#: src/components/admin/UsersTable.tsx:221
-#: src/components/admin/UsersTable.tsx:385
+#: src/components/admin/UsersTable.tsx:219
+#: src/components/admin/UsersTable.tsx:383
 #: src/pages/app/admin/AdminEditUser.tsx:257
 msgid "Roles"
 msgstr "Roles"
@@ -935,14 +940,14 @@ msgid "Samling.io logotype"
 msgstr "Samling.io logotype"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:239
-#: src/pages/app/admin/AdminEditCollection.tsx:376
+#: src/pages/app/admin/AdminEditCollection.tsx:375
 #: src/pages/app/admin/AdminEditGroup.tsx:284
 #: src/pages/app/admin/AdminEditUser.tsx:220
 msgid "Save"
 msgstr "Save"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:239
-#: src/pages/app/admin/AdminEditCollection.tsx:376
+#: src/pages/app/admin/AdminEditCollection.tsx:375
 msgid "Saving..."
 msgstr "Saving..."
 
@@ -1021,7 +1026,7 @@ msgid "Size type"
 msgstr "Size type"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:196
-#: src/pages/app/admin/AdminEditCollection.tsx:331
+#: src/pages/app/admin/AdminEditCollection.tsx:330
 #: src/pages/app/admin/AdminEditGroup.tsx:208
 msgid "Slug"
 msgstr "Slug"
@@ -1031,7 +1036,7 @@ msgstr "Slug"
 #~ msgstr "Some collection name..."
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:205
-#: src/pages/app/admin/AdminEditCollection.tsx:340
+#: src/pages/app/admin/AdminEditCollection.tsx:339
 #: src/pages/app/admin/AdminEditGroup.tsx:218
 msgid "Some external ID value..."
 msgstr "Some external ID value..."
@@ -1045,7 +1050,7 @@ msgid "Some group name..."
 msgstr "Some group name..."
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:195
-#: src/pages/app/admin/AdminEditCollection.tsx:330
+#: src/pages/app/admin/AdminEditCollection.tsx:329
 #: src/pages/app/admin/AdminEditGroup.tsx:207
 msgid "Some slug value..."
 msgstr "Some slug value..."
@@ -1059,16 +1064,16 @@ msgstr "Sorry, we couldn’t find the page you’re looking for."
 msgid "Sort by"
 msgstr "Sort by"
 
-#: src/components/admin/AddCollectionItemsModal.tsx:177
+#: src/components/admin/AddCollectionItemsModal.tsx:166
 #: src/pages/app/admin/AdminEditGroup.tsx:354
 msgid "Status"
 msgstr "Status"
 
 #: src/components/ExportForm.tsx:68
-#: src/components/admin/AddCollectionItemsModal.tsx:201
+#: src/components/admin/AddCollectionItemsModal.tsx:208
 #: src/components/filters/ActiveFilters.tsx:40
 #: src/components/filters/ActiveFilters.tsx:49
-#: src/pages/app/admin/AdminEditCollection.tsx:702
+#: src/pages/app/admin/AdminEditCollection.tsx:701
 #: src/types/columns.ts:34
 msgid "Style"
 msgstr "Style"
@@ -1099,7 +1104,7 @@ msgstr "Style number"
 msgid "Styles"
 msgstr "Styles"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:623
+#: src/pages/app/admin/AdminEditCollection.tsx:622
 msgid "Styles, colors and sizes to associate with this collection."
 msgstr "Styles, colors and sizes to associate with this collection."
 
@@ -1177,7 +1182,7 @@ msgstr "There are no collections available to you. Talk an administrator to get 
 msgid "These are all the collections that exist in the system."
 msgstr "These are all the collections that exist in the system."
 
-#: src/pages/app/admin/AdminEditCollection.tsx:433
+#: src/pages/app/admin/AdminEditCollection.tsx:432
 msgid "These dates decide which item prices should be picked up for each price list. Each item price is associated with a start date and end date, so the date you choose has to fall within those."
 msgstr "These dates decide which item prices should be picked up for each price list. Each item price is associated with a start date and end date, so the date you choose has to fall within those."
 
@@ -1185,13 +1190,17 @@ msgstr "These dates decide which item prices should be picked up for each price 
 msgid "These roles will be assign to the user and determine what they can and cannot do."
 msgstr "These roles will be assign to the user and determine what they can and cannot do."
 
-#: src/components/admin/UsersTable.tsx:146
+#: src/components/admin/UsersTable.tsx:144
 msgid "These users have access to the system."
 msgstr "These users have access to the system."
 
 #: src/components/columns/data/Colors.tsx:163
 msgid "This color first appears in this collection."
 msgstr "This color first appears in this collection."
+
+#: src/components/admin/AddCollectionItemsModal.tsx:167
+msgid "This filter is applied at the size level which means that it will affect which colors/sizes are selected for each style."
+msgstr "This filter is applied at the size level which means that it will affect which colors/sizes are selected for each style."
 
 #: src/components/columns/data/Style.tsx:115
 msgid "This is a Core style, meaning that it represents the brand's core values."
@@ -1281,7 +1290,7 @@ msgstr "Use this form to export the current selection of items to file."
 msgid "Useful for integration with other systems."
 msgstr "Useful for integration with other systems."
 
-#: src/components/admin/UsersTable.tsx:209
+#: src/components/admin/UsersTable.tsx:207
 msgid "User"
 msgstr "User"
 
@@ -1291,7 +1300,7 @@ msgid "User profile"
 msgstr "User profile"
 
 #: src/components/admin/GroupsTable.tsx:76
-#: src/components/admin/UsersTable.tsx:143
+#: src/components/admin/UsersTable.tsx:141
 #: src/pages/app/admin/AdminEditGroup.tsx:330
 #: src/pages/app/admin/AdminEditUser.tsx:56
 #: src/pages/app/admin/AdminHome.tsx:25
@@ -1419,11 +1428,11 @@ msgstr "{0, plural, one {# style} other {# styles}}"
 msgid "{0, plural, one {# user} other {# users}}"
 msgstr "{0, plural, one {# user} other {# users}}"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:652
+#: src/pages/app/admin/AdminEditCollection.tsx:651
 msgid "{0, plural, one {Disable # style} other {Disable # styles}}"
 msgstr "{0, plural, one {Disable # style} other {Disable # styles}}"
 
-#: src/pages/app/admin/AdminEditCollection.tsx:666
+#: src/pages/app/admin/AdminEditCollection.tsx:665
 msgid "{0, plural, one {Enable # style} other {Enable # styles}}"
 msgstr "{0, plural, one {Enable # style} other {Enable # styles}}"
 
@@ -1703,7 +1712,7 @@ msgstr "{0} logotype"
 msgid "{0} of {1} fields selected"
 msgstr "{0} of {1} fields selected"
 
-#: src/components/admin/UsersTable.tsx:257
+#: src/components/admin/UsersTable.tsx:255
 msgid "{0} profile"
 msgstr "{0} profile"
 
