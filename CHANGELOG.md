@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.3](https://github.com/hyperkliv/samling/compare/v0.5.2...v0.5.3) (2023-05-10)
+
+
+### Bug Fixes
+
+* **admin:** Color enabled checkbox wasn't applied properly ([fe0b4b9](https://github.com/hyperkliv/samling/commit/fe0b4b9e4ee797d42eb8dd298f169edebd44002b))
+* Remove unused collection filter from pricelist summary endpoint ([4a94ec3](https://github.com/hyperkliv/samling/commit/4a94ec3ae5d8ee7ea5e66fec34dd1c592d1009c4))
+
 ## [0.5.2](https://github.com/hyperkliv/samling/compare/v0.5.1...v0.5.2) (2023-05-10)
 
 
