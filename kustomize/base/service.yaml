@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: samling
+  annotations:
+    traefik.ingress.kubernetes.io/service.nativelb: "true"
 spec:
   type: ClusterIP
   ports:
