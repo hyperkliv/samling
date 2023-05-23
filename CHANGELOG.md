@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.5](https://github.com/hyperkliv/samling/compare/v0.5.4...v0.5.5) (2023-05-23)
+
+
+### Bug Fixes
+
+* Move to maintained dotenv crate alternative ([fba9cb8](https://github.com/hyperkliv/samling/commit/fba9cb8610469695006c22175c604a51bbfc26a3))
+
 ## [0.5.4](https://github.com/hyperkliv/samling/compare/v0.5.3...v0.5.4) (2023-05-23)
 
 
