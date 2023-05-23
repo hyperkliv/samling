@@ -259,7 +259,7 @@ pub enum CliError {
     #[error(transparent)]
     ReqwestError(#[from] reqwest::Error),
     #[error(transparent)]
-    DotenvError(#[from] dotenv::Error),
+    DotenvError(#[from] dotenvy::Error),
     #[error(transparent)]
     IoError(#[from] std::io::Error),
     #[error(transparent)]

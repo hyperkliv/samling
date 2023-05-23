@@ -544,9 +544,9 @@ fn load_dotenv_files() -> CliResult<()> {
             "Loading config from SAMLING_CONFIG env var path: {:?}",
             &path
         );
-        dotenv::from_path(&path)?;
+        dotenvy::from_path(&path)?;
     } else {
-        match dotenv::dotenv() {
+        match dotenvy::dotenv() {
             Ok(_) => {}
             Err(err) => tracing::debug!("Failed to read .env file with error: {err}"),
         };
