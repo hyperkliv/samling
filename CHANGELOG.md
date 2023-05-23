@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.4](https://github.com/hyperkliv/samling/compare/v0.5.3...v0.5.4) (2023-05-23)
+
+
+### Bug Fixes
+
+* Update dependencies ([50fdcf1](https://github.com/hyperkliv/samling/commit/50fdcf19ceaf9c65403a47459a555ca871bc2018))
+* Use kubernetes native LB with traefik ([ca28120](https://github.com/hyperkliv/samling/commit/ca28120b43fd52987db4aec88e48672a9804b18f))
+
 ## [0.5.3](https://github.com/hyperkliv/samling/compare/v0.5.2...v0.5.3) (2023-05-10)
 
 
