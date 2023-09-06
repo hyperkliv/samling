@@ -4,13 +4,13 @@
 #       https://github.com/emerzon/alpine-mimalloc/blob/master/Dockerfile
 # NOTE: This has to be activated from within the Rust code,
 #       e.g. with https://crates.io/crates/mimalloc.
-ARG API_BASE_IMAGE=lukemathwalker/cargo-chef:0.1.51-rust-1.67.1-alpine3.17
+ARG API_BASE_IMAGE=lukemathwalker/cargo-chef:0.1.62-rust-1.72.0-alpine3.18
 
 
 ### Mimalloc compilation
 FROM $API_BASE_IMAGE as mimalloc_builder
 WORKDIR /
-ARG MIMALLOC_VERSION=2.0.9
+ARG MIMALLOC_VERSION=2.1.2
 RUN apk add --no-cache build-base cmake linux-headers \
     && wget -O- https://github.com/microsoft/mimalloc/archive/refs/tags/v$MIMALLOC_VERSION.tar.gz | tar xzf - \
     && cmake mimalloc-$MIMALLOC_VERSION \
@@ -19,7 +19,7 @@ RUN apk add --no-cache build-base cmake linux-headers \
 
 
 ### UI builder
-FROM node:19.6.0-alpine3.17 as ui_builder
+FROM node:20.6.0-alpine3.18 as ui_builder
 WORKDIR /ui
 COPY ./ui/ ./
 RUN npm ci
