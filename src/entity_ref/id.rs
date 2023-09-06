@@ -48,7 +48,7 @@ impl<T: RefTarget> Copy for Id<T> {}
 
 impl<T: RefTarget> Clone for Id<T> {
     fn clone(&self) -> Id<T> {
-        Self::new(self.0)
+        *self
     }
 }
 
