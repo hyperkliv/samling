@@ -98,20 +98,19 @@ impl<T: RefTarget> Eq for Ref<T> {}
 
 impl<T: RefTarget> PartialOrd for Ref<T> {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        match (self, other) {
-            (Ref::Id(id1), Ref::Id(id2)) => id1.partial_cmp(id2),
-            (Ref::ExternalId(external_id1), Ref::ExternalId(external_id2)) => {
-                external_id1.partial_cmp(external_id2)
-            }
-            (Ref::Slug(slug1), Ref::Slug(slug2)) => slug1.partial_cmp(slug2),
-            _ => None,
-        }
+        Some(self.cmp(other))
     }
 }
 
 impl<T: RefTarget> Ord for Ref<T> {
     fn cmp(&self, other: &Self) -> Ordering {
-        // NOTE: None is returned by partial_eq when different variants are compared.
-        self.partial_cmp(other).unwrap_or(Ordering::Less)
+        match (self, other) {
+            (Ref::Id(id1), Ref::Id(id2)) => id1.cmp(id2),
+            (Ref::ExternalId(external_id1), Ref::ExternalId(external_id2)) => {
+                external_id1.cmp(external_id2)
+            }
+            (Ref::Slug(slug1), Ref::Slug(slug2)) => slug1.cmp(slug2),
+            _ => Ordering::Less,
+        }
     }
 }
