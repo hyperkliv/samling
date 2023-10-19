@@ -33,8 +33,8 @@ SELECT
                 'url',
                 image.url
             )
-            ORDER BY image.position ASC, image.uploaded_at DESC) FILTER (WHERE image.id IS NOT NULL
-        ), '[]'::jsonb) AS "images"
+            ORDER BY image.position ASC, image.uploaded_at DESC
+        ) FILTER (WHERE image.id IS NOT NULL), '[]'::jsonb) AS "images"
 FROM
     color
 INNER JOIN style ON style.id = color.style_id
@@ -74,8 +74,8 @@ SELECT
                 'url',
                 image.url
             )
-            ORDER BY image.position ASC, image.uploaded_at DESC) FILTER (WHERE image.id IS NOT NULL
-        ), '[]'::jsonb) AS "images"
+            ORDER BY image.position ASC, image.uploaded_at DESC
+        ) FILTER (WHERE image.id IS NOT NULL), '[]'::jsonb) AS "images"
 FROM
     color
 INNER JOIN style ON style.id = color.style_id
