@@ -3764,7 +3764,7 @@ FROM
                 'url',
                 image.url
             )
-            ORDER BY image.position) FILTER (WHERE image.id IS NOT NULL
+            ORDER BY image.position ASC, image.uploaded_at DESC) FILTER (WHERE image.id IS NOT NULL
         ), '[]'::jsonb) AS \"images\"
 FROM
     color
@@ -3835,7 +3835,7 @@ ORDER BY
                 'url',
                 image.url
             )
-            ORDER BY image.position) FILTER (WHERE image.id IS NOT NULL
+            ORDER BY image.position ASC, image.uploaded_at DESC) FILTER (WHERE image.id IS NOT NULL
         ), '[]'::jsonb) AS \"images\"
 FROM
     color
@@ -9595,7 +9595,8 @@ INNER JOIN (
                         image.external_id
                     )
                     ORDER BY
-                        image.position
+                        image.position ASC,
+                        image.uploaded_at DESC
                 ) AS json_data
             FROM
                 image

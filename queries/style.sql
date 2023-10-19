@@ -200,7 +200,8 @@ INNER JOIN (
                         image.external_id
                     )
                     ORDER BY
-                        image.position
+                        image.position ASC,
+                        image.uploaded_at DESC
                 ) AS json_data
             FROM
                 image
