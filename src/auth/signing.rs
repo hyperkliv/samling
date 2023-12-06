@@ -1,9 +1,10 @@
 use std::fmt;
 
 use async_trait::async_trait;
-use axum::{
-    extract::{FromRequestParts, TypedHeader},
+use axum::extract::FromRequestParts;
+use axum_extra::{
     headers::{authorization::Bearer, Authorization},
+    TypedHeader,
 };
 use http::request::Parts;
 use itertools::Itertools;

@@ -4,7 +4,7 @@ use axum::{
     response::{IntoResponse, Response},
     Json,
 };
-use http::header::InvalidHeaderValue;
+use reqwest::header::InvalidHeaderValue;
 use schemars::JsonSchema;
 use serde::Serialize;
 
@@ -67,7 +67,9 @@ pub enum Error {
     #[error("base64: {0}")]
     Base64DecodeError(#[from] base64::DecodeError),
     #[error("Invalid header error: {0}")]
-    InvalidHttpHeaderValue(#[from] InvalidHeaderValue),
+    InvalidHttpHeaderValue(#[from] http::header::InvalidHeaderValue),
+    #[error("Invalid header error: {0}")]
+    InvalidReqwestHttpHeaderValue(#[from] InvalidHeaderValue),
     #[error("tokio-postgres error: {0}")]
     DbError(#[from] tokio_postgres::Error),
     #[error("Deadpool pool error: {0}")]

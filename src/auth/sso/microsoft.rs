@@ -1,9 +1,9 @@
 use bytes::Bytes;
-use http::StatusCode;
 use jsonwebtoken::{
     jwk::{AlgorithmParameters, JwkSet},
     DecodingKey, Validation,
 };
+use reqwest::StatusCode;
 use schemars::JsonSchema;
 use serde::Deserialize;
 

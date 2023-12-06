@@ -8,9 +8,9 @@ use std::{
 };
 
 use clap::Parser;
-use http::{
-    header::{HeaderName, CONTENT_TYPE},
-    HeaderMap, HeaderValue,
+use reqwest::{
+    header::{HeaderName, HeaderValue, CONTENT_TYPE},
+    Method,
 };
 use tokio::signal::unix::SignalKind;
 use tracing::{debug, error, info, metadata::LevelFilter, Level};
@@ -94,7 +94,7 @@ enum Subcommand {
             env = "CORS_ALLOWED_ORIGINS",
             value_delimiter = ','
         )]
-        cors_allowed_origins: Vec<HeaderValue>,
+        cors_allowed_origins: Vec<http::header::HeaderValue>,
         /// Migrate to latest database schema version on startup. Only use when running 1 process of the app!
         #[arg(long, env)]
         db_auto_migrate: bool,
@@ -120,7 +120,7 @@ enum Subcommand {
         host: String,
         #[arg(short = 's', long, env = "SAMLING_SCHEME", default_value = "http")]
         scheme: String,
-        method: http::Method,
+        method: Method,
         api_path: String,
         #[arg(short = 'd', long)]
         data: Option<PathBuf>,
@@ -474,7 +474,7 @@ pub async fn run() -> CliResult<()> {
             pretty,
             headers,
         } => {
-            let mut header_map = HeaderMap::from_iter(headers);
+            let mut header_map = reqwest::header::HeaderMap::from_iter(headers);
             let content_type = header_map
                 .entry(CONTENT_TYPE)
                 .or_insert("application/json".try_into().unwrap());

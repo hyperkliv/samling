@@ -6,10 +6,13 @@ use governor::{
     state::{InMemoryState, NotKeyed},
     Quota, RateLimiter,
 };
-use http::HeaderMap;
 use once_cell::sync::OnceCell;
 use rand::{distributions::Alphanumeric, Rng};
-use reqwest::multipart::{self};
+use reqwest::{
+    header::{HeaderMap, HeaderValue, AUTHORIZATION},
+    multipart::{self},
+    StatusCode,
+};
 use serde::Deserialize;
 use tracing::log::debug;
 use url::Url;
@@ -53,7 +56,7 @@ impl CloudflareApi {
         custom_images_domain: Option<String>,
     ) -> Result<Self> {
         let mut default_headers = HeaderMap::new();
-        default_headers.append("Authorization", format!("Bearer {token}").parse()?);
+        default_headers.append(AUTHORIZATION, HeaderValue::from_str(&token)?);
         let client = reqwest::ClientBuilder::new()
             .timeout(Duration::from_secs(30))
             .default_headers(default_headers)
@@ -133,7 +136,7 @@ impl CloudflareApi {
                     &body,
                 )?)
             }
-            Err(err) => Err(if err.status() == Some(http::StatusCode::CONFLICT) {
+            Err(err) => Err(if err.status() == Some(StatusCode::CONFLICT) {
                 Error::ImageAlreadyExists(id.to_owned())
             } else {
                 let body = resp.text().await?;

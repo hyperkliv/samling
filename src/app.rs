@@ -2,10 +2,11 @@ use std::net::SocketAddr;
 
 use axum::extract::{DefaultBodyLimit, State};
 use axum::http::Method;
-use axum::{Json, Server};
+use axum::Json;
 use deadpool_postgres::Pool;
 use http::header::{AUTHORIZATION, CONTENT_DISPOSITION, CONTENT_TYPE};
 use http::HeaderValue;
+use tokio::net::TcpListener;
 use tower_http::compression::CompressionLayer;
 use tower_http::cors::CorsLayer;
 use tower_http::trace::TraceLayer;
@@ -85,10 +86,8 @@ pub async fn serve(
         .layer(DefaultBodyLimit::max(10 * 1024 * 1024));
 
     tracing::info!("Listening on {}", address);
-
-    Server::bind(&address)
-        .serve(app.into_make_service())
-        .await?;
+    let listener = TcpListener::bind(address).await?;
+    axum::serve(listener, app).await?;
     Ok(())
 }
 
