@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.6.0](https://github.com/hyperkliv/samling/compare/v0.5.5...v0.6.0) (2023-12-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update to http 1.0, hyper 1.0, axum 0.7 and more
+* Update dependencies
+
+### Bug Fixes
+
+* Allow partial comparison of different ref variants ([10a006d](https://github.com/hyperkliv/samling/commit/10a006df3dd9d6138b562ff5ef0109d36d730952))
+* Choose latest uploaded image for same position ([04b5cbd](https://github.com/hyperkliv/samling/commit/04b5cbd31260471663f25d56c8dd3d0d39f9f208))
+* Incorrect clone implementation for Id&lt;T&gt; ([2ee0a01](https://github.com/hyperkliv/samling/commit/2ee0a014aa31d9ae5caf8b4086a4442dbcc88dac))
+
+
+### Miscellaneous Chores
+
+* Update dependencies ([ba6ca49](https://github.com/hyperkliv/samling/commit/ba6ca498e5845a9e8de0cef13402092615d8f832))
+* Update to http 1.0, hyper 1.0, axum 0.7 and more ([c77af3e](https://github.com/hyperkliv/samling/commit/c77af3ef0fa5a333dea5d4eb45b2f5b5aecbd7a9))
+
 ## [0.5.5](https://github.com/hyperkliv/samling/compare/v0.5.4...v0.5.5) (2023-05-23)
 
 
