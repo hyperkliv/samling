@@ -56,7 +56,8 @@ impl CloudflareApi {
         custom_images_domain: Option<String>,
     ) -> Result<Self> {
         let mut default_headers = HeaderMap::new();
-        default_headers.append(AUTHORIZATION, HeaderValue::from_str(&token)?);
+        let bearer = format!("Bearer {token}");
+        default_headers.append(AUTHORIZATION, HeaderValue::from_str(&bearer)?);
         let client = reqwest::ClientBuilder::new()
             .timeout(Duration::from_secs(30))
             .default_headers(default_headers)
