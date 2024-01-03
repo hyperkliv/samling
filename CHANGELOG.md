@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.7.0](https://github.com/hyperkliv/samling/compare/v0.6.0...v0.7.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* Upgrade dependencies
+
+### Bug Fixes
+
+* Bearer value not sent correctly to Cloudflare ([7a18ee5](https://github.com/hyperkliv/samling/commit/7a18ee5f5d88635d715da6ebdeec23732c68f18c))
+
+
+### Miscellaneous Chores
+
+* Upgrade dependencies ([7ee84b7](https://github.com/hyperkliv/samling/commit/7ee84b7b7c5a8497008138ff64288729a8ae40fe))
+
 ## [0.6.0](https://github.com/hyperkliv/samling/compare/v0.5.5...v0.6.0) (2023-12-06)
 
 
