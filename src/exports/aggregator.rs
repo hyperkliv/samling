@@ -58,7 +58,7 @@ pub(super) struct AggregatedRow<'a> {
 impl<'a> AggregatedRow<'a> {
     fn make(rows: Vec<ExpandedRow<'a>>) -> Self {
         debug_assert!(!rows.is_empty());
-        let row0 = rows.get(0).unwrap();
+        let row0 = rows.first().unwrap();
         let colors = rows
             .iter()
             .flat_map(|row| row.color)
