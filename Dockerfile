@@ -4,7 +4,7 @@
 #       https://github.com/emerzon/alpine-mimalloc/blob/master/Dockerfile
 # NOTE: This has to be activated from within the Rust code,
 #       e.g. with https://crates.io/crates/mimalloc.
-ARG API_BASE_IMAGE=lukemathwalker/cargo-chef:0.1.62-rust-1.74.0-alpine3.18
+ARG API_BASE_IMAGE=lukemathwalker/cargo-chef:0.1.62-rust-1.75.0-alpine3.19
 
 
 ### Mimalloc compilation
