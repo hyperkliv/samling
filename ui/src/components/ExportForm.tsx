@@ -108,6 +108,7 @@ const allFieldEntries: ExportFieldEntry[] = [
   { field: ExportField.NewColor, label: t`New color`, checked: true },
   { field: ExportField.SizeType, label: t`Size type`, checked: true },
   { field: ExportField.SizeNumber, label: t`Size number`, checked: true },
+  { field: ExportField.EanCode, label: t`EAN code`, checked: true },
   { field: ExportField.ServiceItem, label: t`Service item`, checked: true },
   {
     field: ExportField.RetailPriceAmount,
@@ -156,7 +157,6 @@ const allFieldEntries: ExportFieldEntry[] = [
   { field: ExportField.UnitVolume, label: t`Unit volume`, checked: true },
   { field: ExportField.PrimaryImage, label: t`Primary image`, checked: true },
   { field: ExportField.Images, label: t`Images`, checked: false },
-  { field: ExportField.EanCode, label: t`EAN code`, checked: true },
   {
     field: ExportField.StyleExternalid,
     label: t`Style external id`,
