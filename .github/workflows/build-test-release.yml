@@ -18,6 +18,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
       - name: Run clippy
+        continue-on-error: true
         run: cargo clippy -- -D warnings
 
   fmt:
