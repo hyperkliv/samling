@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/hyperkliv/samling/compare/v0.7.0...v0.7.1) (2024-05-16)
+
+
+### Bug Fixes
+
+* Update field order in exports ([d32fa97](https://github.com/hyperkliv/samling/commit/d32fa97f54dee7322b2a8547e83b7affd2fafaf5))
+
 ## [0.7.0](https://github.com/hyperkliv/samling/compare/v0.6.0...v0.7.0) (2024-01-03)
 
 
