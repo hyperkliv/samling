@@ -1,5 +1,67 @@
 # Changelog
 
+## [0.8.0](https://github.com/hyperkliv/samling/compare/samling-v0.7.1...samling-v0.8.0) (2024-05-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* Upgrade dependencies
+* Update to http 1.0, hyper 1.0, axum 0.7 and more
+* Update dependencies
+
+### Features
+
+* Ability to filter by attributes in collection admin ([2717c1a](https://github.com/hyperkliv/samling/commit/2717c1a0972613cdfefbbd997bfdcd61f009eaf6))
+* **admin:** Item filter choices endpoint ([b385709](https://github.com/hyperkliv/samling/commit/b38570909a5a0a88034d0193b2b922be0318c9f6))
+* **cli:** Add `version` command ([2d9feca](https://github.com/hyperkliv/samling/commit/2d9fecaa34ac0d5058020099e516fb054c959e76))
+* Initial commit ([ead04e6](https://github.com/hyperkliv/samling/commit/ead04e649339a0f8f3905dcadaf1eee9528c0904))
+* New feature to enable Mimalloc allocator ([026cf77](https://github.com/hyperkliv/samling/commit/026cf7729febb649d1a58c1e3f5af29081187d58))
+
+
+### Bug Fixes
+
+* Add Cargo.toml properties required for publishing ([ecfe4c2](https://github.com/hyperkliv/samling/commit/ecfe4c2407ef904277c0f56d38e680aee19068b3))
+* Add profile image to user admin table ([58fe93d](https://github.com/hyperkliv/samling/commit/58fe93d9b34e2ec6517c49bb1aa62b33ba350f70))
+* **admin:** Attribute filtering of different types are now AND:ed together ([4832344](https://github.com/hyperkliv/samling/commit/48323441357c928b23879539943e3b50a6e75a04))
+* **admin:** Color enabled checkbox wasn't applied properly ([fe0b4b9](https://github.com/hyperkliv/samling/commit/fe0b4b9e4ee797d42eb8dd298f169edebd44002b))
+* **admin:** User wasn't added to organization on create ([214f2b0](https://github.com/hyperkliv/samling/commit/214f2b0f15e44a6c27bf6cc87becb171d6ec4253))
+* **admin:** Users without groups weren't visible ([ae0611b](https://github.com/hyperkliv/samling/commit/ae0611b9c4c14786f27eec108059a9d7d9d16de4))
+* Allow partial comparison of different ref variants ([10a006d](https://github.com/hyperkliv/samling/commit/10a006df3dd9d6138b562ff5ef0109d36d730952))
+* Bearer value not sent correctly to Cloudflare ([7a18ee5](https://github.com/hyperkliv/samling/commit/7a18ee5f5d88635d715da6ebdeec23732c68f18c))
+* Choose latest uploaded image for same position ([04b5cbd](https://github.com/hyperkliv/samling/commit/04b5cbd31260471663f25d56c8dd3d0d39f9f208))
+* Don't allow collection.organization_id to be null ([602cc56](https://github.com/hyperkliv/samling/commit/602cc563fb3818a74aa8c6d426d8cc568e0bf966))
+* Don't remove style attribute associations unnecessarily ([ff01211](https://github.com/hyperkliv/samling/commit/ff01211c46272d1fa92e9176edd108afc32422f4))
+* **export:** Replace "Yes (0) No (0)" with "No" for New Color field ([4189819](https://github.com/hyperkliv/samling/commit/4189819794082eb25874e78729a05a5c48d2eb7c))
+* Incorrect clone implementation for Id&lt;T&gt; ([2ee0a01](https://github.com/hyperkliv/samling/commit/2ee0a014aa31d9ae5caf8b4086a4442dbcc88dac))
+* Move to maintained dotenv crate alternative ([fba9cb8](https://github.com/hyperkliv/samling/commit/fba9cb8610469695006c22175c604a51bbfc26a3))
+* New release ([bc2069c](https://github.com/hyperkliv/samling/commit/bc2069c436e00b730f405b345d6c4811a9e056e9))
+* New release ([4b603ae](https://github.com/hyperkliv/samling/commit/4b603ae91edbc6f6614bb2f3745c70f5431ed7ef))
+* New release ([36e4368](https://github.com/hyperkliv/samling/commit/36e4368c529d455f18e37a92f708e59c64a8a8cd))
+* New release ([62af56a](https://github.com/hyperkliv/samling/commit/62af56ad5e73baf3f537a3d4f351d2f7e93c883a))
+* New release ([ac12b40](https://github.com/hyperkliv/samling/commit/ac12b404c269c59398561348af8224e4c06cd124))
+* New release ([f41f9ff](https://github.com/hyperkliv/samling/commit/f41f9ff61873173972c255b34037b798e354b9c5))
+* New release ([1bc499e](https://github.com/hyperkliv/samling/commit/1bc499eac6bb257d01f84ca6649e0ca93d08b653))
+* Only enable used tokio features ([a7d1025](https://github.com/hyperkliv/samling/commit/a7d1025481cafc59bb34ab14d7941c10db1524a3))
+* Prices weren't showing on lower resolutions in collection table ([3bebd4a](https://github.com/hyperkliv/samling/commit/3bebd4a43eda09dc5364ce2ddbeaae01ffd09980))
+* Remove unused collection filter from pricelist summary endpoint ([4a94ec3](https://github.com/hyperkliv/samling/commit/4a94ec3ae5d8ee7ea5e66fec34dd1c592d1009c4))
+* Resolve extremely slow response compression ([6b85c96](https://github.com/hyperkliv/samling/commit/6b85c96e973b6ab99cf3356336740b7887218f19))
+* Update dependencies ([50fdcf1](https://github.com/hyperkliv/samling/commit/50fdcf19ceaf9c65403a47459a555ca871bc2018))
+* Update dependencies ([b3014bf](https://github.com/hyperkliv/samling/commit/b3014bf71e0918fe1df48032225742da9acd08ca))
+* Update dependencies ([dc2d42e](https://github.com/hyperkliv/samling/commit/dc2d42e18595a0063bd254a008753d096f8b7a5a))
+* Update dependencies ([dcbf68a](https://github.com/hyperkliv/samling/commit/dcbf68a2a0f4558642b31abc5811cf2124b051da))
+* Update dependencies ([448b165](https://github.com/hyperkliv/samling/commit/448b165ce651478c1b94899a7007ae72b887d0f9))
+* Update field order in exports ([d32fa97](https://github.com/hyperkliv/samling/commit/d32fa97f54dee7322b2a8547e83b7affd2fafaf5))
+* Upgrade reportedly incompatible dependencies ([ac94159](https://github.com/hyperkliv/samling/commit/ac94159c10eb6e115c7b68235e4b60656f6842eb))
+* Use kubernetes native LB with traefik ([ca28120](https://github.com/hyperkliv/samling/commit/ca28120b43fd52987db4aec88e48672a9804b18f))
+* Use tokio 1.24 ([9e50773](https://github.com/hyperkliv/samling/commit/9e50773d99db425d1ad38af87cea6621938815b7))
+
+
+### Miscellaneous Chores
+
+* Update dependencies ([ba6ca49](https://github.com/hyperkliv/samling/commit/ba6ca498e5845a9e8de0cef13402092615d8f832))
+* Update to http 1.0, hyper 1.0, axum 0.7 and more ([c77af3e](https://github.com/hyperkliv/samling/commit/c77af3ef0fa5a333dea5d4eb45b2f5b5aecbd7a9))
+* Upgrade dependencies ([7ee84b7](https://github.com/hyperkliv/samling/commit/7ee84b7b7c5a8497008138ff64288729a8ae40fe))
+
 ## [0.7.1](https://github.com/hyperkliv/samling/compare/v0.7.0...v0.7.1) (2024-05-16)
 
 
