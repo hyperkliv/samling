@@ -525,7 +525,7 @@ impl PreExportRow {
     }
 
     fn remove(&mut self, key: &Column) -> Option<Value> {
-        self.0.remove(key)
+        self.0.swap_remove(key)
     }
 }
 
