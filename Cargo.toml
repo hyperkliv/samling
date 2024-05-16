@@ -44,7 +44,7 @@ rust_xlsxwriter = "0.56.0"
 schemars = { version = "0.8.16", features = ["derive", "preserve_order", "bytes", "url", "rust_decimal"] }
 sentry = { version = "0.32.1", default-features = false, features = ["rustls", "tracing", "backtrace", "contexts", "panic", "tokio", "reqwest", "tower"] }
 serde = { version = "1.0.194", features = ["derive"] }
-serde_json = { version = "1.0.110", features = ["preserve_order"] }
+serde_json = { version = "1.0.111", features = ["preserve_order"] }
 serde_path_to_error = "0.1.15"
 slug = "0.1.5"
 smol_str = { version = "0.2.0", features = ["serde"] }
