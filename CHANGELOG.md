@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://github.com/hyperkliv/samling/compare/v0.9.0...v0.9.1) (2024-06-19)
+
+
+### Bug Fixes
+
+* Update sentry and rust_xlsxwriter ([1782d19](https://github.com/hyperkliv/samling/commit/1782d19d4eaa9f67e5052c67990c9974835b3db2))
+
 ## [0.9.0](https://github.com/hyperkliv/samling/compare/v0.8.0...v0.9.0) (2024-06-19)
 
 
