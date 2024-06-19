@@ -40,9 +40,9 @@ postgres-types = { version = "0.2.6", features = ["derive", "with-time-0_3", "wi
 rand = "0.8.5"
 reqwest = { version = "0.12.5", features = ["rustls-tls", "json", "stream", "multipart"], default-features = false }
 rust_decimal = { version = "1.35.0", features = ["db-tokio-postgres", "db-postgres", "serde-with-float"] }
-rust_xlsxwriter = "0.64.2"
+rust_xlsxwriter = "0.68.0"
 schemars = { version = "0.8.21", features = ["derive", "preserve_order", "bytes", "url", "rust_decimal"] }
-sentry = { version = "0.32.3", default-features = false, features = ["rustls", "tracing", "backtrace", "contexts", "panic", "tokio", "reqwest", "tower"] }
+sentry = { version = "0.34.0", default-features = false, features = ["rustls", "tracing", "backtrace", "contexts", "panic", "tokio", "reqwest", "tower"] }
 serde = { version = "1.0.203", features = ["derive"] }
 serde_json = { version = "1.0.117", features = ["preserve_order"] }
 serde_path_to_error = "0.1.16"
