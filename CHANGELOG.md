@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.2](https://github.com/hyperkliv/samling/compare/v0.9.1...v0.9.2) (2024-06-19)
+
+
+### Bug Fixes
+
+* New release ([b7b2c9b](https://github.com/hyperkliv/samling/commit/b7b2c9bf2d9297935bdea54e68560cf37fc957a0))
+* New release ([175878d](https://github.com/hyperkliv/samling/commit/175878d7a890e750444b5180a1094cc6dd2108c4))
+
 ## [0.9.1](https://github.com/hyperkliv/samling/compare/v0.9.0...v0.9.1) (2024-06-19)
 
 
