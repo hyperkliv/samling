@@ -1,13 +1,17 @@
-name: Build, test & release
+name: Main
 
 on:
   push:
     branches:
       - main
+    tags:
+      - 'v*.*.*'
   pull_request: {}
 
 env:
   APP_NAME: samling
+  IMAGE_NAME: samling
+  BUILD_CACHE_IMAGE_NAME: samling-cache
 
 jobs:
   clippy:
@@ -47,24 +51,140 @@ jobs:
     steps:
       - uses: jacobsvante/cargo-deny-action@v1
 
-  create-release-pr:
-    name: Conditionally create release PR
+  build-docker-image:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'hyperkliv/samling' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Log in to Docker Hub registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          cache-from: |
+            type=registry,ref=${{ secrets.DOCKERHUB_USER }}/${{ env.BUILD_CACHE_IMAGE_NAME }}:${{ github.ref_name }}
+            type=registry,ref=${{ secrets.DOCKERHUB_USER }}/${{ env.BUILD_CACHE_IMAGE_NAME }}:main
+          cache-to: |
+            type=registry,ref=${{ secrets.DOCKERHUB_USER }}/${{ env.BUILD_CACHE_IMAGE_NAME }}:${{ github.ref_name }},compression=zstd,mode=max
+
+  test-docker-image:
+    name: Test Docker image
+    runs-on: ubuntu-latest
+    needs: [build-docker-image]
+    if: ${{ github.repository == 'hyperkliv/samling' }}
+    steps:
+      - name: Log in to Docker Hub registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Create network
+        run: docker network create test
+      - name: Start postgres container
+        run: |
+          docker run \
+            --name postgres \
+            --network test \
+            --rm \
+            --detach \
+            --env POSTGRES_DB=samling \
+            --env POSTGRES_USER=samling \
+            --env POSTGRES_PASSWORD=samling \
+            --hostname postgres \
+            postgres:14.5-alpine3.16
+          until docker exec postgres pg_isready; do sleep 0.5; done
+      - name: Start samling container
+        run: |
+          docker run \
+            --publish 8080:8080 \
+            --network test \
+            --rm \
+            --detach \
+            --env LOG_LEVEL=info \
+            --env SECRET=abc123 \
+            --env DB_NAME=samling \
+            --env DB_HOST=postgres \
+            --env DB_USER=samling \
+            --env DB_PASSWORD=samling \
+            --env DB_AUTO_MIGRATE=true \
+            --env CLOUDFLARE_ACCOUNT_ID=abc \
+            --env CLOUDFLARE_TOKEN=123 \
+            ${{ secrets.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          sleep 1
+      - name: Check /api/readyz response
+        run: |
+          curl http://127.0.0.1:8080/api/readyz > output.json
+          jq . output.json
+          [[ $(jq .ok output.json) == true ]]
+      - name: Notify hyperkliv/www-samling-io
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
+          repository: hyperkliv/www-samling-io
+          event-type: new-samling-docker-image
+          client-payload: '{"sha": "${{ github.sha }}"}'
+
+  version-tag-docker-image:
+    name: Add version tags to Docker image
+    needs: [test-docker-image]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      repository-projects: read
+    if: ${{ github.repository == 'hyperkliv/samling' && github.ref_type == 'tag' }}
+    steps:
+      - name: Get the version
+        id: version
+        run: echo version=${GITHUB_REF_NAME/v/} >> $GITHUB_OUTPUT
+        shell: bash
+      - uses: jacobsvante/version-tag-docker-image@v0.6
+        if: ${{ steps.version.outputs.version != '' }}
+        with:
+          version: ${{ steps.version.outputs.version }}
+          image: ${{ secrets.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Notify hyperkliv/www-samling-io
+        uses: peter-evans/repository-dispatch@v2
+        if: ${{ steps.version.outputs.version != '' }}
+        with:
+          token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
+          repository: hyperkliv/www-samling-io
+          event-type: new-samling-docker-image
+          client-payload: '{"sha": "${{ github.sha }}", "version": "${{ steps.version.outputs.version }}" }'
+
+  release-please:
     needs: [clippy, cargo-deny, test]
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.repository == 'hyperkliv/samling' && github.ref == 'refs/heads/main' }}
     permissions:
       contents: write
       pull-requests: write
     steps:
-      - name: Create a release Pull Request
-        uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@v4
+        id: release
+      - name: Tag major and minor versions in Git
+        if: ${{ steps.release.outputs.release_created }}
+        uses: jacobsvante/tag-major-minor-action@v0.1
         with:
-          skip-github-release: true
+          major: ${{ steps.release.outputs.major }}
+          minor: ${{ steps.release.outputs.minor }}
 
   publish:
-    name: Conditionally publish to crates.io
+    name: Publish to crates.io
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.repository == 'hyperkliv/samling' && github.ref_type == 'tag' }}
     permissions:
       contents: write
       pull-requests: write
@@ -72,27 +192,6 @@ jobs:
       CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Make cargo command available
-        uses: dtolnay/rust-toolchain@stable
-
+      - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
-
-      - name: Ensure publishable
-        run: cargo publish --dry-run
-
-      - uses: googleapis/release-please-action@v4
-        id: release
-        with:
-          skip-github-pull-request: true
-          token: ${{ secrets.EVENT_TRIGGERING_GITHUB_TOKEN }}
-
-      - name: Tag major and minor versions in Git
-        if: ${{ steps.release.outputs.release_created }}
-        uses: jacobsvante/tag-major-minor-action@v0
-        with:
-          major: ${{ steps.release.outputs.major }}
-          minor: ${{ steps.release.outputs.minor }}
-
-      - if: ${{ steps.release.outputs.release_created }}
-        run: cargo publish
+      - run: cargo publish
