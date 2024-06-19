@@ -71,10 +71,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           cache-from: |
-            type=registry,ref=${{ secrets.DOCKERHUB_USER }}/${{ env.BUILD_CACHE_IMAGE_NAME }}:${{ github.ref_name }}
+            type=registry,ref=${{ secrets.DOCKERHUB_USER }}/${{ env.BUILD_CACHE_IMAGE_NAME }}:${{ github.sha }}
             type=registry,ref=${{ secrets.DOCKERHUB_USER }}/${{ env.BUILD_CACHE_IMAGE_NAME }}:main
           cache-to: |
-            type=registry,ref=${{ secrets.DOCKERHUB_USER }}/${{ env.BUILD_CACHE_IMAGE_NAME }}:${{ github.ref_name }},compression=zstd,mode=max
+            type=registry,ref=${{ secrets.DOCKERHUB_USER }}/${{ env.BUILD_CACHE_IMAGE_NAME }}:${{ github.sha }},compression=zstd,mode=max
 
   test-docker-image:
     name: Test Docker image
