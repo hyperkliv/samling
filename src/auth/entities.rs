@@ -17,7 +17,7 @@ use crate::{
 use super::rbac::Role;
 
 #[derive(Debug, Clone, Deserialize, Serialize, derive_more::Display, JsonSchema)]
-#[display(fmt = "{id}/{name}")]
+#[display("{id}/{name}")]
 pub struct User {
     pub id: Id<User>,
     pub name: String,
@@ -37,7 +37,7 @@ pub struct User {
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, derive_more::Display, JsonSchema)]
-#[display(fmt = "{id}/{name}")]
+#[display("{id}/{name}")]
 pub struct UserSummary {
     pub id: Id<User>,
     pub name: String,
@@ -78,7 +78,7 @@ impl RefTarget for User {
 #[derive(
     Debug, Clone, Deserialize, Serialize, JsonSchema, derive_more::Display, derive_more::Constructor,
 )]
-#[display(fmt = "{organization} {roles:?}")]
+#[display("{organization} {roles:?}")]
 pub struct UserOrganization {
     pub organization: OrganizationSummary,
     pub roles: Vec<Role>,

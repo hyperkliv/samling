@@ -84,12 +84,7 @@ impl ExportFormat {
                 let mut max_column_widths = Vec::from_iter(columns.iter().map(|c| c.name().len()));
 
                 for (col_index, col) in columns.iter().enumerate() {
-                    worksheet.write_string_with_format(
-                        0,
-                        col_index as u16,
-                        col.name().as_ref(),
-                        &colfmt,
-                    )?;
+                    worksheet.write_string_with_format(0, col_index as u16, col.name(), &colfmt)?;
                 }
 
                 for (row_index, row) in rows.into_iter().enumerate() {

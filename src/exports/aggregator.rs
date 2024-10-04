@@ -17,7 +17,7 @@ pub(super) fn aggregate(
     rows.sort_by_key(|row| row.group_by_ids(&group_by));
     let groups = rows
         .into_iter()
-        .group_by(|row| row.group_by_ids(&group_by))
+        .chunk_by(|row| row.group_by_ids(&group_by))
         .into_iter()
         .map(|(_ids, group)| group.collect_vec())
         .collect_vec();

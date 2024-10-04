@@ -9,11 +9,11 @@ use crate::{Error, Result};
 #[derive(Debug, Serialize, Deserialize, Clone, derive_more::Display, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum Ref<T: RefTarget> {
-    #[display(fmt = "{_0}")]
+    #[display("{_0}")]
     Id(Id<T>),
-    #[display(fmt = "external_id:{_0}")]
+    #[display("external_id:{_0}")]
     ExternalId(ExternalId<T>),
-    #[display(fmt = "slug:{_0}")]
+    #[display("slug:{_0}")]
     Slug(Slug<T>),
 }
 

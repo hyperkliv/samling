@@ -14,7 +14,7 @@ use crate::{
 
 /// Organization
 #[derive(Debug, Serialize, Deserialize, Clone, Display, JsonSchema)]
-#[display(fmt = "{id}/{name}")]
+#[display("{id}/{name}")]
 pub struct Organization {
     pub id: Id<Self>,
     pub name: String,
@@ -30,7 +30,7 @@ pub struct Organization {
 
 /// Organization
 #[derive(Debug, Serialize, Deserialize, Clone, Display, JsonSchema)]
-#[display(fmt = "{id}/{name}")]
+#[display("{id}/{name}")]
 pub struct OrganizationSummary {
     pub id: Id<Organization>,
     pub name: String,

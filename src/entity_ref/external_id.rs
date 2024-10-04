@@ -14,7 +14,7 @@ use super::{Id, Ref, RefTarget, RefType};
 use crate::{organizations::Organization, Error, Result};
 
 #[derive(Clone, Serialize, Deserialize, derive_more::Display)]
-#[display(fmt = "{_0}")]
+#[display("{_0}")]
 #[serde(transparent)]
 pub struct ExternalId<T: RefTarget>(String, PhantomData<T>);
 
