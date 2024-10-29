@@ -1,12 +1,13 @@
 import { i18n, I18n } from "@lingui/core";
 import { useLingui } from "@lingui/react";
-import { en, sv } from "make-plural/plurals";
+import { en, sv, de } from "make-plural/plurals";
 import { useLocation } from "react-router-dom";
 import { I18NString } from "./types/api";
 
 export const locales = {
   en: "English",
   sv: "Svenska",
+  de: "Deutsch",
 };
 export { i18n };
 export const localeCodes = Object.keys(locales);
@@ -55,6 +56,7 @@ export function useLocaleParam(): string | null {
 i18n.loadLocaleData({
   en: { plurals: en },
   sv: { plurals: sv },
+  de: { plurals: de },
 });
 
 /**

@@ -195,7 +195,7 @@ impl RefTarget for Attribute {
 }
 
 /// Attribute, for creation
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreateAttribute {
     pub r#type: Ref<AttributeType>,
     pub title: I18nString,

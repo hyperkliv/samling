@@ -43,6 +43,7 @@ export interface Api {
     style:                  Style;
     style_summary:          StyleSummary;
     update_collection:      UpdateCollection;
+    [property: string]: any;
 }
 
 /**
@@ -58,11 +59,14 @@ export interface Attribute {
     title:        I18NString;
     type:         AttributeTypeSummary;
     updated_at:   string;
+    [property: string]: any;
 }
 
 export interface I18NString {
+    de?: string;
     en?: string;
     sv?: string;
+    [property: string]: any;
 }
 
 /**
@@ -73,6 +77,7 @@ export interface AttributeTypeSummary {
     id:           number;
     name:         I18NString;
     slug:         string;
+    [property: string]: any;
 }
 
 /**
@@ -86,6 +91,7 @@ export interface AttributeType {
     name:         I18NString;
     slug:         string;
     updated_at:   string;
+    [property: string]: any;
 }
 
 export interface AuthJsonSchema {
@@ -101,12 +107,14 @@ export interface AuthJsonSchema {
     update_user:           UpdateUser;
     user:                  User;
     user_summary:          UserSummary;
+    [property: string]: any;
 }
 
 export interface AuthenticatedUser {
     environment: Environment;
     token:       string;
     user:        User;
+    [property: string]: any;
 }
 
 export enum Environment {
@@ -125,6 +133,7 @@ export interface User {
     organizations:  UserOrganization[];
     profile_image?: null | string;
     updated_at:     string;
+    [property: string]: any;
 }
 
 export interface GroupSummary {
@@ -136,11 +145,13 @@ export interface GroupSummary {
     num_price_lists: number;
     num_users:       number;
     slug:            string;
+    [property: string]: any;
 }
 
 export interface UserOrganization {
     organization: OrganizationSummary;
     roles:        Role[];
+    [property: string]: any;
 }
 
 /**
@@ -150,6 +161,7 @@ export interface OrganizationSummary {
     id:        number;
     logo_url?: null | string;
     name:      string;
+    [property: string]: any;
 }
 
 /**
@@ -172,6 +184,7 @@ export interface CreateGroup {
     price_lists?: RefForPriceList[];
     slug?:        null | string;
     users?:       RefForUser[];
+    [property: string]: any;
 }
 
 export interface RefForCollection {
@@ -199,6 +212,7 @@ export interface CreateUser {
     password?:      null | string;
     profile_image?: null | string;
     roles?:         Role[] | null;
+    [property: string]: any;
 }
 
 export interface RefForGroup {
@@ -209,6 +223,7 @@ export interface RefForGroup {
 
 export interface GoogleCredentials {
     idToken: string;
+    [property: string]: any;
 }
 
 export interface Group {
@@ -223,6 +238,7 @@ export interface Group {
     slug:         string;
     updated_at:   string;
     users:        UserSummary[];
+    [property: string]: any;
 }
 
 /**
@@ -242,11 +258,13 @@ export interface CollectionSummary {
     pricing:      CollectionPricing[];
     slug:         string;
     updated_at:   string;
+    [property: string]: any;
 }
 
 export interface CollectionPricing {
     date: string;
     list: PriceListSummary;
+    [property: string]: any;
 }
 
 /**
@@ -257,6 +275,7 @@ export interface PriceListSummary {
     id:           number;
     name:         string;
     slug:         string;
+    [property: string]: any;
 }
 
 export interface UserSummary {
@@ -265,17 +284,20 @@ export interface UserSummary {
     last_sign_in:   string;
     name:           string;
     profile_image?: null | string;
+    [property: string]: any;
 }
 
 export interface MicrosoftCredentials {
     accessToken:   string;
     idToken:       string;
     idTokenClaims: MicrosoftClaims;
+    [property: string]: any;
 }
 
 export interface MicrosoftClaims {
     email: string;
     name:  string;
+    [property: string]: any;
 }
 
 export interface UpdateGroup {
@@ -286,6 +308,7 @@ export interface UpdateGroup {
     price_lists?: RefForPriceList[] | null;
     slug?:        null | string;
     users?:       RefForUser[] | null;
+    [property: string]: any;
 }
 
 export interface UpdateOwnUser {
@@ -293,6 +316,7 @@ export interface UpdateOwnUser {
     name?:          null | string;
     password?:      null | string;
     profile_image?: null | string;
+    [property: string]: any;
 }
 
 export interface UpdateUser {
@@ -302,6 +326,7 @@ export interface UpdateUser {
     password?:      null | string;
     profile_image?: null | string;
     roles?:         Role[] | null;
+    [property: string]: any;
 }
 
 /**
@@ -315,6 +340,7 @@ export interface Category {
     name:         I18NString;
     slug:         string;
     updated_at:   string;
+    [property: string]: any;
 }
 
 /**
@@ -325,6 +351,7 @@ export interface CategorySummary {
     id:           number;
     name:         I18NString;
     slug:         string;
+    [property: string]: any;
 }
 
 /**
@@ -342,6 +369,7 @@ export interface Collection {
     sizes:        NestedSize[];
     slug:         string;
     updated_at:   string;
+    [property: string]: any;
 }
 
 /**
@@ -358,6 +386,7 @@ export interface NestedSize {
     service_item?:    boolean | null;
     slug:             string;
     status?:          null | string;
+    [property: string]: any;
 }
 
 /**
@@ -366,6 +395,7 @@ export interface NestedSize {
 export interface CollectionItem {
     style:        NestedStyle;
     user_comment: string;
+    [property: string]: any;
 }
 
 /**
@@ -379,16 +409,17 @@ export interface NestedStyle {
     country_of_origin?: null | string;
     description:        I18NString;
     external_id?:       null | string;
-    gross_weight:       number;
+    gross_weight:       string;
     id:                 number;
     is_new?:            boolean | null;
     name:               I18NString;
-    net_weight:         number;
+    net_weight:         string;
     number:             string;
     prices:             NestedPrice[];
     slug:               string;
     tariff_no?:         null | string;
-    unit_volume:        number;
+    unit_volume:        string;
+    [property: string]: any;
 }
 
 /**
@@ -401,6 +432,7 @@ export interface AttributeSummary {
     slug:         string;
     title:        I18NString;
     type:         AttributeTypeSummary;
+    [property: string]: any;
 }
 
 /**
@@ -415,6 +447,7 @@ export interface NestedColor {
     number:       string;
     sizes:        NestedSize[];
     slug:         string;
+    [property: string]: any;
 }
 
 /**
@@ -424,13 +457,14 @@ export interface ImageSummary {
     external_id?: null | string;
     id:           number;
     url:          string;
+    [property: string]: any;
 }
 
 /**
  * Nested price set, for inclusion in a NestedStyle
  */
 export interface NestedPrice {
-    amount:   number;
+    amount:   string;
     currency: string;
     end:      string;
     id:       number;
@@ -438,6 +472,7 @@ export interface NestedPrice {
     start:    string;
     type:     PriceType;
     uom?:     null | string;
+    [property: string]: any;
 }
 
 export enum PriceType {
@@ -463,6 +498,7 @@ export interface CollectionWithItems {
     pricing:      CollectionPricing[];
     slug:         string;
     updated_at:   string;
+    [property: string]: any;
 }
 
 /**
@@ -479,6 +515,7 @@ export interface Color {
     slug:         string;
     style:        StyleSummary;
     updated_at:   string;
+    [property: string]: any;
 }
 
 /**
@@ -490,6 +527,7 @@ export interface StyleSummary {
     name:         I18NString;
     number:       string;
     slug:         string;
+    [property: string]: any;
 }
 
 /**
@@ -502,6 +540,7 @@ export interface ColorSummary {
     number:       string;
     slug:         string;
     style:        StyleSummary;
+    [property: string]: any;
 }
 
 /**
@@ -517,6 +556,7 @@ export interface CreateCollection {
     pricing:      CollectionPricing[];
     sizes?:       RefForSize[];
     slug?:        null | string;
+    [property: string]: any;
 }
 
 export interface ImageSource {
@@ -546,6 +586,7 @@ export interface RefForSize {
 export interface ErrorsSchema {
     code:     ApiErrorCode;
     response: ApiErrorResponse;
+    [property: string]: any;
 }
 
 /**
@@ -599,12 +640,14 @@ export enum ApiErrorCode {
 export interface ApiErrorResponse {
     error_code:    ApiErrorCode;
     error_message: string;
+    [property: string]: any;
 }
 
 export interface ExportSchema {
     field:    ExportField;
     format:   ExportFormat;
     group_by: GroupBy;
+    [property: string]: any;
 }
 
 export enum ExportField {
@@ -659,10 +702,12 @@ export interface FiltersSchema {
     item_filter_choices: ItemFilterChoices;
     style:               StyleFilters;
     user:                UserFilters;
+    [property: string]: any;
 }
 
 export interface CollectionFilters {
     styles?: StyleFilters;
+    [property: string]: any;
 }
 
 export interface StyleFilters {
@@ -677,6 +722,7 @@ export interface StyleFilters {
     refs?:              RefForStyle[] | null;
     service_item?:      boolean | null;
     status?:            string[] | null;
+    [property: string]: any;
 }
 
 export interface RefForAttribute {
@@ -696,6 +742,7 @@ export interface ItemFilterChoices {
     category:  EntityFilterChoice[];
     status:    string[];
     style:     EntityFilterChoice[];
+    [property: string]: any;
 }
 
 export interface EntityFilterChoice {
@@ -703,11 +750,13 @@ export interface EntityFilterChoice {
     image?:    null | ImageSummary;
     subtitle?: null | I18NString;
     title:     I18NString;
+    [property: string]: any;
 }
 
 export interface UserFilters {
     groups?: RefForGroup[] | null;
     roles?:  Role[] | null;
+    [property: string]: any;
 }
 
 /**
@@ -723,6 +772,7 @@ export interface Image {
     uploaded_at:        string;
     uploaded_by?:       number | null;
     url:                string;
+    [property: string]: any;
 }
 
 /**
@@ -733,6 +783,7 @@ export interface NestedStyleSummary {
     id:     number;
     name:   I18NString;
     number: string;
+    [property: string]: any;
 }
 
 /**
@@ -744,6 +795,7 @@ export interface NestedColorSummary {
     number:         string;
     primary_image?: null | ImageSummary;
     sizes:          NestedSizeSummary[];
+    [property: string]: any;
 }
 
 /**
@@ -753,6 +805,7 @@ export interface NestedSizeSummary {
     id:     number;
     name:   I18NString;
     number: string;
+    [property: string]: any;
 }
 
 /**
@@ -765,13 +818,14 @@ export interface Organization {
     logo_url?:   null | string;
     name:        string;
     updated_at:  string;
+    [property: string]: any;
 }
 
 /**
  * Price set (belonging to the same list and style, but with different start/end dates)
  */
 export interface Price {
-    amount:       number;
+    amount:       string;
     created_at:   string;
     created_by?:  number | null;
     currency:     string;
@@ -784,6 +838,7 @@ export interface Price {
     type:         PriceType;
     uom?:         null | string;
     updated_at:   string;
+    [property: string]: any;
 }
 
 /**
@@ -797,6 +852,7 @@ export interface PriceList {
     name:         string;
     slug:         string;
     updated_at:   string;
+    [property: string]: any;
 }
 
 /**
@@ -817,11 +873,13 @@ export interface Size {
     slug:            string;
     status?:         null | string;
     updated_at:      string;
+    [property: string]: any;
 }
 
 export interface SortByJsonSchema {
     nested_style: NestedStyleSortOrder;
     user:         UserSortOrder;
+    [property: string]: any;
 }
 
 export enum NestedStyleSortOrder {
@@ -850,15 +908,16 @@ export interface Style {
     created_by?:        number | null;
     description:        I18NString;
     external_id?:       null | string;
-    gross_weight:       number;
+    gross_weight:       string;
     id:                 number;
     name:               I18NString;
-    net_weight:         number;
+    net_weight:         string;
     number:             string;
     slug:               string;
     tariff_no?:         null | string;
-    unit_volume:        number;
+    unit_volume:        string;
     updated_at:         string;
+    [property: string]: any;
 }
 
 /**
@@ -874,6 +933,7 @@ export interface UpdateCollection {
     pricing?:     CollectionPricing[] | null;
     sizes?:       RefForSize[] | null;
     slug?:        null | string;
+    [property: string]: any;
 }
 
 // Converts JSON types to/from your types
@@ -1432,11 +1492,25 @@ export class Convert {
     }
 }
 
-function invalidValue(typ: any, val: any, key: any = ''): never {
-    if (key) {
-        throw Error(`Invalid value for key "${key}". Expected type ${JSON.stringify(typ)} but got ${JSON.stringify(val)}`);
+function invalidValue(typ: any, val: any, key: any, parent: any = ''): never {
+    const prettyTyp = prettyTypeName(typ);
+    const parentText = parent ? ` on ${parent}` : '';
+    const keyText = key ? ` for key "${key}"` : '';
+    throw Error(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
+}
+
+function prettyTypeName(typ: any): string {
+    if (Array.isArray(typ)) {
+        if (typ.length === 2 && typ[0] === undefined) {
+            return `an optional ${prettyTypeName(typ[1])}`;
+        } else {
+            return `one of [${typ.map(a => { return prettyTypeName(a); }).join(", ")}]`;
+        }
+    } else if (typeof typ === "object" && typ.literal !== undefined) {
+        return typ.literal;
+    } else {
+        return typeof typ;
     }
-    throw Error(`Invalid value ${JSON.stringify(val)} for type ${JSON.stringify(typ)}`, );
 }
 
 function jsonToJSProps(typ: any): any {
@@ -1457,10 +1531,10 @@ function jsToJSONProps(typ: any): any {
     return typ.jsToJSON;
 }
 
-function transform(val: any, typ: any, getProps: any, key: any = ''): any {
+function transform(val: any, typ: any, getProps: any, key: any = '', parent: any = ''): any {
     function transformPrimitive(typ: string, val: any): any {
         if (typeof typ === typeof val) return val;
-        return invalidValue(typ, val, key);
+        return invalidValue(typ, val, key, parent);
     }
 
     function transformUnion(typs: any[], val: any): any {
@@ -1472,17 +1546,17 @@ function transform(val: any, typ: any, getProps: any, key: any = ''): any {
                 return transform(val, typ, getProps);
             } catch (_) {}
         }
-        return invalidValue(typs, val);
+        return invalidValue(typs, val, key, parent);
     }
 
     function transformEnum(cases: string[], val: any): any {
         if (cases.indexOf(val) !== -1) return val;
-        return invalidValue(cases, val);
+        return invalidValue(cases.map(a => { return l(a); }), val, key, parent);
     }
 
     function transformArray(typ: any, val: any): any {
         // val must be an array with no invalid elements
-        if (!Array.isArray(val)) return invalidValue("array", val);
+        if (!Array.isArray(val)) return invalidValue(l("array"), val, key, parent);
         return val.map(el => transform(el, typ, getProps));
     }
 
@@ -1492,24 +1566,24 @@ function transform(val: any, typ: any, getProps: any, key: any = ''): any {
         }
         const d = new Date(val);
         if (isNaN(d.valueOf())) {
-            return invalidValue("Date", val);
+            return invalidValue(l("Date"), val, key, parent);
         }
         return d;
     }
 
     function transformObject(props: { [k: string]: any }, additional: any, val: any): any {
         if (val === null || typeof val !== "object" || Array.isArray(val)) {
-            return invalidValue("object", val);
+            return invalidValue(l(ref || "object"), val, key, parent);
         }
         const result: any = {};
         Object.getOwnPropertyNames(props).forEach(key => {
             const prop = props[key];
             const v = Object.prototype.hasOwnProperty.call(val, key) ? val[key] : undefined;
-            result[prop.key] = transform(v, prop.typ, getProps, prop.key);
+            result[prop.key] = transform(v, prop.typ, getProps, key, ref);
         });
         Object.getOwnPropertyNames(val).forEach(key => {
             if (!Object.prototype.hasOwnProperty.call(props, key)) {
-                result[key] = transform(val[key], additional, getProps, key);
+                result[key] = transform(val[key], additional, getProps, key, ref);
             }
         });
         return result;
@@ -1518,10 +1592,12 @@ function transform(val: any, typ: any, getProps: any, key: any = ''): any {
     if (typ === "any") return val;
     if (typ === null) {
         if (val === null) return val;
-        return invalidValue(typ, val);
+        return invalidValue(typ, val, key, parent);
     }
-    if (typ === false) return invalidValue(typ, val);
+    if (typ === false) return invalidValue(typ, val, key, parent);
+    let ref: any = undefined;
     while (typeof typ === "object" && typ.ref !== undefined) {
+        ref = typ.ref;
         typ = typeMap[typ.ref];
     }
     if (Array.isArray(typ)) return transformEnum(typ, val);
@@ -1529,7 +1605,7 @@ function transform(val: any, typ: any, getProps: any, key: any = ''): any {
         return typ.hasOwnProperty("unionMembers") ? transformUnion(typ.unionMembers, val)
             : typ.hasOwnProperty("arrayItems")    ? transformArray(typ.arrayItems, val)
             : typ.hasOwnProperty("props")         ? transformObject(getProps(typ), typ.additional, val)
-            : invalidValue(typ, val);
+            : invalidValue(typ, val, key, parent);
     }
     // Numbers can be parsed by Date but shouldn't be.
     if (typ === Date && typeof val !== "number") return transformDate(val);
@@ -1542,6 +1618,10 @@ function cast<T>(val: any, typ: any): T {
 
 function uncast<T>(val: T, typ: any): any {
     return transform(val, typ, jsToJSONProps);
+}
+
+function l(typ: any) {
+    return { literal: typ };
 }
 
 function a(typ: any) {
@@ -1614,6 +1694,7 @@ const typeMap: any = {
         { json: "updated_at", js: "updated_at", typ: "" },
     ], "any"),
     "I18NString": o([
+        { json: "de", js: "de", typ: u(undefined, "") },
         { json: "en", js: "en", typ: u(undefined, "") },
         { json: "sv", js: "sv", typ: u(undefined, "") },
     ], "any"),
@@ -1850,16 +1931,16 @@ const typeMap: any = {
         { json: "country_of_origin", js: "country_of_origin", typ: u(undefined, u(null, "")) },
         { json: "description", js: "description", typ: r("I18NString") },
         { json: "external_id", js: "external_id", typ: u(undefined, u(null, "")) },
-        { json: "gross_weight", js: "gross_weight", typ: 3.14 },
+        { json: "gross_weight", js: "gross_weight", typ: "" },
         { json: "id", js: "id", typ: 3.14 },
         { json: "is_new", js: "is_new", typ: u(undefined, u(true, null)) },
         { json: "name", js: "name", typ: r("I18NString") },
-        { json: "net_weight", js: "net_weight", typ: 3.14 },
+        { json: "net_weight", js: "net_weight", typ: "" },
         { json: "number", js: "number", typ: "" },
         { json: "prices", js: "prices", typ: a(r("NestedPrice")) },
         { json: "slug", js: "slug", typ: "" },
         { json: "tariff_no", js: "tariff_no", typ: u(undefined, u(null, "")) },
-        { json: "unit_volume", js: "unit_volume", typ: 3.14 },
+        { json: "unit_volume", js: "unit_volume", typ: "" },
     ], "any"),
     "AttributeSummary": o([
         { json: "description", js: "description", typ: r("I18NString") },
@@ -1885,7 +1966,7 @@ const typeMap: any = {
         { json: "url", js: "url", typ: "" },
     ], "any"),
     "NestedPrice": o([
-        { json: "amount", js: "amount", typ: 3.14 },
+        { json: "amount", js: "amount", typ: "" },
         { json: "currency", js: "currency", typ: "" },
         { json: "end", js: "end", typ: "" },
         { json: "id", js: "id", typ: 3.14 },
@@ -2067,7 +2148,7 @@ const typeMap: any = {
         { json: "updated_at", js: "updated_at", typ: "" },
     ], "any"),
     "Price": o([
-        { json: "amount", js: "amount", typ: 3.14 },
+        { json: "amount", js: "amount", typ: "" },
         { json: "created_at", js: "created_at", typ: "" },
         { json: "created_by", js: "created_by", typ: u(undefined, u(3.14, null)) },
         { json: "currency", js: "currency", typ: "" },
@@ -2119,14 +2200,14 @@ const typeMap: any = {
         { json: "created_by", js: "created_by", typ: u(undefined, u(3.14, null)) },
         { json: "description", js: "description", typ: r("I18NString") },
         { json: "external_id", js: "external_id", typ: u(undefined, u(null, "")) },
-        { json: "gross_weight", js: "gross_weight", typ: 3.14 },
+        { json: "gross_weight", js: "gross_weight", typ: "" },
         { json: "id", js: "id", typ: 3.14 },
         { json: "name", js: "name", typ: r("I18NString") },
-        { json: "net_weight", js: "net_weight", typ: 3.14 },
+        { json: "net_weight", js: "net_weight", typ: "" },
         { json: "number", js: "number", typ: "" },
         { json: "slug", js: "slug", typ: "" },
         { json: "tariff_no", js: "tariff_no", typ: u(undefined, u(null, "")) },
-        { json: "unit_volume", js: "unit_volume", typ: 3.14 },
+        { json: "unit_volume", js: "unit_volume", typ: "" },
         { json: "updated_at", js: "updated_at", typ: "" },
     ], "any"),
     "UpdateCollection": o([

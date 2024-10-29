@@ -1,4 +1,5 @@
 {
+  "editor.formatOnSave": true,
   // "rust-analyzer.cargo.features": [],
   "sqlfluff.config": "${workspaceFolder}/.sqlfluff",
   "search.exclude": {

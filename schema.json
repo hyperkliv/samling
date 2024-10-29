@@ -151,9 +151,15 @@
       "type": "object",
       "properties": {
         "en": {
+          "default": "",
           "type": "string"
         },
         "sv": {
+          "default": "",
+          "type": "string"
+        },
+        "de": {
+          "default": "",
           "type": "string"
         }
       }
@@ -2079,13 +2085,16 @@
           ]
         },
         "net_weight": {
-          "type": "number"
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
         },
         "gross_weight": {
-          "type": "number"
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
         },
         "unit_volume": {
-          "type": "number"
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
         },
         "categories": {
           "type": "array",
@@ -2200,7 +2209,8 @@
           "$ref": "#/definitions/Id"
         },
         "amount": {
-          "type": "number"
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
         },
         "start": {
           "type": "string",
@@ -3015,7 +3025,8 @@
           "type": "string"
         },
         "amount": {
-          "type": "number"
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
         },
         "start": {
           "type": "string",
@@ -3250,13 +3261,16 @@
           ]
         },
         "net_weight": {
-          "type": "number"
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
         },
         "gross_weight": {
-          "type": "number"
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
         },
         "unit_volume": {
-          "type": "number"
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
         },
         "categories": {
           "type": "array",

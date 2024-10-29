@@ -149,7 +149,7 @@ impl RefTarget for Style {
 }
 
 /// Style, for creation
-#[derive(Debug, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct CreateStyle {
     pub slug: Option<Slug<Style>>,
     pub number: String,

@@ -26,7 +26,10 @@ impl<'a> Export<'a> {
     fn filename(&self) -> String {
         format!(
             "{} {}{}",
-            self.collection.collection.name.get(self.language),
+            self.collection
+                .collection
+                .name
+                .get_or_default(self.language),
             time::OffsetDateTime::now_utc(),
             self.export_format.file_extension()
         )

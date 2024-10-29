@@ -122,7 +122,10 @@ impl ExportField {
     fn process(&self, row: &AggregatedRow, language: Language) -> Vec<(Column, Value)> {
         match self {
             Self::StyleNumber => vec![(self.column(), row.style.number.clone().into())],
-            Self::StyleName => vec![(self.column(), row.style.name.get(language).into())],
+            Self::StyleName => vec![(
+                self.column(),
+                row.style.name.get_or_default(language).into(),
+            )],
             Self::StyleExternalId => vec![(
                 self.column(),
                 row.style
@@ -141,7 +144,10 @@ impl ExportField {
                     .into(),
             )],
             Self::StyleDescription => {
-                vec![(self.column(), row.style.description.get(language).into())]
+                vec![(
+                    self.column(),
+                    row.style.description.get_or_default(language).into(),
+                )]
             }
             Self::Core => vec![(self.column(), row.style.core.into())],
             Self::TariffNo => vec![(self.column(), row.style.tariff_no.clone().into())],
@@ -159,7 +165,7 @@ impl ExportField {
                 self.column(),
                 row.colors
                     .iter()
-                    .map(|c| c.name.get(language))
+                    .map(|c| c.name.get_or_default(language).to_owned())
                     .collect_vec()
                     .into(),
             )],
@@ -211,7 +217,7 @@ impl ExportField {
                 self.column(),
                 row.categories
                     .iter()
-                    .map(|c| c.name.get(language))
+                    .map(|c| c.name.get_or_default(language).to_owned())
                     .collect_vec()
                     .into(),
             )],
@@ -320,14 +326,14 @@ impl ExportField {
                     .style
                     .attributes
                     .iter()
-                    .into_group_map_by(|&attr| attr.r#type.name.get(language));
+                    .into_group_map_by(|&attr| attr.r#type.name.get_or_default(language));
                 map.into_iter()
                     .map(|(type_name, type_attrs)| {
                         (
                             type_name.into(),
                             type_attrs
                                 .into_iter()
-                                .map(|attr| attr.title.get(language))
+                                .map(|attr| attr.title.get_or_default(language).to_owned())
                                 .collect_vec()
                                 .into(),
                         )
