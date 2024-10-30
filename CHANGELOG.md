@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/hyperkliv/samling/compare/v0.10.1...v0.11.0) (2024-10-30)
+
+
+### Features
+
+* Choose language for exported data ([538f229](https://github.com/hyperkliv/samling/commit/538f2295226180f356b91c086eb5e57cd24b0d4b))
+
 ## [0.10.1](https://github.com/hyperkliv/samling/compare/v0.10.0...v0.10.1) (2024-10-30)
 
 
