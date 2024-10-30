@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/hyperkliv/samling/compare/v0.10.0...v0.10.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* DE locale files didn't exist ([95e874c](https://github.com/hyperkliv/samling/commit/95e874c6f17e0428164fcfbf0bb8afc9c8008e1e))
+
 ## [0.10.0](https://github.com/hyperkliv/samling/compare/v0.9.2...v0.10.0) (2024-10-30)
 
 
