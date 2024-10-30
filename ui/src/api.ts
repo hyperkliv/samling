@@ -32,6 +32,7 @@ import {
   NestedStyleSummary,
   Category,
   ItemFilterChoices,
+  Language,
 } from "./types/api";
 import { useAppDispatch, useAppSelector } from "./state/hooks";
 import { useEffect, useState } from "react";
@@ -170,6 +171,7 @@ interface ApiSurface {
     token: string,
     organizationId: number,
     collectionSlug: string,
+    language: Language,
     exportFormat: ExportFormat,
     groupBy: GroupBy[],
     fields: ExportField[],
@@ -181,6 +183,7 @@ interface ApiGetRequestOptions {
   token: string;
   sortOrder?: string;
   filters?: object;
+  language?: Language; // TODO: This is only really meant for downloadExportFile...
   groupBy?: GroupBy[]; // TODO: This is only really meant for downloadExportFile...
   fields?: ExportField[]; // TODO: This is only really meant for downloadExportFile...
 }
@@ -231,6 +234,9 @@ function makeApi(baseUrl: string): ApiSurface {
     }
     if (!!opts.groupBy) {
       searchParams.append("group_by", JSON.stringify(opts.groupBy));
+    }
+    if (!!opts.language) {
+      searchParams.append("language", opts.language);
     }
     if (!!opts.fields) {
       searchParams.append("fields", JSON.stringify(opts.fields));
@@ -387,13 +393,16 @@ function makeApi(baseUrl: string): ApiSurface {
         token,
       });
     },
-    async fetchItemFilterChoices (
+    async fetchItemFilterChoices(
       token: string,
       organizationId: number,
     ): Promise<Result<ItemFilterChoices, ApiErrorResponse>> {
-      return await getJson<ItemFilterChoices>(`/${organizationId}/admin/filters/items`, {
-        token,
-      });
+      return await getJson<ItemFilterChoices>(
+        `/${organizationId}/admin/filters/items`,
+        {
+          token,
+        },
+      );
     },
     async fetchColors(
       token: string,
@@ -596,18 +605,23 @@ function makeApi(baseUrl: string): ApiSurface {
       token: string,
       organizationId: number,
       collectionSlug: string,
+      language: Language,
       exportFormat: ExportFormat,
       groupBy: GroupBy[],
       fields: ExportField[],
       filters?: CollectionFilters,
     ): Promise<Response> {
       const subpath = `/${organizationId}/exports/slug:${collectionSlug}/${exportFormat}`;
-      return fetchRaw(subpath, { token, filters, groupBy, fields }).catch(
-        (err) => {
-          console.error(`Failed to download file, with error: ${err}`);
-          return err;
-        },
-      );
+      return fetchRaw(subpath, {
+        token,
+        filters,
+        groupBy,
+        language,
+        fields,
+      }).catch((err) => {
+        console.error(`Failed to download file, with error: ${err}`);
+        return err;
+      });
     },
   };
 }
@@ -855,10 +869,7 @@ export function usePricelists(): PricelistsFetchResult {
   useEffect(() => {
     if (!!token && !!activeOrganization) {
       api
-        .fetchPriceLists(
-          token as string,
-          activeOrganization.organization.id,
-        )
+        .fetchPriceLists(token as string, activeOrganization.organization.id)
         .then((result) => {
           setFetchResult(result);
         });
@@ -918,16 +929,24 @@ export function useCollectionList(): [CollectionListFetchResult, () => void] {
   return [fetchResult, refresh];
 }
 
-type ItemFilterChoicesFetchResult = Result<ItemFilterChoices | null, ApiErrorResponse>;
+type ItemFilterChoicesFetchResult = Result<
+  ItemFilterChoices | null,
+  ApiErrorResponse
+>;
 
 export function useItemFilterChoices(): ItemFilterChoicesFetchResult {
   const { token, activeOrganization } = useAppSelector((state) => state.user);
-  const [fetchResult, setFetchResult] = useState(Ok(null) as ItemFilterChoicesFetchResult);
+  const [fetchResult, setFetchResult] = useState(
+    Ok(null) as ItemFilterChoicesFetchResult,
+  );
   useLogoutOnExpiredToken(fetchResult);
   useEffect(() => {
     if (!!token && !!activeOrganization) {
       api
-        .fetchItemFilterChoices(token as string, activeOrganization.organization.id)
+        .fetchItemFilterChoices(
+          token as string,
+          activeOrganization.organization.id,
+        )
         .then((result) => {
           setFetchResult(result);
         });

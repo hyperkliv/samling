@@ -23,6 +23,7 @@
     "i18n_string",
     "image",
     "image_summary",
+    "language",
     "nested_attribute",
     "nested_color",
     "nested_price",
@@ -57,6 +58,9 @@
     },
     "sort_by": {
       "$ref": "#/definitions/SortByJsonSchema"
+    },
+    "language": {
+      "$ref": "#/definitions/Language"
     },
     "environment": {
       "$ref": "#/definitions/Environment"
@@ -1659,6 +1663,14 @@
         "name:asc",
         "delivery_period:asc",
         "delivery_period:desc"
+      ]
+    },
+    "Language": {
+      "type": "string",
+      "enum": [
+        "en",
+        "sv",
+        "de"
       ]
     },
     "Attribute": {

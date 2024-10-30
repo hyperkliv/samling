@@ -10,8 +10,9 @@ import {
   GroupBy,
   ExportFormat,
   PriceListSummary,
+  Language,
 } from "../types/api";
-import { useLocalize } from "../i18n";
+import { locales, useLocaleParam, useLocalize } from "../i18n";
 import { ItemFilters, makeCollectionFilters } from "../types/filters";
 import { classNames } from "../utils";
 import LoadingIndicator from "./LoadingIndicator";
@@ -177,6 +178,8 @@ export default function ExportForm({
   const { token, activeOrganization } = useAppSelector((state) => state.user);
   const { i18nDbText } = useLocalize();
 
+  const locale = useLocaleParam();
+  const [language, setLanguage] = useState(locale as Language);
   const [exportFormat, setExportFormat] = useState(ExportFormat.Xlsx);
   const [groupByEntries, setGroupByEntries] = useState(() => [
     ...allGroupByEntries,
@@ -192,6 +195,7 @@ export default function ExportForm({
           token,
           activeOrganization.organization.id,
           collection.slug,
+          language,
           exportFormat,
           groupByEntries.filter((g) => g.checked).map((g) => g.groupBy),
           fieldEntries.filter((f) => f.checked).map((f) => f.field),
@@ -260,6 +264,43 @@ export default function ExportForm({
                   evt.preventDefault();
                 }}
               >
+                <fieldset className="mt-6">
+                  <legend className="contents text-base font-medium text-gray-900">
+                    <Trans>Language</Trans>
+                  </legend>
+                  <p className="text-sm text-gray-500">
+                    <Trans>Which language you want to export to.</Trans>
+                  </p>
+                  <div className="mt-2 space-y-4">
+                    {Object.values(Language).map((value) => (
+                      <div key={value} className="relative flex items-start">
+                        <div className="flex h-5 items-center">
+                          <input
+                            id={`export-language-${value}`}
+                            name="language"
+                            checked={language === value}
+                            value={value}
+                            type="radio"
+                            onChange={(evt) => {
+                              return evt.target.checked
+                                ? setLanguage(value)
+                                : "";
+                            }}
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:text-gray-400"
+                          />
+                        </div>
+                        <div className="ml-3 text-sm">
+                          <label
+                            htmlFor={`export-language-${value}`}
+                            className="font-medium text-gray-700"
+                          >
+                            {locales[value]}
+                          </label>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </fieldset>
                 <fieldset className="mt-6">
                   <legend className="contents text-base font-medium text-gray-900">
                     <Trans>Format</Trans>

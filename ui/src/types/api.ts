@@ -28,6 +28,7 @@ export interface Api {
     i18n_string:            I18NString;
     image:                  Image;
     image_summary:          ImageSummary;
+    language:               Language;
     nested_attribute:       AttributeSummary;
     nested_color:           NestedColor;
     nested_price:           NestedPrice;
@@ -773,6 +774,12 @@ export interface Image {
     uploaded_by?:       number | null;
     url:                string;
     [property: string]: any;
+}
+
+export enum Language {
+    De = "de",
+    En = "en",
+    Sv = "sv",
 }
 
 /**
@@ -1666,6 +1673,7 @@ const typeMap: any = {
         { json: "i18n_string", js: "i18n_string", typ: r("I18NString") },
         { json: "image", js: "image", typ: r("Image") },
         { json: "image_summary", js: "image_summary", typ: r("ImageSummary") },
+        { json: "language", js: "language", typ: r("Language") },
         { json: "nested_attribute", js: "nested_attribute", typ: r("AttributeSummary") },
         { json: "nested_color", js: "nested_color", typ: r("NestedColor") },
         { json: "nested_price", js: "nested_price", typ: r("NestedPrice") },
@@ -2323,6 +2331,11 @@ const typeMap: any = {
         "price_list",
         "size",
         "style",
+    ],
+    "Language": [
+        "de",
+        "en",
+        "sv",
     ],
     "NestedStyleSortOrder": [
         "delivery_period:asc",

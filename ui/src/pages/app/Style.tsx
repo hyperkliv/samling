@@ -302,7 +302,7 @@ function StyleInner({ collection, item, activeColor }: StyleInnerProps) {
                               {attributes.map((attr) => (
                                 <li key={attr.id}>
                                   <>
-                                    {i18nDbText(attr.title)}{" "}
+                                    <b>{i18nDbText(attr.title)}</b>{" "}
                                     {i18nDbText(attr.description)}
                                   </>
                                 </li>

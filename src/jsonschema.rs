@@ -46,6 +46,7 @@ pub(crate) struct PublicJsonSchema {
     export: ExportSchema,
     filters: FiltersSchema,
     sort_by: SortByJsonSchema,
+    language: crate::Language,
     environment: crate::Environment,
     attribute: crate::Attribute,
     attribute_type: crate::AttributeType,

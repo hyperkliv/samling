@@ -17,6 +17,7 @@ use strum::IntoEnumIterator;
     PartialOrd,
     Ord,
     strum::EnumIter,
+    JsonSchema,
 )]
 #[serde(rename_all = "snake_case")]
 pub enum Language {
