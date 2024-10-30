@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/hyperkliv/samling/compare/v0.9.2...v0.10.0) (2024-10-30)
+
+
+### Features
+
+* Support german ([c1f36b1](https://github.com/hyperkliv/samling/commit/c1f36b13f5abdfd7995eae8ec24c7224ae394da4))
+
 ## [0.9.2](https://github.com/hyperkliv/samling/compare/v0.9.1...v0.9.2) (2024-06-19)
 
 
