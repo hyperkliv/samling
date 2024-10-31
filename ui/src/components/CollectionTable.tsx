@@ -8,10 +8,15 @@ import {
   NestedStyleSortOrder,
   PriceListSummary,
 } from "../types/api";
-import { ALL_COLLECTION_COLUMNS } from "../types/columns";
 import { ItemFilters } from "../types/filters";
 import CollectionFilters from "./CollectionFilters";
 import Breadcrumbs from "./nav/Breadcrumbs";
+import { Column } from "../types/columns";
+import Style from "../components/columns/data/Style";
+import Colors from "../components/columns/data/Colors";
+import RetailPrices from "../components/columns/data/RetailPrices";
+import UnitPrices from "../components/columns/data/UnitPrices";
+import GenericThCell from "./columns/header/GenericThCell";
 
 interface Props {
   itemFilters: ItemFilters;
@@ -38,6 +43,33 @@ export default function CollectionTable({
 }: Props) {
   const { i18nDbText, i18nLink } = useLocalize();
   // TODO: Implement column setting (maybe rename to fields?)
+  const columnDefaults = { enabled: true, thComponent: GenericThCell };
+  const allCollectionColumns: Column[] = [
+    {
+      id: "style",
+      title: t`Style`,
+      tdComponent: Style,
+      ...columnDefaults,
+    },
+    {
+      id: `colors`,
+      title: t`Colors`,
+      tdComponent: Colors,
+      ...columnDefaults,
+    },
+    {
+      id: "retailPrices",
+      title: t`Retail price`,
+      tdComponent: RetailPrices,
+      ...columnDefaults,
+    },
+    {
+      id: "unitPrices",
+      title: t`Unit prices`,
+      tdComponent: UnitPrices,
+      ...columnDefaults,
+    },
+  ];
 
   return (
     <>
@@ -86,30 +118,30 @@ export default function CollectionTable({
                 <table className="min-w-full print:w-auto divide-y divide-gray-300">
                   <thead className="bg-gray-50 print:hidden">
                     <tr key={0}>
-                      {ALL_COLLECTION_COLUMNS.filter((c) => c.enabled).map(
-                        (column, columnIndex) => (
+                      {allCollectionColumns
+                        .filter((c) => c.enabled)
+                        .map((column, columnIndex) => (
                           <column.thComponent
                             key={columnIndex}
                             columnIndex={columnIndex}
                             column={column}
                           />
-                        ),
-                      )}
+                        ))}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
                     {collection.items.map((item) => (
                       <tr key={item.style.id} className="break-inside-avoid">
-                        {ALL_COLLECTION_COLUMNS.filter((c) => c.enabled).map(
-                          (column, columnIndex) => (
+                        {allCollectionColumns
+                          .filter((c) => c.enabled)
+                          .map((column, columnIndex) => (
                             <column.tdComponent
                               key={`${item.style.id}-${columnIndex}`}
                               columnIndex={columnIndex}
                               column={column}
                               item={item}
                             />
-                          ),
-                        )}
+                          ))}
                       </tr>
                     ))}
                   </tbody>
