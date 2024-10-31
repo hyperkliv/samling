@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.2](https://github.com/hyperkliv/samling/compare/v0.11.1...v0.11.2) (2024-10-31)
+
+
+### Bug Fixes
+
+* **ui:** Translations weren't updating in some parts ([7dbe91a](https://github.com/hyperkliv/samling/commit/7dbe91a9d8b215399ce9a268622843616aaabc1f))
+
 ## [0.11.1](https://github.com/hyperkliv/samling/compare/v0.11.0...v0.11.1) (2024-10-31)
 
 
