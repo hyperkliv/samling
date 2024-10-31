@@ -322,15 +322,14 @@ impl ExportField {
                     .into(),
             )],
             Self::Attribute => {
-                let map = row
-                    .style
-                    .attributes
-                    .iter()
-                    .into_group_map_by(|&attr| attr.r#type.name.get_or_default(language));
+                let map = row.style.attributes.iter().into_group_map_by(|&attr| {
+                    (attr.r#type.id, attr.r#type.name.get(Language::En))
+                });
                 map.into_iter()
-                    .map(|(type_name, type_attrs)| {
+                    .map(|((type_id, type_name), type_attrs)| {
                         (
-                            type_name.into(),
+                            type_id,
+                            type_name,
                             type_attrs
                                 .into_iter()
                                 .map(|attr| attr.title.get_or_default(language).to_owned())
@@ -338,6 +337,8 @@ impl ExportField {
                                 .into(),
                         )
                     })
+                    .sorted()
+                    .map(|(_type_id, type_name, attrs)| (type_name.into(), attrs))
                     .collect_vec()
             }
         }
