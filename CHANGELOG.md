@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.1](https://github.com/hyperkliv/samling/compare/v0.11.0...v0.11.1) (2024-10-31)
+
+
+### Bug Fixes
+
+* Column header translations weren't updated ([9d51fbc](https://github.com/hyperkliv/samling/commit/9d51fbc3434bfefb6502e0d245c893cc44e1e01c))
+* **export:** Sort attribute columns by ID and not name ([9bf965d](https://github.com/hyperkliv/samling/commit/9bf965d6150a62dbb9409f75b7116079ed622fc1))
+
 ## [0.11.0](https://github.com/hyperkliv/samling/compare/v0.10.1...v0.11.0) (2024-10-30)
 
 
