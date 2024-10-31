@@ -1,6 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-30 18:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
@@ -9,108 +10,90 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
 "X-Generator: Poedit 3.5\n"
 
 #: src/pages/app/admin/AdminEditUser.tsx:405
-#, fuzzy
 msgid "# collections"
 msgstr "# Kollektionen"
 
 #: src/components/admin/CollectionsTable.tsx:76
 #: src/pages/app/admin/AdminEditGroup.tsx:528
-#, fuzzy
 msgid "# colors"
 msgstr "# Farben"
 
 #: src/pages/app/admin/AdminEditUser.tsx:411
-#, fuzzy
 msgid "# price lists"
 msgstr "# Preislisten"
 
 #: src/components/admin/CollectionsTable.tsx:82
 #: src/pages/app/admin/AdminEditGroup.tsx:534
-#, fuzzy
 msgid "# sizes"
 msgstr "# Größen"
 
 #: src/components/admin/CollectionsTable.tsx:70
 #: src/pages/app/admin/AdminEditGroup.tsx:522
-#, fuzzy
 msgid "# styles"
 msgstr "# Stile"
 
 #: src/pages/public/errors/Unauthorized.tsx:17
-#, fuzzy
 msgid "401 Error"
 msgstr "Fehler 401"
 
 #: src/pages/app/errors/NotFound.tsx:17
 #: src/pages/public/errors/NotFoundPublic.tsx:17
-#, fuzzy
 msgid "404 Error"
 msgstr "404 Fehler"
 
 #: src/pages/public/SplashPage.tsx:175
-#, fuzzy
 msgid "<0>Get full insight into</0><1>your product data.</1>"
 msgstr "<0>Erhalten Sie vollen Einblick in</0><1>Ihre Produktdaten.</1>"
 
 #: src/pages/public/SplashPage.tsx:217
-#, fuzzy
 msgid "<0>We care about the protection of your data. Read our </0><1>Privacy Policy</1>."
 msgstr "<0>Der Schutz Ihrer Daten liegt uns am Herzen. Lesen Sie unsere </0><1>Datenschutzerklärung</1>."
 
 #: src/pages/app/admin/AdminEditGroup.tsx:425 src/roles.ts:14 src/roles.ts:15
-#, fuzzy
 msgid "Active"
 msgstr "Aktiv"
 
 #: src/components/admin/UsersTable.tsx:99
-#, fuzzy
 msgid "Active users"
 msgstr "Aktive Benutzer"
 
 #: src/components/admin/AddCollectionItemsModal.tsx:228
 #: src/components/admin/NewCollectionPricingGroupModal.tsx:114
-#, fuzzy
 msgid "Add"
 msgstr "Hinzufügen"
 
 #: src/pages/app/admin/AdminEditGroup.tsx:556
-#, fuzzy
 msgid "Add collection"
 msgstr "Sammlung hinzufügen"
 
 #: src/components/admin/AddCollectionItemsModal.tsx:158
-#, fuzzy
 msgid "Add collection items"
 msgstr "Hinzufügen von Sammlungselementen"
 
 #: src/components/admin/NewCollectionPricingGroupModal.tsx:78
-#, fuzzy
 msgid "Add collection pricing date"
 msgstr "Preisdatum für die Sammlung hinzufügen"
 
 #: src/components/admin/GroupsTable.tsx:55
 #: src/pages/app/admin/AdminEditUser.tsx:300
 #: src/pages/app/admin/AdminEditUser.tsx:430
-#, fuzzy
 msgid "Add group"
 msgstr "Gruppe hinzufügen"
 
 #: src/pages/app/admin/AdminEditCollection.tsx:629
-#, fuzzy
 msgid "Add items"
 msgstr "Einträge hinzufügen"
 
 #: src/components/admin/UsersTable.tsx:183
 #: src/pages/app/admin/AdminEditGroup.tsx:379
-#, fuzzy
 msgid "Add user"
 msgstr "Benutzer hinzufügen"
 
 #: src/pages/app/Style.tsx:254
-#, fuzzy
 msgid "Additional details"
 msgstr "Weitere Details"
 
@@ -129,89 +112,72 @@ msgstr "Weitere Details"
 #: src/pages/app/admin/AdminGroups.tsx:40 src/pages/app/admin/AdminHome.tsx:21
 #: src/pages/app/admin/AdminHome.tsx:49 src/pages/app/admin/AdminHome.tsx:56
 #: src/pages/app/admin/AdminUsers.tsx:13 src/pages/app/admin/AdminUsers.tsx:91
-#, fuzzy
 msgid "Admin"
 msgstr "Admin"
 
 #: src/pages/app/admin/AdminHome.tsx:41
-#, fuzzy
 msgid "Administrate collections"
 msgstr "Verwalten von Sammlungen"
 
 #: src/pages/app/admin/AdminHome.tsx:34
-#, fuzzy
 msgid "Administrate groups"
 msgstr "Gruppen verwalten"
 
 #: src/pages/app/admin/AdminHome.tsx:27
-#, fuzzy
 msgid "Administrate users"
 msgstr "Benutzer verwalten"
 
 #: src/roles.ts:41
-#, fuzzy
 msgid "Administrator"
 msgstr "Administrator"
 
 #: src/roles.ts:42
-#, fuzzy
 msgid "Administrators"
 msgstr "Administratoren"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:187
 #: src/pages/app/admin/AdminEditCollection.tsx:317
-#, fuzzy
 msgid "Advanced settings"
 msgstr "Erweiterte Einstellungen"
 
 #: src/pages/app/AlreadySignedInPage.tsx:11
-#, fuzzy
 msgid "Already signed in"
 msgstr "Bereits angemeldet"
 
 #: src/pages/app/AlreadySignedInPage.tsx:27
-#, fuzzy
 msgid "Already signed in."
 msgstr "Bereits angemeldet."
 
 #: src/state/slices/user.ts:43
-#, fuzzy
 msgid "An error occurred"
 msgstr "Ein Fehler ist aufgetreten"
 
 #: src/pages/app/errors/ApiError.tsx:26
-#, fuzzy
 msgid "An error occurred."
 msgstr "Ein Fehler ist aufgetreten."
 
 #: src/components/admin/DeleteCollectionModal.tsx:50
-#, fuzzy
 msgid "Are you sure you want to delete the collection <0>{0}</0>? This action cannot be undone."
 msgstr "Sind Sie sicher, dass Sie die Sammlung <0>{0}</0>löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
 
 #: src/components/admin/DeleteGroupModal.tsx:44
-#, fuzzy
 msgid "Are you sure you want to delete the group <0>{0}</0>? This action cannot be undone."
 msgstr "Sind Sie sicher, dass Sie die Gruppe <0>{0}</0>löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
 
 #: src/components/admin/DeleteUserModal.tsx:44
-#, fuzzy
 msgid "Are you sure you want to delete the user <0>{0}</0>? This action cannot be undone."
 msgstr "Sind Sie sicher, dass Sie den Benutzer <0>{0}</0>löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
 
-#: src/components/ExportForm.tsx:146
+#: src/components/ExportForm.tsx:157
 #: src/components/admin/AddCollectionItemsModal.tsx:192
-#, fuzzy
 msgid "Attributes"
 msgstr "Attribute"
 
 #: src/state/slices/user.ts:117
-#, fuzzy
 msgid "Automatic sign out"
 msgstr "Automatische Abmeldung"
 
 #: src/state/slices/user.ts:58
-#, fuzzy
 msgid "Backend error"
 msgstr "Backend-Fehler"
 
@@ -219,32 +185,26 @@ msgstr "Backend-Fehler"
 #: src/pages/app/admin/AdminEditCollection.tsx:263
 #: src/pages/app/admin/AdminEditGroup.tsx:177
 #: src/pages/app/admin/AdminEditUser.tsx:157
-#, fuzzy
 msgid "Basic settings"
 msgstr "Grundeinstellungen"
 
-#: src/components/ExportForm.tsx:55
-#, fuzzy
+#: src/components/ExportForm.tsx:57
 msgid "CSV"
 msgstr "CSV"
 
 #: src/roles.ts:33
-#, fuzzy
 msgid "Can create and edit groups and collections, in addition to viewer level access."
 msgstr "Kann Gruppen und Sammlungen erstellen und bearbeiten, zusätzlich zum Zugriff auf Betrachterebene."
 
 #: src/roles.ts:43
-#, fuzzy
 msgid "Can manage users, in addition to editor level access. Also gets full API access, which is useful when creating integrations."
 msgstr "Kann zusätzlich zum Zugriff auf Editorebene Benutzer verwalten. Erhält auch vollen API-Zugriff, was beim Erstellen von Integrationen nützlich ist."
 
 #: src/roles.ts:16
-#, fuzzy
 msgid "Can sign in."
 msgstr "Kann sich anmelden."
 
 #: src/roles.ts:23
-#, fuzzy
 msgid "Can view and export collections where explicit access has been configured in Groups."
 msgstr "Kann Sammlungen anzeigen und exportieren, bei denen der explizite Zugriff in Gruppen konfiguriert wurde."
 
@@ -255,52 +215,43 @@ msgstr "Kann Sammlungen anzeigen und exportieren, bei denen der explizite Zugrif
 #: src/pages/app/admin/AdminEditCollection.tsx:356
 #: src/pages/app/admin/AdminEditGroup.tsx:278
 #: src/pages/app/admin/AdminEditUser.tsx:214
-#, fuzzy
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #: src/components/admin/AddCollectionItemsModal.tsx:178
 #: src/components/filters/CategoryFilter.tsx:54
-#, fuzzy
 msgid "Categories"
 msgstr "Kategorien"
 
-#: src/components/ExportForm.tsx:73 src/components/filters/ActiveFilters.tsx:63
-#, fuzzy
+#: src/components/ExportForm.tsx:82 src/components/filters/ActiveFilters.tsx:63
 msgid "Category"
 msgstr "Kategorie"
 
-#: src/components/ExportForm.tsx:143
-#, fuzzy
+#: src/components/ExportForm.tsx:154
 msgid "Category name"
 msgstr "Kategoriename"
 
 #: src/pages/app/Style.tsx:215
-#, fuzzy
 msgid "Choose a color"
 msgstr "Wähle eine Farbe"
 
 #: src/pages/app/admin/AdminEditCollection.tsx:674
-#, fuzzy
 msgid "Clear selection"
 msgstr "Auswahl löschen"
 
 #: src/components/UserMessage.tsx:87
-#, fuzzy
 msgid "Close"
 msgstr "Schließen"
 
 #: src/components/nav/SidebarMobile.tsx:64
-#, fuzzy
 msgid "Close sidebar"
 msgstr "Sidebar schließen"
 
 #: src/components/admin/CollectionsTable.tsx:64
-#, fuzzy
 msgid "Collection"
 msgstr "Sammlung"
 
-#: src/components/CollectionTable.tsx:46
+#: src/components/CollectionTable.tsx:78
 #: src/components/admin/CollectionsTable.tsx:35
 #: src/components/admin/GroupsTable.tsx:82 src/components/nav/Sidebar.tsx:22
 #: src/pages/app/HomeScreen.tsx:12 src/pages/app/Style.tsx:82
@@ -311,96 +262,79 @@ msgstr "Sammlung"
 #: src/pages/app/admin/AdminEditCollection.tsx:86
 #: src/pages/app/admin/AdminEditGroup.tsx:495
 #: src/pages/app/admin/AdminHome.tsx:39
-#, fuzzy
 msgid "Collections"
 msgstr "Sammlungen"
 
-#: src/components/ExportForm.tsx:69 src/pages/app/Style.tsx:205
-#, fuzzy
+#: src/components/ExportForm.tsx:75 src/pages/app/Style.tsx:205
 msgid "Color"
 msgstr "Farbe"
 
-#: src/components/ExportForm.tsx:167
-#, fuzzy
+#: src/components/ExportForm.tsx:178
 msgid "Color external id"
 msgstr "Farbe externe ID"
 
-#: src/components/ExportForm.tsx:107
-#, fuzzy
+#: src/components/ExportForm.tsx:118
 msgid "Color name"
 msgstr "Farbname"
 
-#: src/components/ExportForm.tsx:106
-#, fuzzy
+#: src/components/ExportForm.tsx:117
 msgid "Color number"
 msgstr "Farbnummer"
 
-#: src/components/filters/NewFilter.tsx:25 src/types/columns.ts:40
-#, fuzzy
+#: src/components/CollectionTable.tsx:56
+#: src/components/filters/NewFilter.tsx:25
 msgid "Colors"
 msgstr "Farben"
 
 #: src/pages/app/admin/AdminEditCollection.tsx:703
-#, fuzzy
 msgid "Colors / Sizes"
 msgstr "Farben / Größen"
 
 #: src/pages/public/SplashPage.tsx:14
-#, fuzzy
 msgid "Company"
 msgstr "Firma"
 
 #: src/pages/public/SplashPage.tsx:213
-#, fuzzy
 msgid "Contact me"
 msgstr "Kontakt aufnehmen"
 
-#: src/components/ExportForm.tsx:100 src/components/columns/data/Style.tsx:112
+#: src/components/ExportForm.tsx:111 src/components/columns/data/Style.tsx:112
 #: src/components/filters/CoreFilter.tsx:20
-#, fuzzy
 msgid "Core"
 msgstr "Kern"
 
 #: src/components/columns/data/Style.tsx:97
-#, fuzzy
 msgid "Core style"
 msgstr "Kern-Stil"
 
 #: src/components/filters/CoreFilter.tsx:31
-#, fuzzy
 msgid "Core styles"
 msgstr "Zentrale Stile"
 
 #: src/components/filters/ActiveFilters.tsx:72
-#, fuzzy
 msgid "Country"
 msgstr "Land"
 
-#: src/components/ExportForm.tsx:103
+#: src/components/ExportForm.tsx:114
 #: src/components/filters/CountryFilter.tsx:46
-#, fuzzy
 msgid "Country of origin"
 msgstr "Herkunftsland"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:175
 #: src/pages/app/admin/AdminEditCollection.tsx:291
-#, fuzzy
 msgid "Cover photo"
 msgstr "Titelbild"
 
 #: src/components/admin/CreateGroupModal.tsx:63
 #: src/components/admin/CreateUserModal.tsx:132
-#, fuzzy
 msgid "Create"
 msgstr "Erstellen"
 
 #: src/components/admin/CollectionsTable.tsx:49
-#, fuzzy
 msgid "Create collection"
 msgstr "Sammlung erstellen"
 
 #: src/components/admin/CollectionsTable.tsx:88
-#, fuzzy
 msgid "Created at"
 msgstr "Erstellt am"
 
@@ -412,60 +346,49 @@ msgstr "Erstellt am"
 #: src/components/admin/GroupsTable.tsx:166
 #: src/components/admin/UsersTable.tsx:240
 #: src/components/admin/UsersTable.tsx:317
-#, fuzzy
 msgid "Delete"
 msgstr "Löschen"
 
 #: src/components/admin/CollectionsTable.tsx:191
-#, fuzzy
 msgid "Delete<0>, {0}</0>"
 msgstr "Löschen<0>, {0}</0>"
 
-#: src/components/ExportForm.tsx:152 src/types/other.ts:19
-#, fuzzy
+#: src/components/ExportForm.tsx:163 src/types/other.ts:19
 msgid "Delivery period"
 msgstr "Lieferzeit"
 
 #: src/types/other.ts:23
-#, fuzzy
 msgid "Delivery period (descending)"
 msgstr "Lieferzeit (absteigend)"
 
 #: src/pages/app/Style.tsx:190 src/pages/app/admin/AdminEditGroup.tsx:197
 #: src/pages/app/admin/AdminEditUser.tsx:281
-#, fuzzy
 msgid "Description"
 msgstr "Beschreibung"
 
 #: src/components/admin/AddCollectionItemsModal.tsx:193
-#, fuzzy
 msgid "Different types of attributes must all get matched. Within the same type any may match."
 msgstr "Verschiedene Arten von Attributen müssen alle abgeglichen werden. Innerhalb desselben Typs kann jeder übereinstimmen."
 
 #: src/pages/app/admin/AdminEditCollection.tsx:867
-#, fuzzy
 msgid "Disable all"
 msgstr "Alle deaktivieren"
 
-#: src/components/ExportForm.tsx:459
-#, fuzzy
+#: src/components/ExportForm.tsx:516
 msgid "Download"
 msgstr "Download"
 
-#: src/components/ExportForm.tsx:457
-#, fuzzy
+#: src/components/ExportForm.tsx:514
 msgid "Downloading..."
 msgstr "Wird heruntergeladen…"
 
 #: src/components/admin/CreateUserModal.tsx:44
 #: src/components/admin/UsersTable.tsx:375
 #: src/pages/app/admin/AdminEditUser.tsx:176
-#, fuzzy
 msgid "E-mail address"
 msgstr "E-Mail-Adresse"
 
-#: src/components/ExportForm.tsx:111
-#, fuzzy
+#: src/components/ExportForm.tsx:122
 msgid "EAN code"
 msgstr "EAN-Code"
 
@@ -474,120 +397,97 @@ msgstr "EAN-Code"
 #: src/components/admin/GroupsTable.tsx:155
 #: src/components/admin/UsersTable.tsx:232
 #: src/components/admin/UsersTable.tsx:306
-#, fuzzy
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: src/pages/app/admin/AdminEditGroup.tsx:69
-#, fuzzy
 msgid "Edit group"
 msgstr "Gruppe bearbeiten"
 
 #: src/pages/app/admin/AdminEditUser.tsx:61
-#, fuzzy
 msgid "Edit {0}"
 msgstr "{0} bearbeiten"
 
 #: src/components/admin/CollectionsTable.tsx:176
-#, fuzzy
 msgid "Edit<0>, {0}</0>"
 msgstr "Bearbeiten<0>, {0}</0>"
 
 #: src/roles.ts:31
-#, fuzzy
 msgid "Editor"
 msgstr "Editor"
 
 #: src/roles.ts:32
-#, fuzzy
 msgid "Editors"
 msgstr "Redakteure"
 
 #: src/components/SignInModal.tsx:73
-#, fuzzy
 msgid "Email address"
 msgstr "E-Mail-Adresse"
 
 #: src/pages/app/admin/AdminEditCollection.tsx:867
-#, fuzzy
 msgid "Enable all"
 msgstr "Alle aktivieren"
 
 #: src/pages/app/admin/AdminEditUser.tsx:185
-#, fuzzy
 msgid "Enter new password here to change..."
 msgstr "Geben Sie hier ein neues Passwort ein, um es zu ändern..."
 
 #: src/pages/public/SplashPage.tsx:207
-#, fuzzy
 msgid "Enter your email"
 msgstr "E-Mail Adresse eintragen"
 
 #: src/pages/app/AlreadySignedInPage.tsx:24
-#, fuzzy
 msgid "Error"
 msgstr "Fehler"
 
-#: src/components/ExportForm.tsx:49
-#, fuzzy
+#: src/components/ExportForm.tsx:51
 msgid "Excel"
 msgstr "Excel"
 
 #: src/components/forms/ImageInput.tsx:92
-#, fuzzy
 msgid "Existing image"
 msgstr "Vorhandenes Image"
 
-#: src/components/ExportForm.tsx:229 src/components/ExportForm.tsx:247
-#, fuzzy
+#: src/components/ExportForm.tsx:249 src/components/ExportForm.tsx:267
 msgid "Export"
 msgstr "Export"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:206
 #: src/pages/app/admin/AdminEditCollection.tsx:336
 #: src/pages/app/admin/AdminEditGroup.tsx:219
-#, fuzzy
 msgid "External ID"
 msgstr "Externe ID"
 
 #: src/pages/public/SplashPage.tsx:13
-#, fuzzy
 msgid "Features"
 msgstr "Features"
 
-#: src/components/ExportForm.tsx:360
-#, fuzzy
+#: src/components/ExportForm.tsx:417
 msgid "Fields"
 msgstr "Felder"
 
 #: src/components/filters/ActiveFilters.tsx:109
-#, fuzzy
 msgid "Filters<0>, active</0>"
 msgstr "Filter<0>, aktiv</0>"
 
-#: src/components/ExportForm.tsx:265
-#, fuzzy
+#: src/components/ExportForm.tsx:322
 msgid "Format"
 msgstr "Format"
 
 #: src/pages/app/errors/ApiError.tsx:36 src/pages/app/errors/NotFound.tsx:32
 #: src/pages/public/errors/NotFoundPublic.tsx:32
-#, fuzzy
 msgid "Go back home"
 msgstr "Zurück zur Startseite"
 
 #: src/pages/public/SplashPage.tsx:105
-#, fuzzy
 msgid "Go to app"
 msgstr "Zur App"
 
-#: src/components/ExportForm.tsx:156
-#, fuzzy
+#: src/components/ExportForm.tsx:167
 msgid "Gross weight"
 msgstr "Bruttogewicht"
 
-#: src/components/ExportForm.tsx:312
-#, fuzzy
+#: src/components/ExportForm.tsx:369
 msgid "Group by"
 msgstr "Gruppieren nach"
 
@@ -598,81 +498,66 @@ msgstr "Gruppieren nach"
 #: src/pages/app/admin/AdminEditUser.tsx:381
 #: src/pages/app/admin/AdminGroups.tsx:12
 #: src/pages/app/admin/AdminGroups.tsx:41 src/pages/app/admin/AdminHome.tsx:32
-#, fuzzy
 msgid "Groups"
 msgstr "Gruppen"
 
 #: src/components/admin/GroupsTable.tsx:38
-#, fuzzy
 msgid "Groups are used to give access to collections and price lists to a specific set of users. The price lists and collections that a user has been granted to via one or more groups are added together. Groups cannot take away access to price lists or collections."
 msgstr "Gruppen werden verwendet, um einer bestimmten Gruppe von Benutzern Zugriff auf Sammlungen und Preislisten zu gewähren. Die Preislisten und Sammlungen, die einem Benutzer über eine oder mehrere Gruppen gewährt wurden, werden addiert. Gruppen können den Zugriff auf Preislisten oder Sammlungen nicht wegnehmen."
 
 #: src/components/admin/CreateGroupModal.tsx:59
-#, fuzzy
 msgid "Groups are used to limit user access to collections and price lists."
 msgstr "Gruppen werden verwendet, um den Benutzerzugriff auf Sammlungen und Preislisten einzuschränken."
 
-#: src/components/ExportForm.tsx:85
-#, fuzzy
+#: src/components/ExportForm.tsx:94
 msgid "Image"
 msgstr "Bild"
 
 #: src/components/columns/data/Style.tsx:16
-#, fuzzy
 msgid "Image for {0}"
 msgstr "Bild für {0}"
 
 #: src/components/columns/data/Colors.tsx:36
-#, fuzzy
 msgid "Image for {0} / {1}"
 msgstr "Bild für {0} / {1}"
 
 #: src/components/forms/ImageInput.tsx:92
-#, fuzzy
 msgid "Image to upload"
 msgstr "Bild zum Hochladen"
 
-#: src/components/ExportForm.tsx:159
-#, fuzzy
+#: src/components/ExportForm.tsx:170
 msgid "Images"
 msgstr "Bilder"
 
 #: src/components/admin/UsersTable.tsx:93
-#, fuzzy
 msgid "Inactive users"
 msgstr "Inaktive Benutzer"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:177
 #: src/pages/app/admin/AdminEditCollection.tsx:293
-#, fuzzy
 msgid "It is recommended to give the image a 10:7 ratio and a minimum width and height of 1070 by 750 pixels."
 msgstr "Es wird empfohlen, dem Bild ein Verhältnis von 10:7 und eine Mindestbreite und -höhe von 1070 x 750 Pixel zu geben."
 
 #: src/pages/app/admin/AdminEditCollection.tsx:615
-#, fuzzy
 msgid "Items"
 msgstr "Artikel"
 
-#: src/components/ExportForm.tsx:61
-#, fuzzy
+#: src/components/ExportForm.tsx:63
 msgid "JSON"
 msgstr "JSON"
 
 #: src/components/admin/CreateUserModal.tsx:35
 #: src/pages/app/admin/AdminEditUser.tsx:165
-#, fuzzy
 msgid "Jane Doe"
 msgstr "Michael Jackson"
 
-#: src/components/nav/SidebarDesktop.tsx:67
+#: src/components/ExportForm.tsx:285 src/components/nav/SidebarDesktop.tsx:67
 #: src/components/nav/SidebarMobile.tsx:118
-#, fuzzy
 msgid "Language"
 msgstr "Sprache"
 
 #: src/components/admin/UsersTable.tsx:213
 #: src/pages/app/admin/AdminEditGroup.tsx:360
-#, fuzzy
 msgid "Last sign in"
 msgstr "Letzte Anmeldung"
 
@@ -680,22 +565,18 @@ msgstr "Letzte Anmeldung"
 #: src/pages/app/admin/AdminEditGroup.tsx:506
 #: src/pages/app/admin/AdminEditUser.tsx:265
 #: src/pages/app/admin/AdminEditUser.tsx:389
-#, fuzzy
 msgid "List is empty."
 msgstr "Die Liste ist leer."
 
 #: src/components/Loading.tsx:22
-#, fuzzy
 msgid "Loading..."
 msgstr "Lade..."
 
 #: src/pages/public/SplashPage.tsx:112 src/pages/public/SplashPage.tsx:163
-#, fuzzy
 msgid "Log in"
 msgstr "Anmelden"
 
 #: src/components/nav/ProfileDropdown.tsx:17
-#, fuzzy
 msgid "Login"
 msgstr "Anmelden"
 
@@ -703,18 +584,15 @@ msgstr "Anmelden"
 #: src/pages/app/admin/AdminEditCollection.tsx:256
 #: src/pages/app/admin/AdminEditGroup.tsx:170
 #: src/pages/app/admin/AdminEditUser.tsx:150
-#, fuzzy
 msgid "Make your changes, then hit save when done."
 msgstr "Nehmen Sie Ihre Änderungen vor und klicken Sie dann auf Speichern, wenn Sie fertig sind."
 
 #: src/components/admin/AddCollectionItemsModal.tsx:161
 #: src/components/admin/NewCollectionPricingGroupModal.tsx:81
-#, fuzzy
 msgid "Make your selection of items to add here. Manual adjustments can be made once added."
 msgstr "Treffen Sie Ihre Auswahl an Artikeln, die Sie hier hinzufügen möchten. Nach dem Hinzufügen können manuelle Anpassungen vorgenommen werden."
 
 #: src/pages/app/admin/AdminHome.tsx:28
-#, fuzzy
 msgid "Manage users, associate roles and groups individually."
 msgstr "Verwalten Sie Benutzer, ordnen Sie Rollen und Gruppen individuell zu."
 
@@ -730,7 +608,6 @@ msgstr "Verwalten Sie Benutzer, ordnen Sie Rollen und Gruppen individuell zu."
 #: src/pages/app/admin/AdminEditUser.tsx:166
 #: src/pages/app/admin/AdminEditUser.tsx:275
 #: src/pages/app/admin/AdminEditUser.tsx:399 src/types/other.ts:17
-#, fuzzy
 msgid "Name"
 msgstr "Name"
 
@@ -741,139 +618,112 @@ msgstr "Name"
 #: src/pages/app/admin/AdminCreateCollection.tsx:39
 #: src/pages/app/admin/AdminEditCollection.tsx:793
 #: src/pages/app/admin/AdminEditCollection.tsx:879
-#, fuzzy
 msgid "New"
 msgstr "Neu"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:24
 #: src/pages/app/admin/AdminCreateCollection.tsx:144
-#, fuzzy
 msgid "New collection"
 msgstr "Neue Sammlung"
 
-#: src/components/ExportForm.tsx:108 src/components/columns/data/Colors.tsx:145
-#, fuzzy
+#: src/components/ExportForm.tsx:119 src/components/columns/data/Colors.tsx:145
 msgid "New color"
 msgstr "Neue Farbe"
 
 #: src/pages/app/admin/AdminEditCollection.tsx:459
-#, fuzzy
 msgid "New date"
 msgstr "Neuer Termin"
 
-#: src/components/ExportForm.tsx:99 src/components/columns/data/Style.tsx:140
-#, fuzzy
+#: src/components/ExportForm.tsx:110 src/components/columns/data/Style.tsx:140
 msgid "New style"
 msgstr "Neuer Stil"
 
 #: src/components/admin/UsersTable.tsx:376
-#, fuzzy
 msgid "Newest sign in"
 msgstr "Neueste Anmeldung"
 
 #: src/state/slices/user.ts:142
-#, fuzzy
 msgid "No access"
 msgstr "Kein Zugriff"
 
 #: src/components/CollectionsGridList.tsx:70
-#, fuzzy
 msgid "No collections"
 msgstr "Keine Sammlungen"
 
 #: src/components/admin/CreateGroupModal.tsx:28
-#, fuzzy
 msgid "North America sales reps"
 msgstr "Vertriebsmitarbeiter in Nordamerika"
 
 #: src/components/nav/ProfileDropdown.tsx:29
-#, fuzzy
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
 #: src/types/other.ts:16
-#, fuzzy
 msgid "Number"
 msgstr "Nummer"
 
 #: src/components/admin/AddCollectionItemsModal.tsx:260
-#, fuzzy
 msgid "Number of colors"
 msgstr "Anzahl der Farben"
 
 #: src/components/admin/AddCollectionItemsModal.tsx:261
-#, fuzzy
 msgid "Number of sizes"
 msgstr "Anzahl der Größen"
 
 #: src/components/admin/AddCollectionItemsModal.tsx:259
-#, fuzzy
 msgid "Number of styles"
 msgstr "Anzahl der Stile"
 
-#: src/components/ExportForm.tsx:56
-#, fuzzy
+#: src/components/ExportForm.tsx:58
 msgid "Often useful for ERP system imports."
 msgstr "Oft nützlich für ERP-Systemimporte."
 
 #: src/components/admin/UsersTable.tsx:377
-#, fuzzy
 msgid "Oldest sign in"
 msgstr "Älteste Anmeldung"
 
-#: src/components/ExportForm.tsx:147
-#, fuzzy
+#: src/components/ExportForm.tsx:158
 msgid "One column per attribute type will be generated."
 msgstr "Pro Attributtyp wird eine Spalte generiert."
 
 #: src/components/PinnedCollections.tsx:72
-#, fuzzy
 msgid "Open options"
 msgstr "Optionen öffnen"
 
 #: src/components/nav/TopbarMobile.tsx:17
-#, fuzzy
 msgid "Open sidebar"
 msgstr "Seitenleiste öffnen"
 
 #: src/components/nav/ProfileDropdownMobile.tsx:17
-#, fuzzy
 msgid "Open user menu"
 msgstr "Benutzermenü öffnen"
 
 #: src/pages/app/errors/NotFound.tsx:20
 #: src/pages/public/errors/NotFoundPublic.tsx:20
-#, fuzzy
 msgid "Page not found."
 msgstr "Seite nicht gefunden."
 
 #: src/components/SignInModal.tsx:96 src/pages/app/admin/AdminEditUser.tsx:186
-#, fuzzy
 msgid "Password"
 msgstr "Passwort"
 
 #: src/components/admin/CreateUserModal.tsx:54
-#, fuzzy
 msgid "Password (optional)"
 msgstr "Passwort (optional)"
 
 #: src/components/PinnedCollections.tsx:19
-#, fuzzy
 msgid "Pinned Collections"
 msgstr "Angeheftete Sammlungen"
 
 #: src/components/EnvironmentWarning.tsx:28
-#, fuzzy
 msgid "Please go to <0>Samling.io</0> for the production environment."
 msgstr "Gehen Sie zu <0>Samling.io</0> für die Produktionsumgebung."
 
 #: src/components/admin/NewCollectionPricingGroupModal.tsx:30
-#, fuzzy
 msgid "Please select a date."
 msgstr "Bitte wähle ein Datum."
 
-#: src/components/ExportForm.tsx:79
-#, fuzzy
+#: src/components/ExportForm.tsx:88
 msgid "Price list"
 msgstr "Preisliste"
 
@@ -881,72 +731,58 @@ msgstr "Preisliste"
 #: src/components/admin/GroupsTable.tsx:88
 #: src/components/admin/NewCollectionPricingGroupModal.tsx:99
 #: src/pages/app/admin/AdminEditGroup.tsx:243
-#, fuzzy
 msgid "Price lists"
 msgstr "Preislisten"
 
 #: src/components/ActivePriceLists.tsx:19
-#, fuzzy
 msgid "Price lists<0>, active</0>"
 msgstr "Preislisten<0>, aktiv</0>"
 
 #: src/pages/public/SplashPage.tsx:15
-#, fuzzy
 msgid "Pricing"
 msgstr "Preise"
 
 #: src/components/admin/NewCollectionPricingGroupModal.tsx:86
-#, fuzzy
 msgid "Pricing date"
 msgstr "Datum der Preisfestsetzung"
 
 #: src/pages/app/admin/AdminEditCollection.tsx:425
-#, fuzzy
 msgid "Pricing dates"
 msgstr "Termine für die Preisgestaltung"
 
-#: src/components/ExportForm.tsx:158
-#, fuzzy
+#: src/components/ExportForm.tsx:169
 msgid "Primary image"
 msgstr "Primäres Bild"
 
 #: src/pages/public/SplashPage.tsx:12
-#, fuzzy
 msgid "Product"
 msgstr "Produkt"
 
 #: src/pages/app/Style.tsx:158
-#, fuzzy
 msgid "Product information"
 msgstr "Produktinformation"
 
 #: src/pages/public/SplashPage.tsx:194
-#, fuzzy
 msgid "Provide your e-mail below to hear from our team."
 msgstr "Geben Sie unten Ihre E-Mail-Adresse ein, um von unserem Team zu hören."
 
 #: src/components/SignInModal.tsx:126
-#, fuzzy
 msgid "Remember me"
 msgstr "Angemeldet bleiben"
 
 #: src/components/admin/MultipleCombobox.tsx:153
-#, fuzzy
 msgid "Remove filter"
 msgstr "Filter entfernen"
 
 #: src/components/filters/ActiveFilters.tsx:151
-#, fuzzy
 msgid "Remove filter for {0}"
 msgstr "Filter für {0} entfernen"
 
 #: src/components/PinnedCollections.tsx:111
-#, fuzzy
 msgid "Remove from pinned"
 msgstr "Von angeheftet entfernen"
 
 #: src/components/ActivePriceLists.tsx:44
-#, fuzzy
 msgid "Remove {0}"
 msgstr "{0} Löschen"
 
@@ -954,32 +790,26 @@ msgstr "{0} Löschen"
 #: src/pages/app/admin/AdminEditGroup.tsx:619
 #: src/pages/app/admin/AdminEditUser.tsx:334
 #: src/pages/app/admin/AdminEditUser.tsx:473
-#, fuzzy
 msgid "Remove<0>, {0}</0>"
 msgstr "Entfernen<0>, {0}</0>"
 
 #: src/components/admin/AddCollectionItemsModal.tsx:266
-#, fuzzy
 msgid "Results from current filters"
 msgstr "Ergebnisse aus aktuellen Filtern"
 
-#: src/types/columns.ts:46
-#, fuzzy
+#: src/components/CollectionTable.tsx:62
 msgid "Retail price"
 msgstr "Einzelhandelspreis"
 
-#: src/components/ExportForm.tsx:115
-#, fuzzy
+#: src/components/ExportForm.tsx:126
 msgid "Retail price amount"
 msgstr "Verkaufspreis Betrag"
 
-#: src/components/ExportForm.tsx:120
-#, fuzzy
+#: src/components/ExportForm.tsx:131
 msgid "Retail price currency"
 msgstr "Währung des Einzelhandelspreises"
 
-#: src/components/ExportForm.tsx:125
-#, fuzzy
+#: src/components/ExportForm.tsx:136
 msgid "Retail price list"
 msgstr "Preisliste für den Einzelhandel"
 
@@ -987,13 +817,11 @@ msgstr "Preisliste für den Einzelhandel"
 #: src/components/admin/UsersTable.tsx:219
 #: src/components/admin/UsersTable.tsx:383
 #: src/pages/app/admin/AdminEditUser.tsx:257
-#, fuzzy
 msgid "Roles"
 msgstr "Rollen"
 
 #: src/components/nav/SidebarDesktop.tsx:84
 #: src/components/nav/SidebarMobile.tsx:134
-#, fuzzy
 msgid "Samling.io logotype"
 msgstr "Samling.io Logo"
 
@@ -1001,167 +829,138 @@ msgstr "Samling.io Logo"
 #: src/pages/app/admin/AdminEditCollection.tsx:371
 #: src/pages/app/admin/AdminEditGroup.tsx:284
 #: src/pages/app/admin/AdminEditUser.tsx:220
-#, fuzzy
 msgid "Save"
 msgstr "Speichern"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:239
 #: src/pages/app/admin/AdminEditCollection.tsx:371
-#, fuzzy
 msgid "Saving..."
 msgstr "Speichern..."
 
 #: src/components/nav/SidebarSearch.tsx:8
 #: src/components/nav/SidebarSearch.tsx:25
-#, fuzzy
 msgid "Search"
 msgstr "Suche"
 
-#: src/components/ExportForm.tsx:112 src/components/columns/data/Colors.tsx:102
+#: src/components/ExportForm.tsx:123 src/components/columns/data/Colors.tsx:102
 #: src/components/columns/data/Colors.tsx:117
 #: src/components/filters/ServiceItemFilter.tsx:23
-#, fuzzy
 msgid "Service item"
 msgstr "Service Item"
 
 #: src/components/filters/ServiceItemFilter.tsx:34
-#, fuzzy
 msgid "Service items"
 msgstr "Serviceartikel"
 
 #: src/components/nav/ProfileDropdown.tsx:27
-#, fuzzy
 msgid "Settings"
 msgstr "Einstellungen"
 
 #: src/components/PinnedCollections.tsx:124
-#, fuzzy
 msgid "Share"
 msgstr "Teilen"
 
 #: src/components/SignInModal.tsx:59 src/components/SignInModal.tsx:142
 #: src/pages/public/SignInPage.tsx:32
 #: src/pages/public/errors/Unauthorized.tsx:30
-#, fuzzy
 msgid "Sign in"
 msgstr "Anmelden"
 
 #: src/pages/public/SignInPage.tsx:105
-#, fuzzy
 msgid "Sign in to your account"
 msgstr "Bitte loggen Sie sich mit Ihren Zugangsdaten ein"
 
 #: src/pages/public/SignInPage.tsx:192
-#, fuzzy
 msgid "Sign in with Microsoft"
 msgstr "Anmelden mit Microsoft"
 
 #: src/components/nav/ProfileDropdown.tsx:34
 #: src/pages/app/AlreadySignedInPage.tsx:39 src/pages/app/SignOutPage.tsx:14
-#, fuzzy
 msgid "Sign out"
 msgstr "Abmelden"
 
-#: src/components/ExportForm.tsx:70
-#, fuzzy
+#: src/components/ExportForm.tsx:79
 msgid "Size"
 msgstr "Größe"
 
-#: src/components/ExportForm.tsx:110
-#, fuzzy
+#: src/components/ExportForm.tsx:121
 msgid "Size number"
 msgstr "Größennummer"
 
-#: src/components/ExportForm.tsx:109
-#, fuzzy
+#: src/components/ExportForm.tsx:120
 msgid "Size type"
 msgstr "Größentyp"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:196
 #: src/pages/app/admin/AdminEditCollection.tsx:326
 #: src/pages/app/admin/AdminEditGroup.tsx:208
-#, fuzzy
 msgid "Slug"
 msgstr "Slug"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:205
 #: src/pages/app/admin/AdminEditCollection.tsx:335
 #: src/pages/app/admin/AdminEditGroup.tsx:218
-#, fuzzy
 msgid "Some external ID value..."
 msgstr "Ein externer ID-Wert..."
 
 #: src/pages/app/admin/AdminEditGroup.tsx:196
-#, fuzzy
 msgid "Some group description..."
 msgstr "Eine Gruppenbeschreibung..."
 
 #: src/pages/app/admin/AdminEditGroup.tsx:185
-#, fuzzy
 msgid "Some group name..."
 msgstr "Irgendein Gruppenname..."
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:195
 #: src/pages/app/admin/AdminEditCollection.tsx:325
 #: src/pages/app/admin/AdminEditGroup.tsx:207
-#, fuzzy
 msgid "Some slug value..."
 msgstr "Etwas Slug-Wert..."
 
 #: src/pages/app/errors/NotFound.tsx:23
 #: src/pages/public/errors/NotFoundPublic.tsx:23
-#, fuzzy
 msgid "Sorry, we couldn’t find the page you’re looking for."
 msgstr "Leider konnten wir die von Ihnen gesuchte Seite nicht finden."
 
 #: src/components/CollectionTableSortMenu.tsx:30
-#, fuzzy
 msgid "Sort by"
 msgstr "Sortieren nach"
 
 #: src/components/admin/AddCollectionItemsModal.tsx:166
 #: src/pages/app/admin/AdminEditGroup.tsx:354
-#, fuzzy
 msgid "Status"
 msgstr "Status"
 
-#: src/components/ExportForm.tsx:68
+#: src/components/CollectionTable.tsx:50 src/components/ExportForm.tsx:72
 #: src/components/admin/AddCollectionItemsModal.tsx:208
 #: src/components/filters/ActiveFilters.tsx:40
 #: src/components/filters/ActiveFilters.tsx:49
-#: src/pages/app/admin/AdminEditCollection.tsx:697 src/types/columns.ts:34
-#, fuzzy
+#: src/pages/app/admin/AdminEditCollection.tsx:697
 msgid "Style"
 msgstr "Stil"
 
-#: src/components/ExportForm.tsx:96
-#, fuzzy
+#: src/components/ExportForm.tsx:107
 msgid "Style description"
 msgstr "Beschreibung des Stils"
 
-#: src/components/ExportForm.tsx:162
-#, fuzzy
+#: src/components/ExportForm.tsx:173
 msgid "Style external id"
 msgstr "Externe ID formatieren"
 
-#: src/components/ExportForm.tsx:93
-#, fuzzy
+#: src/components/ExportForm.tsx:104
 msgid "Style name"
 msgstr "Theme-Name"
 
-#: src/components/ExportForm.tsx:92
-#, fuzzy
+#: src/components/ExportForm.tsx:103
 msgid "Style number"
 msgstr "Artikelnummer"
 
 #: src/components/filters/NewFilter.tsx:24
 #: src/components/filters/StyleFilter.tsx:55
-#, fuzzy
 msgid "Styles"
 msgstr "Stile"
 
 #: src/pages/app/admin/AdminEditCollection.tsx:618
-#, fuzzy
 msgid "Styles, colors and sizes to associate with this collection."
 msgstr "Stile, Farben und Größen, die mit dieser Kollektion in Verbindung gebracht werden können."
 
@@ -1169,220 +968,177 @@ msgstr "Stile, Farben und Größen, die mit dieser Kollektion in Verbindung gebr
 #: src/pages/app/admin/AdminEditCollection.tsx:180
 #: src/pages/app/admin/AdminEditGroup.tsx:141
 #: src/pages/app/admin/AdminEditUser.tsx:121
-#, fuzzy
 msgid "Success!"
 msgstr "Erfolgreich!"
 
 #: src/state/slices/user.ts:81
-#, fuzzy
 msgid "Successfully signed in"
 msgstr "Erfolgreich angemeldet"
 
 #: src/state/slices/user.ts:99
-#, fuzzy
 msgid "Successfully signed out"
 msgstr "Erfolgreich abgemeldet"
 
 #: src/components/nav/ProfileDropdown.tsx:18
 #: src/components/nav/ProfileDropdown.tsx:33
-#, fuzzy
 msgid "Support"
 msgstr "Support"
 
-#: src/components/ExportForm.tsx:155
-#, fuzzy
+#: src/components/ExportForm.tsx:166
 msgid "Tariff no"
 msgstr "Tarif-Nr"
 
 #: src/pages/public/SignInPage.tsx:56 src/pages/public/SignInPage.tsx:83
 #: src/pages/public/SignInPage.tsx:176
-#, fuzzy
 msgid "Technical error prevents login"
 msgstr "Technischer Fehler verhindert Anmeldung"
 
 #: src/pages/app/admin/AdminCreateCollection.tsx:90
-#, fuzzy
 msgid "The collection \"{0}\" was successfully created."
 msgstr "Die Kollektion \"{0}\" wurde erfolgreich erstellt."
 
 #: src/pages/app/admin/AdminEditCollection.tsx:181
-#, fuzzy
 msgid "The collection \"{0}\" was successfully updated."
 msgstr "Die Kollektion \"{0}\" wurde erfolgreich aktualisiert."
 
 #: src/state/slices/user.ts:131
-#, fuzzy
 msgid "The given e-mail and password combination does not exist."
 msgstr "Die angegebene Kombination aus E-Mail und Passwort existiert nicht."
 
 #: src/pages/app/admin/AdminEditGroup.tsx:142
-#, fuzzy
 msgid "The group \"{0}\" was successfully updated."
 msgstr "Die Gruppe \"{0}\" wurde erfolgreich aktualisiert."
 
 #: src/pages/app/admin/AdminEditUser.tsx:384
-#, fuzzy
 msgid "The groups that this user belong to."
 msgstr "Die Gruppen, denen dieser Benutzer angehört."
 
 #: src/pages/app/admin/AdminEditUser.tsx:260
-#, fuzzy
 msgid "The roles that are assigned to this user."
 msgstr "Die Rollen, die diesem Benutzer zugewiesen sind."
 
 #: src/pages/app/admin/AdminEditUser.tsx:122
-#, fuzzy
 msgid "The user \"{0}\" was successfully updated."
 msgstr "Der Benutzer \"{0}\" wurde erfolgreich aktualisiert."
 
 #: src/pages/app/admin/AdminEditGroup.tsx:333
-#, fuzzy
 msgid "The users that belong to this group."
 msgstr "Die Benutzer, die zu dieser Gruppe gehören."
 
 #: src/components/CollectionsGridList.tsx:73
-#, fuzzy
 msgid "There are no collections available to you. Talk an administrator to get access."
 msgstr "Es stehen Ihnen keine Sammlungen zur Verfügung. Sprechen Sie mit einem Administrator, um Zugriff zu erhalten."
 
 #: src/components/admin/CollectionsTable.tsx:38
-#, fuzzy
 msgid "These are all the collections that exist in the system."
 msgstr "Dies sind alle Sammlungen, die im System vorhanden sind."
 
 #: src/pages/app/admin/AdminEditCollection.tsx:428
-#, fuzzy
 msgid "These dates decide which item prices should be picked up for each price list. Each item price is associated with a start date and end date, so the date you choose has to fall within those."
 msgstr "Diese Termine entscheiden darüber, welche Artikelpreise für jede Preisliste abgeholt werden sollen. Jeder Artikelpreis ist mit einem Start- und einem Enddatum verknüpft, sodass das von Ihnen gewählte Datum innerhalb dieser liegen muss."
 
 #: src/components/admin/CreateUserModal.tsx:65
-#, fuzzy
 msgid "These roles will be assign to the user and determine what they can and cannot do."
 msgstr "Diese Rollen werden dem Benutzer zugewiesen und bestimmen, was er tun kann und was nicht."
 
 #: src/components/admin/UsersTable.tsx:144
-#, fuzzy
 msgid "These users have access to the system."
 msgstr "Diese Benutzer haben Zugriff auf das System."
 
 #: src/components/columns/data/Colors.tsx:163
-#, fuzzy
 msgid "This color first appears in this collection."
 msgstr "Diese Farbe erscheint zuerst in dieser Sammlung."
 
 #: src/components/admin/AddCollectionItemsModal.tsx:167
-#, fuzzy
 msgid "This filter is applied at the size level which means that it will affect which colors/sizes are selected for each style."
 msgstr "Dieser Filter wird auf der Größenebene angewendet, was bedeutet, dass er beeinflusst, welche Farben/Größen für jeden Stil ausgewählt werden."
 
 #: src/components/columns/data/Style.tsx:115
-#, fuzzy
 msgid "This is a Core style, meaning that it represents the brand's core values."
 msgstr "Dies ist ein Core-Stil, was bedeutet, dass er die Kernwerte der Marke repräsentiert."
 
 #: src/components/columns/data/Colors.tsx:120
-#, fuzzy
 msgid "This is a service item, meaning that it's our intention to never run out of stock with this style."
 msgstr "Es handelt sich um einen Serviceartikel, was bedeutet, dass es unsere Absicht ist, bei diesem Modell nie zu leer zu werden."
 
 #: src/pages/app/admin/AdminHome.tsx:42
-#, fuzzy
 msgid "This is where you create collections and associate styles, colors and sizes to them."
 msgstr "Hier erstellen Sie Sammlungen und verknüpfen sie mit Stilen, Farben und Größen."
 
 #: src/components/columns/data/Style.tsx:158
-#, fuzzy
 msgid "This style first appears in this collection."
 msgstr "Diese Formatvorlage erscheint erstmals in dieser Sammlung."
 
-#: src/components/ExportForm.tsx:315
-#, fuzzy
+#: src/components/ExportForm.tsx:372
 msgid "Tick the data types that you want to appear on their own separate line in the exported file."
 msgstr "Markieren Sie die Datentypen, die in der exportierten Datei in einer eigenen Zeile angezeigt werden sollen."
 
 #: src/pages/public/SplashPage.tsx:186
-#, fuzzy
 msgid "Tired of collecting data from multiple different ERP systems and combining them in your Excel sheets? This Software-as-a-Service wants to help you."
 msgstr "Sind Sie es leid, Daten aus mehreren verschiedenen ERP-Systemen zu sammeln und in Ihren Excel-Tabellen zu kombinieren? Diese Software-as-a-Service möchte Ihnen dabei helfen."
 
 #: src/components/nav/Sidebar.tsx:41
-#, fuzzy
 msgid "To public page"
 msgstr "Zur öffentlichen Seite"
 
 #: src/pages/public/errors/Unauthorized.tsx:20
-#, fuzzy
 msgid "Unauthorized."
 msgstr "Nicht autorisiert."
 
-#: src/components/ExportForm.tsx:130
-#, fuzzy
+#: src/components/ExportForm.tsx:141
 msgid "Unit price amount"
 msgstr "Stückpreis Betrag"
 
-#: src/components/ExportForm.tsx:135
-#, fuzzy
+#: src/components/ExportForm.tsx:146
 msgid "Unit price currency"
 msgstr "Währung des Stückpreises"
 
-#: src/components/ExportForm.tsx:140
-#, fuzzy
+#: src/components/ExportForm.tsx:151
 msgid "Unit price list"
 msgstr "Preisliste pro Einheit"
 
-#: src/types/columns.ts:52
-#, fuzzy
+#: src/components/CollectionTable.tsx:68
 msgid "Unit prices"
 msgstr "Stückpreise"
 
-#: src/components/ExportForm.tsx:157
-#, fuzzy
+#: src/components/ExportForm.tsx:168
 msgid "Unit volume"
 msgstr "Volumen der Einheit"
 
 #: src/components/forms/ImageInput.tsx:37
-#, fuzzy
 msgid "Up to {maxSizeMegaBytes} MB."
 msgstr "Bis zu {maxSizeMegaBytes} MB."
 
 #: src/components/admin/CollectionsTable.tsx:94
-#, fuzzy
 msgid "Updated at"
 msgstr "Aktualisiert am"
 
 #: src/components/forms/ImageInput.tsx:115
-#, fuzzy
 msgid "Upload an image"
 msgstr "Bild hochladen"
 
 #: src/pages/app/admin/AdminHome.tsx:35
-#, fuzzy
 msgid "Use groups to specify which collections and price lists users have access to."
 msgstr "Verwenden Sie Gruppen, um anzugeben, auf welche Sammlungen und Preislisten Benutzer Zugriff haben."
 
 #: src/components/admin/CreateUserModal.tsx:126
-#, fuzzy
 msgid "Use this form to create a new user. All users can sign in via a Google or Microsoft account matching the entered e-mail address. Filling in a password is optional."
 msgstr "Verwenden Sie dieses Formular, um einen neuen Benutzer zu erstellen. Alle Benutzer können sich über ein Google- oder Microsoft-Konto anmelden, das der eingegebenen E-Mail-Adresse entspricht. Die Eingabe eines Passworts ist optional."
 
-#: src/components/ExportForm.tsx:250
-#, fuzzy
+#: src/components/ExportForm.tsx:270
 msgid "Use this form to export the current selection of items to file."
 msgstr "Verwenden Sie dieses Formular, um die aktuelle Auswahl der Elemente in eine Datei zu exportieren."
 
-#: src/components/ExportForm.tsx:62
-#, fuzzy
+#: src/components/ExportForm.tsx:64
 msgid "Useful for integration with other systems."
 msgstr "Nützlich für die Integration mit anderen Systemen."
 
 #: src/components/admin/UsersTable.tsx:207
-#, fuzzy
 msgid "User"
 msgstr "Benutzer"
 
 #: src/components/nav/ProfileDropdownDesktop.tsx:25
 #: src/components/nav/ProfileDropdownDesktop.tsx:30
-#, fuzzy
 msgid "User profile"
 msgstr "Benutzerprofil"
 
@@ -1392,180 +1148,149 @@ msgstr "Benutzerprofil"
 #: src/pages/app/admin/AdminEditUser.tsx:56
 #: src/pages/app/admin/AdminHome.tsx:25 src/pages/app/admin/AdminUsers.tsx:13
 #: src/pages/app/admin/AdminUsers.tsx:92
-#, fuzzy
 msgid "Users"
 msgstr "Benutzer"
 
-#: src/components/ExportForm.tsx:50
-#, fuzzy
+#: src/components/ExportForm.tsx:52
 msgid "Uses the newer .xlsx format."
 msgstr "Verwendet das neuere Format .xlsx."
 
 #: src/components/PinnedCollections.tsx:96
-#, fuzzy
 msgid "View"
 msgstr "Anzeigen"
 
 #: src/components/CollectionsGridList.tsx:39
-#, fuzzy
 msgid "View details for {0}"
 msgstr "Details anzeigen für {0}"
 
 #: src/components/nav/ProfileDropdown.tsx:24
-#, fuzzy
 msgid "View profile"
 msgstr "Profil anzeigen"
 
 #: src/roles.ts:21
-#, fuzzy
 msgid "Viewer"
 msgstr "Zuschauer"
 
 #: src/roles.ts:22
-#, fuzzy
 msgid "Viewers"
 msgstr "Ansichten"
 
 #: src/pages/app/admin/AdminEditGroup.tsx:498
-#, fuzzy
 msgid "Which collections users of this group will have access to."
 msgstr "Auf welche Sammlungen Benutzer dieser Gruppe Zugriff haben."
 
-#: src/components/ExportForm.tsx:363
-#, fuzzy
+#: src/components/ExportForm.tsx:420
 msgid "Which fields you want to include in the exported file."
 msgstr "Die Felder, die Sie in die exportierte Datei aufnehmen möchten."
 
-#: src/components/ExportForm.tsx:268
-#, fuzzy
+#: src/components/ExportForm.tsx:325
 msgid "Which format you want to export to."
 msgstr "In welches Format Sie exportieren möchten."
 
+#: src/components/ExportForm.tsx:288
+msgid "Which language you want to export to."
+msgstr "In welche Sprache Sie exportieren möchten."
+
 #: src/pages/app/admin/AdminEditGroup.tsx:246
-#, fuzzy
 msgid "Which price lists users of this group will have access to."
 msgstr "Auf welche Preislisten Benutzer dieser Gruppe Zugriff haben."
 
 #: src/state/slices/user.ts:130
-#, fuzzy
 msgid "Wrong credentials"
 msgstr "Falsche Anmeldeinformationen"
 
 #: src/pages/app/AlreadySignedInPage.tsx:30
-#, fuzzy
 msgid "You are already signed in as {0} ({1})"
 msgstr "Sie sind bereits als {0} ({1}) angemeldet"
 
 #: src/state/slices/user.ts:82
-#, fuzzy
 msgid "You are now signed in with account {0}."
 msgstr "Sie sind jetzt mit dem Konto {0} angemeldet."
 
 #: src/state/slices/user.ts:143
-#, fuzzy
 msgid "You don't have access to any organizations. Please contact an administrator."
 msgstr "Sie haben keinen Zugriff auf Organisationen. Bitte wenden Sie sich an einen Administrator."
 
 #: src/pages/public/errors/Unauthorized.tsx:23
-#, fuzzy
 msgid "You need to sign in to be able to view this page."
 msgstr "Sie müssen sich anmelden, um diese Seite anzeigen zu können."
 
 #: src/state/slices/user.ts:118
-#, fuzzy
 msgid "You were automatically signed out from account {userEmail} because of an expired token. Please sign in again."
 msgstr "Sie wurden aufgrund eines abgelaufenen Tokens automatisch vom Konto {userEmail} abgemeldet. Bitte melden Sie sich erneut an."
 
 #: src/state/slices/user.ts:100
-#, fuzzy
 msgid "You've signed out from account {userEmail}."
 msgstr "Sie haben sich von Konto {userEmail} abgemeldet."
 
 #: src/components/filters/ActiveFilters.tsx:83
-#, fuzzy
 msgid "colors"
 msgstr "Farben"
 
 #: src/pages/app/admin/AdminEditUser.tsx:175
-#, fuzzy
 msgid "jane.doe@example.com"
 msgstr "jane.doe@example.com"
 
 #: src/components/forms/ImageInput.tsx:126
-#, fuzzy
 msgid "or drag and drop."
 msgstr "oder per Drag & Drop."
 
 #: src/components/filters/ActiveFilters.tsx:83
-#, fuzzy
 msgid "styles"
 msgstr "Stile"
 
 #: src/components/admin/CreateUserModal.tsx:45
-#, fuzzy
 msgid "user@example.com"
 msgstr "benutzer@domain.de"
 
 #: src/components/admin/GroupsTable.tsx:134
 #: src/pages/app/admin/AdminEditUser.tsx:455
-#, fuzzy
 msgid "{0, plural, one {# collection} other {# collections}}"
 msgstr "{0, plural, one {# Sammlung} other {# Sammlungen}}"
 
 #: src/components/admin/GroupsTable.tsx:143
 #: src/pages/app/admin/AdminEditUser.tsx:462
-#, fuzzy
 msgid "{0, plural, one {# price list} other {# price lists}}"
 msgstr "{0, plural, one {# Preisliste} other {# Preislisten}}"
 
 #: src/components/CollectionsGridList.tsx:49
 #: src/components/PinnedCollections.tsx:62
-#, fuzzy
 msgid "{0, plural, one {# style} other {# styles}}"
 msgstr "{0, plural, one {# Stil} other {# Stil}}"
 
 #: src/components/admin/GroupsTable.tsx:125
-#, fuzzy
 msgid "{0, plural, one {# user} other {# users}}"
 msgstr "{0, plural, one {# Benutzer} other {# Benutzer}}"
 
 #: src/pages/app/admin/AdminEditCollection.tsx:647
-#, fuzzy
 msgid "{0, plural, one {Disable # style} other {Disable # styles}}"
 msgstr "{0, plural, one {Disable # style} other {Disable # styles}}"
 
 #: src/pages/app/admin/AdminEditCollection.tsx:661
-#, fuzzy
 msgid "{0, plural, one {Enable # style} other {Enable # styles}}"
 msgstr "{0, plural, one {Enable # style} other {Enable # styles}}"
 
 #: src/components/columns/data/Colors.tsx:223
-#, fuzzy
 msgid "{0} (+{1} more)"
 msgstr "{0} (+{1} mehr)"
 
 #: src/components/filters/ActiveFilters.tsx:134
-#, fuzzy
 msgid "{0} filter {1}"
 msgstr "{0} Filter {1}"
 
 #: src/components/nav/SidebarDesktop.tsx:24
 #: src/components/nav/SidebarMobile.tsx:78
-#, fuzzy
 msgid "{0} logotype"
 msgstr "{0} Logo"
 
-#: src/components/ExportForm.tsx:372
-#, fuzzy
+#: src/components/ExportForm.tsx:429
 msgid "{0} of {1} fields selected"
 msgstr "{0} {1} ausgewählten Felder"
 
 #: src/components/admin/UsersTable.tsx:255
-#, fuzzy
 msgid "{0} profile"
 msgstr "{0} Profil"
 
 #: src/components/forms/ImageInput.tsx:38
-#, fuzzy
 msgid "{0}, up to {maxSizeMegaBytes} MB."
 msgstr "{0}, bis zu {maxSizeMegaBytes} MB."

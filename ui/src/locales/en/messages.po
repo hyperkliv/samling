@@ -193,7 +193,7 @@ msgstr "Are you sure you want to delete the group <0>{0}</0>? This action cannot
 msgid "Are you sure you want to delete the user <0>{0}</0>? This action cannot be undone."
 msgstr "Are you sure you want to delete the user <0>{0}</0>? This action cannot be undone."
 
-#: src/components/ExportForm.tsx:146
+#: src/components/ExportForm.tsx:157
 #: src/components/admin/AddCollectionItemsModal.tsx:192
 msgid "Attributes"
 msgstr "Attributes"
@@ -213,7 +213,7 @@ msgstr "Backend error"
 msgid "Basic settings"
 msgstr "Basic settings"
 
-#: src/components/ExportForm.tsx:55
+#: src/components/ExportForm.tsx:57
 msgid "CSV"
 msgstr "CSV"
 
@@ -248,12 +248,12 @@ msgstr "Cancel"
 msgid "Categories"
 msgstr "Categories"
 
-#: src/components/ExportForm.tsx:73
+#: src/components/ExportForm.tsx:82
 #: src/components/filters/ActiveFilters.tsx:63
 msgid "Category"
 msgstr "Category"
 
-#: src/components/ExportForm.tsx:143
+#: src/components/ExportForm.tsx:154
 msgid "Category name"
 msgstr "Category name"
 
@@ -281,7 +281,7 @@ msgstr "Collection"
 #~ msgid "Collection not found"
 #~ msgstr "Collection not found"
 
-#: src/components/CollectionTable.tsx:46
+#: src/components/CollectionTable.tsx:78
 #: src/components/admin/CollectionsTable.tsx:35
 #: src/components/admin/GroupsTable.tsx:82
 #: src/components/nav/Sidebar.tsx:22
@@ -297,12 +297,12 @@ msgstr "Collection"
 msgid "Collections"
 msgstr "Collections"
 
-#: src/components/ExportForm.tsx:69
+#: src/components/ExportForm.tsx:75
 #: src/pages/app/Style.tsx:205
 msgid "Color"
 msgstr "Color"
 
-#: src/components/ExportForm.tsx:167
+#: src/components/ExportForm.tsx:178
 msgid "Color external id"
 msgstr "Color external id"
 
@@ -311,16 +311,16 @@ msgstr "Color external id"
 #~ msgid "Color level"
 #~ msgstr "Color level"
 
-#: src/components/ExportForm.tsx:107
+#: src/components/ExportForm.tsx:118
 msgid "Color name"
 msgstr "Color name"
 
-#: src/components/ExportForm.tsx:106
+#: src/components/ExportForm.tsx:117
 msgid "Color number"
 msgstr "Color number"
 
+#: src/components/CollectionTable.tsx:56
 #: src/components/filters/NewFilter.tsx:25
-#: src/types/columns.ts:40
 msgid "Colors"
 msgstr "Colors"
 
@@ -336,7 +336,7 @@ msgstr "Company"
 msgid "Contact me"
 msgstr "Contact me"
 
-#: src/components/ExportForm.tsx:100
+#: src/components/ExportForm.tsx:111
 #: src/components/columns/data/Style.tsx:112
 #: src/components/filters/CoreFilter.tsx:20
 msgid "Core"
@@ -354,7 +354,7 @@ msgstr "Core styles"
 msgid "Country"
 msgstr "Country"
 
-#: src/components/ExportForm.tsx:103
+#: src/components/ExportForm.tsx:114
 #: src/components/filters/CountryFilter.tsx:46
 msgid "Country of origin"
 msgstr "Country of origin"
@@ -404,7 +404,7 @@ msgstr "Delete"
 msgid "Delete<0>, {0}</0>"
 msgstr "Delete<0>, {0}</0>"
 
-#: src/components/ExportForm.tsx:152
+#: src/components/ExportForm.tsx:163
 #: src/types/other.ts:19
 msgid "Delivery period"
 msgstr "Delivery period"
@@ -427,7 +427,7 @@ msgstr "Different types of attributes must all get matched. Within the same type
 msgid "Disable all"
 msgstr "Disable all"
 
-#: src/components/ExportForm.tsx:459
+#: src/components/ExportForm.tsx:516
 msgid "Download"
 msgstr "Download"
 
@@ -436,7 +436,7 @@ msgstr "Download"
 #~ msgid "Download as"
 #~ msgstr "Download as"
 
-#: src/components/ExportForm.tsx:457
+#: src/components/ExportForm.tsx:514
 msgid "Downloading..."
 msgstr "Downloading..."
 
@@ -446,7 +446,7 @@ msgstr "Downloading..."
 msgid "E-mail address"
 msgstr "E-mail address"
 
-#: src/components/ExportForm.tsx:111
+#: src/components/ExportForm.tsx:122
 msgid "EAN code"
 msgstr "EAN code"
 
@@ -506,7 +506,7 @@ msgstr "Enter your email"
 msgid "Error"
 msgstr "Error"
 
-#: src/components/ExportForm.tsx:49
+#: src/components/ExportForm.tsx:51
 msgid "Excel"
 msgstr "Excel"
 
@@ -514,8 +514,8 @@ msgstr "Excel"
 msgid "Existing image"
 msgstr "Existing image"
 
-#: src/components/ExportForm.tsx:229
-#: src/components/ExportForm.tsx:247
+#: src/components/ExportForm.tsx:249
+#: src/components/ExportForm.tsx:267
 msgid "Export"
 msgstr "Export"
 
@@ -529,7 +529,7 @@ msgstr "External ID"
 msgid "Features"
 msgstr "Features"
 
-#: src/components/ExportForm.tsx:360
+#: src/components/ExportForm.tsx:417
 msgid "Fields"
 msgstr "Fields"
 
@@ -537,7 +537,7 @@ msgstr "Fields"
 msgid "Filters<0>, active</0>"
 msgstr "Filters<0>, active</0>"
 
-#: src/components/ExportForm.tsx:265
+#: src/components/ExportForm.tsx:322
 msgid "Format"
 msgstr "Format"
 
@@ -555,11 +555,11 @@ msgstr "Go to app"
 #~ msgid "Good amount of variants"
 #~ msgstr "Good amount of variants"
 
-#: src/components/ExportForm.tsx:156
+#: src/components/ExportForm.tsx:167
 msgid "Gross weight"
 msgstr "Gross weight"
 
-#: src/components/ExportForm.tsx:312
+#: src/components/ExportForm.tsx:369
 msgid "Group by"
 msgstr "Group by"
 
@@ -586,7 +586,7 @@ msgstr "Groups are used to limit user access to collections and price lists."
 #~ msgid "Home"
 #~ msgstr "Home"
 
-#: src/components/ExportForm.tsx:85
+#: src/components/ExportForm.tsx:94
 msgid "Image"
 msgstr "Image"
 
@@ -602,7 +602,7 @@ msgstr "Image for {0} / {1}"
 msgid "Image to upload"
 msgstr "Image to upload"
 
-#: src/components/ExportForm.tsx:159
+#: src/components/ExportForm.tsx:170
 msgid "Images"
 msgstr "Images"
 
@@ -619,7 +619,7 @@ msgstr "It is recommended to give the image a 10:7 ratio and a minimum width and
 msgid "Items"
 msgstr "Items"
 
-#: src/components/ExportForm.tsx:61
+#: src/components/ExportForm.tsx:63
 msgid "JSON"
 msgstr "JSON"
 
@@ -628,6 +628,7 @@ msgstr "JSON"
 msgid "Jane Doe"
 msgstr "Jane Doe"
 
+#: src/components/ExportForm.tsx:285
 #: src/components/nav/SidebarDesktop.tsx:67
 #: src/components/nav/SidebarMobile.tsx:118
 msgid "Language"
@@ -713,7 +714,7 @@ msgstr "New"
 msgid "New collection"
 msgstr "New collection"
 
-#: src/components/ExportForm.tsx:108
+#: src/components/ExportForm.tsx:119
 #: src/components/columns/data/Colors.tsx:145
 msgid "New color"
 msgstr "New color"
@@ -722,7 +723,7 @@ msgstr "New color"
 msgid "New date"
 msgstr "New date"
 
-#: src/components/ExportForm.tsx:99
+#: src/components/ExportForm.tsx:110
 #: src/components/columns/data/Style.tsx:140
 msgid "New style"
 msgstr "New style"
@@ -763,7 +764,7 @@ msgstr "Number of sizes"
 msgid "Number of styles"
 msgstr "Number of styles"
 
-#: src/components/ExportForm.tsx:56
+#: src/components/ExportForm.tsx:58
 msgid "Often useful for ERP system imports."
 msgstr "Often useful for ERP system imports."
 
@@ -771,7 +772,7 @@ msgstr "Often useful for ERP system imports."
 msgid "Oldest sign in"
 msgstr "Oldest sign in"
 
-#: src/components/ExportForm.tsx:147
+#: src/components/ExportForm.tsx:158
 msgid "One column per attribute type will be generated."
 msgstr "One column per attribute type will be generated."
 
@@ -821,7 +822,7 @@ msgstr "Please select a date."
 #~ msgid "Price dates"
 #~ msgstr "Price dates"
 
-#: src/components/ExportForm.tsx:79
+#: src/components/ExportForm.tsx:88
 msgid "Price list"
 msgstr "Price list"
 
@@ -852,7 +853,7 @@ msgstr "Pricing dates"
 #~ msgid "Pricing stuff."
 #~ msgstr "Pricing stuff."
 
-#: src/components/ExportForm.tsx:158
+#: src/components/ExportForm.tsx:169
 msgid "Primary image"
 msgstr "Primary image"
 
@@ -911,19 +912,19 @@ msgstr "Remove<0>, {0}</0>"
 msgid "Results from current filters"
 msgstr "Results from current filters"
 
-#: src/types/columns.ts:46
+#: src/components/CollectionTable.tsx:62
 msgid "Retail price"
 msgstr "Retail price"
 
-#: src/components/ExportForm.tsx:115
+#: src/components/ExportForm.tsx:126
 msgid "Retail price amount"
 msgstr "Retail price amount"
 
-#: src/components/ExportForm.tsx:120
+#: src/components/ExportForm.tsx:131
 msgid "Retail price currency"
 msgstr "Retail price currency"
 
-#: src/components/ExportForm.tsx:125
+#: src/components/ExportForm.tsx:136
 msgid "Retail price list"
 msgstr "Retail price list"
 
@@ -956,7 +957,7 @@ msgstr "Saving..."
 msgid "Search"
 msgstr "Search"
 
-#: src/components/ExportForm.tsx:112
+#: src/components/ExportForm.tsx:123
 #: src/components/columns/data/Colors.tsx:102
 #: src/components/columns/data/Colors.tsx:117
 #: src/components/filters/ServiceItemFilter.tsx:23
@@ -1008,7 +1009,7 @@ msgstr "Sign in with Microsoft"
 msgid "Sign out"
 msgstr "Sign out"
 
-#: src/components/ExportForm.tsx:70
+#: src/components/ExportForm.tsx:79
 msgid "Size"
 msgstr "Size"
 
@@ -1017,11 +1018,11 @@ msgstr "Size"
 #~ msgid "Size level"
 #~ msgstr "Size level"
 
-#: src/components/ExportForm.tsx:110
+#: src/components/ExportForm.tsx:121
 msgid "Size number"
 msgstr "Size number"
 
-#: src/components/ExportForm.tsx:109
+#: src/components/ExportForm.tsx:120
 msgid "Size type"
 msgstr "Size type"
 
@@ -1069,20 +1070,20 @@ msgstr "Sort by"
 msgid "Status"
 msgstr "Status"
 
-#: src/components/ExportForm.tsx:68
+#: src/components/CollectionTable.tsx:50
+#: src/components/ExportForm.tsx:72
 #: src/components/admin/AddCollectionItemsModal.tsx:208
 #: src/components/filters/ActiveFilters.tsx:40
 #: src/components/filters/ActiveFilters.tsx:49
 #: src/pages/app/admin/AdminEditCollection.tsx:697
-#: src/types/columns.ts:34
 msgid "Style"
 msgstr "Style"
 
-#: src/components/ExportForm.tsx:96
+#: src/components/ExportForm.tsx:107
 msgid "Style description"
 msgstr "Style description"
 
-#: src/components/ExportForm.tsx:162
+#: src/components/ExportForm.tsx:173
 msgid "Style external id"
 msgstr "Style external id"
 
@@ -1091,11 +1092,11 @@ msgstr "Style external id"
 #~ msgid "Style level"
 #~ msgstr "Style level"
 
-#: src/components/ExportForm.tsx:93
+#: src/components/ExportForm.tsx:104
 msgid "Style name"
 msgstr "Style name"
 
-#: src/components/ExportForm.tsx:92
+#: src/components/ExportForm.tsx:103
 msgid "Style number"
 msgstr "Style number"
 
@@ -1128,7 +1129,7 @@ msgstr "Successfully signed out"
 msgid "Support"
 msgstr "Support"
 
-#: src/components/ExportForm.tsx:155
+#: src/components/ExportForm.tsx:166
 msgid "Tariff no"
 msgstr "Tariff no"
 
@@ -1218,7 +1219,7 @@ msgstr "This is where you create collections and associate styles, colors and si
 msgid "This style first appears in this collection."
 msgstr "This style first appears in this collection."
 
-#: src/components/ExportForm.tsx:315
+#: src/components/ExportForm.tsx:372
 msgid "Tick the data types that you want to appear on their own separate line in the exported file."
 msgstr "Tick the data types that you want to appear on their own separate line in the exported file."
 
@@ -1238,23 +1239,23 @@ msgstr "To public page"
 msgid "Unauthorized."
 msgstr "Unauthorized."
 
-#: src/components/ExportForm.tsx:130
+#: src/components/ExportForm.tsx:141
 msgid "Unit price amount"
 msgstr "Unit price amount"
 
-#: src/components/ExportForm.tsx:135
+#: src/components/ExportForm.tsx:146
 msgid "Unit price currency"
 msgstr "Unit price currency"
 
-#: src/components/ExportForm.tsx:140
+#: src/components/ExportForm.tsx:151
 msgid "Unit price list"
 msgstr "Unit price list"
 
-#: src/types/columns.ts:52
+#: src/components/CollectionTable.tsx:68
 msgid "Unit prices"
 msgstr "Unit prices"
 
-#: src/components/ExportForm.tsx:157
+#: src/components/ExportForm.tsx:168
 msgid "Unit volume"
 msgstr "Unit volume"
 
@@ -1282,11 +1283,11 @@ msgstr "Use groups to specify which collections and price lists users have acces
 msgid "Use this form to create a new user. All users can sign in via a Google or Microsoft account matching the entered e-mail address. Filling in a password is optional."
 msgstr "Use this form to create a new user. All users can sign in via a Google or Microsoft account matching the entered e-mail address. Filling in a password is optional."
 
-#: src/components/ExportForm.tsx:250
+#: src/components/ExportForm.tsx:270
 msgid "Use this form to export the current selection of items to file."
 msgstr "Use this form to export the current selection of items to file."
 
-#: src/components/ExportForm.tsx:62
+#: src/components/ExportForm.tsx:64
 msgid "Useful for integration with other systems."
 msgstr "Useful for integration with other systems."
 
@@ -1309,7 +1310,7 @@ msgstr "User profile"
 msgid "Users"
 msgstr "Users"
 
-#: src/components/ExportForm.tsx:50
+#: src/components/ExportForm.tsx:52
 msgid "Uses the newer .xlsx format."
 msgstr "Uses the newer .xlsx format."
 
@@ -1337,17 +1338,21 @@ msgstr "Viewers"
 msgid "Which collections users of this group will have access to."
 msgstr "Which collections users of this group will have access to."
 
-#: src/components/ExportForm.tsx:363
+#: src/components/ExportForm.tsx:420
 msgid "Which fields you want to include in the exported file."
 msgstr "Which fields you want to include in the exported file."
 
-#: src/components/ExportForm.tsx:268
+#: src/components/ExportForm.tsx:325
 msgid "Which format you want to export to."
 msgstr "Which format you want to export to."
 
 #: src/components/ExportForm.tsx:249
 #~ msgid "Which format you want to export to. CSV is often useful for import into ERP system and JSON can be helpful for integration developers."
 #~ msgstr "Which format you want to export to. CSV is often useful for import into ERP system and JSON can be helpful for integration developers."
+
+#: src/components/ExportForm.tsx:288
+msgid "Which language you want to export to."
+msgstr "Which language you want to export to."
 
 #: src/pages/app/admin/AdminEditGroup.tsx:246
 msgid "Which price lists users of this group will have access to."
@@ -1708,7 +1713,7 @@ msgstr "{0} filter {1}"
 msgid "{0} logotype"
 msgstr "{0} logotype"
 
-#: src/components/ExportForm.tsx:372
+#: src/components/ExportForm.tsx:429
 msgid "{0} of {1} fields selected"
 msgstr "{0} of {1} fields selected"
 

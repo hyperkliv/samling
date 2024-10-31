@@ -1,13 +1,14 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { t, Trans } from "@lingui/macro";
-import { Dispatch, Fragment, SetStateAction } from "react";
+import { Dispatch, Fragment, SetStateAction, useMemo } from "react";
 import {
   ItemFilters,
   NewItemsFilterValue,
   newItemsFilterValueChoices,
 } from "../../types/filters";
 import { classNames } from "../../utils";
+import { useLocalize } from "../../i18n";
 
 interface Props {
   itemFilters: ItemFilters;
@@ -19,13 +20,17 @@ interface NewAlternative {
   value: NewItemsFilterValue | null;
 }
 
-const alternatives: NewAlternative[] = [
-  { title: " ", value: null },
-  { title: t`Styles`, value: "styles" },
-  { title: t`Colors`, value: "colors" },
-];
+function alternatives(): NewAlternative[] {
+  return [
+    { title: " ", value: null },
+    { title: t`Styles`, value: "styles" },
+    { title: t`Colors`, value: "colors" },
+  ];
+}
 
 export default function NewFilter({ itemFilters, setItemFilters }: Props) {
+  const { locale } = useLocalize();
+  const alternativesMemoed = useMemo(() => alternatives(), [locale]);
   function maybeSetNewItems(val: string) {
     if (newItemsFilterValueChoices.includes(val)) {
       setItemFilters({
@@ -63,7 +68,7 @@ export default function NewFilter({ itemFilters, setItemFilters }: Props) {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {alternatives.map((alt) => (
+                {alternativesMemoed.map((alt) => (
                   <Listbox.Option
                     key={alt.value}
                     className={({ active }) =>

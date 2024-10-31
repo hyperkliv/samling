@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { Disclosure, Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { t, Trans } from "@lingui/macro";
@@ -12,7 +12,7 @@ import {
   PriceListSummary,
   Language,
 } from "../types/api";
-import { locales, useLocaleParam, useLocalize } from "../i18n";
+import { locales, useLocalize } from "../i18n";
 import { ItemFilters, makeCollectionFilters } from "../types/filters";
 import { classNames } from "../utils";
 import LoadingIndicator from "./LoadingIndicator";
@@ -44,131 +44,142 @@ interface ExportFieldEntry {
   checked: boolean;
 }
 
-const allExportFormatEntries: ExportFormatEntry[] = [
-  {
-    format: ExportFormat.Xlsx,
-    label: t`Excel`,
-    description: t`Uses the newer .xlsx format.`,
-    checked: true,
-  },
-  {
-    format: ExportFormat.Csv,
-    label: t`CSV`,
-    description: t`Often useful for ERP system imports.`,
-    checked: false,
-  },
-  {
-    format: ExportFormat.Json,
-    label: t`JSON`,
-    description: t`Useful for integration with other systems.`,
-    checked: false,
-  },
-];
+function allExportFormatEntries(): ExportFormatEntry[] {
+  return [
+    {
+      format: ExportFormat.Xlsx,
+      label: t`Excel`,
+      description: t`Uses the newer .xlsx format.`,
+      checked: true,
+    },
+    {
+      format: ExportFormat.Csv,
+      label: t`CSV`,
+      description: t`Often useful for ERP system imports.`,
+      checked: false,
+    },
+    {
+      format: ExportFormat.Json,
+      label: t`JSON`,
+      description: t`Useful for integration with other systems.`,
+      checked: false,
+    },
+  ];
+}
 
-const allGroupByEntries: GroupByEntry[] = [
-  { groupBy: GroupBy.Style, label: t`Style`, disabled: true, checked: true },
-  { groupBy: GroupBy.Color, label: t`Color`, disabled: false, checked: false },
-  { groupBy: GroupBy.Size, label: t`Size`, disabled: false, checked: false },
-  {
-    groupBy: GroupBy.Category,
-    label: t`Category`,
-    disabled: false,
-    checked: false,
-  },
-  {
-    groupBy: GroupBy.PriceList,
-    label: t`Price list`,
-    disabled: false,
-    checked: false,
-  },
-  {
-    groupBy: GroupBy.Image,
-    label: t`Image`,
-    disabled: false,
-    checked: false,
-  },
-];
+function allGroupByEntries(): GroupByEntry[] {
+  return [
+    { groupBy: GroupBy.Style, label: t`Style`, disabled: true, checked: true },
+    {
+      groupBy: GroupBy.Color,
+      label: t`Color`,
+      disabled: false,
+      checked: false,
+    },
+    { groupBy: GroupBy.Size, label: t`Size`, disabled: false, checked: false },
+    {
+      groupBy: GroupBy.Category,
+      label: t`Category`,
+      disabled: false,
+      checked: false,
+    },
+    {
+      groupBy: GroupBy.PriceList,
+      label: t`Price list`,
+      disabled: false,
+      checked: false,
+    },
+    {
+      groupBy: GroupBy.Image,
+      label: t`Image`,
+      disabled: false,
+      checked: false,
+    },
+  ];
+}
 
-const allFieldEntries: ExportFieldEntry[] = [
-  { field: ExportField.StyleNumber, label: t`Style number`, checked: true },
-  { field: ExportField.StyleName, label: t`Style name`, checked: true },
-  {
-    field: ExportField.StyleDescription,
-    label: t`Style description`,
-    checked: true,
-  },
-  { field: ExportField.NewStyle, label: t`New style`, checked: true },
-  { field: ExportField.Core, label: t`Core`, checked: true },
-  {
-    field: ExportField.CountryOfOrigin,
-    label: t`Country of origin`,
-    checked: true,
-  },
-  { field: ExportField.ColorNumber, label: t`Color number`, checked: true },
-  { field: ExportField.ColorName, label: t`Color name`, checked: true },
-  { field: ExportField.NewColor, label: t`New color`, checked: true },
-  { field: ExportField.SizeType, label: t`Size type`, checked: true },
-  { field: ExportField.SizeNumber, label: t`Size number`, checked: true },
-  { field: ExportField.EanCode, label: t`EAN code`, checked: true },
-  { field: ExportField.ServiceItem, label: t`Service item`, checked: true },
-  {
-    field: ExportField.RetailPriceAmount,
-    label: t`Retail price amount`,
-    checked: true,
-  },
-  {
-    field: ExportField.RetailPriceCurrency,
-    label: t`Retail price currency`,
-    checked: true,
-  },
-  {
-    field: ExportField.RetailPriceList,
-    label: t`Retail price list`,
-    checked: true,
-  },
-  {
-    field: ExportField.UnitPriceAmount,
-    label: t`Unit price amount`,
-    checked: true,
-  },
-  {
-    field: ExportField.UnitPriceCurrency,
-    label: t`Unit price currency`,
-    checked: true,
-  },
-  {
-    field: ExportField.UnitPriceList,
-    label: t`Unit price list`,
-    checked: true,
-  },
-  { field: ExportField.CategoryName, label: t`Category name`, checked: true },
-  {
-    field: ExportField.Attribute,
-    label: t`Attributes`,
-    description: t`One column per attribute type will be generated.`,
-    checked: true,
-  },
-  {
-    field: ExportField.DeliveryPeriod,
-    label: t`Delivery period`,
-    checked: true,
-  },
-  { field: ExportField.TariffNo, label: t`Tariff no`, checked: true },
-  { field: ExportField.GrossWeight, label: t`Gross weight`, checked: true },
-  { field: ExportField.UnitVolume, label: t`Unit volume`, checked: true },
-  { field: ExportField.PrimaryImage, label: t`Primary image`, checked: true },
-  { field: ExportField.Images, label: t`Images`, checked: false },
-  {
-    field: ExportField.StyleExternalid,
-    label: t`Style external id`,
-    checked: false,
-  },
-  {
-    field: ExportField.ColorExternalid,
-    label: t`Color external id`,
-    checked: false,
-  },
-];
+function allFieldEntries(): ExportFieldEntry[] {
+  return [
+    { field: ExportField.StyleNumber, label: t`Style number`, checked: true },
+    { field: ExportField.StyleName, label: t`Style name`, checked: true },
+    {
+      field: ExportField.StyleDescription,
+      label: t`Style description`,
+      checked: true,
+    },
+    { field: ExportField.NewStyle, label: t`New style`, checked: true },
+    { field: ExportField.Core, label: t`Core`, checked: true },
+    {
+      field: ExportField.CountryOfOrigin,
+      label: t`Country of origin`,
+      checked: true,
+    },
+    { field: ExportField.ColorNumber, label: t`Color number`, checked: true },
+    { field: ExportField.ColorName, label: t`Color name`, checked: true },
+    { field: ExportField.NewColor, label: t`New color`, checked: true },
+    { field: ExportField.SizeType, label: t`Size type`, checked: true },
+    { field: ExportField.SizeNumber, label: t`Size number`, checked: true },
+    { field: ExportField.EanCode, label: t`EAN code`, checked: true },
+    { field: ExportField.ServiceItem, label: t`Service item`, checked: true },
+    {
+      field: ExportField.RetailPriceAmount,
+      label: t`Retail price amount`,
+      checked: true,
+    },
+    {
+      field: ExportField.RetailPriceCurrency,
+      label: t`Retail price currency`,
+      checked: true,
+    },
+    {
+      field: ExportField.RetailPriceList,
+      label: t`Retail price list`,
+      checked: true,
+    },
+    {
+      field: ExportField.UnitPriceAmount,
+      label: t`Unit price amount`,
+      checked: true,
+    },
+    {
+      field: ExportField.UnitPriceCurrency,
+      label: t`Unit price currency`,
+      checked: true,
+    },
+    {
+      field: ExportField.UnitPriceList,
+      label: t`Unit price list`,
+      checked: true,
+    },
+    { field: ExportField.CategoryName, label: t`Category name`, checked: true },
+    {
+      field: ExportField.Attribute,
+      label: t`Attributes`,
+      description: t`One column per attribute type will be generated.`,
+      checked: true,
+    },
+    {
+      field: ExportField.DeliveryPeriod,
+      label: t`Delivery period`,
+      checked: true,
+    },
+    { field: ExportField.TariffNo, label: t`Tariff no`, checked: true },
+    { field: ExportField.GrossWeight, label: t`Gross weight`, checked: true },
+    { field: ExportField.UnitVolume, label: t`Unit volume`, checked: true },
+    { field: ExportField.PrimaryImage, label: t`Primary image`, checked: true },
+    { field: ExportField.Images, label: t`Images`, checked: false },
+    {
+      field: ExportField.StyleExternalid,
+      label: t`Style external id`,
+      checked: false,
+    },
+    {
+      field: ExportField.ColorExternalid,
+      label: t`Color external id`,
+      checked: false,
+    },
+  ];
+}
 
 export default function ExportForm({
   collection,
@@ -176,16 +187,21 @@ export default function ExportForm({
   itemFilters,
 }: Props) {
   const { token, activeOrganization } = useAppSelector((state) => state.user);
-  const { i18nDbText } = useLocalize();
+  const { i18nDbText, locale } = useLocalize();
 
-  const locale = useLocaleParam();
   const [language, setLanguage] = useState(locale as Language);
   const [exportFormat, setExportFormat] = useState(ExportFormat.Xlsx);
+  const allGroupByEntriesMemoed = useMemo(() => allGroupByEntries(), [locale]);
   const [groupByEntries, setGroupByEntries] = useState(() => [
-    ...allGroupByEntries,
+    ...allGroupByEntriesMemoed,
   ]);
-  const [fieldEntries, setFieldEntries] = useState(() => [...allFieldEntries]);
+  const allFieldEntriesMemoed = useMemo(() => allFieldEntries(), [locale]);
+  const [fieldEntries, setFieldEntries] = useState(() => [
+    ...allFieldEntriesMemoed,
+  ]);
   const [downloading, setDownloading] = useState(false);
+
+  const exportFormatEntries = useMemo(() => allExportFormatEntries(), [locale]);
 
   function downloadFile() {
     if (!!token && !!activeOrganization) {
@@ -309,7 +325,7 @@ export default function ExportForm({
                     <Trans>Which format you want to export to.</Trans>
                   </p>
                   <div className="mt-2 space-y-4">
-                    {allExportFormatEntries.map((entry) => (
+                    {exportFormatEntries.map((entry) => (
                       <div
                         key={entry.format}
                         className="relative flex items-start"

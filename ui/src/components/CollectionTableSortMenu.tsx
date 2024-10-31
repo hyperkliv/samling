@@ -1,27 +1,45 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { Trans } from "@lingui/macro";
-import { Dispatch, Fragment, SetStateAction } from "react";
+import { t, Trans } from "@lingui/macro";
+import { Dispatch, Fragment, SetStateAction, useMemo } from "react";
 import { NestedStyleSortOrder } from "../types/api";
-import {
-  ALL_SORT_ORDER_ALTERNATIVES,
-  StyleSortOrderAlternative,
-} from "../types/other";
+import { StyleSortOrderAlternative } from "../types/other";
 import { classNames } from "../utils";
+import { useLocalize } from "../i18n";
 
 interface Params {
   sortOrder: NestedStyleSortOrder;
   setSortOrder: Dispatch<SetStateAction<NestedStyleSortOrder>>;
 }
 
+function allSortOrderAlternatives(): StyleSortOrderAlternative[] {
+  return [
+    { title: t`Number`, apiReference: NestedStyleSortOrder.NumberAsc },
+    { title: t`Name`, apiReference: NestedStyleSortOrder.NameAsc },
+    {
+      title: t`Delivery period`,
+      apiReference: NestedStyleSortOrder.DeliveryPeriodAsc,
+    },
+    {
+      title: t`Delivery period (descending)`,
+      apiReference: NestedStyleSortOrder.DeliveryPeriodDesc,
+    },
+  ];
+}
+
 export default function CollectionTableSortMenu({
   sortOrder,
   setSortOrder,
 }: Params) {
-  const activeAlternative = ALL_SORT_ORDER_ALTERNATIVES.find(
+  const { locale } = useLocalize();
+  const allSortOrderAlternativesMemoed = useMemo(
+    () => allSortOrderAlternatives(),
+    [locale],
+  );
+  const activeAlternative = allSortOrderAlternativesMemoed.find(
     (alt) => alt.apiReference === sortOrder,
   ) as StyleSortOrderAlternative;
-  const alternatives = ALL_SORT_ORDER_ALTERNATIVES;
+  const alternatives = allSortOrderAlternativesMemoed;
   return (
     <Listbox value={sortOrder} onChange={setSortOrder}>
       {({ open }) => (

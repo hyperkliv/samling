@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: src/pages/app/admin/AdminEditUser.tsx:405
 msgid "# collections"
@@ -53,9 +53,7 @@ msgstr "<0>Få full insikt i</0><1>din produktdata.</1>"
 msgid "<0>We care about the protection of your data. Read our </0><1>Privacy Policy</1>."
 msgstr "<0>Vi bryr oss om att skydda dina uppgifter. Läs vår </0><1>integritetspolicy</1>."
 
-#: src/pages/app/admin/AdminEditGroup.tsx:425
-#: src/roles.ts:14
-#: src/roles.ts:15
+#: src/pages/app/admin/AdminEditGroup.tsx:425 src/roles.ts:14 src/roles.ts:15
 msgid "Active"
 msgstr "Aktiv"
 
@@ -90,9 +88,6 @@ msgstr "Lägg till grupp"
 msgid "Add items"
 msgstr "Lägg till artiklar"
 
-#~ msgid "Add price list"
-#~ msgstr "Lägg till prislista"
-
 #: src/components/admin/UsersTable.tsx:183
 #: src/pages/app/admin/AdminEditGroup.tsx:379
 msgid "Add user"
@@ -114,12 +109,9 @@ msgstr "Ytterligare information"
 #: src/pages/app/admin/AdminEditUser.tsx:41
 #: src/pages/app/admin/AdminEditUser.tsx:54
 #: src/pages/app/admin/AdminGroups.tsx:12
-#: src/pages/app/admin/AdminGroups.tsx:40
-#: src/pages/app/admin/AdminHome.tsx:21
-#: src/pages/app/admin/AdminHome.tsx:49
-#: src/pages/app/admin/AdminHome.tsx:56
-#: src/pages/app/admin/AdminUsers.tsx:13
-#: src/pages/app/admin/AdminUsers.tsx:91
+#: src/pages/app/admin/AdminGroups.tsx:40 src/pages/app/admin/AdminHome.tsx:21
+#: src/pages/app/admin/AdminHome.tsx:49 src/pages/app/admin/AdminHome.tsx:56
+#: src/pages/app/admin/AdminUsers.tsx:13 src/pages/app/admin/AdminUsers.tsx:91
 msgid "Admin"
 msgstr "Admin"
 
@@ -176,7 +168,7 @@ msgstr "Är du säker på att du vill ta bort gruppen <0>{0}</0>? Den här åtg�
 msgid "Are you sure you want to delete the user <0>{0}</0>? This action cannot be undone."
 msgstr "Är du säker på att du vill ta bort användaren <0>{0}</0>? Den här åtgärden kan inte ångras."
 
-#: src/components/ExportForm.tsx:146
+#: src/components/ExportForm.tsx:157
 #: src/components/admin/AddCollectionItemsModal.tsx:192
 msgid "Attributes"
 msgstr "Attribut"
@@ -196,7 +188,7 @@ msgstr "Backend-fel"
 msgid "Basic settings"
 msgstr "Grundläggande inställningar"
 
-#: src/components/ExportForm.tsx:55
+#: src/components/ExportForm.tsx:57
 msgid "CSV"
 msgstr "CSV"
 
@@ -231,12 +223,11 @@ msgstr "Avbryt"
 msgid "Categories"
 msgstr "Kategorier"
 
-#: src/components/ExportForm.tsx:73
-#: src/components/filters/ActiveFilters.tsx:63
+#: src/components/ExportForm.tsx:82 src/components/filters/ActiveFilters.tsx:63
 msgid "Category"
 msgstr "Kategori"
 
-#: src/components/ExportForm.tsx:143
+#: src/components/ExportForm.tsx:154
 msgid "Category name"
 msgstr "Kategorinamn"
 
@@ -260,12 +251,10 @@ msgstr "Stäng sidofältet"
 msgid "Collection"
 msgstr "Samling"
 
-#: src/components/CollectionTable.tsx:46
+#: src/components/CollectionTable.tsx:78
 #: src/components/admin/CollectionsTable.tsx:35
-#: src/components/admin/GroupsTable.tsx:82
-#: src/components/nav/Sidebar.tsx:22
-#: src/pages/app/HomeScreen.tsx:12
-#: src/pages/app/Style.tsx:82
+#: src/components/admin/GroupsTable.tsx:82 src/components/nav/Sidebar.tsx:22
+#: src/pages/app/HomeScreen.tsx:12 src/pages/app/Style.tsx:82
 #: src/pages/app/admin/AdminCollections.tsx:12
 #: src/pages/app/admin/AdminCollections.tsx:47
 #: src/pages/app/admin/AdminCreateCollection.tsx:34
@@ -276,25 +265,24 @@ msgstr "Samling"
 msgid "Collections"
 msgstr "Samlingar"
 
-#: src/components/ExportForm.tsx:69
-#: src/pages/app/Style.tsx:205
+#: src/components/ExportForm.tsx:75 src/pages/app/Style.tsx:205
 msgid "Color"
 msgstr "Färg"
 
-#: src/components/ExportForm.tsx:167
+#: src/components/ExportForm.tsx:178
 msgid "Color external id"
 msgstr "Externt färg-id"
 
-#: src/components/ExportForm.tsx:107
+#: src/components/ExportForm.tsx:118
 msgid "Color name"
 msgstr "Färgnamn"
 
-#: src/components/ExportForm.tsx:106
+#: src/components/ExportForm.tsx:117
 msgid "Color number"
 msgstr "Färgnummer"
 
+#: src/components/CollectionTable.tsx:56
 #: src/components/filters/NewFilter.tsx:25
-#: src/types/columns.ts:40
 msgid "Colors"
 msgstr "Färger"
 
@@ -310,8 +298,7 @@ msgstr "Företag"
 msgid "Contact me"
 msgstr "Kontakta mig"
 
-#: src/components/ExportForm.tsx:100
-#: src/components/columns/data/Style.tsx:112
+#: src/components/ExportForm.tsx:111 src/components/columns/data/Style.tsx:112
 #: src/components/filters/CoreFilter.tsx:20
 msgid "Core"
 msgstr "Core"
@@ -328,7 +315,7 @@ msgstr "Core-stilar"
 msgid "Country"
 msgstr "Land"
 
-#: src/components/ExportForm.tsx:103
+#: src/components/ExportForm.tsx:114
 #: src/components/filters/CountryFilter.tsx:46
 msgid "Country of origin"
 msgstr "Ursprungsland"
@@ -351,9 +338,6 @@ msgstr "Skapa samling"
 msgid "Created at"
 msgstr "Skapad"
 
-#~ msgid "Date"
-#~ msgstr "Datum"
-
 #: src/components/admin/CollectionsTable.tsx:109
 #: src/components/admin/DeleteCollectionModal.tsx:58
 #: src/components/admin/DeleteGroupModal.tsx:50
@@ -369,8 +353,7 @@ msgstr "Ta bort"
 msgid "Delete<0>, {0}</0>"
 msgstr "Ta bort<0>, {0}</0>"
 
-#: src/components/ExportForm.tsx:152
-#: src/types/other.ts:19
+#: src/components/ExportForm.tsx:163 src/types/other.ts:19
 msgid "Delivery period"
 msgstr "Leveransperiod"
 
@@ -378,8 +361,7 @@ msgstr "Leveransperiod"
 msgid "Delivery period (descending)"
 msgstr "Leveransperiod (fallande)"
 
-#: src/pages/app/Style.tsx:190
-#: src/pages/app/admin/AdminEditGroup.tsx:197
+#: src/pages/app/Style.tsx:190 src/pages/app/admin/AdminEditGroup.tsx:197
 #: src/pages/app/admin/AdminEditUser.tsx:281
 msgid "Description"
 msgstr "Beskrivning"
@@ -392,11 +374,11 @@ msgstr "Olika typer av attribut måste alla matcha. Inom samma typ räcker det a
 msgid "Disable all"
 msgstr "Inaktivera alla"
 
-#: src/components/ExportForm.tsx:459
+#: src/components/ExportForm.tsx:516
 msgid "Download"
 msgstr "Ladda ner"
 
-#: src/components/ExportForm.tsx:457
+#: src/components/ExportForm.tsx:514
 msgid "Downloading..."
 msgstr "Laddar ner..."
 
@@ -406,7 +388,7 @@ msgstr "Laddar ner..."
 msgid "E-mail address"
 msgstr "E-postadress"
 
-#: src/components/ExportForm.tsx:111
+#: src/components/ExportForm.tsx:122
 msgid "EAN code"
 msgstr "EAN-kod"
 
@@ -458,7 +440,7 @@ msgstr "Ange din e-postadress"
 msgid "Error"
 msgstr "Fel"
 
-#: src/components/ExportForm.tsx:49
+#: src/components/ExportForm.tsx:51
 msgid "Excel"
 msgstr "Excel"
 
@@ -466,8 +448,7 @@ msgstr "Excel"
 msgid "Existing image"
 msgstr "Befintlig bild"
 
-#: src/components/ExportForm.tsx:229
-#: src/components/ExportForm.tsx:247
+#: src/components/ExportForm.tsx:249 src/components/ExportForm.tsx:267
 msgid "Export"
 msgstr "Exportera"
 
@@ -481,7 +462,7 @@ msgstr "Externt ID"
 msgid "Features"
 msgstr "Funktioner"
 
-#: src/components/ExportForm.tsx:360
+#: src/components/ExportForm.tsx:417
 msgid "Fields"
 msgstr "Fält"
 
@@ -489,12 +470,11 @@ msgstr "Fält"
 msgid "Filters<0>, active</0>"
 msgstr "Filter<0>, aktiva</0>"
 
-#: src/components/ExportForm.tsx:265
+#: src/components/ExportForm.tsx:322
 msgid "Format"
 msgstr "Format"
 
-#: src/pages/app/errors/ApiError.tsx:36
-#: src/pages/app/errors/NotFound.tsx:32
+#: src/pages/app/errors/ApiError.tsx:36 src/pages/app/errors/NotFound.tsx:32
 #: src/pages/public/errors/NotFoundPublic.tsx:32
 msgid "Go back home"
 msgstr "Gå tillbaka till start"
@@ -503,11 +483,11 @@ msgstr "Gå tillbaka till start"
 msgid "Go to app"
 msgstr "Gå till app"
 
-#: src/components/ExportForm.tsx:156
+#: src/components/ExportForm.tsx:167
 msgid "Gross weight"
 msgstr "Bruttovikt"
 
-#: src/components/ExportForm.tsx:312
+#: src/components/ExportForm.tsx:369
 msgid "Group by"
 msgstr "Gruppera på"
 
@@ -517,8 +497,7 @@ msgstr "Gruppera på"
 #: src/pages/app/admin/AdminEditGroup.tsx:64
 #: src/pages/app/admin/AdminEditUser.tsx:381
 #: src/pages/app/admin/AdminGroups.tsx:12
-#: src/pages/app/admin/AdminGroups.tsx:41
-#: src/pages/app/admin/AdminHome.tsx:32
+#: src/pages/app/admin/AdminGroups.tsx:41 src/pages/app/admin/AdminHome.tsx:32
 msgid "Groups"
 msgstr "Grupper"
 
@@ -530,7 +509,7 @@ msgstr "Grupper används för att ge åtkomst till samlingar och prislistor till
 msgid "Groups are used to limit user access to collections and price lists."
 msgstr "Grupper används för att begränsa användarnas åtkomst till samlingar och prislistor."
 
-#: src/components/ExportForm.tsx:85
+#: src/components/ExportForm.tsx:94
 msgid "Image"
 msgstr "Bild"
 
@@ -546,7 +525,7 @@ msgstr "Bild för {0} / {1}"
 msgid "Image to upload"
 msgstr "Bild att ladda upp"
 
-#: src/components/ExportForm.tsx:159
+#: src/components/ExportForm.tsx:170
 msgid "Images"
 msgstr "Bilder"
 
@@ -563,7 +542,7 @@ msgstr "Det rekommenderas att ge bilden ett bildförhållande kring 10:7 och en 
 msgid "Items"
 msgstr "Artiklar"
 
-#: src/components/ExportForm.tsx:61
+#: src/components/ExportForm.tsx:63
 msgid "JSON"
 msgstr "JSON"
 
@@ -572,7 +551,7 @@ msgstr "JSON"
 msgid "Jane Doe"
 msgstr "Lena Svensson"
 
-#: src/components/nav/SidebarDesktop.tsx:67
+#: src/components/ExportForm.tsx:285 src/components/nav/SidebarDesktop.tsx:67
 #: src/components/nav/SidebarMobile.tsx:118
 msgid "Language"
 msgstr "Språk"
@@ -593,8 +572,7 @@ msgstr "Listan är tom."
 msgid "Loading..."
 msgstr "Laddar..."
 
-#: src/pages/public/SplashPage.tsx:112
-#: src/pages/public/SplashPage.tsx:163
+#: src/pages/public/SplashPage.tsx:112 src/pages/public/SplashPage.tsx:163
 msgid "Log in"
 msgstr "Logga in"
 
@@ -629,8 +607,7 @@ msgstr "Hantera användare, associera roller och grupper individuellt."
 #: src/pages/app/admin/AdminEditGroup.tsx:516
 #: src/pages/app/admin/AdminEditUser.tsx:166
 #: src/pages/app/admin/AdminEditUser.tsx:275
-#: src/pages/app/admin/AdminEditUser.tsx:399
-#: src/types/other.ts:17
+#: src/pages/app/admin/AdminEditUser.tsx:399 src/types/other.ts:17
 msgid "Name"
 msgstr "Namn"
 
@@ -649,8 +626,7 @@ msgstr "Ny"
 msgid "New collection"
 msgstr "Ny samling"
 
-#: src/components/ExportForm.tsx:108
-#: src/components/columns/data/Colors.tsx:145
+#: src/components/ExportForm.tsx:119 src/components/columns/data/Colors.tsx:145
 msgid "New color"
 msgstr "Ny färg"
 
@@ -658,8 +634,7 @@ msgstr "Ny färg"
 msgid "New date"
 msgstr "Nytt datum"
 
-#: src/components/ExportForm.tsx:99
-#: src/components/columns/data/Style.tsx:140
+#: src/components/ExportForm.tsx:110 src/components/columns/data/Style.tsx:140
 msgid "New style"
 msgstr "Ny stil"
 
@@ -699,7 +674,7 @@ msgstr "Antal storlekar"
 msgid "Number of styles"
 msgstr "Antal stilar"
 
-#: src/components/ExportForm.tsx:56
+#: src/components/ExportForm.tsx:58
 msgid "Often useful for ERP system imports."
 msgstr "Användbart vid import till ERP-system."
 
@@ -707,7 +682,7 @@ msgstr "Användbart vid import till ERP-system."
 msgid "Oldest sign in"
 msgstr "Äldsta inloggningen"
 
-#: src/components/ExportForm.tsx:147
+#: src/components/ExportForm.tsx:158
 msgid "One column per attribute type will be generated."
 msgstr "En kolumn per attributtyp genereras."
 
@@ -728,8 +703,7 @@ msgstr "Öppna användarmenyn"
 msgid "Page not found."
 msgstr "Sidan kunde inte hittas."
 
-#: src/components/SignInModal.tsx:96
-#: src/pages/app/admin/AdminEditUser.tsx:186
+#: src/components/SignInModal.tsx:96 src/pages/app/admin/AdminEditUser.tsx:186
 msgid "Password"
 msgstr "Lösenord"
 
@@ -749,7 +723,7 @@ msgstr "Gå till <0>Samling.io</0> för produktionsmiljön."
 msgid "Please select a date."
 msgstr "Välj ett datum."
 
-#: src/components/ExportForm.tsx:79
+#: src/components/ExportForm.tsx:88
 msgid "Price list"
 msgstr "Prislista"
 
@@ -776,7 +750,7 @@ msgstr "Prisdatum"
 msgid "Pricing dates"
 msgstr "Datum för priser"
 
-#: src/components/ExportForm.tsx:158
+#: src/components/ExportForm.tsx:169
 msgid "Primary image"
 msgstr "Primär bild"
 
@@ -808,9 +782,6 @@ msgstr "Ta bort filter för {0}"
 msgid "Remove from pinned"
 msgstr "Ta bort fästmarkering"
 
-#~ msgid "Remove price list"
-#~ msgstr "Ta bort prislista"
-
 #: src/components/ActivePriceLists.tsx:44
 msgid "Remove {0}"
 msgstr "Ta bort {0}"
@@ -826,19 +797,19 @@ msgstr "Ta bort<0>, {0}</0>"
 msgid "Results from current filters"
 msgstr "Resultat från aktuella filter"
 
-#: src/types/columns.ts:46
+#: src/components/CollectionTable.tsx:62
 msgid "Retail price"
 msgstr "Rek.pris"
 
-#: src/components/ExportForm.tsx:115
+#: src/components/ExportForm.tsx:126
 msgid "Retail price amount"
 msgstr "Rek.prisbelopp"
 
-#: src/components/ExportForm.tsx:120
+#: src/components/ExportForm.tsx:131
 msgid "Retail price currency"
 msgstr "Rek.prisvaluta"
 
-#: src/components/ExportForm.tsx:125
+#: src/components/ExportForm.tsx:136
 msgid "Retail price list"
 msgstr "Rek.prislista"
 
@@ -871,8 +842,7 @@ msgstr "Sparar..."
 msgid "Search"
 msgstr "Sök"
 
-#: src/components/ExportForm.tsx:112
-#: src/components/columns/data/Colors.tsx:102
+#: src/components/ExportForm.tsx:123 src/components/columns/data/Colors.tsx:102
 #: src/components/columns/data/Colors.tsx:117
 #: src/components/filters/ServiceItemFilter.tsx:23
 msgid "Service item"
@@ -890,8 +860,7 @@ msgstr "Inställningar"
 msgid "Share"
 msgstr "Dela"
 
-#: src/components/SignInModal.tsx:59
-#: src/components/SignInModal.tsx:142
+#: src/components/SignInModal.tsx:59 src/components/SignInModal.tsx:142
 #: src/pages/public/SignInPage.tsx:32
 #: src/pages/public/errors/Unauthorized.tsx:30
 msgid "Sign in"
@@ -906,20 +875,19 @@ msgid "Sign in with Microsoft"
 msgstr "Logga in med Microsoft"
 
 #: src/components/nav/ProfileDropdown.tsx:34
-#: src/pages/app/AlreadySignedInPage.tsx:39
-#: src/pages/app/SignOutPage.tsx:14
+#: src/pages/app/AlreadySignedInPage.tsx:39 src/pages/app/SignOutPage.tsx:14
 msgid "Sign out"
 msgstr "Logga ut"
 
-#: src/components/ExportForm.tsx:70
+#: src/components/ExportForm.tsx:79
 msgid "Size"
 msgstr "Storlek"
 
-#: src/components/ExportForm.tsx:110
+#: src/components/ExportForm.tsx:121
 msgid "Size number"
 msgstr "Storleksnummer"
 
-#: src/components/ExportForm.tsx:109
+#: src/components/ExportForm.tsx:120
 msgid "Size type"
 msgstr "Storlekstyp"
 
@@ -963,28 +931,27 @@ msgstr "Sortera efter"
 msgid "Status"
 msgstr "Status"
 
-#: src/components/ExportForm.tsx:68
+#: src/components/CollectionTable.tsx:50 src/components/ExportForm.tsx:72
 #: src/components/admin/AddCollectionItemsModal.tsx:208
 #: src/components/filters/ActiveFilters.tsx:40
 #: src/components/filters/ActiveFilters.tsx:49
 #: src/pages/app/admin/AdminEditCollection.tsx:697
-#: src/types/columns.ts:34
 msgid "Style"
 msgstr "Stil"
 
-#: src/components/ExportForm.tsx:96
+#: src/components/ExportForm.tsx:107
 msgid "Style description"
 msgstr "Stilbeskrivning"
 
-#: src/components/ExportForm.tsx:162
+#: src/components/ExportForm.tsx:173
 msgid "Style external id"
 msgstr "Externt ID för stilen"
 
-#: src/components/ExportForm.tsx:93
+#: src/components/ExportForm.tsx:104
 msgid "Style name"
 msgstr "Stilnamn"
 
-#: src/components/ExportForm.tsx:92
+#: src/components/ExportForm.tsx:103
 msgid "Style number"
 msgstr "Stilnummer"
 
@@ -1017,12 +984,11 @@ msgstr "Framgångsrik utloggning"
 msgid "Support"
 msgstr "Support"
 
-#: src/components/ExportForm.tsx:155
+#: src/components/ExportForm.tsx:166
 msgid "Tariff no"
 msgstr "Tariffnr"
 
-#: src/pages/public/SignInPage.tsx:56
-#: src/pages/public/SignInPage.tsx:83
+#: src/pages/public/SignInPage.tsx:56 src/pages/public/SignInPage.tsx:83
 #: src/pages/public/SignInPage.tsx:176
 msgid "Technical error prevents login"
 msgstr "Tekniskt fel förhindrar inloggning"
@@ -1046,9 +1012,6 @@ msgstr "Gruppen \"{0}\" uppdaterades framgångsrikt."
 #: src/pages/app/admin/AdminEditUser.tsx:384
 msgid "The groups that this user belong to."
 msgstr "De grupper som den här användaren tillhör."
-
-#~ msgid "The price lists to add."
-#~ msgstr "Prislistorna att lägga till."
 
 #: src/pages/app/admin/AdminEditUser.tsx:260
 msgid "The roles that are assigned to this user."
@@ -1106,7 +1069,7 @@ msgstr "Det är här du skapar samlingar och associerar stilar, färger och stor
 msgid "This style first appears in this collection."
 msgstr "Den här stilen introducerades i den här samlingen."
 
-#: src/components/ExportForm.tsx:315
+#: src/components/ExportForm.tsx:372
 msgid "Tick the data types that you want to appear on their own separate line in the exported file."
 msgstr "Markera de datatyper som du vill ska visas på en egen separat rad i den exporterade filen."
 
@@ -1122,23 +1085,23 @@ msgstr "Till offentlig sida"
 msgid "Unauthorized."
 msgstr "Obehörig."
 
-#: src/components/ExportForm.tsx:130
+#: src/components/ExportForm.tsx:141
 msgid "Unit price amount"
 msgstr "Enhetsprisbelopp"
 
-#: src/components/ExportForm.tsx:135
+#: src/components/ExportForm.tsx:146
 msgid "Unit price currency"
 msgstr "Enhetsprisvaluta"
 
-#: src/components/ExportForm.tsx:140
+#: src/components/ExportForm.tsx:151
 msgid "Unit price list"
 msgstr "Enhetsprislista"
 
-#: src/types/columns.ts:52
+#: src/components/CollectionTable.tsx:68
 msgid "Unit prices"
 msgstr "Enhetspriser"
 
-#: src/components/ExportForm.tsx:157
+#: src/components/ExportForm.tsx:168
 msgid "Unit volume"
 msgstr "Enhetsvolym"
 
@@ -1158,18 +1121,15 @@ msgstr "Ladda upp en bild"
 msgid "Use groups to specify which collections and price lists users have access to."
 msgstr "Använd grupper för att ange vilka samlingar och prislistor användarna har åtkomst till."
 
-#~ msgid "Use this form to add a new pricing date group."
-#~ msgstr "Använd det här formuläret för att lägga till en ny prisdatumgrupp."
-
 #: src/components/admin/CreateUserModal.tsx:126
 msgid "Use this form to create a new user. All users can sign in via a Google or Microsoft account matching the entered e-mail address. Filling in a password is optional."
 msgstr "Använd det här formuläret för att skapa en ny användare. Alla användare kan logga in via ett Google- eller Microsoft-konto som matchar den angivna e-postadressen. Att fylla i ett lösenord är valfritt."
 
-#: src/components/ExportForm.tsx:250
+#: src/components/ExportForm.tsx:270
 msgid "Use this form to export the current selection of items to file."
 msgstr "Använd det här formuläret för att exportera det aktuella artikelurvalet till en fil."
 
-#: src/components/ExportForm.tsx:62
+#: src/components/ExportForm.tsx:64
 msgid "Useful for integration with other systems."
 msgstr "Användbar för integration med andra system."
 
@@ -1186,13 +1146,12 @@ msgstr "Användarprofil"
 #: src/components/admin/UsersTable.tsx:141
 #: src/pages/app/admin/AdminEditGroup.tsx:330
 #: src/pages/app/admin/AdminEditUser.tsx:56
-#: src/pages/app/admin/AdminHome.tsx:25
-#: src/pages/app/admin/AdminUsers.tsx:13
+#: src/pages/app/admin/AdminHome.tsx:25 src/pages/app/admin/AdminUsers.tsx:13
 #: src/pages/app/admin/AdminUsers.tsx:92
 msgid "Users"
 msgstr "Användare"
 
-#: src/components/ExportForm.tsx:50
+#: src/components/ExportForm.tsx:52
 msgid "Uses the newer .xlsx format."
 msgstr "Använder det nyare .xlsx-formatet."
 
@@ -1220,13 +1179,17 @@ msgstr "Användare"
 msgid "Which collections users of this group will have access to."
 msgstr "Vilka samlingar användare av den här gruppen kommer att ha åtkomst till."
 
-#: src/components/ExportForm.tsx:363
+#: src/components/ExportForm.tsx:420
 msgid "Which fields you want to include in the exported file."
 msgstr "Vilka fält du vill inkludera i den exporterade filen."
 
-#: src/components/ExportForm.tsx:268
+#: src/components/ExportForm.tsx:325
 msgid "Which format you want to export to."
 msgstr "Vilket format du vill exportera till."
+
+#: src/components/ExportForm.tsx:288
+msgid "Which language you want to export to."
+msgstr "Vilket språk du vill exportera till."
 
 #: src/pages/app/admin/AdminEditGroup.tsx:246
 msgid "Which price lists users of this group will have access to."
@@ -1320,7 +1283,7 @@ msgstr "{0} filter {1}"
 msgid "{0} logotype"
 msgstr "{0} logotyp"
 
-#: src/components/ExportForm.tsx:372
+#: src/components/ExportForm.tsx:429
 msgid "{0} of {1} fields selected"
 msgstr "{0} av {1} fält valda"
 
@@ -1331,3 +1294,18 @@ msgstr "{0} profil"
 #: src/components/forms/ImageInput.tsx:38
 msgid "{0}, up to {maxSizeMegaBytes} MB."
 msgstr "{0}, upp till {maxSizeMegaBytes} MB."
+
+#~ msgid "Add price list"
+#~ msgstr "Lägg till prislista"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Remove price list"
+#~ msgstr "Ta bort prislista"
+
+#~ msgid "The price lists to add."
+#~ msgstr "Prislistorna att lägga till."
+
+#~ msgid "Use this form to add a new pricing date group."
+#~ msgstr "Använd det här formuläret för att lägga till en ny prisdatumgrupp."
