@@ -8,7 +8,7 @@ ARG API_BASE_IMAGE=lukemathwalker/cargo-chef:0.1.68-rust-1.83.0-alpine3.21
 
 
 ### Mimalloc compilation
-FROM $API_BASE_IMAGE as mimalloc_builder
+FROM $API_BASE_IMAGE AS mimalloc_builder
 WORKDIR /
 ARG MIMALLOC_VERSION=2.1.9
 RUN apk add --no-cache build-base cmake linux-headers \
@@ -19,7 +19,7 @@ RUN apk add --no-cache build-base cmake linux-headers \
 
 
 ### UI builder
-FROM node:20.6.0-alpine3.18 as ui_builder
+FROM node:20.6.0-alpine3.18 AS ui_builder
 WORKDIR /ui
 COPY ./ui/ ./
 RUN npm ci
@@ -33,7 +33,7 @@ RUN npm run build
 
 
 ### Cache planner for Rust dependencies
-FROM $API_BASE_IMAGE as api_planner
+FROM $API_BASE_IMAGE AS api_planner
 WORKDIR /app
 
 COPY /src/ ./src/
@@ -43,7 +43,7 @@ RUN cargo chef prepare --recipe-path recipe.json
 
 
 ### Build Rust project
-FROM $API_BASE_IMAGE as api_builder
+FROM $API_BASE_IMAGE AS api_builder
 WORKDIR /app
 
 # Add dependencies needed for ssh2, or specifically the vendored openssl build
@@ -68,7 +68,7 @@ RUN cargo build \
 
 
 ### The resulting app image
-FROM scratch as runtime
+FROM scratch AS runtime
 WORKDIR /usr/local/bin
 ENV APP_HOST=0.0.0.0
 COPY --from=api_builder /app/target/release/samling .
