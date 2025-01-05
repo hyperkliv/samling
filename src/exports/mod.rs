@@ -22,7 +22,7 @@ struct Export<'a> {
     cell_separator: &'a str,
 }
 
-impl<'a> Export<'a> {
+impl Export<'_> {
     fn filename(&self) -> String {
         format!(
             "{} {}{}",
