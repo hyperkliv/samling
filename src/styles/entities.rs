@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 use rust_decimal::Decimal;
 use schemars::JsonSchema;
@@ -126,7 +125,6 @@ impl EntityRefPathParam for Style {
     }
 }
 
-#[async_trait]
 impl RefTarget for Style {
     async fn lookup_id(
         client: &impl GenericClient,

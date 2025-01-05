@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use axum::{
     extract::{FromRequestParts, Query},
     RequestPartsExt,
@@ -38,7 +37,6 @@ impl UserFilters {
     }
 }
 
-#[async_trait]
 impl<S> FromRequestParts<S> for UserFilters
 where
     S: Send + Sync,

@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use axum::{
     extract::{FromRequestParts, Query},
     RequestPartsExt,
@@ -30,7 +29,6 @@ pub struct StyleFilters {
     pub status: Option<Vec<String>>,
 }
 
-#[async_trait]
 impl Filters for StyleFilters {
     type Resolved = ResolvedStyleFilters;
 
@@ -185,7 +183,6 @@ impl ResolvedStyleFilters {
     }
 }
 
-#[async_trait]
 impl<S> FromRequestParts<S> for StyleFilters
 where
     S: Send + Sync,

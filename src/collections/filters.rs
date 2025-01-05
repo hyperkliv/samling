@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 use schemars::JsonSchema;
 use serde::Deserialize;
@@ -14,7 +13,6 @@ pub struct CollectionFilters {
     pub styles: StyleFilters,
 }
 
-#[async_trait]
 impl Filters for CollectionFilters {
     type Resolved = ResolvedCollectionFilters;
 

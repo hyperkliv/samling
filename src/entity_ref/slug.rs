@@ -2,7 +2,6 @@ use std::fmt::{Debug, Write as _};
 use std::hash::Hash;
 use std::{marker::PhantomData, ops::Deref};
 
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 
 use schemars::gen::SchemaGenerator;
@@ -112,7 +111,6 @@ impl<T: RefTarget> From<Slug<T>> for String {
 }
 
 /// An entity that has a Slug field
-#[async_trait]
 pub(crate) trait SlugEntity: core::fmt::Debug + Send + Sync {
     type RefTarget: RefTarget;
 

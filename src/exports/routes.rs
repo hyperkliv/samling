@@ -21,8 +21,8 @@ use crate::{
 
 pub(crate) fn org_routes() -> AppRouter {
     AppRouter::new().nest(
-        "/exports/:collection_ref",
-        AppRouter::new().route("/:export_format", routing::get(export_items)),
+        "/exports/{collection_ref}",
+        AppRouter::new().route("/{export_format}", routing::get(export_items)),
     )
 }
 

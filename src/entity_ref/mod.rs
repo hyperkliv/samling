@@ -1,7 +1,6 @@
 mod any_id;
 mod id;
 pub(crate) use any_id::*;
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 use futures::future::try_join_all;
 pub use id::*;
@@ -24,8 +23,8 @@ use crate::organizations::Organization;
 use crate::Error;
 use crate::Result;
 
-#[async_trait]
 pub trait RefTarget: core::fmt::Debug + Clone + Send + Sync {
+    #[allow(async_fn_in_trait)]
     /// Try to look up the entity's ID from the given reference
     async fn lookup_id(
         client: &impl GenericClient,
@@ -33,6 +32,7 @@ pub trait RefTarget: core::fmt::Debug + Clone + Send + Sync {
         entity_ref: &Ref<Self>,
     ) -> Result<Option<Id<Self>>>;
 
+    #[allow(async_fn_in_trait)]
     /// Try to look up entity's IDs from the given references
     async fn lookup_ids(
         client: &impl GenericClient,
@@ -48,6 +48,7 @@ pub trait RefTarget: core::fmt::Debug + Clone + Send + Sync {
         Ok(ret.into_iter().collect_vec())
     }
 
+    #[allow(async_fn_in_trait)]
     /// Returns the looked up Id, or default to Id(0)
     ///
     /// Useful for example when you want a database query to return no row if the ref
@@ -62,6 +63,7 @@ pub trait RefTarget: core::fmt::Debug + Clone + Send + Sync {
             .unwrap_or_else(|| Id::new(0)))
     }
 
+    #[allow(async_fn_in_trait)]
     /// Look up entity's IDs from the given references, default to Id(0)
     ///
     /// Useful for example when you want a database query to return no rows on refs
@@ -71,14 +73,15 @@ pub trait RefTarget: core::fmt::Debug + Clone + Send + Sync {
         organization_id: Id<Organization>,
         entity_refs: &[Ref<Self>],
     ) -> Result<Vec<Id<Self>>> {
-        Ok(try_join_all(
+        try_join_all(
             entity_refs
                 .iter()
                 .map(|ref_| Self::lookup_id_or_default(client, organization_id, ref_)),
         )
-        .await?)
+        .await
     }
 
+    #[allow(async_fn_in_trait)]
     /// Return the entity's ID from the given reference, or return a not found error
     async fn get_id(
         client: &impl GenericClient,
@@ -92,6 +95,7 @@ pub trait RefTarget: core::fmt::Debug + Clone + Send + Sync {
         }
     }
 
+    #[allow(async_fn_in_trait)]
     /// Return if the given entity exists
     async fn exists(
         client: &impl GenericClient,

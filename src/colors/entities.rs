@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
@@ -93,7 +92,6 @@ pub struct ColorSummary {
     pub external_id: Option<ExternalId<Color>>,
 }
 
-#[async_trait]
 impl RefTarget for Color {
     async fn lookup_id(
         client: &impl GenericClient,

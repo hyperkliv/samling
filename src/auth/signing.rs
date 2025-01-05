@@ -1,6 +1,5 @@
 use std::fmt;
 
-use async_trait::async_trait;
 use axum::extract::FromRequestParts;
 use axum_extra::{
     headers::{authorization::Bearer, Authorization},
@@ -170,7 +169,6 @@ impl Keys {
     }
 }
 
-#[async_trait]
 impl FromRequestParts<AppState> for Claims {
     type Rejection = Error;
 

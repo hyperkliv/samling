@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
@@ -43,7 +42,6 @@ impl EntityRefPathParam for Category {
     }
 }
 
-#[async_trait]
 impl RefTarget for Category {
     async fn lookup_id(
         client: &impl GenericClient,

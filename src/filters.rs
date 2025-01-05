@@ -1,12 +1,11 @@
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 
 use crate::{Id, Organization, Result};
 
-#[async_trait]
 pub trait Filters {
     type Resolved: ResolvedFilters;
 
+    #[allow(async_fn_in_trait)]
     async fn resolve(
         self,
         client: &impl GenericClient,

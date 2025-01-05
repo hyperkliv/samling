@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use axum::extract::{FromRequestParts, Path};
 use axum::RequestPartsExt;
 use http::request::Parts;
@@ -16,7 +15,6 @@ struct UserIdPathParam {
 }
 
 /// Extract user_id from HTTP path
-#[async_trait]
 impl<S> FromRequestParts<S> for PathUserId
 where
     S: Send + Sync,

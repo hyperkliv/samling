@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
@@ -41,7 +40,6 @@ impl EntityRefPathParam for AttributeType {
     }
 }
 
-#[async_trait]
 impl RefTarget for AttributeType {
     async fn lookup_id(
         client: &impl GenericClient,
@@ -172,7 +170,6 @@ impl EntityRefPathParam for Attribute {
     }
 }
 
-#[async_trait]
 impl RefTarget for Attribute {
     async fn lookup_id(
         client: &impl GenericClient,

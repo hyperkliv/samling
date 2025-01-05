@@ -36,7 +36,7 @@ pub(crate) fn org_routes() -> AppRouter {
             Router::new()
                 .route("/", routing::get(list_users).post(create_user))
                 .route(
-                    "/:user_id",
+                    "/{user_id}",
                     routing::get(get_user)
                         .patch(update_user)
                         .delete(delete_user),
@@ -48,7 +48,7 @@ pub(crate) fn org_routes() -> AppRouter {
                 .route("/", routing::get(list_groups).post(create_group))
                 .route("/summary", routing::get(list_group_summaries))
                 .route(
-                    "/:group_ref",
+                    "/{group_ref}",
                     routing::get(get_group)
                         .put(upsert_group)
                         .patch(update_group)

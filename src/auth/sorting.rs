@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use axum::{
     extract::{FromRequestParts, Query},
     RequestPartsExt,
@@ -54,7 +53,6 @@ struct SortableQuery {
 }
 
 /// Extract organization_id from HTTP path
-#[async_trait]
 impl<S> FromRequestParts<S> for UserSortOrder
 where
     S: Send + Sync,

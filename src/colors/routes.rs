@@ -15,7 +15,7 @@ pub(crate) fn org_routes() -> AppRouter {
         AppRouter::new()
             .route("/", routing::get(list).post(create))
             .route(
-                "/:color_ref",
+                "/{color_ref}",
                 routing::get(get).put(upsert).patch(update).delete(delete),
             ),
     )

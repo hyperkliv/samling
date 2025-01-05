@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use cornucopi_async::{GenericClient, Params};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
@@ -48,7 +47,6 @@ pub struct UserSummary {
     pub profile_image: Option<Url>,
 }
 
-#[async_trait]
 impl RefTarget for User {
     async fn lookup_id(
         client: &impl GenericClient,
@@ -115,7 +113,6 @@ impl EntityRefPathParam for Group {
     }
 }
 
-#[async_trait]
 impl RefTarget for Group {
     async fn lookup_id(
         client: &impl GenericClient,

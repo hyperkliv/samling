@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 use rust_decimal::Decimal;
 use schemars::JsonSchema;
@@ -44,7 +43,6 @@ impl EntityRefPathParam for PriceList {
     }
 }
 
-#[async_trait]
 impl RefTarget for PriceList {
     async fn lookup_id(
         client: &impl GenericClient,
@@ -197,7 +195,6 @@ impl EntityRefPathParam for Price {
     }
 }
 
-#[async_trait]
 impl RefTarget for Price {
     async fn lookup_id(
         client: &impl GenericClient,

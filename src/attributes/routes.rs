@@ -18,7 +18,7 @@ pub(crate) fn org_routes() -> AppRouter {
             AppRouter::new()
                 .route("/", routing::get(list_attributes).post(create_attribute))
                 .route(
-                    "/:attribute_ref",
+                    "/{attribute_ref}",
                     routing::get(get_attribute)
                         .patch(update_attribute)
                         .put(upsert_attribute)
@@ -33,7 +33,7 @@ pub(crate) fn org_routes() -> AppRouter {
                     routing::get(list_attribute_types).post(create_attribute_type),
                 )
                 .route(
-                    "/:attribute_type_ref",
+                    "/{attribute_type_ref}",
                     routing::get(get_attribute_type)
                         .patch(update_attribute_type)
                         .put(upsert_attribute_type)

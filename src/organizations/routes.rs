@@ -19,7 +19,7 @@ pub(crate) fn global_routes() -> AppRouter {
         AppRouter::new()
             .route("/", routing::post(create_organization))
             .route(
-                "/:organization_id",
+                "/{organization_id}",
                 routing::get(get_organization)
                     .patch(update_organization)
                     .delete(delete_organization),

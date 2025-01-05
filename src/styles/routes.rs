@@ -18,7 +18,7 @@ pub(crate) fn org_routes() -> AppRouter {
             .route("/", routing::get(list).post(create))
             .route("/nested/summary", routing::get(list_nested_summary))
             .route(
-                "/:style_ref",
+                "/{style_ref}",
                 routing::get(get).put(upsert).patch(update).delete(delete),
             ),
     )

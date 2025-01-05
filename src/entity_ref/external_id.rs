@@ -1,6 +1,5 @@
 use std::{fmt::Debug, hash::Hash, marker::PhantomData, ops::Deref};
 
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 
 use schemars::{
@@ -111,7 +110,6 @@ impl<T: RefTarget> From<ExternalId<T>> for String {
 }
 
 /// An entity that has an ExternalId field
-#[async_trait]
 pub trait ExternalIdEntity: core::fmt::Debug + Send + Sync {
     type RefTarget: RefTarget;
 
@@ -124,6 +122,7 @@ pub trait ExternalIdEntity: core::fmt::Debug + Send + Sync {
         }
     }
 
+    #[allow(async_fn_in_trait)]
     async fn ensure_available_external_id(
         &self,
         client: &impl GenericClient,

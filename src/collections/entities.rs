@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
@@ -84,7 +83,6 @@ pub struct CollectionItem {
     pub user_comment: String, // TODO
 }
 
-#[async_trait]
 impl RefTarget for Collection {
     async fn lookup_id(
         client: &impl GenericClient,

@@ -18,7 +18,7 @@ pub(crate) fn org_routes() -> AppRouter {
         AppRouter::new()
             .route("/", routing::get(list_images).post(upload_image))
             .route(
-                "/:image_ref",
+                "/{image_ref}",
                 routing::get(get_image)
                     .put(upsert_image)
                     .delete(delete_image),

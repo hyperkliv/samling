@@ -1,6 +1,5 @@
 use std::{collections::HashMap, fmt::Debug};
 
-use async_trait::async_trait;
 use axum::{
     extract::{FromRequestParts, Query},
     RequestPartsExt,
@@ -14,7 +13,6 @@ use crate::{helpers, state::AppState, Error, Result};
 pub(crate) struct PoolClient(pub(crate) Object);
 
 /// Extract a database object ("connection") from AppState
-#[async_trait]
 impl FromRequestParts<AppState> for PoolClient {
     type Rejection = Error;
 
@@ -29,10 +27,9 @@ pub(crate) struct FiltersQuery<T>(pub(crate) T);
 
 #[derive(Debug, Clone, Deserialize)]
 struct RawFilters {
-    filters: String,
+    filters: Option<String>,
 }
 
-#[async_trait]
 impl<S, T> FromRequestParts<S> for FiltersQuery<T>
 where
     S: Send + Sync,
@@ -40,11 +37,16 @@ where
 {
     type Rejection = Error;
 
+    // TODO: Why is this needed?
     async fn from_request_parts(parts: &mut Parts, _state: &S) -> Result<Self> {
-        match parts.extract::<Option<Query<RawFilters>>>().await {
-            Ok(Some(Query(raw))) => {
-                let output: T = serde_json::from_str(&raw.filters)?;
-                Ok(Self(output))
+        match parts.extract::<Query<RawFilters>>().await {
+            Ok(Query(raw)) => {
+                if let Some(filters) = raw.filters {
+                    let output: T = serde_json::from_str(&filters)?;
+                    Ok(Self(output))
+                } else {
+                    Ok(Self(T::default()))
+                }
             }
             _ => Ok(Self(T::default())),
         }
@@ -54,7 +56,6 @@ where
 /// Query containing JSON serialized values
 pub(crate) struct JsonQuery<T>(pub(crate) T);
 
-#[async_trait]
 impl<S, T> FromRequestParts<S> for JsonQuery<T>
 where
     S: Send + Sync,

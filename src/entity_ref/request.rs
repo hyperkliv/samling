@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 
-use async_trait::async_trait;
 use axum::{
     extract::{FromRequestParts, Path},
     RequestPartsExt,
@@ -16,7 +15,6 @@ pub trait EntityRefPathParam {
 }
 
 /// Extract entity_ref from HTTP path
-#[async_trait]
 impl<S, T> FromRequestParts<S> for Ref<T>
 where
     S: Send + Sync,

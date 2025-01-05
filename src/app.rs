@@ -50,7 +50,7 @@ pub async fn serve(
         ]);
 
     let org_router = AppRouter::new().nest(
-        "/:organization_id",
+        "/{organization_id}",
         AppRouter::new()
             .merge(auth::routes::org_routes())
             .merge(collections::routes::org_routes())

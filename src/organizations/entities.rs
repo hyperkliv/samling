@@ -1,4 +1,3 @@
-use async_trait::async_trait;
 use cornucopi_async::GenericClient;
 use derive_more::Display;
 use schemars::JsonSchema;
@@ -37,7 +36,6 @@ pub struct OrganizationSummary {
     pub logo_url: Option<Url>,
 }
 
-#[async_trait]
 impl RefTarget for Organization {
     async fn lookup_id(
         client: &impl GenericClient,

@@ -18,7 +18,7 @@ pub(crate) fn org_routes() -> AppRouter {
             AppRouter::new()
                 .route("/", routing::get(list_prices).post(create_price))
                 .route(
-                    "/:price_ref",
+                    "/{price_ref}",
                     routing::get(get_price)
                         .patch(update_price)
                         .put(upsert_price)
@@ -31,7 +31,7 @@ pub(crate) fn org_routes() -> AppRouter {
                 .route("/", routing::get(list_pricelists).post(create_pricelist))
                 .route("/summary", routing::get(list_pricelist_summaries))
                 .route(
-                    "/:price_list_ref",
+                    "/{price_list_ref}",
                     routing::get(get_pricelist)
                         .patch(update_pricelist)
                         .put(upsert_pricelist)

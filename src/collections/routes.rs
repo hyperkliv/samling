@@ -23,22 +23,22 @@ pub(crate) fn org_routes() -> AppRouter {
             )
             .route("/summaries", routing::get(list_collection_summaries))
             .route(
-                "/:collection_ref",
+                "/{collection_ref}",
                 routing::get(get_collection)
                     .patch(update_collection)
                     .put(upsert_collection)
                     .delete(delete_collection),
             )
             .route(
-                "/:collection_ref/with-items",
+                "/{collection_ref}/with-items",
                 routing::get(get_collection_with_items),
             )
             .route(
-                "/:collection_ref/summary",
+                "/{collection_ref}/summary",
                 routing::get(get_collection_summary),
             )
             .route(
-                "/:collection_ref/items/:style_ref",
+                "/{collection_ref}/items/{style_ref}",
                 routing::get(get_collection_item),
             ),
     )
