@@ -93,8 +93,9 @@ allow = [
     "Apache-2.0",
     "ISC",
     "BSD-3-Clause",
-    "OpenSSL",  # NOTE: For `ring`
+    "OpenSSL",          # NOTE: For `ring`
     "Unicode-DFS-2016",
+    "Unicode-3.0",
     "BSL-1.0",
 ]
 # The confidence threshold for detecting a license from license text.
@@ -126,7 +127,7 @@ expression = "MIT AND ISC AND OpenSSL"
 # depending on the rest of your configuration
 license-files = [
     # Each entry is a crate relative path, and the (opaque) hash of its contents
-    { path = "LICENSE", hash = 0xbd0eed23 }
+    { path = "LICENSE", hash = 0xbd0eed23 },
 ]
 
 [licenses.private]
