@@ -3,7 +3,7 @@ use std::hash::Hash;
 use std::{marker::PhantomData, ops::Deref};
 
 use async_trait::async_trait;
-use cornucopia_async::GenericClient;
+use cornucopi_async::GenericClient;
 
 use schemars::gen::SchemaGenerator;
 use schemars::schema::{InstanceType, Schema, SchemaObject};

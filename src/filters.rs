@@ -1,5 +1,5 @@
 use async_trait::async_trait;
-use cornucopia_async::GenericClient;
+use cornucopi_async::GenericClient;
 
 use crate::{Id, Organization, Result};
 

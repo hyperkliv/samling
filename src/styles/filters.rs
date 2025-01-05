@@ -3,7 +3,7 @@ use axum::{
     extract::{FromRequestParts, Query},
     RequestPartsExt,
 };
-use cornucopia_async::GenericClient;
+use cornucopi_async::GenericClient;
 use futures::future::try_join4;
 use http::request::Parts;
 use schemars::JsonSchema;

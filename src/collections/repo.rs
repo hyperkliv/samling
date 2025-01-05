@@ -1,4 +1,4 @@
-use cornucopia_async::{GenericClient, Params};
+use cornucopi_async::{GenericClient, Params};
 use deadpool_postgres::Object;
 use futures::{future::try_join_all, try_join};
 use itertools::Itertools;

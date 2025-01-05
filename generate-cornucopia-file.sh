@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-cornucopia \
+cornucopi \
     --queries-path=./queries \
+    --destination=src/cornucopia.rs \
     schema \
     ./migrations/*.sql
 cargo fmt -- ./src/cornucopia.rs

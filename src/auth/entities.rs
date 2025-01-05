@@ -1,5 +1,5 @@
 use async_trait::async_trait;
-use cornucopia_async::{GenericClient, Params};
+use cornucopi_async::{GenericClient, Params};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use url::Url;

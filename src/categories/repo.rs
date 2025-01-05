@@ -1,4 +1,4 @@
-use cornucopia_async::{GenericClient, Params};
+use cornucopi_async::{GenericClient, Params};
 
 use super::{Category, CreateCategory, UpdateCategory};
 use crate::auth::User;

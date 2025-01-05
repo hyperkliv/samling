@@ -1,4 +1,4 @@
-use cornucopia_async::GenericClient;
+use cornucopi_async::GenericClient;
 use futures::future::try_join4;
 
 use crate::{

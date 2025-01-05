@@ -1,4 +1,4 @@
-// This file was generated with `cornucopia`. Do not modify.
+// This file was generated with `cornucopi`. Do not modify.
 
 #[allow(clippy::all, clippy::pedantic)]
 #[allow(unused_variables)]
@@ -6,7 +6,7 @@
 #[allow(dead_code)]
 pub mod types {
     pub mod public {
-        #[derive(Debug, postgres_types :: FromSql, Copy, Clone, PartialEq)]
+        #[derive(Debug, postgres_types::FromSql, Copy, Clone, PartialEq)]
         #[postgres(name = "collection_pricelist_relation")]
         pub struct CollectionPricelistRelation {
             #[postgres(name = "pricelist_id")]
@@ -224,13 +224,13 @@ pub mod queries {
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct EntityFilterChoiceRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> EntityFilterChoiceRowBorrowed,
             mapper: fn(EntityFilterChoiceRowBorrowed) -> T,
         }
@@ -275,7 +275,7 @@ pub mod queries {
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -285,7 +285,7 @@ pub mod queries {
         pub struct StringFilterChoiceRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> StringFilterChoiceRowBorrowed,
             mapper: fn(StringFilterChoiceRowBorrowed) -> T,
         }
@@ -330,7 +330,7 @@ pub mod queries {
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -338,7 +338,7 @@ pub mod queries {
             }
         }
         pub fn select_style_filter_choices() -> SelectStyleFilterChoicesStmt {
-            SelectStyleFilterChoicesStmt(cornucopia_async::private::Stmt::new(
+            SelectStyleFilterChoicesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     style.id,
     style.\"name\" AS title,
@@ -367,7 +367,7 @@ WHERE style.organization_id = $1
 ORDER BY title",
             ))
         }
-        pub struct SelectStyleFilterChoicesStmt(cornucopia_async::private::Stmt);
+        pub struct SelectStyleFilterChoicesStmt(cornucopi_async::private::Stmt);
         impl SelectStyleFilterChoicesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -389,7 +389,7 @@ ORDER BY title",
             }
         }
         pub fn select_category_filter_choices() -> SelectCategoryFilterChoicesStmt {
-            SelectCategoryFilterChoicesStmt(cornucopia_async::private::Stmt::new(
+            SelectCategoryFilterChoicesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     category.id,
     category.\"name\" AS title,
@@ -399,7 +399,7 @@ FROM category WHERE category.organization_id = $1
 ORDER BY title",
             ))
         }
-        pub struct SelectCategoryFilterChoicesStmt(cornucopia_async::private::Stmt);
+        pub struct SelectCategoryFilterChoicesStmt(cornucopi_async::private::Stmt);
         impl SelectCategoryFilterChoicesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -421,7 +421,7 @@ ORDER BY title",
             }
         }
         pub fn select_attribute_filter_choices() -> SelectAttributeFilterChoicesStmt {
-            SelectAttributeFilterChoicesStmt(cornucopia_async::private::Stmt::new(
+            SelectAttributeFilterChoicesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     \"attribute\".id,
     \"attribute\".title,
@@ -433,7 +433,7 @@ WHERE \"attribute\".organization_id = $1
 ORDER BY \"attribute\".title",
             ))
         }
-        pub struct SelectAttributeFilterChoicesStmt(cornucopia_async::private::Stmt);
+        pub struct SelectAttributeFilterChoicesStmt(cornucopi_async::private::Stmt);
         impl SelectAttributeFilterChoicesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -455,13 +455,13 @@ ORDER BY \"attribute\".title",
             }
         }
         pub fn select_status_filter_choices() -> SelectStatusFilterChoicesStmt {
-            SelectStatusFilterChoicesStmt(cornucopia_async::private::Stmt::new(
+            SelectStatusFilterChoicesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT DISTINCT size.status AS title FROM size
 WHERE size.organization_id = $1
 ORDER BY title",
             ))
         }
-        pub struct SelectStatusFilterChoicesStmt(cornucopia_async::private::Stmt);
+        pub struct SelectStatusFilterChoicesStmt(cornucopi_async::private::Stmt);
         impl SelectStatusFilterChoicesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -481,8 +481,8 @@ ORDER BY title",
     pub mod attribute {
         #[derive(Debug)]
         pub struct GetAttributeParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -491,8 +491,8 @@ ORDER BY title",
         }
         #[derive(Debug)]
         pub struct GetAttributeIdParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -501,10 +501,10 @@ ORDER BY title",
         }
         #[derive(Debug)]
         pub struct InsertAttributeParams<
-            T1: cornucopia_async::JsonSql,
-            T2: cornucopia_async::JsonSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::StringSql,
+            T1: cornucopi_async::JsonSql,
+            T2: cornucopi_async::JsonSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::StringSql,
         > {
             pub title: T1,
             pub description: T2,
@@ -516,10 +516,10 @@ ORDER BY title",
         }
         #[derive(Debug)]
         pub struct UpdateAttributeParams<
-            T1: cornucopia_async::JsonSql,
-            T2: cornucopia_async::JsonSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::StringSql,
+            T1: cornucopi_async::JsonSql,
+            T2: cornucopi_async::JsonSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::StringSql,
         > {
             pub type_id: Option<i32>,
             pub title: Option<T1>,
@@ -534,7 +534,7 @@ ORDER BY title",
             pub id: i32,
         }
         #[derive(Debug)]
-        pub struct AssociateStyleAttributesParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct AssociateStyleAttributesParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub style_id: i32,
             pub attribute_ids: T1,
         }
@@ -596,13 +596,13 @@ ORDER BY title",
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct AttributeRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> AttributeRowBorrowed,
             mapper: fn(AttributeRowBorrowed) -> T,
         }
@@ -647,7 +647,7 @@ ORDER BY title",
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -657,7 +657,7 @@ ORDER BY title",
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -699,7 +699,7 @@ ORDER BY title",
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -707,7 +707,7 @@ ORDER BY title",
             }
         }
         pub fn list_attributes() -> ListAttributesStmt {
-            ListAttributesStmt(cornucopia_async::private::Stmt::new(
+            ListAttributesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     attribute.*,
     to_jsonb(attributetype.*) AS \"type\"
@@ -721,7 +721,7 @@ ORDER BY
     attribute.updated_at DESC",
             ))
         }
-        pub struct ListAttributesStmt(cornucopia_async::private::Stmt);
+        pub struct ListAttributesStmt(cornucopi_async::private::Stmt);
         impl ListAttributesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -750,7 +750,7 @@ ORDER BY
             }
         }
         pub fn get_attribute() -> GetAttributeStmt {
-            GetAttributeStmt(cornucopia_async::private::Stmt::new(
+            GetAttributeStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     attribute.*,
     to_jsonb(attributetype.*) AS \"type\"
@@ -767,13 +767,13 @@ WHERE
         OR (attribute.slug = coalesce($4, '___NON_EXISTING___')))",
             ))
         }
-        pub struct GetAttributeStmt(cornucopia_async::private::Stmt);
+        pub struct GetAttributeStmt(cornucopi_async::private::Stmt);
         impl GetAttributeStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -806,10 +806,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 GetAttributeParams<T1, T2>,
                 AttributeRowQuery<'a, C, AttributeRow, 4>,
@@ -831,7 +831,7 @@ WHERE
             }
         }
         pub fn get_attribute_id() -> GetAttributeIdStmt {
-            GetAttributeIdStmt(cornucopia_async::private::Stmt::new(
+            GetAttributeIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT attribute.id
 FROM
     attribute
@@ -844,13 +844,13 @@ WHERE
         OR (attribute.slug = coalesce($4, '___NON_EXISTING___')))",
             ))
         }
-        pub struct GetAttributeIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetAttributeIdStmt(cornucopi_async::private::Stmt);
         impl GetAttributeIdStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -871,10 +871,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, GetAttributeIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
+            cornucopi_async::Params<'a, GetAttributeIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
             for GetAttributeIdStmt
         {
             fn params(
@@ -892,7 +892,7 @@ WHERE
             }
         }
         pub fn insert_attribute() -> InsertAttributeStmt {
-            InsertAttributeStmt(cornucopia_async::private::Stmt::new(
+            InsertAttributeStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO attribute (
     title,
     description,
@@ -913,15 +913,15 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertAttributeStmt(cornucopia_async::private::Stmt);
+        pub struct InsertAttributeStmt(cornucopi_async::private::Stmt);
         impl InsertAttributeStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::JsonSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::JsonSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -953,12 +953,12 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::JsonSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::JsonSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertAttributeParams<T1, T2, T3, T4>,
                 I32Query<'a, C, i32, 7>,
@@ -983,7 +983,7 @@ id",
             }
         }
         pub fn update_attribute() -> UpdateAttributeStmt {
-            UpdateAttributeStmt(cornucopia_async::private::Stmt::new(
+            UpdateAttributeStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 attribute
 SET
@@ -996,15 +996,15 @@ WHERE
     id = $6",
             ))
         }
-        pub struct UpdateAttributeStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateAttributeStmt(cornucopi_async::private::Stmt);
         impl UpdateAttributeStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::JsonSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::JsonSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -1024,12 +1024,12 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::JsonSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::JsonSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateAttributeParams<T1, T2, T3, T4>,
                 std::pin::Pin<
@@ -1061,13 +1061,13 @@ WHERE
             }
         }
         pub fn delete_attribute() -> DeleteAttributeStmt {
-            DeleteAttributeStmt(cornucopia_async::private::Stmt::new(
+            DeleteAttributeStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM attribute
 WHERE organization_id = $1
       AND id = $2",
             ))
         }
-        pub struct DeleteAttributeStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteAttributeStmt(cornucopi_async::private::Stmt);
         impl DeleteAttributeStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -1080,7 +1080,7 @@ WHERE organization_id = $1
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeleteAttributeParams,
                 std::pin::Pin<
@@ -1104,15 +1104,15 @@ WHERE organization_id = $1
             }
         }
         pub fn associate_style_attributes() -> AssociateStyleAttributesStmt {
-            AssociateStyleAttributesStmt(cornucopia_async::private::Stmt::new(
+            AssociateStyleAttributesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     associate_style_attributes($1, $2)",
             ))
         }
-        pub struct AssociateStyleAttributesStmt(cornucopia_async::private::Stmt);
+        pub struct AssociateStyleAttributesStmt(cornucopi_async::private::Stmt);
         impl AssociateStyleAttributesStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 style_id: &'a i32,
@@ -1127,8 +1127,8 @@ FROM
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<
                 'a,
                 AssociateStyleAttributesParams<T1>,
                 I32Query<'a, C, i32, 2>,
@@ -1147,8 +1147,8 @@ FROM
     pub mod attributetype {
         #[derive(Debug)]
         pub struct GetAttributeTypeParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -1157,8 +1157,8 @@ FROM
         }
         #[derive(Debug)]
         pub struct GetAttributeTypeIdParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -1167,9 +1167,9 @@ FROM
         }
         #[derive(Debug)]
         pub struct InsertAttributeTypeParams<
-            T1: cornucopia_async::JsonSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
+            T1: cornucopi_async::JsonSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
         > {
             pub name: T1,
             pub slug: T2,
@@ -1179,9 +1179,9 @@ FROM
         }
         #[derive(Debug)]
         pub struct UpdateAttributeTypeParams<
-            T1: cornucopia_async::JsonSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
+            T1: cornucopi_async::JsonSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
         > {
             pub name: Option<T1>,
             pub slug: Option<T2>,
@@ -1239,13 +1239,13 @@ FROM
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct AttributeTypeRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> AttributeTypeRowBorrowed,
             mapper: fn(AttributeTypeRowBorrowed) -> T,
         }
@@ -1290,7 +1290,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -1300,7 +1300,7 @@ FROM
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -1342,7 +1342,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -1350,7 +1350,7 @@ FROM
             }
         }
         pub fn list_attribute_types() -> ListAttributeTypesStmt {
-            ListAttributeTypesStmt(cornucopia_async::private::Stmt::new(
+            ListAttributeTypesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT attributetype.*
 FROM
     attributetype
@@ -1360,7 +1360,7 @@ ORDER BY
     attributetype.updated_at DESC",
             ))
         }
-        pub struct ListAttributeTypesStmt(cornucopia_async::private::Stmt);
+        pub struct ListAttributeTypesStmt(cornucopi_async::private::Stmt);
         impl ListAttributeTypesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -1386,7 +1386,7 @@ ORDER BY
             }
         }
         pub fn get_attribute_type() -> GetAttributeTypeStmt {
-            GetAttributeTypeStmt(cornucopia_async::private::Stmt::new(
+            GetAttributeTypeStmt(cornucopi_async::private::Stmt::new(
                 "SELECT attributetype.*
 FROM
     attributetype
@@ -1401,13 +1401,13 @@ WHERE
         OR (attributetype.slug = coalesce($4, '___NON_EXISTING___')))",
             ))
         }
-        pub struct GetAttributeTypeStmt(cornucopia_async::private::Stmt);
+        pub struct GetAttributeTypeStmt(cornucopi_async::private::Stmt);
         impl GetAttributeTypeStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -1437,10 +1437,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 GetAttributeTypeParams<T1, T2>,
                 AttributeTypeRowQuery<'a, C, AttributeTypeRow, 4>,
@@ -1462,7 +1462,7 @@ WHERE
             }
         }
         pub fn get_attribute_type_id() -> GetAttributeTypeIdStmt {
-            GetAttributeTypeIdStmt(cornucopia_async::private::Stmt::new(
+            GetAttributeTypeIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT attributetype.id
 FROM
     attributetype
@@ -1477,13 +1477,13 @@ WHERE
         OR (attributetype.slug = coalesce($4, '___NON_EXISTING___')))",
             ))
         }
-        pub struct GetAttributeTypeIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetAttributeTypeIdStmt(cornucopi_async::private::Stmt);
         impl GetAttributeTypeIdStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -1504,10 +1504,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 GetAttributeTypeIdParams<T1, T2>,
                 I32Query<'a, C, i32, 4>,
@@ -1529,7 +1529,7 @@ WHERE
             }
         }
         pub fn insert_attribute_type() -> InsertAttributeTypeStmt {
-            InsertAttributeTypeStmt(cornucopia_async::private::Stmt::new(
+            InsertAttributeTypeStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO attributetype (
     name,
     slug,
@@ -1546,14 +1546,14 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertAttributeTypeStmt(cornucopia_async::private::Stmt);
+        pub struct InsertAttributeTypeStmt(cornucopi_async::private::Stmt);
         impl InsertAttributeTypeStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -1575,11 +1575,11 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertAttributeTypeParams<T1, T2, T3>,
                 I32Query<'a, C, i32, 5>,
@@ -1602,7 +1602,7 @@ id",
             }
         }
         pub fn update_attribute_type() -> UpdateAttributeTypeStmt {
-            UpdateAttributeTypeStmt(cornucopia_async::private::Stmt::new(
+            UpdateAttributeTypeStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 attributetype
 SET
@@ -1613,14 +1613,14 @@ WHERE
     id = $4",
             ))
         }
-        pub struct UpdateAttributeTypeStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateAttributeTypeStmt(cornucopi_async::private::Stmt);
         impl UpdateAttributeTypeStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -1636,11 +1636,11 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateAttributeTypeParams<T1, T2, T3>,
                 std::pin::Pin<
@@ -1670,13 +1670,13 @@ WHERE
             }
         }
         pub fn delete_attribute_type() -> DeleteAttributeTypeStmt {
-            DeleteAttributeTypeStmt(cornucopia_async::private::Stmt::new(
+            DeleteAttributeTypeStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM attributetype
 WHERE organization_id = $1
       AND id = $2",
             ))
         }
-        pub struct DeleteAttributeTypeStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteAttributeTypeStmt(cornucopi_async::private::Stmt);
         impl DeleteAttributeTypeStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -1689,7 +1689,7 @@ WHERE organization_id = $1
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeleteAttributeTypeParams,
                 std::pin::Pin<
@@ -1716,8 +1716,8 @@ WHERE organization_id = $1
     pub mod category {
         #[derive(Debug)]
         pub struct GetCategoryIdParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -1725,10 +1725,7 @@ WHERE organization_id = $1
             pub slug: Option<T2>,
         }
         #[derive(Debug)]
-        pub struct GetCategoryParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-        > {
+        pub struct GetCategoryParams<T1: cornucopi_async::StringSql, T2: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
@@ -1736,9 +1733,9 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct InsertCategoryParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::JsonSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::JsonSql,
         > {
             pub slug: T1,
             pub external_id: Option<T2>,
@@ -1748,9 +1745,9 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct UpdateCategoryParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::JsonSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::JsonSql,
         > {
             pub slug: Option<T1>,
             pub external_id: Option<T2>,
@@ -1763,7 +1760,7 @@ WHERE organization_id = $1
             pub id: i32,
         }
         #[derive(Debug)]
-        pub struct AssociateStyleCategoriesParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct AssociateStyleCategoriesParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub style_id: i32,
             pub category_ids: T1,
         }
@@ -1813,13 +1810,13 @@ WHERE organization_id = $1
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct CategoryRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> CategoryRowBorrowed,
             mapper: fn(CategoryRowBorrowed) -> T,
         }
@@ -1864,7 +1861,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -1874,7 +1871,7 @@ WHERE organization_id = $1
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -1916,7 +1913,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -1924,7 +1921,7 @@ WHERE organization_id = $1
             }
         }
         pub fn list_categories() -> ListCategoriesStmt {
-            ListCategoriesStmt(cornucopia_async::private::Stmt::new(
+            ListCategoriesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     category
@@ -1932,7 +1929,7 @@ WHERE
     category.organization_id = $1",
             ))
         }
-        pub struct ListCategoriesStmt(cornucopia_async::private::Stmt);
+        pub struct ListCategoriesStmt(cornucopi_async::private::Stmt);
         impl ListCategoriesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -1958,7 +1955,7 @@ WHERE
             }
         }
         pub fn get_category_id() -> GetCategoryIdStmt {
-            GetCategoryIdStmt(cornucopia_async::private::Stmt::new(
+            GetCategoryIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT category.id
 FROM
     category
@@ -1971,13 +1968,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetCategoryIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetCategoryIdStmt(cornucopi_async::private::Stmt);
         impl GetCategoryIdStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -1998,10 +1995,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, GetCategoryIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
+            cornucopi_async::Params<'a, GetCategoryIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
             for GetCategoryIdStmt
         {
             fn params(
@@ -2019,7 +2016,7 @@ WHERE
             }
         }
         pub fn get_category() -> GetCategoryStmt {
-            GetCategoryStmt(cornucopia_async::private::Stmt::new(
+            GetCategoryStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     category
@@ -2032,13 +2029,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetCategoryStmt(cornucopia_async::private::Stmt);
+        pub struct GetCategoryStmt(cornucopi_async::private::Stmt);
         impl GetCategoryStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -2068,10 +2065,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 GetCategoryParams<T1, T2>,
                 CategoryRowQuery<'a, C, CategoryRow, 4>,
@@ -2093,7 +2090,7 @@ WHERE
             }
         }
         pub fn insert_category() -> InsertCategoryStmt {
-            InsertCategoryStmt(cornucopia_async::private::Stmt::new(
+            InsertCategoryStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO category (
     slug,
     external_id,
@@ -2110,14 +2107,14 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertCategoryStmt(cornucopia_async::private::Stmt);
+        pub struct InsertCategoryStmt(cornucopi_async::private::Stmt);
         impl InsertCategoryStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::JsonSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::JsonSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -2139,11 +2136,11 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::JsonSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::JsonSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertCategoryParams<T1, T2, T3>,
                 I32Query<'a, C, i32, 5>,
@@ -2166,7 +2163,7 @@ id",
             }
         }
         pub fn update_category() -> UpdateCategoryStmt {
-            UpdateCategoryStmt(cornucopia_async::private::Stmt::new(
+            UpdateCategoryStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE category
 SET
     slug = coalesce($1, slug),
@@ -2176,14 +2173,14 @@ WHERE
     category.id = $4",
             ))
         }
-        pub struct UpdateCategoryStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateCategoryStmt(cornucopi_async::private::Stmt);
         impl UpdateCategoryStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::JsonSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::JsonSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -2199,11 +2196,11 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::JsonSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::JsonSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateCategoryParams<T1, T2, T3>,
                 std::pin::Pin<
@@ -2233,14 +2230,14 @@ WHERE
             }
         }
         pub fn delete_category() -> DeleteCategoryStmt {
-            DeleteCategoryStmt(cornucopia_async::private::Stmt::new(
+            DeleteCategoryStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM category
 WHERE
     organization_id = $1
     AND id = $2",
             ))
         }
-        pub struct DeleteCategoryStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteCategoryStmt(cornucopi_async::private::Stmt);
         impl DeleteCategoryStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -2253,7 +2250,7 @@ WHERE
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeleteCategoryParams,
                 std::pin::Pin<
@@ -2277,15 +2274,15 @@ WHERE
             }
         }
         pub fn associate_style_categories() -> AssociateStyleCategoriesStmt {
-            AssociateStyleCategoriesStmt(cornucopia_async::private::Stmt::new(
+            AssociateStyleCategoriesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     associate_style_categories($1, $2)",
             ))
         }
-        pub struct AssociateStyleCategoriesStmt(cornucopia_async::private::Stmt);
+        pub struct AssociateStyleCategoriesStmt(cornucopi_async::private::Stmt);
         impl AssociateStyleCategoriesStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 style_id: &'a i32,
@@ -2300,8 +2297,8 @@ FROM
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<
                 'a,
                 AssociateStyleCategoriesParams<T1>,
                 I32Query<'a, C, i32, 2>,
@@ -2320,8 +2317,8 @@ FROM
     pub mod collection {
         #[derive(Debug)]
         pub struct SelectCollectionsParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub requester_id: i32,
             pub organization_id: i32,
@@ -2331,8 +2328,8 @@ FROM
         }
         #[derive(Debug)]
         pub struct SelectCollectionSummariesParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub requester_id: i32,
             pub organization_id: i32,
@@ -2342,8 +2339,8 @@ FROM
         }
         #[derive(Debug)]
         pub struct GetCollectionIdParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -2352,11 +2349,11 @@ FROM
         }
         #[derive(Debug)]
         pub struct InsertCollectionParams<
-            T1: cornucopia_async::JsonSql,
-            T2: cornucopia_async::JsonSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::StringSql,
-            T5: cornucopia_async::StringSql,
+            T1: cornucopi_async::JsonSql,
+            T2: cornucopi_async::JsonSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::StringSql,
+            T5: cornucopi_async::StringSql,
         > {
             pub acronym: T1,
             pub name: T2,
@@ -2368,11 +2365,11 @@ FROM
         }
         #[derive(Debug)]
         pub struct UpdateCollectionParams<
-            T1: cornucopia_async::JsonSql,
-            T2: cornucopia_async::JsonSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::StringSql,
-            T5: cornucopia_async::StringSql,
+            T1: cornucopi_async::JsonSql,
+            T2: cornucopi_async::JsonSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::StringSql,
+            T5: cornucopi_async::StringSql,
         > {
             pub acronym: Option<T1>,
             pub name: Option<T2>,
@@ -2387,13 +2384,13 @@ FROM
             pub id: i32,
         }
         #[derive(Debug)]
-        pub struct AssociateCollectionSizesParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct AssociateCollectionSizesParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub collection_id: i32,
             pub size_ids: T1,
         }
         #[derive(Debug)]
         pub struct ReplaceCollectionPricelistsParams<
-            T1: cornucopia_async::ArraySql<
+            T1: cornucopi_async::ArraySql<
                 Item = super::super::types::public::CollectionPricelistRelation,
             >,
         > {
@@ -2401,12 +2398,12 @@ FROM
             pub collection_pricelist_relations: T1,
         }
         #[derive(Debug)]
-        pub struct SetNewCollectionStylesParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct SetNewCollectionStylesParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub collection_id: i32,
             pub style_ids: T1,
         }
         #[derive(Debug)]
-        pub struct SetNewCollectionColorsParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct SetNewCollectionColorsParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub collection_id: i32,
             pub color_ids: T1,
         }
@@ -2542,13 +2539,13 @@ FROM
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct CollectionRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> CollectionRowBorrowed,
             mapper: fn(CollectionRowBorrowed) -> T,
         }
@@ -2593,7 +2590,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -2603,7 +2600,7 @@ FROM
         pub struct CollectionSummaryRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> CollectionSummaryRowBorrowed,
             mapper: fn(CollectionSummaryRowBorrowed) -> T,
         }
@@ -2648,7 +2645,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -2658,7 +2655,7 @@ FROM
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -2700,7 +2697,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -2708,7 +2705,7 @@ FROM
             }
         }
         pub fn select_collections() -> SelectCollectionsStmt {
-            SelectCollectionsStmt(cornucopia_async::private::Stmt::new(
+            SelectCollectionsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     collection.*,
     coalesce(pricing.json_data, '[]'::json) AS pricing,
@@ -2773,13 +2770,13 @@ ORDER BY
     collection.updated_at DESC",
             ))
         }
-        pub struct SelectCollectionsStmt(cornucopia_async::private::Stmt);
+        pub struct SelectCollectionsStmt(cornucopi_async::private::Stmt);
         impl SelectCollectionsStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -2814,10 +2811,10 @@ ORDER BY
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 SelectCollectionsParams<T1, T2>,
                 CollectionRowQuery<'a, C, CollectionRow, 5>,
@@ -2840,7 +2837,7 @@ ORDER BY
             }
         }
         pub fn select_collection_summaries() -> SelectCollectionSummariesStmt {
-            SelectCollectionSummariesStmt(cornucopia_async::private::Stmt::new(
+            SelectCollectionSummariesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     collection.*,
     coalesce(stats.num_sizes, 0) AS num_sizes,
@@ -2909,13 +2906,13 @@ ORDER BY
     pricing.min_price_date DESC, collection.name ASC",
             ))
         }
-        pub struct SelectCollectionSummariesStmt(cornucopia_async::private::Stmt);
+        pub struct SelectCollectionSummariesStmt(cornucopi_async::private::Stmt);
         impl SelectCollectionSummariesStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -2952,10 +2949,10 @@ ORDER BY
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 SelectCollectionSummariesParams<T1, T2>,
                 CollectionSummaryRowQuery<'a, C, CollectionSummaryRow, 5>,
@@ -2978,7 +2975,7 @@ ORDER BY
             }
         }
         pub fn get_collection_id() -> GetCollectionIdStmt {
-            GetCollectionIdStmt(cornucopia_async::private::Stmt::new(
+            GetCollectionIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT collection.id
 FROM
     collection
@@ -2989,13 +2986,13 @@ WHERE
     AND ($4::text IS NULL OR collection.slug = $4)",
             ))
         }
-        pub struct GetCollectionIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetCollectionIdStmt(cornucopi_async::private::Stmt);
         impl GetCollectionIdStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -3016,10 +3013,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, GetCollectionIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
+            cornucopi_async::Params<'a, GetCollectionIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
             for GetCollectionIdStmt
         {
             fn params(
@@ -3037,7 +3034,7 @@ WHERE
             }
         }
         pub fn insert_collection() -> InsertCollectionStmt {
-            InsertCollectionStmt(cornucopia_async::private::Stmt::new(
+            InsertCollectionStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO collection (
     acronym,
     name,
@@ -3058,16 +3055,16 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertCollectionStmt(cornucopia_async::private::Stmt);
+        pub struct InsertCollectionStmt(cornucopi_async::private::Stmt);
         impl InsertCollectionStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::JsonSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
-                T5: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::JsonSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
+                T5: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -3099,13 +3096,13 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::JsonSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
-                T5: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::JsonSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
+                T5: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertCollectionParams<T1, T2, T3, T4, T5>,
                 I32Query<'a, C, i32, 7>,
@@ -3130,7 +3127,7 @@ id",
             }
         }
         pub fn update_collection() -> UpdateCollectionStmt {
-            UpdateCollectionStmt(cornucopia_async::private::Stmt::new(
+            UpdateCollectionStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 collection
 SET
@@ -3143,16 +3140,16 @@ WHERE
     id = $6",
             ))
         }
-        pub struct UpdateCollectionStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateCollectionStmt(cornucopi_async::private::Stmt);
         impl UpdateCollectionStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::JsonSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
-                T5: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::JsonSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
+                T5: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -3172,13 +3169,13 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::JsonSql,
-                T2: cornucopia_async::JsonSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
-                T5: cornucopia_async::StringSql,
+                T1: cornucopi_async::JsonSql,
+                T2: cornucopi_async::JsonSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
+                T5: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateCollectionParams<T1, T2, T3, T4, T5>,
                 std::pin::Pin<
@@ -3210,13 +3207,13 @@ WHERE
             }
         }
         pub fn delete_collection() -> DeleteCollectionStmt {
-            DeleteCollectionStmt(cornucopia_async::private::Stmt::new(
+            DeleteCollectionStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM collection
 WHERE organization_id = $1
       AND id = $2",
             ))
         }
-        pub struct DeleteCollectionStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteCollectionStmt(cornucopi_async::private::Stmt);
         impl DeleteCollectionStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -3229,7 +3226,7 @@ WHERE organization_id = $1
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeleteCollectionParams,
                 std::pin::Pin<
@@ -3253,15 +3250,15 @@ WHERE organization_id = $1
             }
         }
         pub fn associate_collection_sizes() -> AssociateCollectionSizesStmt {
-            AssociateCollectionSizesStmt(cornucopia_async::private::Stmt::new(
+            AssociateCollectionSizesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     associate_collection_sizes($1, $2)",
             ))
         }
-        pub struct AssociateCollectionSizesStmt(cornucopia_async::private::Stmt);
+        pub struct AssociateCollectionSizesStmt(cornucopi_async::private::Stmt);
         impl AssociateCollectionSizesStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 collection_id: &'a i32,
@@ -3276,8 +3273,8 @@ FROM
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<
                 'a,
                 AssociateCollectionSizesParams<T1>,
                 I32Query<'a, C, i32, 2>,
@@ -3293,18 +3290,18 @@ FROM
             }
         }
         pub fn replace_collection_pricelists() -> ReplaceCollectionPricelistsStmt {
-            ReplaceCollectionPricelistsStmt(cornucopia_async::private::Stmt::new(
+            ReplaceCollectionPricelistsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     replace_collection_pricelists($1, $2)",
             ))
         }
-        pub struct ReplaceCollectionPricelistsStmt(cornucopia_async::private::Stmt);
+        pub struct ReplaceCollectionPricelistsStmt(cornucopi_async::private::Stmt);
         impl ReplaceCollectionPricelistsStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::ArraySql<
+                T1: cornucopi_async::ArraySql<
                     Item = super::super::types::public::CollectionPricelistRelation,
                 >,
             >(
@@ -3325,11 +3322,11 @@ FROM
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::ArraySql<
+                T1: cornucopi_async::ArraySql<
                     Item = super::super::types::public::CollectionPricelistRelation,
                 >,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 ReplaceCollectionPricelistsParams<T1>,
                 I32Query<'a, C, i32, 2>,
@@ -3349,15 +3346,15 @@ FROM
             }
         }
         pub fn set_new_collection_styles() -> SetNewCollectionStylesStmt {
-            SetNewCollectionStylesStmt(cornucopia_async::private::Stmt::new(
+            SetNewCollectionStylesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     set_new_collection_styles($1, $2)",
             ))
         }
-        pub struct SetNewCollectionStylesStmt(cornucopia_async::private::Stmt);
+        pub struct SetNewCollectionStylesStmt(cornucopi_async::private::Stmt);
         impl SetNewCollectionStylesStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 collection_id: &'a i32,
@@ -3372,8 +3369,8 @@ FROM
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<
                 'a,
                 SetNewCollectionStylesParams<T1>,
                 I32Query<'a, C, i32, 2>,
@@ -3389,15 +3386,15 @@ FROM
             }
         }
         pub fn set_new_collection_colors() -> SetNewCollectionColorsStmt {
-            SetNewCollectionColorsStmt(cornucopia_async::private::Stmt::new(
+            SetNewCollectionColorsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     set_new_collection_colors($1, $2)",
             ))
         }
-        pub struct SetNewCollectionColorsStmt(cornucopia_async::private::Stmt);
+        pub struct SetNewCollectionColorsStmt(cornucopi_async::private::Stmt);
         impl SetNewCollectionColorsStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 collection_id: &'a i32,
@@ -3412,8 +3409,8 @@ FROM
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<
                 'a,
                 SetNewCollectionColorsParams<T1>,
                 I32Query<'a, C, i32, 2>,
@@ -3431,17 +3428,14 @@ FROM
     }
     pub mod color {
         #[derive(Debug)]
-        pub struct GetColorParams<T1: cornucopia_async::StringSql, T2: cornucopia_async::StringSql> {
+        pub struct GetColorParams<T1: cornucopi_async::StringSql, T2: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
             pub slug: Option<T2>,
         }
         #[derive(Debug)]
-        pub struct GetColorIdParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-        > {
+        pub struct GetColorIdParams<T1: cornucopi_async::StringSql, T2: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
@@ -3449,8 +3443,8 @@ FROM
         }
         #[derive(Debug)]
         pub struct GetColorRefsParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -3459,10 +3453,10 @@ FROM
         }
         #[derive(Debug)]
         pub struct InsertColorParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::JsonSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::JsonSql,
         > {
             pub style_id: i32,
             pub slug: T1,
@@ -3474,10 +3468,10 @@ FROM
         }
         #[derive(Debug)]
         pub struct UpdateColorParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::JsonSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::JsonSql,
         > {
             pub style_id: i32,
             pub slug: Option<T1>,
@@ -3579,13 +3573,13 @@ FROM
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct ColorRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> ColorRowBorrowed,
             mapper: fn(ColorRowBorrowed) -> T,
         }
@@ -3627,7 +3621,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -3637,7 +3631,7 @@ FROM
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -3679,7 +3673,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -3689,7 +3683,7 @@ FROM
         pub struct ColorRefsQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> ColorRefsBorrowed,
             mapper: fn(ColorRefsBorrowed) -> T,
         }
@@ -3731,7 +3725,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -3739,7 +3733,7 @@ FROM
             }
         }
         pub fn list_colors() -> ListColorsStmt {
-            ListColorsStmt(cornucopia_async::private::Stmt::new(
+            ListColorsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     color.*,
     jsonb_build_object(
@@ -3780,7 +3774,7 @@ ORDER BY
     color.number",
             ))
         }
-        pub struct ListColorsStmt(cornucopia_async::private::Stmt);
+        pub struct ListColorsStmt(cornucopi_async::private::Stmt);
         impl ListColorsStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -3810,7 +3804,7 @@ ORDER BY
             }
         }
         pub fn get_color() -> GetColorStmt {
-            GetColorStmt(cornucopia_async::private::Stmt::new(
+            GetColorStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     color.*,
     jsonb_build_object(
@@ -3853,13 +3847,13 @@ GROUP BY
     color.id",
             ))
         }
-        pub struct GetColorStmt(cornucopia_async::private::Stmt);
+        pub struct GetColorStmt(cornucopi_async::private::Stmt);
         impl GetColorStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -3893,10 +3887,10 @@ GROUP BY
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 GetColorParams<T1, T2>,
                 ColorRowQuery<'a, C, ColorRow, 4>,
@@ -3918,7 +3912,7 @@ GROUP BY
             }
         }
         pub fn get_color_id() -> GetColorIdStmt {
-            GetColorIdStmt(cornucopia_async::private::Stmt::new(
+            GetColorIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT color.id
 FROM
     color
@@ -3931,13 +3925,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetColorIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetColorIdStmt(cornucopi_async::private::Stmt);
         impl GetColorIdStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -3958,10 +3952,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, GetColorIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
+            cornucopi_async::Params<'a, GetColorIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
             for GetColorIdStmt
         {
             fn params(
@@ -3979,7 +3973,7 @@ WHERE
             }
         }
         pub fn get_color_refs() -> GetColorRefsStmt {
-            GetColorRefsStmt(cornucopia_async::private::Stmt::new(
+            GetColorRefsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     color.id,
     color.external_id,
@@ -3995,13 +3989,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetColorRefsStmt(cornucopia_async::private::Stmt);
+        pub struct GetColorRefsStmt(cornucopi_async::private::Stmt);
         impl GetColorRefsStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -4026,10 +4020,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 GetColorRefsParams<T1, T2>,
                 ColorRefsQuery<'a, C, ColorRefs, 4>,
@@ -4051,7 +4045,7 @@ WHERE
             }
         }
         pub fn insert_color() -> InsertColorStmt {
-            InsertColorStmt(cornucopia_async::private::Stmt::new(
+            InsertColorStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO color (
     style_id,
     slug,
@@ -4072,15 +4066,15 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertColorStmt(cornucopia_async::private::Stmt);
+        pub struct InsertColorStmt(cornucopi_async::private::Stmt);
         impl InsertColorStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -4112,12 +4106,12 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertColorParams<T1, T2, T3, T4>,
                 I32Query<'a, C, i32, 7>,
@@ -4142,7 +4136,7 @@ id",
             }
         }
         pub fn update_color() -> UpdateColorStmt {
-            UpdateColorStmt(cornucopia_async::private::Stmt::new(
+            UpdateColorStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 color
 SET
@@ -4155,15 +4149,15 @@ WHERE
     id = $6",
             ))
         }
-        pub struct UpdateColorStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateColorStmt(cornucopi_async::private::Stmt);
         impl UpdateColorStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -4183,12 +4177,12 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateColorParams<T1, T2, T3, T4>,
                 std::pin::Pin<
@@ -4220,13 +4214,13 @@ WHERE
             }
         }
         pub fn delete_color() -> DeleteColorStmt {
-            DeleteColorStmt(cornucopia_async::private::Stmt::new(
+            DeleteColorStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM color
 WHERE organization_id = $1
       AND id = $2",
             ))
         }
-        pub struct DeleteColorStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteColorStmt(cornucopi_async::private::Stmt);
         impl DeleteColorStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -4239,7 +4233,7 @@ WHERE organization_id = $1
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeleteColorParams,
                 std::pin::Pin<
@@ -4266,8 +4260,8 @@ WHERE organization_id = $1
     pub mod group {
         #[derive(Debug)]
         pub struct SelectGroupsParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -4276,8 +4270,8 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct SelectGroupSummariesParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -4285,10 +4279,7 @@ WHERE organization_id = $1
             pub slug: Option<T2>,
         }
         #[derive(Debug)]
-        pub struct GetGroupIdParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-        > {
+        pub struct GetGroupIdParams<T1: cornucopi_async::StringSql, T2: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
@@ -4296,10 +4287,10 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct InsertGroupParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::StringSql,
         > {
             pub slug: T1,
             pub external_id: Option<T2>,
@@ -4310,10 +4301,10 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct UpdateGroupParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::StringSql,
         > {
             pub slug: Option<T1>,
             pub external_id: Option<T2>,
@@ -4327,17 +4318,17 @@ WHERE organization_id = $1
             pub id: i32,
         }
         #[derive(Debug)]
-        pub struct ReplaceGroupUsersParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct ReplaceGroupUsersParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub group_id: i32,
             pub user_ids: T1,
         }
         #[derive(Debug)]
-        pub struct ReplaceGroupCollectionsParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct ReplaceGroupCollectionsParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub group_id: i32,
             pub collection_ids: T1,
         }
         #[derive(Debug)]
-        pub struct ReplaceGroupPricelistsParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct ReplaceGroupPricelistsParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub group_id: i32,
             pub pricelist_ids: T1,
         }
@@ -4449,13 +4440,13 @@ WHERE organization_id = $1
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct GroupRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> GroupRowBorrowed,
             mapper: fn(GroupRowBorrowed) -> T,
         }
@@ -4497,7 +4488,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -4507,7 +4498,7 @@ WHERE organization_id = $1
         pub struct GroupSummaryRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> GroupSummaryRowBorrowed,
             mapper: fn(GroupSummaryRowBorrowed) -> T,
         }
@@ -4552,7 +4543,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -4562,7 +4553,7 @@ WHERE organization_id = $1
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -4604,7 +4595,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -4612,7 +4603,7 @@ WHERE organization_id = $1
             }
         }
         pub fn select_groups() -> SelectGroupsStmt {
-            SelectGroupsStmt(cornucopia_async::private::Stmt::new(
+            SelectGroupsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     \"group\".*,
     coalesce(\"users\".json_data, '[]'::json) AS \"users\",
@@ -4744,13 +4735,13 @@ ORDER BY
     \"group\".updated_at DESC",
             ))
         }
-        pub struct SelectGroupsStmt(cornucopia_async::private::Stmt);
+        pub struct SelectGroupsStmt(cornucopi_async::private::Stmt);
         impl SelectGroupsStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -4784,10 +4775,10 @@ ORDER BY
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 SelectGroupsParams<T1, T2>,
                 GroupRowQuery<'a, C, GroupRow, 4>,
@@ -4809,7 +4800,7 @@ ORDER BY
             }
         }
         pub fn select_group_summaries() -> SelectGroupSummariesStmt {
-            SelectGroupSummariesStmt(cornucopia_async::private::Stmt::new(
+            SelectGroupSummariesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     \"group\".id,
     \"group\".slug,
@@ -4851,13 +4842,13 @@ ORDER BY
     \"group\".updated_at DESC",
             ))
         }
-        pub struct SelectGroupSummariesStmt(cornucopia_async::private::Stmt);
+        pub struct SelectGroupSummariesStmt(cornucopi_async::private::Stmt);
         impl SelectGroupSummariesStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -4887,10 +4878,10 @@ ORDER BY
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 SelectGroupSummariesParams<T1, T2>,
                 GroupSummaryRowQuery<'a, C, GroupSummaryRow, 4>,
@@ -4912,7 +4903,7 @@ ORDER BY
             }
         }
         pub fn get_group_id() -> GetGroupIdStmt {
-            GetGroupIdStmt(cornucopia_async::private::Stmt::new(
+            GetGroupIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT \"group\".id
 FROM
     \"group\"
@@ -4923,13 +4914,13 @@ WHERE
     AND ($4::text IS NULL OR \"group\".slug = $4)",
             ))
         }
-        pub struct GetGroupIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetGroupIdStmt(cornucopi_async::private::Stmt);
         impl GetGroupIdStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -4950,10 +4941,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, GetGroupIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
+            cornucopi_async::Params<'a, GetGroupIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
             for GetGroupIdStmt
         {
             fn params(
@@ -4971,7 +4962,7 @@ WHERE
             }
         }
         pub fn insert_group() -> InsertGroupStmt {
-            InsertGroupStmt(cornucopia_async::private::Stmt::new(
+            InsertGroupStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO \"group\" (
     slug,
     external_id,
@@ -4990,15 +4981,15 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertGroupStmt(cornucopia_async::private::Stmt);
+        pub struct InsertGroupStmt(cornucopi_async::private::Stmt);
         impl InsertGroupStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -5028,12 +5019,12 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertGroupParams<T1, T2, T3, T4>,
                 I32Query<'a, C, i32, 6>,
@@ -5057,7 +5048,7 @@ id",
             }
         }
         pub fn update_group() -> UpdateGroupStmt {
-            UpdateGroupStmt(cornucopia_async::private::Stmt::new(
+            UpdateGroupStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE \"group\"
 SET
     slug = coalesce($1, slug),
@@ -5068,15 +5059,15 @@ WHERE
     id = $5",
             ))
         }
-        pub struct UpdateGroupStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateGroupStmt(cornucopi_async::private::Stmt);
         impl UpdateGroupStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -5095,12 +5086,12 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateGroupParams<T1, T2, T3, T4>,
                 std::pin::Pin<
@@ -5131,14 +5122,14 @@ WHERE
             }
         }
         pub fn delete_group() -> DeleteGroupStmt {
-            DeleteGroupStmt(cornucopia_async::private::Stmt::new(
+            DeleteGroupStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM \"group\"
 WHERE
     organization_id = $1
     AND id = $2",
             ))
         }
-        pub struct DeleteGroupStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteGroupStmt(cornucopi_async::private::Stmt);
         impl DeleteGroupStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -5151,7 +5142,7 @@ WHERE
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeleteGroupParams,
                 std::pin::Pin<
@@ -5175,15 +5166,15 @@ WHERE
             }
         }
         pub fn replace_group_users() -> ReplaceGroupUsersStmt {
-            ReplaceGroupUsersStmt(cornucopia_async::private::Stmt::new(
+            ReplaceGroupUsersStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     replace_group_users($1, $2)",
             ))
         }
-        pub struct ReplaceGroupUsersStmt(cornucopia_async::private::Stmt);
+        pub struct ReplaceGroupUsersStmt(cornucopi_async::private::Stmt);
         impl ReplaceGroupUsersStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 group_id: &'a i32,
@@ -5198,8 +5189,8 @@ FROM
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<'a, ReplaceGroupUsersParams<T1>, I32Query<'a, C, i32, 2>, C>
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<'a, ReplaceGroupUsersParams<T1>, I32Query<'a, C, i32, 2>, C>
             for ReplaceGroupUsersStmt
         {
             fn params(
@@ -5211,15 +5202,15 @@ FROM
             }
         }
         pub fn replace_group_collections() -> ReplaceGroupCollectionsStmt {
-            ReplaceGroupCollectionsStmt(cornucopia_async::private::Stmt::new(
+            ReplaceGroupCollectionsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     replace_group_collections($1, $2)",
             ))
         }
-        pub struct ReplaceGroupCollectionsStmt(cornucopia_async::private::Stmt);
+        pub struct ReplaceGroupCollectionsStmt(cornucopi_async::private::Stmt);
         impl ReplaceGroupCollectionsStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 group_id: &'a i32,
@@ -5234,8 +5225,8 @@ FROM
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<
                 'a,
                 ReplaceGroupCollectionsParams<T1>,
                 I32Query<'a, C, i32, 2>,
@@ -5251,15 +5242,15 @@ FROM
             }
         }
         pub fn replace_group_pricelists() -> ReplaceGroupPricelistsStmt {
-            ReplaceGroupPricelistsStmt(cornucopia_async::private::Stmt::new(
+            ReplaceGroupPricelistsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     replace_group_pricelists($1, $2)",
             ))
         }
-        pub struct ReplaceGroupPricelistsStmt(cornucopia_async::private::Stmt);
+        pub struct ReplaceGroupPricelistsStmt(cornucopi_async::private::Stmt);
         impl ReplaceGroupPricelistsStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 group_id: &'a i32,
@@ -5274,8 +5265,8 @@ FROM
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<
                 'a,
                 ReplaceGroupPricelistsParams<T1>,
                 I32Query<'a, C, i32, 2>,
@@ -5291,11 +5282,11 @@ FROM
             }
         }
         pub fn ensure_superuser_access() -> EnsureSuperuserAccessStmt {
-            EnsureSuperuserAccessStmt(cornucopia_async::private::Stmt::new(
+            EnsureSuperuserAccessStmt(cornucopi_async::private::Stmt::new(
                 "SELECT ensure_superuser_access($1)",
             ))
         }
-        pub struct EnsureSuperuserAccessStmt(cornucopia_async::private::Stmt);
+        pub struct EnsureSuperuserAccessStmt(cornucopi_async::private::Stmt);
         impl EnsureSuperuserAccessStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -5314,27 +5305,27 @@ FROM
     }
     pub mod image {
         #[derive(Debug)]
-        pub struct GetImageIdParams<T1: cornucopia_async::StringSql> {
+        pub struct GetImageIdParams<T1: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
         }
         #[derive(Debug)]
-        pub struct GetImageUrlByExternalChecksumParams<T1: cornucopia_async::StringSql> {
+        pub struct GetImageUrlByExternalChecksumParams<T1: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub external_checksum: T1,
         }
         #[derive(Debug)]
-        pub struct GetImageParams<T1: cornucopia_async::StringSql> {
+        pub struct GetImageParams<T1: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
         }
         #[derive(Debug)]
         pub struct InsertImageParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
         > {
             pub color_id: i32,
             pub external_id: Option<T1>,
@@ -5346,9 +5337,9 @@ FROM
         }
         #[derive(Debug)]
         pub struct UpdateImageParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
         > {
             pub color_id: i32,
             pub external_id: Option<T1>,
@@ -5420,13 +5411,13 @@ FROM
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct ImageRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> ImageRowBorrowed,
             mapper: fn(ImageRowBorrowed) -> T,
         }
@@ -5468,7 +5459,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -5478,7 +5469,7 @@ FROM
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -5520,7 +5511,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -5530,7 +5521,7 @@ FROM
         pub struct StringQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> &str,
             mapper: fn(&str) -> T,
         }
@@ -5572,7 +5563,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -5580,7 +5571,7 @@ FROM
             }
         }
         pub fn list_images() -> ListImagesStmt {
-            ListImagesStmt(cornucopia_async::private::Stmt::new(
+            ListImagesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     image.*,
     jsonb_build_object(
@@ -5618,7 +5609,7 @@ ORDER BY
     image.id",
             ))
         }
-        pub struct ListImagesStmt(cornucopia_async::private::Stmt);
+        pub struct ListImagesStmt(cornucopi_async::private::Stmt);
         impl ListImagesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -5647,7 +5638,7 @@ ORDER BY
             }
         }
         pub fn get_image_id() -> GetImageIdStmt {
-            GetImageIdStmt(cornucopia_async::private::Stmt::new(
+            GetImageIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT image.id
 FROM
     image
@@ -5659,9 +5650,9 @@ WHERE
     )",
             ))
         }
-        pub struct GetImageIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetImageIdStmt(cornucopi_async::private::Stmt);
         impl GetImageIdStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::StringSql>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::StringSql>(
                 &'a mut self,
                 client: &'a C,
                 organization_id: &'a i32,
@@ -5677,8 +5668,8 @@ WHERE
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::StringSql>
-            cornucopia_async::Params<'a, GetImageIdParams<T1>, I32Query<'a, C, i32, 3>, C>
+        impl<'a, C: GenericClient, T1: cornucopi_async::StringSql>
+            cornucopi_async::Params<'a, GetImageIdParams<T1>, I32Query<'a, C, i32, 3>, C>
             for GetImageIdStmt
         {
             fn params(
@@ -5695,7 +5686,7 @@ WHERE
             }
         }
         pub fn get_image_url_by_external_checksum() -> GetImageUrlByExternalChecksumStmt {
-            GetImageUrlByExternalChecksumStmt(cornucopia_async::private::Stmt::new(
+            GetImageUrlByExternalChecksumStmt(cornucopi_async::private::Stmt::new(
                 "SELECT image.url
 FROM
     image
@@ -5704,9 +5695,9 @@ WHERE
     AND image.external_checksum = $2",
             ))
         }
-        pub struct GetImageUrlByExternalChecksumStmt(cornucopia_async::private::Stmt);
+        pub struct GetImageUrlByExternalChecksumStmt(cornucopi_async::private::Stmt);
         impl GetImageUrlByExternalChecksumStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::StringSql>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::StringSql>(
                 &'a mut self,
                 client: &'a C,
                 organization_id: &'a i32,
@@ -5721,8 +5712,8 @@ WHERE
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::StringSql>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient, T1: cornucopi_async::StringSql>
+            cornucopi_async::Params<
                 'a,
                 GetImageUrlByExternalChecksumParams<T1>,
                 StringQuery<'a, C, String, 2>,
@@ -5738,7 +5729,7 @@ WHERE
             }
         }
         pub fn get_image() -> GetImageStmt {
-            GetImageStmt(cornucopia_async::private::Stmt::new(
+            GetImageStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     image.*,
     jsonb_build_object(
@@ -5778,9 +5769,9 @@ WHERE
     )",
             ))
         }
-        pub struct GetImageStmt(cornucopia_async::private::Stmt);
+        pub struct GetImageStmt(cornucopi_async::private::Stmt);
         impl GetImageStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::StringSql>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::StringSql>(
                 &'a mut self,
                 client: &'a C,
                 organization_id: &'a i32,
@@ -5808,8 +5799,8 @@ WHERE
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::StringSql>
-            cornucopia_async::Params<'a, GetImageParams<T1>, ImageRowQuery<'a, C, ImageRow, 3>, C>
+        impl<'a, C: GenericClient, T1: cornucopi_async::StringSql>
+            cornucopi_async::Params<'a, GetImageParams<T1>, ImageRowQuery<'a, C, ImageRow, 3>, C>
             for GetImageStmt
         {
             fn params(
@@ -5826,7 +5817,7 @@ WHERE
             }
         }
         pub fn insert_image() -> InsertImageStmt {
-            InsertImageStmt(cornucopia_async::private::Stmt::new(
+            InsertImageStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO image (
     color_id,
     external_id,
@@ -5847,14 +5838,14 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertImageStmt(cornucopia_async::private::Stmt);
+        pub struct InsertImageStmt(cornucopi_async::private::Stmt);
         impl InsertImageStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -5886,11 +5877,11 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, InsertImageParams<T1, T2, T3>, I32Query<'a, C, i32, 7>, C>
+            cornucopi_async::Params<'a, InsertImageParams<T1, T2, T3>, I32Query<'a, C, i32, 7>, C>
             for InsertImageStmt
         {
             fn params(
@@ -5911,7 +5902,7 @@ id",
             }
         }
         pub fn update_image() -> UpdateImageStmt {
-            UpdateImageStmt(cornucopia_async::private::Stmt::new(
+            UpdateImageStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 image
 SET
@@ -5924,14 +5915,14 @@ WHERE
     id = $6",
             ))
         }
-        pub struct UpdateImageStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateImageStmt(cornucopi_async::private::Stmt);
         impl UpdateImageStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -5954,11 +5945,11 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateImageParams<T1, T2, T3>,
                 std::pin::Pin<
@@ -5990,13 +5981,13 @@ WHERE
             }
         }
         pub fn delete_image() -> DeleteImageStmt {
-            DeleteImageStmt(cornucopia_async::private::Stmt::new(
+            DeleteImageStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM image
 WHERE organization_id = $1
       AND id = $2",
             ))
         }
-        pub struct DeleteImageStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteImageStmt(cornucopi_async::private::Stmt);
         impl DeleteImageStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -6009,7 +6000,7 @@ WHERE organization_id = $1
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeleteImageParams,
                 std::pin::Pin<
@@ -6034,13 +6025,13 @@ WHERE organization_id = $1
         }
     }
     pub mod misc {
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -6082,7 +6073,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -6090,13 +6081,13 @@ WHERE organization_id = $1
             }
         }
         pub fn migrate_revision() -> MigrateRevisionStmt {
-            MigrateRevisionStmt(cornucopia_async::private::Stmt::new(
+            MigrateRevisionStmt(cornucopi_async::private::Stmt::new(
                 "SELECT migrations.revision
 FROM
     migrations",
             ))
         }
-        pub struct MigrateRevisionStmt(cornucopia_async::private::Stmt);
+        pub struct MigrateRevisionStmt(cornucopi_async::private::Stmt);
         impl MigrateRevisionStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -6112,11 +6103,11 @@ FROM
             }
         }
         pub fn set_migrate_revision() -> SetMigrateRevisionStmt {
-            SetMigrateRevisionStmt(cornucopia_async::private::Stmt::new(
+            SetMigrateRevisionStmt(cornucopi_async::private::Stmt::new(
                 "SELECT set_migrate_revision($1)",
             ))
         }
-        pub struct SetMigrateRevisionStmt(cornucopia_async::private::Stmt);
+        pub struct SetMigrateRevisionStmt(cornucopi_async::private::Stmt);
         impl SetMigrateRevisionStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -6136,8 +6127,8 @@ FROM
     pub mod organization {
         #[derive(Debug)]
         pub struct InsertOrganizationParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub name: T1,
             pub logo_url: Option<T2>,
@@ -6145,8 +6136,8 @@ FROM
         }
         #[derive(Debug)]
         pub struct UpdateOrganizationParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub name: Option<T1>,
             pub logo_url: Option<T2>,
@@ -6190,13 +6181,13 @@ FROM
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct OrganizationRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> OrganizationRowBorrowed,
             mapper: fn(OrganizationRowBorrowed) -> T,
         }
@@ -6241,7 +6232,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -6251,7 +6242,7 @@ FROM
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -6293,7 +6284,7 @@ FROM
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -6301,7 +6292,7 @@ FROM
             }
         }
         pub fn get_organization() -> GetOrganizationStmt {
-            GetOrganizationStmt(cornucopia_async::private::Stmt::new(
+            GetOrganizationStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     organization
@@ -6309,7 +6300,7 @@ WHERE
     organization.id = $1",
             ))
         }
-        pub struct GetOrganizationStmt(cornucopia_async::private::Stmt);
+        pub struct GetOrganizationStmt(cornucopi_async::private::Stmt);
         impl GetOrganizationStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -6333,7 +6324,7 @@ WHERE
             }
         }
         pub fn get_organization_id() -> GetOrganizationIdStmt {
-            GetOrganizationIdStmt(cornucopia_async::private::Stmt::new(
+            GetOrganizationIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT organization.id
 FROM
     organization
@@ -6341,7 +6332,7 @@ WHERE
     organization.id = $1",
             ))
         }
-        pub struct GetOrganizationIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetOrganizationIdStmt(cornucopi_async::private::Stmt);
         impl GetOrganizationIdStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -6358,7 +6349,7 @@ WHERE
             }
         }
         pub fn insert_organization() -> InsertOrganizationStmt {
-            InsertOrganizationStmt(cornucopia_async::private::Stmt::new(
+            InsertOrganizationStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO organization (
     name,
     logo_url,
@@ -6371,13 +6362,13 @@ RETURNING
 *",
             ))
         }
-        pub struct InsertOrganizationStmt(cornucopia_async::private::Stmt);
+        pub struct InsertOrganizationStmt(cornucopi_async::private::Stmt);
         impl InsertOrganizationStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -6404,10 +6395,10 @@ RETURNING
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertOrganizationParams<T1, T2>,
                 OrganizationRowQuery<'a, C, OrganizationRow, 3>,
@@ -6423,7 +6414,7 @@ RETURNING
             }
         }
         pub fn update_organization() -> UpdateOrganizationStmt {
-            UpdateOrganizationStmt(cornucopia_async::private::Stmt::new(
+            UpdateOrganizationStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 organization
 SET
@@ -6435,13 +6426,13 @@ RETURNING
 *",
             ))
         }
-        pub struct UpdateOrganizationStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateOrganizationStmt(cornucopi_async::private::Stmt);
         impl UpdateOrganizationStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -6468,10 +6459,10 @@ RETURNING
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateOrganizationParams<T1, T2>,
                 OrganizationRowQuery<'a, C, OrganizationRow, 3>,
@@ -6487,14 +6478,14 @@ RETURNING
             }
         }
         pub fn delete_organization() -> DeleteOrganizationStmt {
-            DeleteOrganizationStmt(cornucopia_async::private::Stmt::new(
+            DeleteOrganizationStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM organization
 WHERE id = $1
 RETURNING
 id",
             ))
         }
-        pub struct DeleteOrganizationStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteOrganizationStmt(cornucopi_async::private::Stmt);
         impl DeleteOrganizationStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -6511,7 +6502,7 @@ id",
             }
         }
         pub fn list_user_organizations() -> ListUserOrganizationsStmt {
-            ListUserOrganizationsStmt(cornucopia_async::private::Stmt::new(
+            ListUserOrganizationsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT organization.*
 FROM
     organization
@@ -6521,7 +6512,7 @@ WHERE
     user_organization.user_id = $1",
             ))
         }
-        pub struct ListUserOrganizationsStmt(cornucopia_async::private::Stmt);
+        pub struct ListUserOrganizationsStmt(cornucopi_async::private::Stmt);
         impl ListUserOrganizationsStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -6548,25 +6539,25 @@ WHERE
     pub mod price {
         #[derive(Debug)]
         pub struct SelectPricesParams<
-            T1: cornucopia_async::ArraySql<Item = i32>,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::ArraySql<Item = T2>,
+            T1: cornucopi_async::ArraySql<Item = i32>,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::ArraySql<Item = T2>,
         > {
             pub organization_id: i32,
             pub ids: Option<T1>,
             pub external_ids: Option<T3>,
         }
         #[derive(Debug)]
-        pub struct GetPriceIdParams<T1: cornucopia_async::StringSql> {
+        pub struct GetPriceIdParams<T1: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
         }
         #[derive(Debug)]
         pub struct InsertPriceParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
         > {
             pub r#type: super::super::types::public::Pricetype,
             pub uom: Option<T1>,
@@ -6582,9 +6573,9 @@ WHERE
         }
         #[derive(Debug)]
         pub struct UpdatePriceParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
         > {
             pub r#type: Option<super::super::types::public::Pricetype>,
             pub uom: Option<T1>,
@@ -6680,13 +6671,13 @@ WHERE
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct PriceRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> PriceRowBorrowed,
             mapper: fn(PriceRowBorrowed) -> T,
         }
@@ -6728,7 +6719,7 @@ WHERE
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -6738,7 +6729,7 @@ WHERE
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -6780,7 +6771,7 @@ WHERE
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -6788,7 +6779,7 @@ WHERE
             }
         }
         pub fn select_prices() -> SelectPricesStmt {
-            SelectPricesStmt(cornucopia_async::private::Stmt::new(
+            SelectPricesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     price.*,
     jsonb_build_object(
@@ -6825,14 +6816,14 @@ ORDER BY
     price.updated_at DESC",
             ))
         }
-        pub struct SelectPricesStmt(cornucopia_async::private::Stmt);
+        pub struct SelectPricesStmt(cornucopi_async::private::Stmt);
         impl SelectPricesStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::ArraySql<Item = i32>,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::ArraySql<Item = T2>,
+                T1: cornucopi_async::ArraySql<Item = i32>,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::ArraySql<Item = T2>,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -6869,11 +6860,11 @@ ORDER BY
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::ArraySql<Item = i32>,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::ArraySql<Item = T2>,
+                T1: cornucopi_async::ArraySql<Item = i32>,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::ArraySql<Item = T2>,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 SelectPricesParams<T1, T2, T3>,
                 PriceRowQuery<'a, C, PriceRow, 3>,
@@ -6894,7 +6885,7 @@ ORDER BY
             }
         }
         pub fn get_price_id() -> GetPriceIdStmt {
-            GetPriceIdStmt(cornucopia_async::private::Stmt::new(
+            GetPriceIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT price.id
 FROM
     price
@@ -6904,9 +6895,9 @@ WHERE
     AND ($3::text IS NULL OR price.external_id = $3)",
             ))
         }
-        pub struct GetPriceIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetPriceIdStmt(cornucopi_async::private::Stmt);
         impl GetPriceIdStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::StringSql>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::StringSql>(
                 &'a mut self,
                 client: &'a C,
                 organization_id: &'a i32,
@@ -6922,8 +6913,8 @@ WHERE
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::StringSql>
-            cornucopia_async::Params<'a, GetPriceIdParams<T1>, I32Query<'a, C, i32, 3>, C>
+        impl<'a, C: GenericClient, T1: cornucopi_async::StringSql>
+            cornucopi_async::Params<'a, GetPriceIdParams<T1>, I32Query<'a, C, i32, 3>, C>
             for GetPriceIdStmt
         {
             fn params(
@@ -6940,7 +6931,7 @@ WHERE
             }
         }
         pub fn insert_price() -> InsertPriceStmt {
-            InsertPriceStmt(cornucopia_async::private::Stmt::new(
+            InsertPriceStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO price (
     type,
     uom,
@@ -6969,14 +6960,14 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertPriceStmt(cornucopia_async::private::Stmt);
+        pub struct InsertPriceStmt(cornucopi_async::private::Stmt);
         impl InsertPriceStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -7016,11 +7007,11 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, InsertPriceParams<T1, T2, T3>, I32Query<'a, C, i32, 11>, C>
+            cornucopi_async::Params<'a, InsertPriceParams<T1, T2, T3>, I32Query<'a, C, i32, 11>, C>
             for InsertPriceStmt
         {
             fn params(
@@ -7045,7 +7036,7 @@ id",
             }
         }
         pub fn update_price() -> UpdatePriceStmt {
-            UpdatePriceStmt(cornucopia_async::private::Stmt::new(
+            UpdatePriceStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 price
 SET
@@ -7062,14 +7053,14 @@ WHERE
     id = $10",
             ))
         }
-        pub struct UpdatePriceStmt(cornucopia_async::private::Stmt);
+        pub struct UpdatePriceStmt(cornucopi_async::private::Stmt);
         impl UpdatePriceStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -7107,11 +7098,11 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdatePriceParams<T1, T2, T3>,
                 std::pin::Pin<
@@ -7147,13 +7138,13 @@ WHERE
             }
         }
         pub fn delete_price() -> DeletePriceStmt {
-            DeletePriceStmt(cornucopia_async::private::Stmt::new(
+            DeletePriceStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM price
 WHERE organization_id = $1
       AND id = $2",
             ))
         }
-        pub struct DeletePriceStmt(cornucopia_async::private::Stmt);
+        pub struct DeletePriceStmt(cornucopi_async::private::Stmt);
         impl DeletePriceStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -7166,7 +7157,7 @@ WHERE organization_id = $1
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeletePriceParams,
                 std::pin::Pin<
@@ -7203,8 +7194,8 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct GetPricelistParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -7213,8 +7204,8 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct GetPricelistIdParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -7223,9 +7214,9 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct InsertPricelistParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
         > {
             pub name: T1,
             pub slug: T2,
@@ -7235,9 +7226,9 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct UpdatePricelistParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
         > {
             pub name: Option<T1>,
             pub slug: Option<T2>,
@@ -7330,13 +7321,13 @@ WHERE organization_id = $1
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct PriceListRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> PriceListRowBorrowed,
             mapper: fn(PriceListRowBorrowed) -> T,
         }
@@ -7381,7 +7372,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -7391,7 +7382,7 @@ WHERE organization_id = $1
         pub struct PriceListSummaryRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> PriceListSummaryRowBorrowed,
             mapper: fn(PriceListSummaryRowBorrowed) -> T,
         }
@@ -7436,7 +7427,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -7446,7 +7437,7 @@ WHERE organization_id = $1
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -7488,7 +7479,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -7496,7 +7487,7 @@ WHERE organization_id = $1
             }
         }
         pub fn list_pricelists() -> ListPricelistsStmt {
-            ListPricelistsStmt(cornucopia_async::private::Stmt::new(
+            ListPricelistsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT pricelist.*
 FROM
     pricelist
@@ -7515,7 +7506,7 @@ ORDER BY
     pricelist.name",
             ))
         }
-        pub struct ListPricelistsStmt(cornucopia_async::private::Stmt);
+        pub struct ListPricelistsStmt(cornucopi_async::private::Stmt);
         impl ListPricelistsStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -7542,7 +7533,7 @@ ORDER BY
             }
         }
         impl<'a, C: GenericClient>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 ListPricelistsParams,
                 PriceListRowQuery<'a, C, PriceListRow, 2>,
@@ -7558,7 +7549,7 @@ ORDER BY
             }
         }
         pub fn list_pricelist_summaries() -> ListPricelistSummariesStmt {
-            ListPricelistSummariesStmt(cornucopia_async::private::Stmt::new(
+            ListPricelistSummariesStmt(cornucopi_async::private::Stmt::new(
                 "
 SELECT
     pricelist.id,
@@ -7582,7 +7573,7 @@ ORDER BY
     pricelist.name",
             ))
         }
-        pub struct ListPricelistSummariesStmt(cornucopia_async::private::Stmt);
+        pub struct ListPricelistSummariesStmt(cornucopi_async::private::Stmt);
         impl ListPricelistSummariesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -7605,7 +7596,7 @@ ORDER BY
             }
         }
         impl<'a, C: GenericClient>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 ListPricelistSummariesParams,
                 PriceListSummaryRowQuery<'a, C, PriceListSummaryRow, 2>,
@@ -7621,7 +7612,7 @@ ORDER BY
             }
         }
         pub fn get_pricelist() -> GetPricelistStmt {
-            GetPricelistStmt(cornucopia_async::private::Stmt::new(
+            GetPricelistStmt(cornucopi_async::private::Stmt::new(
                 "SELECT pricelist.*
 FROM
     pricelist
@@ -7634,13 +7625,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetPricelistStmt(cornucopia_async::private::Stmt);
+        pub struct GetPricelistStmt(cornucopi_async::private::Stmt);
         impl GetPricelistStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -7670,10 +7661,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 GetPricelistParams<T1, T2>,
                 PriceListRowQuery<'a, C, PriceListRow, 4>,
@@ -7695,7 +7686,7 @@ WHERE
             }
         }
         pub fn get_pricelist_id() -> GetPricelistIdStmt {
-            GetPricelistIdStmt(cornucopia_async::private::Stmt::new(
+            GetPricelistIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT pricelist.id
 FROM
     pricelist
@@ -7708,13 +7699,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetPricelistIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetPricelistIdStmt(cornucopi_async::private::Stmt);
         impl GetPricelistIdStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -7735,10 +7726,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, GetPricelistIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
+            cornucopi_async::Params<'a, GetPricelistIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
             for GetPricelistIdStmt
         {
             fn params(
@@ -7756,7 +7747,7 @@ WHERE
             }
         }
         pub fn insert_pricelist() -> InsertPricelistStmt {
-            InsertPricelistStmt(cornucopia_async::private::Stmt::new(
+            InsertPricelistStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO pricelist (
     name,
     slug,
@@ -7773,14 +7764,14 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertPricelistStmt(cornucopia_async::private::Stmt);
+        pub struct InsertPricelistStmt(cornucopi_async::private::Stmt);
         impl InsertPricelistStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -7802,11 +7793,11 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertPricelistParams<T1, T2, T3>,
                 I32Query<'a, C, i32, 5>,
@@ -7829,7 +7820,7 @@ id",
             }
         }
         pub fn update_pricelist() -> UpdatePricelistStmt {
-            UpdatePricelistStmt(cornucopia_async::private::Stmt::new(
+            UpdatePricelistStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE pricelist
 SET
     name = coalesce($1, name),
@@ -7839,14 +7830,14 @@ WHERE
     id = $4",
             ))
         }
-        pub struct UpdatePricelistStmt(cornucopia_async::private::Stmt);
+        pub struct UpdatePricelistStmt(cornucopi_async::private::Stmt);
         impl UpdatePricelistStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -7862,11 +7853,11 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdatePricelistParams<T1, T2, T3>,
                 std::pin::Pin<
@@ -7896,14 +7887,14 @@ WHERE
             }
         }
         pub fn delete_pricelist() -> DeletePricelistStmt {
-            DeletePricelistStmt(cornucopia_async::private::Stmt::new(
+            DeletePricelistStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM pricelist
 WHERE
     organization_id = $1
     AND id = $2",
             ))
         }
-        pub struct DeletePricelistStmt(cornucopia_async::private::Stmt);
+        pub struct DeletePricelistStmt(cornucopi_async::private::Stmt);
         impl DeletePricelistStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -7916,7 +7907,7 @@ WHERE
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeletePricelistParams,
                 std::pin::Pin<
@@ -7940,7 +7931,7 @@ WHERE
             }
         }
         pub fn allowed_pricelist_ids() -> AllowedPricelistIdsStmt {
-            AllowedPricelistIdsStmt(cornucopia_async::private::Stmt::new(
+            AllowedPricelistIdsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT DISTINCT group_pricelist.pricelist_id FROM group_pricelist
 INNER JOIN group_user ON group_user.group_id = group_pricelist.group_id
 INNER JOIN user_organization ON user_organization.user_id = group_user.user_id
@@ -7949,7 +7940,7 @@ WHERE
     AND group_user.user_id = $2",
             ))
         }
-        pub struct AllowedPricelistIdsStmt(cornucopia_async::private::Stmt);
+        pub struct AllowedPricelistIdsStmt(cornucopi_async::private::Stmt);
         impl AllowedPricelistIdsStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -7967,7 +7958,7 @@ WHERE
             }
         }
         impl<'a, C: GenericClient>
-            cornucopia_async::Params<'a, AllowedPricelistIdsParams, I32Query<'a, C, i32, 2>, C>
+            cornucopi_async::Params<'a, AllowedPricelistIdsParams, I32Query<'a, C, i32, 2>, C>
             for AllowedPricelistIdsStmt
         {
             fn params(
@@ -7981,14 +7972,14 @@ WHERE
     }
     pub mod size {
         #[derive(Debug)]
-        pub struct GetSizeIdParams<T1: cornucopia_async::StringSql, T2: cornucopia_async::StringSql> {
+        pub struct GetSizeIdParams<T1: cornucopi_async::StringSql, T2: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
             pub slug: Option<T2>,
         }
         #[derive(Debug)]
-        pub struct GetSizeParams<T1: cornucopia_async::StringSql, T2: cornucopia_async::StringSql> {
+        pub struct GetSizeParams<T1: cornucopi_async::StringSql, T2: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
@@ -7996,12 +7987,12 @@ WHERE
         }
         #[derive(Debug)]
         pub struct InsertSizeParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::JsonSql,
-            T5: cornucopia_async::StringSql,
-            T6: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::JsonSql,
+            T5: cornucopi_async::StringSql,
+            T6: cornucopi_async::StringSql,
         > {
             pub color_id: i32,
             pub slug: T1,
@@ -8017,12 +8008,12 @@ WHERE
         }
         #[derive(Debug)]
         pub struct UpdateSizeParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::JsonSql,
-            T5: cornucopia_async::StringSql,
-            T6: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::JsonSql,
+            T5: cornucopi_async::StringSql,
+            T6: cornucopi_async::StringSql,
         > {
             pub color_id: i32,
             pub slug: Option<T1>,
@@ -8119,13 +8110,13 @@ WHERE
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct SizeRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> SizeRowBorrowed,
             mapper: fn(SizeRowBorrowed) -> T,
         }
@@ -8167,7 +8158,7 @@ WHERE
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -8177,7 +8168,7 @@ WHERE
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -8219,7 +8210,7 @@ WHERE
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -8227,7 +8218,7 @@ WHERE
             }
         }
         pub fn list_sizes() -> ListSizesStmt {
-            ListSizesStmt(cornucopia_async::private::Stmt::new(
+            ListSizesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     size.*,
     jsonb_build_object(
@@ -8265,7 +8256,7 @@ ORDER BY
     size.id",
             ))
         }
-        pub struct ListSizesStmt(cornucopia_async::private::Stmt);
+        pub struct ListSizesStmt(cornucopi_async::private::Stmt);
         impl ListSizesStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -8299,7 +8290,7 @@ ORDER BY
             }
         }
         pub fn get_size_id() -> GetSizeIdStmt {
-            GetSizeIdStmt(cornucopia_async::private::Stmt::new(
+            GetSizeIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT size.id
 FROM
     size
@@ -8312,13 +8303,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetSizeIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetSizeIdStmt(cornucopi_async::private::Stmt);
         impl GetSizeIdStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -8339,10 +8330,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, GetSizeIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
+            cornucopi_async::Params<'a, GetSizeIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
             for GetSizeIdStmt
         {
             fn params(
@@ -8360,7 +8351,7 @@ WHERE
             }
         }
         pub fn get_size() -> GetSizeStmt {
-            GetSizeStmt(cornucopia_async::private::Stmt::new(
+            GetSizeStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     size.*,
     jsonb_build_object(
@@ -8401,13 +8392,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetSizeStmt(cornucopia_async::private::Stmt);
+        pub struct GetSizeStmt(cornucopi_async::private::Stmt);
         impl GetSizeStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -8445,10 +8436,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, GetSizeParams<T1, T2>, SizeRowQuery<'a, C, SizeRow, 4>, C>
+            cornucopi_async::Params<'a, GetSizeParams<T1, T2>, SizeRowQuery<'a, C, SizeRow, 4>, C>
             for GetSizeStmt
         {
             fn params(
@@ -8466,7 +8457,7 @@ WHERE
             }
         }
         pub fn insert_size() -> InsertSizeStmt {
-            InsertSizeStmt(cornucopia_async::private::Stmt::new(
+            InsertSizeStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO size (
     color_id,
     slug,
@@ -8495,17 +8486,17 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertSizeStmt(cornucopia_async::private::Stmt);
+        pub struct InsertSizeStmt(cornucopi_async::private::Stmt);
         impl InsertSizeStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
-                T5: cornucopia_async::StringSql,
-                T6: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
+                T5: cornucopi_async::StringSql,
+                T6: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -8545,14 +8536,14 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
-                T5: cornucopia_async::StringSql,
-                T6: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
+                T5: cornucopi_async::StringSql,
+                T6: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertSizeParams<T1, T2, T3, T4, T5, T6>,
                 I32Query<'a, C, i32, 11>,
@@ -8581,7 +8572,7 @@ id",
             }
         }
         pub fn update_size() -> UpdateSizeStmt {
-            UpdateSizeStmt(cornucopia_async::private::Stmt::new(
+            UpdateSizeStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 size
 SET
@@ -8599,17 +8590,17 @@ WHERE
     id = $11",
             ))
         }
-        pub struct UpdateSizeStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateSizeStmt(cornucopi_async::private::Stmt);
         impl UpdateSizeStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
-                T5: cornucopia_async::StringSql,
-                T6: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
+                T5: cornucopi_async::StringSql,
+                T6: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -8649,14 +8640,14 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
-                T5: cornucopia_async::StringSql,
-                T6: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
+                T5: cornucopi_async::StringSql,
+                T6: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateSizeParams<T1, T2, T3, T4, T5, T6>,
                 std::pin::Pin<
@@ -8693,13 +8684,13 @@ WHERE
             }
         }
         pub fn delete_size() -> DeleteSizeStmt {
-            DeleteSizeStmt(cornucopia_async::private::Stmt::new(
+            DeleteSizeStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM size
 WHERE organization_id = $1
       AND id = $2",
             ))
         }
-        pub struct DeleteSizeStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteSizeStmt(cornucopi_async::private::Stmt);
         impl DeleteSizeStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -8712,7 +8703,7 @@ WHERE organization_id = $1
             }
         }
         impl<'a, C: GenericClient + Send + Sync>
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 DeleteSizeParams,
                 std::pin::Pin<
@@ -8738,16 +8729,16 @@ WHERE organization_id = $1
     }
     pub mod style {
         #[derive(Debug)]
-        pub struct SelectStylesParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct SelectStylesParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub organization_id: i32,
             pub ids: Option<T1>,
         }
         #[derive(Debug)]
         pub struct SelectCollectionStylesNestedParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::ArraySql<Item = T1>,
-            T3: cornucopia_async::ArraySql<Item = i32>,
-            T4: cornucopia_async::ArraySql<Item = i32>,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::ArraySql<Item = T1>,
+            T3: cornucopi_async::ArraySql<Item = i32>,
+            T4: cornucopi_async::ArraySql<Item = i32>,
         > {
             pub collection_id: i32,
             pub organization_id: i32,
@@ -8757,11 +8748,11 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct SelectNestedStyleSummariesParams<
-            T1: cornucopia_async::ArraySql<Item = i32>,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::ArraySql<Item = T2>,
-            T4: cornucopia_async::ArraySql<Item = i32>,
-            T5: cornucopia_async::ArraySql<Item = i32>,
+            T1: cornucopi_async::ArraySql<Item = i32>,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::ArraySql<Item = T2>,
+            T4: cornucopi_async::ArraySql<Item = i32>,
+            T5: cornucopi_async::ArraySql<Item = i32>,
         > {
             pub attributes: Option<T1>,
             pub organization_id: i32,
@@ -8770,10 +8761,7 @@ WHERE organization_id = $1
             pub categories: Option<T5>,
         }
         #[derive(Debug)]
-        pub struct GetStyleIdParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-        > {
+        pub struct GetStyleIdParams<T1: cornucopi_async::StringSql, T2: cornucopi_async::StringSql> {
             pub organization_id: i32,
             pub id: Option<i32>,
             pub external_id: Option<T1>,
@@ -8781,8 +8769,8 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct GetStyleRefsParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub id: Option<i32>,
@@ -8791,13 +8779,13 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct InsertStyleParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::JsonSql,
-            T5: cornucopia_async::JsonSql,
-            T6: cornucopia_async::StringSql,
-            T7: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::JsonSql,
+            T5: cornucopi_async::JsonSql,
+            T6: cornucopi_async::StringSql,
+            T7: cornucopi_async::StringSql,
         > {
             pub organization_id: i32,
             pub slug: T1,
@@ -8815,13 +8803,13 @@ WHERE organization_id = $1
         }
         #[derive(Debug)]
         pub struct UpdateStyleParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::JsonSql,
-            T5: cornucopia_async::JsonSql,
-            T6: cornucopia_async::StringSql,
-            T7: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::JsonSql,
+            T5: cornucopi_async::JsonSql,
+            T6: cornucopi_async::StringSql,
+            T7: cornucopi_async::StringSql,
         > {
             pub slug: Option<T1>,
             pub external_id: Option<T2>,
@@ -9081,13 +9069,13 @@ WHERE organization_id = $1
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct StyleRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> StyleRowBorrowed,
             mapper: fn(StyleRowBorrowed) -> T,
         }
@@ -9129,7 +9117,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -9139,7 +9127,7 @@ WHERE organization_id = $1
         pub struct NestedStyleRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> NestedStyleRowBorrowed,
             mapper: fn(NestedStyleRowBorrowed) -> T,
         }
@@ -9184,7 +9172,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -9194,7 +9182,7 @@ WHERE organization_id = $1
         pub struct NestedStyleSummaryRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> NestedStyleSummaryRowBorrowed,
             mapper: fn(NestedStyleSummaryRowBorrowed) -> T,
         }
@@ -9239,7 +9227,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -9249,7 +9237,7 @@ WHERE organization_id = $1
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -9291,7 +9279,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -9301,7 +9289,7 @@ WHERE organization_id = $1
         pub struct StyleRefsQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> StyleRefsBorrowed,
             mapper: fn(StyleRefsBorrowed) -> T,
         }
@@ -9343,7 +9331,7 @@ WHERE organization_id = $1
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -9351,7 +9339,7 @@ WHERE organization_id = $1
             }
         }
         pub fn select_styles() -> SelectStylesStmt {
-            SelectStylesStmt(cornucopia_async::private::Stmt::new(
+            SelectStylesStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     style.*,
     coalesce(joined_categories.json_data, '[]') AS \"categories\",
@@ -9423,9 +9411,9 @@ ORDER BY
     style.number",
             ))
         }
-        pub struct SelectStylesStmt(cornucopia_async::private::Stmt);
+        pub struct SelectStylesStmt(cornucopi_async::private::Stmt);
         impl SelectStylesStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 organization_id: &'a i32,
@@ -9459,8 +9447,8 @@ ORDER BY
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<
                 'a,
                 SelectStylesParams<T1>,
                 StyleRowQuery<'a, C, StyleRow, 2>,
@@ -9476,7 +9464,7 @@ ORDER BY
             }
         }
         pub fn select_collection_styles_nested() -> SelectCollectionStylesNestedStmt {
-            SelectCollectionStylesNestedStmt(cornucopia_async::private::Stmt::new(
+            SelectCollectionStylesNestedStmt(cornucopi_async::private::Stmt::new(
                 "WITH new_styles AS (
     SELECT
         new_collection_style.style_id,
@@ -9743,15 +9731,15 @@ ORDER BY
     style.number",
             ))
         }
-        pub struct SelectCollectionStylesNestedStmt(cornucopia_async::private::Stmt);
+        pub struct SelectCollectionStylesNestedStmt(cornucopi_async::private::Stmt);
         impl SelectCollectionStylesNestedStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::ArraySql<Item = T1>,
-                T3: cornucopia_async::ArraySql<Item = i32>,
-                T4: cornucopia_async::ArraySql<Item = i32>,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::ArraySql<Item = T1>,
+                T3: cornucopi_async::ArraySql<Item = i32>,
+                T4: cornucopi_async::ArraySql<Item = i32>,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -9801,12 +9789,12 @@ ORDER BY
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::ArraySql<Item = T1>,
-                T3: cornucopia_async::ArraySql<Item = i32>,
-                T4: cornucopia_async::ArraySql<Item = i32>,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::ArraySql<Item = T1>,
+                T3: cornucopi_async::ArraySql<Item = i32>,
+                T4: cornucopi_async::ArraySql<Item = i32>,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 SelectCollectionStylesNestedParams<T1, T2, T3, T4>,
                 NestedStyleRowQuery<'a, C, NestedStyleRow, 5>,
@@ -9829,7 +9817,7 @@ ORDER BY
             }
         }
         pub fn select_nested_style_summaries() -> SelectNestedStyleSummariesStmt {
-            SelectNestedStyleSummariesStmt(cornucopia_async::private::Stmt::new(
+            SelectNestedStyleSummariesStmt(cornucopi_async::private::Stmt::new(
                 "WITH attribute_matches AS (
     SELECT styles_matching_attributes($1)
 )
@@ -9930,16 +9918,16 @@ ORDER BY
     style.number",
             ))
         }
-        pub struct SelectNestedStyleSummariesStmt(cornucopia_async::private::Stmt);
+        pub struct SelectNestedStyleSummariesStmt(cornucopi_async::private::Stmt);
         impl SelectNestedStyleSummariesStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::ArraySql<Item = i32>,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::ArraySql<Item = T2>,
-                T4: cornucopia_async::ArraySql<Item = i32>,
-                T5: cornucopia_async::ArraySql<Item = i32>,
+                T1: cornucopi_async::ArraySql<Item = i32>,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::ArraySql<Item = T2>,
+                T4: cornucopi_async::ArraySql<Item = i32>,
+                T5: cornucopi_async::ArraySql<Item = i32>,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -9966,13 +9954,13 @@ ORDER BY
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::ArraySql<Item = i32>,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::ArraySql<Item = T2>,
-                T4: cornucopia_async::ArraySql<Item = i32>,
-                T5: cornucopia_async::ArraySql<Item = i32>,
+                T1: cornucopi_async::ArraySql<Item = i32>,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::ArraySql<Item = T2>,
+                T4: cornucopi_async::ArraySql<Item = i32>,
+                T5: cornucopi_async::ArraySql<Item = i32>,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 SelectNestedStyleSummariesParams<T1, T2, T3, T4, T5>,
                 NestedStyleSummaryRowQuery<'a, C, NestedStyleSummaryRow, 5>,
@@ -9995,7 +9983,7 @@ ORDER BY
             }
         }
         pub fn get_style_id() -> GetStyleIdStmt {
-            GetStyleIdStmt(cornucopia_async::private::Stmt::new(
+            GetStyleIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT style.id
 FROM
     style
@@ -10010,13 +9998,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetStyleIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetStyleIdStmt(cornucopi_async::private::Stmt);
         impl GetStyleIdStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -10037,10 +10025,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<'a, GetStyleIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
+            cornucopi_async::Params<'a, GetStyleIdParams<T1, T2>, I32Query<'a, C, i32, 4>, C>
             for GetStyleIdStmt
         {
             fn params(
@@ -10058,7 +10046,7 @@ WHERE
             }
         }
         pub fn get_style_refs() -> GetStyleRefsStmt {
-            GetStyleRefsStmt(cornucopia_async::private::Stmt::new(
+            GetStyleRefsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT
     style.id,
     style.external_id,
@@ -10076,13 +10064,13 @@ WHERE
     )",
             ))
         }
-        pub struct GetStyleRefsStmt(cornucopia_async::private::Stmt);
+        pub struct GetStyleRefsStmt(cornucopi_async::private::Stmt);
         impl GetStyleRefsStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -10107,10 +10095,10 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 GetStyleRefsParams<T1, T2>,
                 StyleRefsQuery<'a, C, StyleRefs, 4>,
@@ -10132,7 +10120,7 @@ WHERE
             }
         }
         pub fn insert_style() -> InsertStyleStmt {
-            InsertStyleStmt(cornucopia_async::private::Stmt::new(
+            InsertStyleStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO
 style (
     organization_id,
@@ -10169,18 +10157,18 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertStyleStmt(cornucopia_async::private::Stmt);
+        pub struct InsertStyleStmt(cornucopi_async::private::Stmt);
         impl InsertStyleStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
-                T5: cornucopia_async::JsonSql,
-                T6: cornucopia_async::StringSql,
-                T7: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
+                T5: cornucopi_async::JsonSql,
+                T6: cornucopi_async::StringSql,
+                T7: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -10224,15 +10212,15 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
-                T5: cornucopia_async::JsonSql,
-                T6: cornucopia_async::StringSql,
-                T7: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
+                T5: cornucopi_async::JsonSql,
+                T6: cornucopi_async::StringSql,
+                T7: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertStyleParams<T1, T2, T3, T4, T5, T6, T7>,
                 I32Query<'a, C, i32, 13>,
@@ -10263,7 +10251,7 @@ id",
             }
         }
         pub fn update_style() -> UpdateStyleStmt {
-            UpdateStyleStmt(cornucopia_async::private::Stmt::new(
+            UpdateStyleStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 style
 SET
@@ -10284,18 +10272,18 @@ RETURNING
 id",
             ))
         }
-        pub struct UpdateStyleStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateStyleStmt(cornucopi_async::private::Stmt);
         impl UpdateStyleStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
-                T5: cornucopia_async::JsonSql,
-                T6: cornucopia_async::StringSql,
-                T7: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
+                T5: cornucopi_async::JsonSql,
+                T6: cornucopi_async::StringSql,
+                T7: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -10337,15 +10325,15 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::JsonSql,
-                T5: cornucopia_async::JsonSql,
-                T6: cornucopia_async::StringSql,
-                T7: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::JsonSql,
+                T5: cornucopi_async::JsonSql,
+                T6: cornucopi_async::StringSql,
+                T7: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateStyleParams<T1, T2, T3, T4, T5, T6, T7>,
                 I32Query<'a, C, i32, 12>,
@@ -10375,7 +10363,7 @@ id",
             }
         }
         pub fn delete_style() -> DeleteStyleStmt {
-            DeleteStyleStmt(cornucopia_async::private::Stmt::new(
+            DeleteStyleStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM
 style
 WHERE
@@ -10385,7 +10373,7 @@ RETURNING
 id",
             ))
         }
-        pub struct DeleteStyleStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteStyleStmt(cornucopi_async::private::Stmt);
         impl DeleteStyleStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -10403,7 +10391,7 @@ id",
             }
         }
         impl<'a, C: GenericClient>
-            cornucopia_async::Params<'a, DeleteStyleParams, I32Query<'a, C, i32, 2>, C>
+            cornucopi_async::Params<'a, DeleteStyleParams, I32Query<'a, C, i32, 2>, C>
             for DeleteStyleStmt
         {
             fn params(
@@ -10418,9 +10406,9 @@ id",
     pub mod user {
         #[derive(Debug)]
         pub struct SelectUsersParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::ArraySql<Item = i32>,
-            T3: cornucopia_async::ArraySql<Item = i32>,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::ArraySql<Item = i32>,
+            T3: cornucopi_async::ArraySql<Item = i32>,
         > {
             pub organization_id: Option<i32>,
             pub id: Option<i32>,
@@ -10440,10 +10428,10 @@ id",
         }
         #[derive(Debug)]
         pub struct InsertUserParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::StringSql,
         > {
             pub name: T1,
             pub email: T2,
@@ -10452,10 +10440,10 @@ id",
         }
         #[derive(Debug)]
         pub struct UpdateUserParams<
-            T1: cornucopia_async::StringSql,
-            T2: cornucopia_async::StringSql,
-            T3: cornucopia_async::StringSql,
-            T4: cornucopia_async::StringSql,
+            T1: cornucopi_async::StringSql,
+            T2: cornucopi_async::StringSql,
+            T3: cornucopi_async::StringSql,
+            T4: cornucopi_async::StringSql,
         > {
             pub name: Option<T1>,
             pub email: Option<T2>,
@@ -10464,13 +10452,13 @@ id",
             pub id: i32,
         }
         #[derive(Debug)]
-        pub struct UpsertUserOrganizationParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct UpsertUserOrganizationParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub user_id: i32,
             pub organization_id: i32,
             pub role_ids: Option<T1>,
         }
         #[derive(Debug)]
-        pub struct ReplaceUserGroupsParams<T1: cornucopia_async::ArraySql<Item = i32>> {
+        pub struct ReplaceUserGroupsParams<T1: cornucopi_async::ArraySql<Item = i32>> {
             pub user_id: i32,
             pub group_ids: T1,
         }
@@ -10528,13 +10516,13 @@ id",
                 }
             }
         }
-        use cornucopia_async::GenericClient;
+        use cornucopi_async::GenericClient;
         use futures;
         use futures::{StreamExt, TryStreamExt};
         pub struct UserRowQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> UserRowBorrowed,
             mapper: fn(UserRowBorrowed) -> T,
         }
@@ -10576,7 +10564,7 @@ id",
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -10586,7 +10574,7 @@ id",
         pub struct I32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> i32,
             mapper: fn(i32) -> T,
         }
@@ -10628,7 +10616,7 @@ id",
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -10638,9 +10626,9 @@ id",
         pub struct Veci32Query<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
-            extractor: fn(&tokio_postgres::Row) -> cornucopia_async::ArrayIterator<'_, i32>,
-            mapper: fn(cornucopia_async::ArrayIterator<'_, i32>) -> T,
+            stmt: &'a mut cornucopi_async::private::Stmt,
+            extractor: fn(&tokio_postgres::Row) -> cornucopi_async::ArrayIterator<'_, i32>,
+            mapper: fn(cornucopi_async::ArrayIterator<'_, i32>) -> T,
         }
         impl<'a, C, T: 'a, const N: usize> Veci32Query<'a, C, T, N>
         where
@@ -10648,7 +10636,7 @@ id",
         {
             pub fn map<R>(
                 self,
-                mapper: fn(cornucopia_async::ArrayIterator<'_, i32>) -> R,
+                mapper: fn(cornucopi_async::ArrayIterator<'_, i32>) -> R,
             ) -> Veci32Query<'a, C, R, N> {
                 Veci32Query {
                     client: self.client,
@@ -10683,7 +10671,7 @@ id",
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -10693,7 +10681,7 @@ id",
         pub struct StringQuery<'a, C: GenericClient, T, const N: usize> {
             client: &'a C,
             params: [&'a (dyn postgres_types::ToSql + Sync); N],
-            stmt: &'a mut cornucopia_async::private::Stmt,
+            stmt: &'a mut cornucopi_async::private::Stmt,
             extractor: fn(&tokio_postgres::Row) -> &str,
             mapper: fn(&str) -> T,
         }
@@ -10735,7 +10723,7 @@ id",
                 let stmt = self.stmt.prepare(self.client).await?;
                 let it = self
                     .client
-                    .query_raw(stmt, cornucopia_async::private::slice_iter(&self.params))
+                    .query_raw(stmt, cornucopi_async::private::slice_iter(&self.params))
                     .await?
                     .map(move |res| res.map(|row| (self.mapper)((self.extractor)(&row))))
                     .into_stream();
@@ -10743,7 +10731,7 @@ id",
             }
         }
         pub fn select_users() -> SelectUsersStmt {
-            SelectUsersStmt(cornucopia_async::private::Stmt::new(
+            SelectUsersStmt(cornucopi_async::private::Stmt::new(
                 "WITH group_summaries AS (
     SELECT
         \"group\".id,
@@ -10838,14 +10826,14 @@ WHERE
     AND ($5::int[] IS NULL OR \"groups\".group_ids @> $5)",
             ))
         }
-        pub struct SelectUsersStmt(cornucopia_async::private::Stmt);
+        pub struct SelectUsersStmt(cornucopi_async::private::Stmt);
         impl SelectUsersStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::ArraySql<Item = i32>,
-                T3: cornucopia_async::ArraySql<Item = i32>,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::ArraySql<Item = i32>,
+                T3: cornucopi_async::ArraySql<Item = i32>,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -10878,11 +10866,11 @@ WHERE
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::ArraySql<Item = i32>,
-                T3: cornucopia_async::ArraySql<Item = i32>,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::ArraySql<Item = i32>,
+                T3: cornucopi_async::ArraySql<Item = i32>,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 SelectUsersParams<T1, T2, T3>,
                 UserRowQuery<'a, C, UserRow, 5>,
@@ -10905,7 +10893,7 @@ WHERE
             }
         }
         pub fn get_org_user_id() -> GetOrgUserIdStmt {
-            GetOrgUserIdStmt(cornucopia_async::private::Stmt::new(
+            GetOrgUserIdStmt(cornucopi_async::private::Stmt::new(
                 "SELECT \"user\".id
 FROM
     \"user\"
@@ -10916,7 +10904,7 @@ WHERE
     AND \"user\".id = $2",
             ))
         }
-        pub struct GetOrgUserIdStmt(cornucopia_async::private::Stmt);
+        pub struct GetOrgUserIdStmt(cornucopi_async::private::Stmt);
         impl GetOrgUserIdStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -10934,7 +10922,7 @@ WHERE
             }
         }
         impl<'a, C: GenericClient>
-            cornucopia_async::Params<'a, GetOrgUserIdParams, I32Query<'a, C, i32, 2>, C>
+            cornucopi_async::Params<'a, GetOrgUserIdParams, I32Query<'a, C, i32, 2>, C>
             for GetOrgUserIdStmt
         {
             fn params(
@@ -10946,7 +10934,7 @@ WHERE
             }
         }
         pub fn get_role_ids() -> GetRoleIdsStmt {
-            GetRoleIdsStmt(cornucopia_async::private::Stmt::new(
+            GetRoleIdsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT user_organization.role_ids
 FROM
     user_organization
@@ -10955,7 +10943,7 @@ WHERE
     AND user_organization.organization_id = $2",
             ))
         }
-        pub struct GetRoleIdsStmt(cornucopia_async::private::Stmt);
+        pub struct GetRoleIdsStmt(cornucopi_async::private::Stmt);
         impl GetRoleIdsStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -10973,7 +10961,7 @@ WHERE
             }
         }
         impl<'a, C: GenericClient>
-            cornucopia_async::Params<'a, GetRoleIdsParams, Veci32Query<'a, C, Vec<i32>, 2>, C>
+            cornucopi_async::Params<'a, GetRoleIdsParams, Veci32Query<'a, C, Vec<i32>, 2>, C>
             for GetRoleIdsStmt
         {
             fn params(
@@ -10985,7 +10973,7 @@ WHERE
             }
         }
         pub fn insert_user() -> InsertUserStmt {
-            InsertUserStmt(cornucopia_async::private::Stmt::new(
+            InsertUserStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO \"user\" (
     name,
     email,
@@ -11000,15 +10988,15 @@ RETURNING
 id",
             ))
         }
-        pub struct InsertUserStmt(cornucopia_async::private::Stmt);
+        pub struct InsertUserStmt(cornucopi_async::private::Stmt);
         impl InsertUserStmt {
             pub fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -11029,12 +11017,12 @@ id",
         impl<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 InsertUserParams<T1, T2, T3, T4>,
                 I32Query<'a, C, i32, 4>,
@@ -11056,7 +11044,7 @@ id",
             }
         }
         pub fn update_user() -> UpdateUserStmt {
-            UpdateUserStmt(cornucopia_async::private::Stmt::new(
+            UpdateUserStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE
 \"user\"
 SET
@@ -11068,15 +11056,15 @@ WHERE
     id = $5",
             ))
         }
-        pub struct UpdateUserStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateUserStmt(cornucopi_async::private::Stmt);
         impl UpdateUserStmt {
             pub async fn bind<
                 'a,
                 C: GenericClient,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >(
                 &'a mut self,
                 client: &'a C,
@@ -11095,12 +11083,12 @@ WHERE
         impl<
                 'a,
                 C: GenericClient + Send + Sync,
-                T1: cornucopia_async::StringSql,
-                T2: cornucopia_async::StringSql,
-                T3: cornucopia_async::StringSql,
-                T4: cornucopia_async::StringSql,
+                T1: cornucopi_async::StringSql,
+                T2: cornucopi_async::StringSql,
+                T3: cornucopi_async::StringSql,
+                T4: cornucopi_async::StringSql,
             >
-            cornucopia_async::Params<
+            cornucopi_async::Params<
                 'a,
                 UpdateUserParams<T1, T2, T3, T4>,
                 std::pin::Pin<
@@ -11131,12 +11119,12 @@ WHERE
             }
         }
         pub fn delete_user() -> DeleteUserStmt {
-            DeleteUserStmt(cornucopia_async::private::Stmt::new(
+            DeleteUserStmt(cornucopi_async::private::Stmt::new(
                 "DELETE FROM \"user\"
 WHERE id = $1",
             ))
         }
-        pub struct DeleteUserStmt(cornucopia_async::private::Stmt);
+        pub struct DeleteUserStmt(cornucopi_async::private::Stmt);
         impl DeleteUserStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -11148,7 +11136,7 @@ WHERE id = $1",
             }
         }
         pub fn upsert_user_organization() -> UpsertUserOrganizationStmt {
-            UpsertUserOrganizationStmt(cornucopia_async::private::Stmt::new(
+            UpsertUserOrganizationStmt(cornucopi_async::private::Stmt::new(
                 "INSERT INTO user_organization (
     user_id,
     organization_id,
@@ -11163,9 +11151,9 @@ ON CONFLICT ON CONSTRAINT user_organization_uq
 DO UPDATE SET role_ids = coalesce(excluded.role_ids, user_organization.role_ids)",
             ))
         }
-        pub struct UpsertUserOrganizationStmt(cornucopia_async::private::Stmt);
+        pub struct UpsertUserOrganizationStmt(cornucopi_async::private::Stmt);
         impl UpsertUserOrganizationStmt {
-            pub async fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub async fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 user_id: &'a i32,
@@ -11178,8 +11166,8 @@ DO UPDATE SET role_ids = coalesce(excluded.role_ids, user_organization.role_ids)
                     .await
             }
         }
-        impl<'a, C: GenericClient + Send + Sync, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<
+        impl<'a, C: GenericClient + Send + Sync, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<
                 'a,
                 UpsertUserOrganizationParams<T1>,
                 std::pin::Pin<
@@ -11208,7 +11196,7 @@ DO UPDATE SET role_ids = coalesce(excluded.role_ids, user_organization.role_ids)
             }
         }
         pub fn get_user_password_hash() -> GetUserPasswordHashStmt {
-            GetUserPasswordHashStmt(cornucopia_async::private::Stmt::new(
+            GetUserPasswordHashStmt(cornucopi_async::private::Stmt::new(
                 "SELECT \"user\".password_hash
 FROM
     \"user\"
@@ -11216,7 +11204,7 @@ WHERE
     \"user\".id = $1",
             ))
         }
-        pub struct GetUserPasswordHashStmt(cornucopia_async::private::Stmt);
+        pub struct GetUserPasswordHashStmt(cornucopi_async::private::Stmt);
         impl GetUserPasswordHashStmt {
             pub fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -11233,11 +11221,11 @@ WHERE
             }
         }
         pub fn update_last_sign_in() -> UpdateLastSignInStmt {
-            UpdateLastSignInStmt(cornucopia_async::private::Stmt::new(
+            UpdateLastSignInStmt(cornucopi_async::private::Stmt::new(
                 "UPDATE \"user\" SET last_sign_in = now() WHERE id = $1",
             ))
         }
-        pub struct UpdateLastSignInStmt(cornucopia_async::private::Stmt);
+        pub struct UpdateLastSignInStmt(cornucopi_async::private::Stmt);
         impl UpdateLastSignInStmt {
             pub async fn bind<'a, C: GenericClient>(
                 &'a mut self,
@@ -11249,15 +11237,15 @@ WHERE
             }
         }
         pub fn replace_user_groups() -> ReplaceUserGroupsStmt {
-            ReplaceUserGroupsStmt(cornucopia_async::private::Stmt::new(
+            ReplaceUserGroupsStmt(cornucopi_async::private::Stmt::new(
                 "SELECT *
 FROM
     replace_user_groups($1, $2)",
             ))
         }
-        pub struct ReplaceUserGroupsStmt(cornucopia_async::private::Stmt);
+        pub struct ReplaceUserGroupsStmt(cornucopi_async::private::Stmt);
         impl ReplaceUserGroupsStmt {
-            pub fn bind<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>(
+            pub fn bind<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>(
                 &'a mut self,
                 client: &'a C,
                 user_id: &'a i32,
@@ -11272,8 +11260,8 @@ FROM
                 }
             }
         }
-        impl<'a, C: GenericClient, T1: cornucopia_async::ArraySql<Item = i32>>
-            cornucopia_async::Params<'a, ReplaceUserGroupsParams<T1>, I32Query<'a, C, i32, 2>, C>
+        impl<'a, C: GenericClient, T1: cornucopi_async::ArraySql<Item = i32>>
+            cornucopi_async::Params<'a, ReplaceUserGroupsParams<T1>, I32Query<'a, C, i32, 2>, C>
             for ReplaceUserGroupsStmt
         {
             fn params(

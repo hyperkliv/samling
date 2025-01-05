@@ -2,7 +2,7 @@ mod any_id;
 mod id;
 pub(crate) use any_id::*;
 use async_trait::async_trait;
-use cornucopia_async::GenericClient;
+use cornucopi_async::GenericClient;
 use futures::future::try_join_all;
 pub use id::*;
 mod external_id;

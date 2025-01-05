@@ -1,4 +1,4 @@
-use cornucopia_async::{GenericClient, Params};
+use cornucopi_async::{GenericClient, Params};
 use deadpool_postgres::Object;
 
 use super::{

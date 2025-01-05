@@ -1,4 +1,4 @@
-use cornucopia_async::JsonSql;
+use cornucopi_async::JsonSql;
 use postgres_types::{private::BytesMut, to_sql_checked, IsNull, ToSql, Type};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};

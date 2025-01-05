@@ -493,24 +493,24 @@ dependencies = [
 ]
 
 [[package]]
-name = "cornucopia_async"
-version = "0.7.0"
-source = "sparse+https://crates.hyperkliv.dev/api/v1/crates/"
-checksum = "8c2f40c42fb9f08c59de265cadd8c4a92ce62256e57eca943b26a2b011b0ee7e"
+name = "cornucopi_async"
+version = "0.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6b340c2ef7294ac158525cc62555ae849b5923c22381926e5622143f75e1fb19"
 dependencies = [
  "async-trait",
- "cornucopia_client_core",
+ "cornucopi_client_core",
  "deadpool-postgres",
  "tokio-postgres",
 ]
 
 [[package]]
-name = "cornucopia_client_core"
-version = "0.4.0"
+name = "cornucopi_client_core"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "95a087271917ca54f32499539f3f44c8dc112ffea0f39f47d6cde075df8d2f18"
+checksum = "1b606fbd09c79c02d289f760ee5b2673e445bfe52073018d2d57f6309ebd607b"
 dependencies = [
- "fallible-iterator",
+ "postgres",
  "postgres-protocol",
  "postgres-types",
  "serde",
@@ -1721,6 +1721,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "280dc24453071f1b63954171985a0b0d30058d287960968b9b2aca264c8d4ee6"
 
 [[package]]
+name = "postgres"
+version = "0.19.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "95c918733159f4d55d2ceb262950f00b0aebd6af4aa97b5a47bb0655120475ed"
+dependencies = [
+ "bytes",
+ "fallible-iterator",
+ "futures-util",
+ "log",
+ "tokio",
+ "tokio-postgres",
+]
+
+[[package]]
 name = "postgres-derive"
 version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2191,7 +2205,7 @@ dependencies = [
  "base64 0.22.1",
  "bytes",
  "clap",
- "cornucopia_async",
+ "cornucopi_async",
  "csv",
  "deadpool-postgres",
  "derive_more",
