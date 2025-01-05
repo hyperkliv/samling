@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.11.3](https://github.com/hyperkliv/samling/compare/v0.11.2...v0.11.3) (2025-01-05)
+
+
+### Bug Fixes
+
+* **docker:** Add .cargo/config.toml for registry info ([41e0e06](https://github.com/hyperkliv/samling/commit/41e0e06fdb14dc8128e4fd3d21834e460cbaefa7))
+* Expose deadpool_postgres and cornucopia_async::GenericClient in samling API ([808da8e](https://github.com/hyperkliv/samling/commit/808da8e151bb70ee1663298909d2a6371b9c2868))
+* Expose tokio_postgres in public API ([16a9de8](https://github.com/hyperkliv/samling/commit/16a9de877caf52092a655c329d74801e0b6c3520))
+* Upgrade dependencies (except latest axum) ([393a9ca](https://github.com/hyperkliv/samling/commit/393a9caf04b037d184ed46a3f1b2d4f05aac9af6))
+
 ## [0.11.2](https://github.com/hyperkliv/samling/compare/v0.11.1...v0.11.2) (2024-10-31)
 
 
