@@ -59,3 +59,7 @@ pub use errors::*;
 pub mod deadpool_postgres {
     pub use deadpool_postgres::*;
 }
+
+pub mod tokio_postgres {
+    pub use tokio_postgres::*;
+}
