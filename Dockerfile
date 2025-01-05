@@ -36,6 +36,7 @@ RUN npm run build
 FROM $API_BASE_IMAGE as api_planner
 WORKDIR /app
 
+COPY /.cargo/ ./.cargo/
 COPY /src/ ./src/
 COPY /migrations/ ./migrations/
 COPY Cargo.toml Cargo.lock ./
