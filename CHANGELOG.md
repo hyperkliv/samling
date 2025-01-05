@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.12.0](https://github.com/hyperkliv/samling/compare/v0.11.2...v0.12.0) (2025-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Upgrade to axum 0.8
+
+### Bug Fixes
+
+* Expose deadpool_postgres and cornucopia_async::GenericClient in samling API ([86bbe02](https://github.com/hyperkliv/samling/commit/86bbe02955cf425b5de70f19cf37f3f7650874b5))
+* Expose tokio_postgres in public API ([7170d78](https://github.com/hyperkliv/samling/commit/7170d78722e5fa1e721f73ccfaf53b55cc2f988a))
+* Move from cornucopia_async to maintained crate cornucopi_async ([818ff48](https://github.com/hyperkliv/samling/commit/818ff48867e47bf743c36ba30713d6825cd5abc0))
+* Upgrade dependencies (except latest axum) ([d4a8a0a](https://github.com/hyperkliv/samling/commit/d4a8a0a8b5a90d1e98c11c1391c9cd46272d019e))
+* Upgrade to axum 0.8 ([15ea940](https://github.com/hyperkliv/samling/commit/15ea94077eca8b7765da8e3a7d5fc3bee2ff9f1e))
+
 ## [0.11.2](https://github.com/hyperkliv/samling/compare/v0.11.1...v0.11.2) (2024-10-31)
 
 
