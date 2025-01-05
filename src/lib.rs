@@ -37,6 +37,7 @@ pub use categories::*;
 pub use cloudflare::*;
 pub use collections::*;
 pub use colors::*;
+pub use cornucopia_async::GenericClient;
 pub use db_migrations::*;
 pub use entities::*;
 pub use entity_ref::*;
@@ -54,3 +55,7 @@ pub use styles::*;
 mod ui;
 
 pub use errors::*;
+
+pub mod deadpool_postgres {
+    pub use deadpool_postgres::*;
+}
