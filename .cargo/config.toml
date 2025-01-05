@@ -1,0 +1,5 @@
+# Private registry for crates
+[registries.hyperkliv]
+index = "sparse+https://crates.hyperkliv.dev/api/v1/crates/"
+credential-provider = ["cargo:token"]
+token = "vOcTd4J85OLuHfFmztDr5auokEAk1o1S"
