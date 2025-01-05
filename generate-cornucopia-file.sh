@@ -2,4 +2,5 @@
 cornucopia \
     --queries-path=./queries \
     schema \
-    ./migrations/*
+    ./migrations/*.sql
+cargo fmt -- ./src/cornucopia.rs
