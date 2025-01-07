@@ -36,7 +36,8 @@ RUN npm run build
 FROM $API_BASE_IMAGE AS api_planner
 WORKDIR /app
 
-COPY /src/ ./src/
+COPY /samling/ ./samling/
+COPY /samling-clorinde/ ./samling-clorinde/
 COPY /migrations/ ./migrations/
 COPY Cargo.toml Cargo.lock ./
 RUN cargo chef prepare --recipe-path recipe.json
@@ -57,7 +58,8 @@ RUN cargo chef cook --release --recipe-path recipe.json
 
 COPY --from=ui_builder /ui/build/ ./ui/build/
 
-COPY /src/ ./src/
+COPY /samling/ ./samling/
+COPY /samling-clorinde/ ./samling-clorinde/
 COPY /migrations/ ./migrations/
 COPY Cargo.toml Cargo.lock ./
 

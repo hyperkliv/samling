@@ -1,0 +1,40 @@
+# This file was generated with `clorinde`. Do not modify
+[package]
+name = "samling-clorinde"
+version = "0.10.2"
+edition = "2021"
+publish = false
+
+[features]
+default = ["deadpool"]
+deadpool = ["dep:deadpool-postgres", "tokio-postgres/default"]
+wasm-async = ["tokio-postgres/js", "chrono/wasmbind"]
+
+[dependencies]
+## Core dependencies
+# Postgres types
+postgres-types = { version = "0.2.8", features = ["derive"] }
+# Postgres interaction
+postgres-protocol = "0.6.7"
+# Iterator utils required for working with `postgres_protocol::types::ArrayValues`
+fallible-iterator = "0.2.0"
+
+## Types dependencies
+# JSON or JSONB
+serde_json = { version = "1.0.134", features = ["raw_value"] }
+serde = { version = "1.0.217", features = ["derive"] }
+# TIME, DATE, TIMESTAMP or TIMESTAMPZ
+chrono = "0.4.39"
+# DECIMAL
+rust_decimal = { version = "1.36.0", features = ["db-postgres"] }
+
+## Async client dependencies
+# Postgres async client
+tokio-postgres = { version = "0.7.12", default-features = false, features = ["with-serde_json-1","with-chrono-0_4",] }
+# Async utils
+async-trait = "0.1.78"
+futures = "0.3.31"
+
+## Async features dependencies
+# Async connection pooling
+deadpool-postgres = { version = "0.14.1", optional = true }
