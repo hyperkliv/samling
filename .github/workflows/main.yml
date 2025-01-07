@@ -164,41 +164,67 @@ jobs:
           event-type: new-samling-docker-image
           client-payload: '{"sha": "${{ github.sha }}", "version": "${{ steps.version.outputs.version }}" }'
 
-  release-please:
-    needs: [clippy, cargo-deny, test]
-    runs-on: ubuntu-latest
+  # Release unpublished packages.
+  release-plz-release:
+    name: Release-plz release
     if: ${{ github.repository == 'hyperkliv/samling' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
     permissions:
-      contents: write
       pull-requests: write
+      contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: googleapis/release-please-action@v4
-        id: release
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
+          fetch-depth: 0
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+      - name: Run release-plz
+        uses: release-plz/action@v0.5
+        with:
+          command: release
           # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
           # NOTE: The custom github token is important, as it allows the workflow to trigger new workflows
           #       release-please sometimes creates new tags, which we want to run this workflow with.
           token: ${{ secrets.TRIGGERING_GITHUB_TOKEN }}
-      - name: Tag major and minor versions in Git
-        if: ${{ steps.release.outputs.release_created }}
-        uses: jacobsvante/tag-major-minor-action@v0.1
-        with:
-          major: ${{ steps.release.outputs.major }}
-          minor: ${{ steps.release.outputs.minor }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+      # TODO: Are the major/minor tags really used for something? I think not.
+      # - name: Tag major and minor versions in Git
+      #   if: ${{ steps.release.outputs.release_created }}
+      #   uses: jacobsvante/tag-major-minor-action@v0.1
+      #   with:
+      #     major: ${{ steps.release.outputs.major }}
+      #     minor: ${{ steps.release.outputs.minor }}
 
-  publish:
-    name: Publish to crates.io
+  # Create a PR with the new versions and changelog, preparing the next release.
+  release-plz-pr:
+    name: Release-plz PR
+    if: ${{ github.repository == 'hyperkliv/samling' && github.ref == 'refs/heads/main' }}
+    needs: [cargo-deny, test]
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'hyperkliv/samling' && github.ref_type == 'tag' }}
+    concurrency:
+      group: release-plz-${{ github.ref }}
+      cancel-in-progress: false
     permissions:
-      contents: write
       pull-requests: write
-    env:
-      CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+      contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-      - uses: Swatinem/rust-cache@v2
-      - run: cargo publish -p samling-clorinde
-      - run: cargo publish -p samling
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+      - name: Run release-plz
+        uses: release-plz/action@v0.5
+        with:
+          command: release-pr
+          # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
+          # NOTE: The custom github token is important, as it allows the workflow to trigger new workflows
+          #       release-please sometimes creates new tags, which we want to run this workflow with.
+          token: ${{ secrets.TRIGGERING_GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}

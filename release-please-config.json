@@ -1,9 +1,0 @@
-{
-  "release-type": "rust",
-  "bump-minor-pre-major": true,
-  "packages": {
-    "./samling": {
-      "include-component-in-tag": false
-    }
-  }
-}
