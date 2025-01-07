@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.13.0](https://github.com/hyperkliv/samling/compare/samling-v0.12.0...samling-v0.13.0) - 2025-01-07
+
+### Refactor
+
+- [**breaking**] Move from cornucopia to clorinde
+
 ## [0.12.0](https://github.com/hyperkliv/samling/compare/v0.11.2...v0.12.0) (2025-01-05)
 
 
