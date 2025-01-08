@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.13.1](https://github.com/hyperkliv/samling/compare/samling-v0.13.0...samling-v0.13.1) - 2025-01-08
+
+### Fixed
+
+- Remove direct dependency on deadpool-postgres and tokio-postgres
+
 ## [0.13.0](https://github.com/hyperkliv/samling/compare/samling-v0.12.0...samling-v0.13.0) - 2025-01-07
 
 ### Refactor
