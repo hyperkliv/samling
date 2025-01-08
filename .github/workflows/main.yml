@@ -149,12 +149,14 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
       - name: Run release-plz
         uses: release-plz/action@v0.5
+        id: release-plz
         with:
           command: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
       - name: Notify hyperkliv/www-samling-io
+        if: steps.release-plz.outputs.releases_created
         uses: peter-evans/repository-dispatch@v3
         with:
           # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
