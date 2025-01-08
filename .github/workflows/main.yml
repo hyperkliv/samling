@@ -154,6 +154,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+      - name: Notify hyperkliv/www-samling-io
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
+          # NOTE: The custom github token is important, as repository_dispatch won't work across repos otherwise
+          token: ${{ secrets.TRIGGERING_GITHUB_TOKEN }}
+          repository: hyperkliv/www-samling-io
+          event-type: new-production-samling-docker-image
+          client-payload: '{"sha": "${{ github.sha }}"}'
 
   # Create a PR with the new versions and changelog, preparing the next release.
   release-plz-pr:
