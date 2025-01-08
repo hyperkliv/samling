@@ -2,7 +2,7 @@ use std::{path::Path, sync::Arc};
 
 use include_dir::{include_dir, Dir};
 
-static MIGRATIONS: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/../migrations");
+static MIGRATIONS: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/migrations");
 
 use deadpool_postgres::Pool;
 use serde::Serialize;

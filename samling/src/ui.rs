@@ -1,7 +1,7 @@
 use axum::http::{status::StatusCode, HeaderMap, HeaderValue};
 use include_dir::{include_dir, Dir};
 
-static FILES: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/../ui/build");
+static FILES: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/ui/build");
 
 /// Serve our create-react-app UI
 ///

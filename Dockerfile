@@ -21,7 +21,7 @@ RUN apk add --no-cache build-base cmake linux-headers \
 ### UI builder
 FROM node:20.6.0-alpine3.18 AS ui_builder
 WORKDIR /ui
-COPY ./ui/ ./
+COPY ./samling/ui/ ./
 RUN npm ci
 
 # NOTE: We default to `REACT_APP_API_BASE_URL=/api` to avoid CORS configuration. This
@@ -38,7 +38,6 @@ WORKDIR /app
 
 COPY /samling/ ./samling/
 COPY /samling-clorinde/ ./samling-clorinde/
-COPY /migrations/ ./migrations/
 COPY Cargo.toml Cargo.lock ./
 RUN cargo chef prepare --recipe-path recipe.json
 
@@ -56,11 +55,10 @@ ENV LD_PRELOAD=/lib/libmimalloc.so.2 MIMALLOC_LARGE_OS_PAGES=1
 COPY --from=api_planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 
-COPY --from=ui_builder /ui/build/ ./ui/build/
+COPY --from=ui_builder /ui/build/ ./samling/ui/build/
 
 COPY /samling/ ./samling/
 COPY /samling-clorinde/ ./samling-clorinde/
-COPY /migrations/ ./migrations/
 COPY Cargo.toml Cargo.lock ./
 
 RUN cargo build \

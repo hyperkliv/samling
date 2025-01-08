@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 clorinde \
-    --queries-path=./queries \
+    --queries-path=./samling/queries \
     --destination=samling-clorinde \
     schema \
-    ./migrations/*.sql
+    ./samling/migrations/*.sql
 cargo fmt -p samling-clorinde
