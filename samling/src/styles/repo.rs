@@ -1,10 +1,10 @@
-use deadpool_postgres::Object;
 use futures::future::{try_join, try_join_all};
 use itertools::Itertools;
 use samling_clorinde::client::{GenericClient, Params};
 
 use super::{CreateStyle, Style, UpdateStyle};
 use crate::auth::User;
+use crate::deadpool_postgres::Object;
 use crate::entity_ref::{ExternalIdEntity, Id, Ref, RefTarget, RefType, SlugEntity};
 use crate::organizations::Organization;
 use crate::sorting::Sortable;

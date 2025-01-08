@@ -1,5 +1,3 @@
-use deadpool_postgres::Object;
-
 use samling_clorinde::{
     client::{GenericClient, Params},
     queries::{
@@ -19,6 +17,7 @@ use samling_clorinde::{
 };
 
 use super::{CreatePrice, CreatePriceList, Price, PriceList, UpdatePrice, UpdatePriceList};
+use crate::deadpool_postgres::Object;
 use crate::{
     auth::User,
     entity_ref::{ExternalIdEntity, Id, RefTarget},

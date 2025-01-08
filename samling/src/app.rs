@@ -3,7 +3,6 @@ use std::net::SocketAddr;
 use axum::extract::{DefaultBodyLimit, State};
 use axum::http::Method;
 use axum::Json;
-use deadpool_postgres::Pool;
 use http::header::{AUTHORIZATION, CONTENT_DISPOSITION, CONTENT_TYPE};
 use http::HeaderValue;
 use tokio::net::TcpListener;
@@ -13,9 +12,9 @@ use tower_http::trace::TraceLayer;
 
 use crate::auth::hashing::Hasher;
 use crate::auth::signing::JwtSigner;
-
 use crate::cloudflare::CloudflareApi;
 use crate::db_migrations::Migrator;
+use crate::deadpool_postgres::Pool;
 use crate::errors::{CliResult, Result};
 use crate::routes::AppRouter;
 use crate::state::AppState;

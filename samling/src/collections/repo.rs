@@ -1,8 +1,8 @@
-use deadpool_postgres::Object;
 use futures::{future::try_join_all, try_join};
 use itertools::Itertools;
 
 use super::{Collection, CreateCollection, UpdateCollection};
+use crate::deadpool_postgres::Object;
 use crate::{
     entity_ref::{ExternalIdEntity, Id, RefTarget, SlugEntity},
     organizations::Organization,

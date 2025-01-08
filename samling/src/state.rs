@@ -1,6 +1,6 @@
 use axum::extract::FromRef;
-use deadpool_postgres::Pool;
 
+use crate::deadpool_postgres::Pool;
 use crate::{db_migrations::Migrator, hashing::Hasher, CloudflareApi, Environment, JwtSigner};
 
 #[derive(Debug, Clone, FromRef)]

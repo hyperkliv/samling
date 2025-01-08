@@ -1,4 +1,3 @@
-use deadpool_postgres::Object;
 use futures::future::try_join_all;
 use itertools::Itertools;
 use password_hash::PasswordHashString;
@@ -8,6 +7,7 @@ use serde::Deserialize;
 use super::{
     filters::UserFilters, hashing::Hasher, sorting::UserSortOrder, CreateUser, UpdateUser, User,
 };
+use crate::deadpool_postgres::Object;
 use crate::{
     entity_ref::{Id, RefType},
     organizations::Organization,

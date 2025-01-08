@@ -56,9 +56,9 @@ mod ui;
 pub use errors::*;
 
 pub mod deadpool_postgres {
-    pub use deadpool_postgres::*;
+    pub use samling_clorinde::deadpool_postgres::*;
 }
 
 pub mod tokio_postgres {
-    pub use tokio_postgres::*;
+    pub use samling_clorinde::tokio_postgres::*;
 }

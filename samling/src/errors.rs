@@ -8,6 +8,7 @@ use schemars::JsonSchema;
 use serde::Serialize;
 
 use crate::auth::rbac::Permission;
+use crate::deadpool_postgres;
 
 pub type Result<T> = std::result::Result<T, Error>;
 
@@ -68,7 +69,7 @@ pub enum Error {
     #[error("Invalid header error: {0}")]
     InvalidHttpHeaderValue(#[from] http::header::InvalidHeaderValue),
     #[error("tokio-postgres error: {0}")]
-    DbError(#[from] tokio_postgres::Error),
+    DbError(#[from] crate::tokio_postgres::Error),
     #[error("Deadpool pool error: {0}")]
     DbPoolError(#[from] deadpool_postgres::PoolError),
     #[error("Deadpool create pool error: {0}")]

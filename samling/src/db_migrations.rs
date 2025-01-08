@@ -4,12 +4,12 @@ use include_dir::{include_dir, Dir};
 
 static MIGRATIONS: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/migrations");
 
-use deadpool_postgres::Pool;
 use serde::Serialize;
 use tokio::sync::Mutex;
-use tokio_postgres::error::SqlState;
 use tracing::log::{debug, info};
 
+use crate::deadpool_postgres::Pool;
+use crate::tokio_postgres::error::SqlState;
 use crate::Result;
 use samling_clorinde::queries::misc::{migrate_revision, set_migrate_revision};
 

@@ -1,4 +1,4 @@
-use deadpool_postgres::Object;
+use crate::deadpool_postgres::Object;
 use samling_clorinde::client::{GenericClient, Params};
 
 use super::{

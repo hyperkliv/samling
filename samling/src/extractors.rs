@@ -4,10 +4,10 @@ use axum::{
     extract::{FromRequestParts, Query},
     RequestPartsExt,
 };
-use deadpool_postgres::Object;
 use http::request::Parts;
 use serde::Deserialize;
 
+use crate::deadpool_postgres::Object;
 use crate::{helpers, state::AppState, Error, Result};
 
 pub(crate) struct PoolClient(pub(crate) Object);

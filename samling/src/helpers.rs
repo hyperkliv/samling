@@ -1,9 +1,9 @@
-use deadpool_postgres::{Pool, Timeouts};
 use serde::{
     de::{self, Deserialize, Deserializer, Visitor},
     forward_to_deserialize_any,
 };
 
+use crate::deadpool_postgres::{self, Pool, Timeouts};
 use crate::Result;
 
 pub fn create_deadpool_manager(
@@ -21,7 +21,7 @@ pub fn create_deadpool_manager(
     cfg.port = Some(db_port);
     cfg.dbname = Some(db_name);
     let builder = cfg
-        .builder(tokio_postgres::NoTls)
+        .builder(crate::tokio_postgres::NoTls)
         .unwrap()
         .max_size(max_db_connections as usize) // TODO: Do these really correspond?
         .timeouts(Timeouts::wait_millis(30_000))
