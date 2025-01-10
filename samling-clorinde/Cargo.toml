@@ -1,7 +1,7 @@
 # This file was generated with `clorinde`. Do not modify
 [package]
 name = "samling-clorinde"
-version = "0.12.0"
+version = "0.12.1"
 edition = "2021"
 publish = true
 description = "Database queries etc for the `samling` crate"
