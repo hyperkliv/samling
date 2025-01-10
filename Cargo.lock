@@ -2182,7 +2182,7 @@ checksum = "f3cb5ba0dc43242ce17de99c180e96db90b235b8a9fdc9543c96d2209116bd9f"
 
 [[package]]
 name = "samling"
-version = "0.13.1"
+version = "0.13.2"
 dependencies = [
  "argon2",
  "axum",
@@ -2234,7 +2234,7 @@ dependencies = [
 
 [[package]]
 name = "samling-clorinde"
-version = "0.12.0"
+version = "0.12.1"
 dependencies = [
  "async-trait",
  "chrono",
