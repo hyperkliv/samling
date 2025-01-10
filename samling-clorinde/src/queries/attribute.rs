@@ -63,8 +63,8 @@ pub struct AttributeRow {
     pub slug: String,
     pub external_id: Option<String>,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
     pub r#type: serde_json::Value,
 }
 pub struct AttributeRowBorrowed<'a> {
@@ -76,8 +76,8 @@ pub struct AttributeRowBorrowed<'a> {
     pub slug: &'a str,
     pub external_id: Option<&'a str>,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
     pub r#type: postgres_types::Json<&'a serde_json::value::RawValue>,
 }
 impl<'a> From<AttributeRowBorrowed<'a>> for AttributeRow {

@@ -44,8 +44,8 @@ pub struct AttributeTypeRow {
     pub slug: String,
     pub external_id: Option<String>,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
 }
 pub struct AttributeTypeRowBorrowed<'a> {
     pub id: i32,
@@ -54,8 +54,8 @@ pub struct AttributeTypeRowBorrowed<'a> {
     pub slug: &'a str,
     pub external_id: Option<&'a str>,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
 }
 impl<'a> From<AttributeTypeRowBorrowed<'a>> for AttributeTypeRow {
     fn from(

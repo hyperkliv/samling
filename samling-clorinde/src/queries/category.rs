@@ -47,8 +47,8 @@ pub struct CategoryRow {
     pub external_id: Option<String>,
     pub name: serde_json::Value,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
 }
 pub struct CategoryRowBorrowed<'a> {
     pub id: i32,
@@ -57,8 +57,8 @@ pub struct CategoryRowBorrowed<'a> {
     pub external_id: Option<&'a str>,
     pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
 }
 impl<'a> From<CategoryRowBorrowed<'a>> for CategoryRow {
     fn from(

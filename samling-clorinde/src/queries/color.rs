@@ -65,8 +65,8 @@ pub struct ColorRow {
     pub number: String,
     pub name: serde_json::Value,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
     pub style: serde_json::Value,
     pub images: serde_json::Value,
 }
@@ -79,8 +79,8 @@ pub struct ColorRowBorrowed<'a> {
     pub number: &'a str,
     pub name: postgres_types::Json<&'a serde_json::value::RawValue>,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
     pub style: postgres_types::Json<&'a serde_json::value::RawValue>,
     pub images: postgres_types::Json<&'a serde_json::value::RawValue>,
 }

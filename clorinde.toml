@@ -1,0 +1,9 @@
+[package]
+name = "samling-clorinde"
+version = "0.12.0"
+license = "MIT"
+publish = true
+description = "Database queries etc for the `samling` crate"
+repository = "https://github.com/hyperkliv/samling"
+documentation = "https://docs.rs/samling/"
+homepage = "https://github.com/hyperkliv/samling"

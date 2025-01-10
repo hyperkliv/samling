@@ -1762,6 +1762,7 @@ dependencies = [
  "postgres-protocol",
  "serde",
  "serde_json",
+ "time",
 ]
 
 [[package]]
@@ -2245,6 +2246,7 @@ dependencies = [
  "rust_decimal",
  "serde",
  "serde_json",
+ "time",
  "tokio-postgres",
 ]
 
@@ -2763,6 +2765,7 @@ checksum = "35e7868883861bd0e56d9ac6efcaaca0d6d5d82a2a7ec8209ff492c07cf37b21"
 dependencies = [
  "deranged",
  "itoa",
+ "js-sys",
  "num-conv",
  "powerfmt",
  "serde",

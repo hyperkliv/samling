@@ -51,8 +51,8 @@ pub struct ImageRow {
     pub position: i32,
     pub color_id: i32,
     pub uploaded_by: Option<i32>,
-    pub uploaded_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub uploaded_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
     pub color: serde_json::Value,
 }
 pub struct ImageRowBorrowed<'a> {
@@ -64,8 +64,8 @@ pub struct ImageRowBorrowed<'a> {
     pub position: i32,
     pub color_id: i32,
     pub uploaded_by: Option<i32>,
-    pub uploaded_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub uploaded_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
     pub color: postgres_types::Json<&'a serde_json::value::RawValue>,
 }
 impl<'a> From<ImageRowBorrowed<'a>> for ImageRow {

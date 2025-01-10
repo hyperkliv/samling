@@ -17,16 +17,16 @@ pub struct OrganizationRow {
     pub id: i32,
     pub name: String,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
     pub logo_url: Option<String>,
 }
 pub struct OrganizationRowBorrowed<'a> {
     pub id: i32,
     pub name: &'a str,
     pub created_by: Option<i32>,
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
+    pub created_at: crate::types::time::TimestampTz,
+    pub updated_at: crate::types::time::TimestampTz,
     pub logo_url: Option<&'a str>,
 }
 impl<'a> From<OrganizationRowBorrowed<'a>> for OrganizationRow {

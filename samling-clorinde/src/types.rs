@@ -1,12 +1,26 @@
 // This file was generated with `clorinde`. Do not modify.
 
+#[cfg(feature = "chrono")]
+pub mod time {
+    pub type Timestamp = chrono::NaiveDateTime;
+    pub type TimestampTz = chrono::DateTime<chrono::FixedOffset>;
+    pub type Date = chrono::NaiveDate;
+    pub type Time = chrono::NaiveTime;
+}
+#[cfg(feature = "time")]
+pub mod time {
+    pub type Timestamp = time::PrimitiveDateTime;
+    pub type TimestampTz = time::OffsetDateTime;
+    pub type Date = time::Date;
+    pub type Time = time::Time;
+}
 #[derive(Debug, postgres_types::FromSql, Copy, Clone, PartialEq)]
 #[postgres(name = "collection_pricelist_relation")]
 pub struct CollectionPricelistRelation {
     #[postgres(name = "pricelist_id")]
     pub pricelist_id: i32,
     #[postgres(name = "price_date")]
-    pub price_date: chrono::NaiveDate,
+    pub price_date: crate::types::time::Date,
     #[postgres(name = "created_by")]
     pub created_by: i32,
 }
@@ -62,7 +76,7 @@ impl<'a> postgres_types::ToSql for CollectionPricelistRelation {
                 fields.iter().all(|f| match f.name() {
                     "pricelist_id" => <i32 as postgres_types::ToSql>::accepts(f.type_()),
                     "price_date" => {
-                        <chrono::NaiveDate as postgres_types::ToSql>::accepts(f.type_())
+                        <crate::types::time::Date as postgres_types::ToSql>::accepts(f.type_())
                     }
                     "created_by" => <i32 as postgres_types::ToSql>::accepts(f.type_()),
                     _ => false,

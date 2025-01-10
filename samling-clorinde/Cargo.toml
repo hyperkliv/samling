@@ -2,17 +2,22 @@
 [package]
 name = "samling-clorinde"
 version = "0.12.0"
-license = "MIT"
 edition = "2021"
+publish = true
 description = "Database queries etc for the `samling` crate"
-repository = "https://github.com/hyperkliv/samling"
 documentation = "https://docs.rs/samling/"
 homepage = "https://github.com/hyperkliv/samling"
+repository = "https://github.com/hyperkliv/samling"
+license = "MIT"
+
 
 [features]
-default = ["deadpool"]
+default = ["deadpool", "chrono"]
 deadpool = ["dep:deadpool-postgres", "tokio-postgres/default"]
-wasm-async = ["tokio-postgres/js", "chrono/wasmbind"]
+wasm-async = ["tokio-postgres/js", "chrono/wasmbind", "time/wasm-bindgen"]
+
+chrono = ["dep:chrono"]
+time = ["dep:time"]
 
 [dependencies]
 ## Core dependencies
@@ -25,21 +30,19 @@ fallible-iterator = "0.2.0"
 
 ## Types dependencies
 # JSON or JSONB
-serde_json = { version = "1.0.135", features = ["raw_value"] }
+serde_json = { version = "1.0.134", features = ["raw_value"] }
 serde = { version = "1.0.217", features = ["derive"] }
 # TIME, DATE, TIMESTAMP or TIMESTAMPZ
-chrono = "0.4.39"
+chrono = { version = "0.4.39", optional = true }
+time = { version = "0.3.37", optional = true }
 # DECIMAL
 rust_decimal = { version = "1.36.0", features = ["db-postgres"] }
 
 ## Async client dependencies
 # Postgres async client
-tokio-postgres = { version = "0.7.12", default-features = false, features = [
-    "with-serde_json-1",
-    "with-chrono-0_4",
-] }
+tokio-postgres = { version = "0.7.12", default-features = false, features = ["with-serde_json-1","with-chrono-0_4","with-time-0_3",] }
 # Async utils
-async-trait = "0.1.85"
+async-trait = "0.1.78"
 futures = "0.3.31"
 
 ## Async features dependencies
