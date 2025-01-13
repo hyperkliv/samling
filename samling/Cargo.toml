@@ -1,6 +1,6 @@
 [package]
 name = "samling"
-version = "0.13.1"
+version = "0.13.2"
 license = "MIT"
 edition = "2021"
 description = "App for managing apparel collections"
@@ -9,7 +9,7 @@ documentation = "https://docs.rs/samling/"
 homepage = "https://github.com/hyperkliv/samling"
 
 [dependencies]
-samling-clorinde = { version = "0.12.0", path = "../samling-clorinde" }
+samling-clorinde = { version = "0.12.1", path = "../samling-clorinde" }
 argon2 = "0.5.3"
 axum = { version = "0.8.1", features = ["macros"] }
 axum-extra = { version = "0.10.0", features = ["typed-header"] }
