@@ -50,7 +50,7 @@ rust_decimal = { version = "1.36.0", features = [
     "db-postgres",
     "serde-with-float",
 ] }
-rust_xlsxwriter = "0.80.0"
+rust_xlsxwriter = "0.82.0"
 schemars = { version = "0.8.21", features = [
     "derive",
     "preserve_order",
